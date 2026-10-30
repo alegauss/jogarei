@@ -130,29 +130,27 @@ be. It is filed apart from PP22 because the workflow is worth having while it is
 the alternative was leaving CI unwritten until someone had a runner to iterate against,
 which is how a port keeps building on exactly one machine.
 
-### §PP302 The third verb in PP22's sentence
+### §PP302 Distributing through the Microsoft Store
 
-PP22's line named three things CI had stopped doing - builds, signs, packages - and
-shipped two of them. The third is here because it is not the same kind of work: the
-other two were files to write, and this one starts with buying something.
+Rewritten after the portfolio review of 30/10/2026 (visibility,
+`estrategia/portfolio.md`). What an unsigned application costs its user is unchanged:
+SmartScreen shows "Windows protected your PC" on the first run, browsers warn on the
+download, and the warning is the first thing a new user sees. What changed is the
+answer. The decision for all of the author's Windows apps is the Microsoft Store, which
+signs the MSIX package itself, in place of buying a certificate (OV, EV or Azure's
+service). claude-tray tests the path first (visibility VS58); this line follows what
+that test learns.
 
-What an unsigned Windows application costs its user is concrete rather than theoretical.
-SmartScreen shows "Windows protected your PC" on first run of an executable with no
-reputation, and the button that runs it anyway is behind "More info". Browsers warn on
-the download. The installer PP274 compiles carries the same absence, so the warning is
-the first thing a new user sees and the last thing they see before deciding this is not
-worth it.
+This port's own points to check against the Store's rules: no Sony mark in the name or
+the listing (PP861, PP863), since a store review refuses third-party trademarks;
+AGPL-3.0, whose source offer the listing must carry; the PSN sign-in through WebView2;
+discovery and streaming over the local network, which need the private-network
+capabilities declared; the NVIDIA path and the decode fallbacks, which must survive
+packaging; and the side-by-side install with chiaki-ng. If one of these rules out MSIX,
+the outcome is written down and a certificate is reconsidered.
 
-The certificate is the decision. An OV certificate is issued to a name and can be used
-from a runner with the key in a secret; an EV one carries reputation from the day it is
-issued and lives on hardware, which a hosted runner cannot reach without a signing
-service. Azure Trusted Signing sits between the two and is a subscription. All three are
-a purchase and an identity check against a legal entity, and none of them is a step this
-port can take on its own.
-
-Filed so the gap is written down rather than remembered. The workflow signs nothing
-today and says nothing about it, which is the state where a release goes out unsigned
-because every part of it was green.
+Done when the application is listed in the Store and installs without a SmartScreen
+warning, or the reason it cannot be is recorded here.
 
 ## Block F — Managed core
 
@@ -372,6 +370,68 @@ Below the display's minimum, low framerate compensation changes the behaviour ag
 that too is read rather than assumed.
 
 ## Block J — Public documentation
+
+### §PP861 PP861 — Carrying a name without a Sony mark through the product
+
+From the portfolio review of 30/10/2026 (visibility, `produtos/pportal.md`), where the
+author decided to review the name. "PPortal" reads as PlayStation Portal, Sony's own
+device built for exactly this use, so the name borrows a mark the project does not own;
+the site's "unofficial" notice does not change what the name itself suggests, and a
+complaint would arrive after the first release had spread it.
+
+The new name is chosen in the visibility repository (its VS59, together with
+quickshell's), with the usual checks: free on GitHub, winget, the Microsoft Store and as
+a domain, and with nothing of Sony's in it (no PlayStation, PS, Portal or DualSense).
+This line carries the chosen name through the product: the executable and the window
+title, the installer and its install folder, the icon's file name, the repository name
+(GitHub redirects the old one), the site and its `llms.txt`. The side-by-side install
+with chiaki-ng stays as it is, and the task prefix stays `PP`.
+
+Done when the new name is the only one a user sees from the download to the window, and
+nothing in it is a Sony mark.
+
+### §PP862 PP862 — A README of its own
+
+From the portfolio review of 30/10/2026 (visibility, `produtos/pportal.md`). The
+repository's README is still chiaki-ng's: its logo, its name as the title, its Discord
+and a link to its site. A visitor arriving at the repository learns about the upstream
+project and nothing about this one: that it is a Windows-only application rebuilt in
+.NET 10 and WPF, what it does differently, that there is no release yet, and that its
+issues belong here, not in chiaki-ng's Discord. The site already says all of this; the
+README contradicts it.
+
+The README is rewritten for this project, under its new name: one sentence on what it
+is, the differences that matter (native Windows interface with controller navigation,
+ten-bit presentation, hardware decode on the card present, side by side with chiaki-ng),
+the status stated plainly (no release, the open input defects PP853 and PP854), the
+build steps, and the licence. The credit to Chiaki and chiaki-ng stays, as a section
+that thanks them and links them, along with the non-affiliation notice. chiaki-ng's
+README moves to a credits file if any of it is still needed.
+
+Done when the README's title, logo and links are this project's, and chiaki-ng appears
+only as credited origin.
+
+### §PP863 PP863 — Sony's marks only where they describe compatibility
+
+From the portfolio review of 30/10/2026 (visibility, `produtos/pportal.md`). Beyond the
+name, Sony's marks lead the project's own titles: the site's title is "PlayStation
+Remote Play, rebuilt for Windows", the hero opens on "PlayStation Remote Play,", and the
+repository description starts "PlayStation Remote Play as a real Windows app". In a
+title the mark reads as the product's identity rather than a description of what it
+connects to, which is the use most likely to draw a complaint and to be refused by a
+store's review.
+
+Titles, headings, the repository description, the window title, the installer's name and
+the Store listing name the project by its own name and say what it does in generic words
+(remote play for your console, streaming your console to Windows). PlayStation, PS4 and
+PS5 stay only where they are needed to say which consoles it works with, in body text,
+in the form "works with PS4 and PS5 consoles", together with the existing notice that
+these are Sony's trademarks and the project is not affiliated. The same rule is written
+into the site's content file so later copy follows it.
+
+Done when no title, heading or name on the site, the README, the repository or the
+installer contains PlayStation or PS, and the body text names the consoles only
+descriptively.
 
 ## Block K — The site on the design system
 

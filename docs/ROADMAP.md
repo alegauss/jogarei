@@ -19,7 +19,7 @@
 ## Block E — Windows-only build
 
 - 📋 **PP301** (deps: —) (requires: runner) **no MSVC toolchain has ever compiled this tree, so the CI workflow's first push is the first time it is tried** — PP22 configures a runner the only way a runner can be, and everything built here so far came through MSYS2 MinGW64. → §PP301
-- 📋 **PP302** (deps: —) (requires: signing-certificate) **nothing signs the host or the installer, so SmartScreen warns on the first run of every release** — PP22 shipped the builds and the packages of its own sentence and not the signs, because that one starts with buying a certificate. → §PP302
+- 📋 **PP302** (deps: visibility VS58, PP863) **nothing signs the host or the installer, so SmartScreen warns on the first run of every release** — The Store signs the MSIX itself in place of a certificate, and claude-tray tests that path first, so this follows what it learns. → §PP302
 
 ## Block F — Managed core
 
@@ -39,6 +39,10 @@
 - ⏳ **PP53** (deps: PP11 ✅, PP41 ✅) (requires: variable-refresh-display) **frames arrive with network jitter and are presented against a fixed refresh, so each waits for a vblank it missed** — the reading itself: a display that varies its refresh, and a trace saying the frame arrived unpaced. → §PP53
 
 ## Block J — Public documentation
+
+- 📋 **PP861** (deps: visibility VS59) **The name reads as Sony's PlayStation Portal, a mark this project does not own** — The author decided to rename it before a first release spreads the name, and the choice is made in visibility VS59. → §PP861
+- 📋 **PP862** (deps: PP861) **The repository's README is still chiaki-ng's, so a visitor learns about the upstream and nothing about this port** — The site already says what this project is, and the README a GitHub visitor reads first contradicts it. → §PP862
+- 📋 **PP863** (deps: PP861) **PlayStation leads the site's title, the hero and the repository description, as if it were the product's name** — In a title the mark reads as identity rather than compatibility, the use most likely to draw a complaint or a store refusal. → §PP863
 
 ## Block K — The site on the design system
 
