@@ -204,7 +204,7 @@ declared = [
 [criteria]
 
 [install]
-wired = "0.2.473"
+wired = "0.2.576"
 
 [project]
 name = "pportal"
