@@ -1,6 +1,6 @@
 # The PPortal site
 
-The public site, at <https://alegauss.github.io/pportal/>. It is a separate npm project from
+The public site, at <https://alegauss.com/pportal/>. It is a separate npm project from
 the .NET solution and it builds to its own `dist/`, because `docs/` belongs to roadkeep and
 is never a web root.
 

@@ -156,7 +156,7 @@ rationale section keeps only the argument for doing the work, which is what a sh
 ## ⛔ READ THIRD — then ask what the public documentation owes the task
 
 The port has a documentation area at [`site/docs/`](../../../site/docs), published at
-<https://alegauss.github.io/pportal/docs> (PP446, Block J). It is written for a reader
+<https://alegauss.com/pportal/docs> (PP446, Block J). It is written for a reader
 outside this tree, and the three roadkeep files are not: `CHANGELOG.md` records that a
 task shipped and says nothing that somebody integrating against the port could act on.
 

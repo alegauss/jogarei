@@ -1,4 +1,4 @@
-// The documentation area, at https://alegauss.github.io/pportal/docs/.
+// The documentation area, at https://alegauss.com/pportal/docs/.
 //
 // A second build rather than more pages in site/src: that renderer holds its copy as data so a
 // claim is an array element a test can reach, which is right for eight curated pages and wrong
@@ -45,7 +45,7 @@ const GOOGLE_TAG = [
 ];
 
 export default defineConfig({
-  site: "https://alegauss.github.io",
+  site: "https://alegauss.com",
   base: BASE,
   outDir: OUT_DIR,
 

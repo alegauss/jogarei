@@ -4,7 +4,7 @@
 > DirectComposition, hardware decode chosen from what the machine reports, the consoles and
 > pairings you already registered, and no browser inside the download.
 
-Site: https://alegauss.github.io/pportal/
+Site: https://alegauss.com/pportal/
 Source: https://github.com/alegauss/pportal
 Licence: AGPL-3.0
 Platform: Windows 10 or 11, x64. There is no Linux, macOS, Android or Switch build, and

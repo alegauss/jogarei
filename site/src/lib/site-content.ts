@@ -32,12 +32,12 @@ export const meta = {
     title: "PPortal",
     description:
       "PlayStation Remote Play as a Windows application: WPF on the system Fluent theme, ten-bit video through DirectComposition, and the decode path your machine actually has.",
-    url: "https://alegauss.github.io/pportal/",
+    url: "https://alegauss.com/pportal/",
   },
 } as const;
 
 export const repoUrl = "https://github.com/alegauss/pportal";
-export const parentUrl = "https://alegauss.github.io/";
+export const parentUrl = "https://alegauss.com/";
 
 // The release page rather than a file: the installer carries its version in its name, so
 // there is no version-independent URL for the asset itself, and a hard-coded filename would
@@ -78,7 +78,7 @@ export const footer = {
 
 /* --------------------------------------------------------------- sponsor */
 
-// Mirrors alegauss.github.io/sponsor.json, the canonical sponsor declaration for these
+// Mirrors alegauss.com/sponsor.json, the canonical sponsor declaration for these
 // projects. Transcribed here rather than fetched at runtime: this site is prerendered, and
 // the whole point of naming a sponsor is that crawlers and readers meet it in the served
 // HTML.
