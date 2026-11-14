@@ -67,6 +67,8 @@ export default defineConfig({
         { icon: "github", label: "GitHub", href: "https://github.com/alegauss/pportal" },
       ],
       customCss: ["./src/styles/docs.css"],
+      // A BreadcrumbList per page — see the file for why Google needs to be told.
+      routeMiddleware: "./src/breadcrumbs.ts",
       head: GOOGLE_TAG,
       sidebar: [
         {
