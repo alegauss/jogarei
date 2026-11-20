@@ -45,8 +45,6 @@
 
 ## Block K — The site on the design system
 
-- ⏳ **PP860** (deps: viglet-design-system: consumers.json listing) **The site keeps its own copy of the template that eight product sites share** — The design system's consumers.json does not list the site or its docs yet, and adding them rewords its README's consumer counts. → §PP860
-
 ## Done when — PP49
 
 - **The picture is judged on a decoded console frame, not a synthetic chart** The cost
@@ -95,13 +93,6 @@
 - **the pad still drives the console after the window loses focus and regains it** A
   live --stream run with a click into another window and back keeps the pad working, and
   its pad timeline reports that inputs never went quiet under a live wire.
-
-## Done when — PP860
-
-- **The site and its docs are listed in the design system's consumers.json** Two
-  entries, pportal-site (./site, ./site.css, ./tokens.css, ./vite) and pportal-docs
-  (./tokens.css), committed in viglet-design-system with its README's consumer counts
-  reworded so its prose check stays green.
 
 ## Non-goals
 

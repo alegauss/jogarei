@@ -30,7 +30,9 @@ npm test                      # the site's own claims, against what the build pr
   `data-tone="cool"`, with its tokens re-keyed to PPortal's ground and violet in
   `src/brand.css`. The docs area imports the same file, so the accent is declared once. What
   stays here is the product's own: the frame's journey, the signal band, the sections, the
-  non-goals, the ad slot and the depth pages.
+  non-goals, the ad slot and the depth pages. PP860 made the move, following claude-tray's
+  pilot. The site and its docs are listed in the design system's `consumers.json` (VDS254),
+  with the `violet` accent.
 - **Every page is prerendered** by the design system's `prerenderSite`, with its `<head>`
   patched by replace-or-throw: a drifted template fails the build rather than publishing a
   page with the wrong canonical. Its `renderOgCard` rasterises `public/og.svg` to the social
