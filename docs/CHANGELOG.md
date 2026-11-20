@@ -936,6 +936,7 @@
 - ✅ **PP865** **The projects, the solution and the namespace are still named ChiakiNg after the product became Jogarei** — Jogarei.slnx, app\Jogarei.csproj, tests\Jogarei.Tests and tests\Jogarei.Cases, with the Jogarei namespace in every source; lib\ and the Chiaki settings paths stay.
 - ✅ **PP862** **The repository's README is still chiaki-ng's, so a visitor learns about the upstream and nothing about this port** — The README is Jogarei's: what it is, what it does differently, no release and the open PP853 and PP854, the build steps, and chiaki-ng as credited origin.
 - ✅ **PP863** **PlayStation leads the site's title, the hero and the repository description, as if it were the product's name** — No title, heading, bold lead or name on the site, the README, the repository or the installer carries PlayStation or PS; body text names the consoles descriptively.
+- ✅ **PP873** **The repository still publishes chiaki-ng's funding link, issue templates, contributor guide and Copilot notes** — funding.yml and the Copilot notes are gone, and the issue templates and the contributor guide are rewritten for Jogarei, its build and its roadmap.
 
 ## Block K — The site on the design system
 

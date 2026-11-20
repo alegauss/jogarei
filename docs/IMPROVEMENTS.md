@@ -413,18 +413,4 @@ that too is read rather than assumed.
 
 ## Block J — Public documentation
 
-### §PP873 The repository's own community files
-
-PP866's audit found chiaki-ng's own files still published by GitHub from this
-repository: .github\funding.yml (buy_me_a_coffee: streetpea, upstream's author), the
-issue templates written for chiaki-ng, .github\copilot-instructions.md describing the Qt
-client, and CONTRIBUTOR_GUIDE.md in chiaki-ng's words, which the site's Contributing
-link points at.
-
-Each is what a visitor to alegauss/jogarei reads about how to fund, report and
-contribute, and each describes another project. funding.yml goes, since streetpea is not
-this project's author; the templates and the guide are rewritten for Jogarei (Windows
-only, no release yet, issues here); the Copilot instructions are rewritten for the WPF
-host or deleted. The credit to chiaki-ng stays in the README.
-
 ## Block K — The site on the design system

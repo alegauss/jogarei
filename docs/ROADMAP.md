@@ -42,8 +42,6 @@
 
 ## Block J — Public documentation
 
-- 📋 **PP873** (deps: —) **The repository still publishes chiaki-ng's funding link, issue templates, contributor guide and Copilot notes** — GitHub shows them to every visitor of alegauss/jogarei, and each one describes another project or another author. → §PP873
-
 ## Block K — The site on the design system
 
 ## Done when — PP49

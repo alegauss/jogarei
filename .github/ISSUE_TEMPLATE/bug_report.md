@@ -1,36 +1,32 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: "[BUG]"
-labels: ''
+about: Something in Jogarei does not work as it should
+title: ""
+labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**What happened**
+What you did, what you expected, and what you saw instead.
 
-**Debug Log**
-Please attach a log with verbose logging enabled.
+**Steps to reproduce**
+1.
+2.
+3.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Session log**
+Attach the log of the session that went wrong. Logs are in `%APPDATA%\Chiaki\Chiaki\log`, one file
+per session; the newest one is usually the right one.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Your setup**
+- Jogarei version (the first line of `Jogarei.exe --help`):
+- Windows version (e.g. Windows 11 24H2):
+- Graphics card and driver version:
+- Console (PS4 or PS5) and whether it is on your network or over the internet:
+- Controller (e.g. DualSense over USB, Xbox controller over Bluetooth):
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Anything else**
+Screenshots, or whether the same thing happens in chiaki-ng.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. SteamOS]
- - Version [e.g. 22]
- - Device [e.g. Steam Deck]
- - chiaki-ng Version [e.g. 1.6.2]
-
-**Additional context**
-Add any other context about the problem here.
+Please report Jogarei problems here, not to the chiaki-ng project.

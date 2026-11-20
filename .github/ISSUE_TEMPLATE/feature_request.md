@@ -1,20 +1,21 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Suggest something Jogarei should do
 title: ''
-labels: ''
+labels: enhancement
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**What you are trying to do**
+The situation, and what gets in the way today.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**What you would like**
+What Jogarei could do about it.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Anything else**
+Screenshots, or how another client handles it.
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+Jogarei is Windows-only by design, and its non-goals are listed in
+[docs/ROADMAP.md](../../docs/ROADMAP.md): a request for another platform will be closed with a
+pointer there.
