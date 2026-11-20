@@ -42,7 +42,7 @@
   </g>
 
   <text x="252" y="176" fill="#e9ecfb" font-family="DejaVu Sans" font-size="86" font-weight="bold">Jogarei</text>
-  <text x="256" y="236" fill="#8f9dff" font-family="DejaVu Sans" font-size="30">PlayStation Remote Play, rebuilt for Windows</text>
+  <text x="256" y="236" fill="#8f9dff" font-family="DejaVu Sans" font-size="30">Console remote play, rebuilt for Windows</text>
 
   <!-- rewrapped: the old second line measured 1085px against the 1020px between
        the gutters and ran off the right edge. 818px and 865px now. -->

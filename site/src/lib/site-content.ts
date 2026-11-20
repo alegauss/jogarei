@@ -11,6 +11,12 @@
 // No figure below is typed. The version and the flag list come off the application's own
 // source through ./product, because a number in a sentence is true the day it is written and
 // wrong in silence afterwards.
+//
+// Sony's marks only where they say which consoles this works with (PP863). No title, heading,
+// bold lead-in or name below contains "PlayStation", "PS4" or "PS5": in a title the mark reads
+// as the product's identity, which is the use most likely to draw a complaint or a store
+// refusal. Body text names the consoles descriptively ("works with PS4 and PS5 consoles"), and
+// the footer's notice says whose trademarks they are.
 
 import type { SponsorDeclaration } from "@viglet/viglet-design-system/site";
 // With its extension: vite.config.ts imports this module for THEME_KEY, and Vite's config
@@ -28,13 +34,13 @@ export type Rich = Run[];
 /* ------------------------------------------------------------------ meta + chrome */
 
 export const meta = {
-  title: "Jogarei: PlayStation Remote Play, rebuilt for Windows",
+  title: "Jogarei: console remote play, rebuilt for Windows",
   description:
-    "A free PlayStation Remote Play client for Windows, built on .NET 10 and WPF. Ten-bit video through DirectComposition, hardware decode on whatever card you own, your consoles and pairings carried over, and no bundled browser.",
+    "A free remote play client for Windows that works with PS4 and PS5 consoles, built on .NET 10 and WPF. Ten-bit video through DirectComposition, hardware decode on whatever card you own, your consoles and pairings carried over, and no bundled browser.",
   og: {
     title: "Jogarei",
     description:
-      "PlayStation Remote Play as a Windows application: WPF on the system Fluent theme, ten-bit video through DirectComposition, and the decode path your machine actually has.",
+      "Console remote play as a Windows application, for PS4 and PS5: WPF on the system Fluent theme, ten-bit video through DirectComposition, and the decode path your machine actually has.",
     url: "https://alegauss.com/jogarei/",
   },
 } as const;
@@ -123,7 +129,7 @@ export const sponsor: SponsorDeclaration = {
 
 export const hero = {
   badge: "Windows 10 / 11 · x64 · AGPL-3.0",
-  titleLead: "PlayStation Remote Play,",
+  titleLead: "Console remote play,",
   titleAccent: "rebuilt as a Windows app.",
   sub: [
     "Jogarei streams your PS5 or PS4 to a window that behaves like the rest of Windows: ",
@@ -292,7 +298,7 @@ export const input = {
     [{ b: "Focus navigation everywhere." }, " Directional focus is an attached property rather than a control of its own, so it applies to the ordinary WPF controls the screens are built from instead of a private widget vocabulary."] as Rich,
     [{ b: "Your own bindings." }, " The mapping screen reads the device's real binding strings through SDL, captures a press against the slot you picked, and writes the mapping back."] as Rich,
     [{ b: "A pad that is plugged in now." }, " The device list, the button events and the axis positions are read on the thread that owns SDL, so a controller connected mid-session is a controller that works."] as Rich,
-    [{ b: "Not only a PlayStation pad." }, " SDL is called directly rather than rewritten, so anything it can map arrives mapped, an Xbox controller included, and the haptics the console sends fold to plain rumble on a pad with no haptic motors."] as Rich,
+    [{ b: "Not only the console's own pad." }, " SDL is called directly rather than rewritten, so anything it can map arrives mapped, an Xbox controller included, and the haptics the console sends fold to plain rumble on a pad with no haptic motors."] as Rich,
     [{ b: "Keyboard too." }, " Every key binding is a row in the settings, for the machine where the pad is in another room."] as Rich,
   ],
   terminalTitle: "Jogarei.exe --help",

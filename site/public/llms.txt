@@ -1,6 +1,6 @@
 # Jogarei
 
-> PlayStation Remote Play for Windows, built on .NET 10 and WPF. Ten-bit video composed by
+> Console remote play for Windows, working with PS4 and PS5, built on .NET 10 and WPF. Ten-bit video composed by
 > DirectComposition, hardware decode chosen from what the machine reports, the consoles and
 > pairings you already registered, and no browser inside the download.
 

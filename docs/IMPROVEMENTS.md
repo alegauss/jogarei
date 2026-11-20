@@ -381,26 +381,4 @@ that too is read rather than assumed.
 
 ## Block J — Public documentation
 
-### §PP863 PP863 — Sony's marks only where they describe compatibility
-
-From the portfolio review of 30/10/2026 (visibility, `produtos/pportal.md`). Beyond the
-name, Sony's marks lead the project's own titles: the site's title is "PlayStation
-Remote Play, rebuilt for Windows", the hero opens on "PlayStation Remote Play,", and the
-repository description starts "PlayStation Remote Play as a real Windows app". In a
-title the mark reads as the product's identity rather than a description of what it
-connects to, which is the use most likely to draw a complaint and to be refused by a
-store's review.
-
-Titles, headings, the repository description, the window title, the installer's name and
-the Store listing name the project by its own name and say what it does in generic words
-(remote play for your console, streaming your console to Windows). PlayStation, PS4 and
-PS5 stay only where they are needed to say which consoles it works with, in body text,
-in the form "works with PS4 and PS5 consoles", together with the existing notice that
-these are Sony's trademarks and the project is not affiliated. The same rule is written
-into the site's content file so later copy follows it.
-
-Done when no title, heading or name on the site, the README, the repository or the
-installer contains PlayStation or PS, and the body text names the consoles only
-descriptively.
-
 ## Block K — The site on the design system
