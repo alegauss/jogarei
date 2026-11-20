@@ -5,3 +5,8 @@ docs/CHANGELOG.md merge=roadkeep
 docs/IMPROVEMENTS.md merge=roadkeep
 docs/DEFERRED.md merge=roadkeep
 docs/DECISIONS.md merge=roadkeep
+# cmd finds a :label by scanning the file, and on LF-only line endings that scan misses
+# depending on where lines fall in 512-byte blocks: compile.cmd's `call :need` ran the body
+# of :forward once a rename shifted its bytes. The index stays LF; the checkout is CRLF.
+*.cmd text eol=crlf
+*.bat text eol=crlf
