@@ -13,7 +13,7 @@ type AdFormat = "in-content" | "footer" | "sidebar" | "strip";
  * the catalogue cannot be read the loader collapses the slot itself, leaving no gap.
  *
  * `band` is which of the two containers the caller is standing in. A slot between top-level
- * sections needs the page's own `.wrap` around it to line up with them; a slot already inside
+ * sections needs the page's own `.vg-site-wrap` around it to line up with them; a slot already inside
  * a column has one, and adding a second would indent the banner by that container's padding
  * and leave it narrower than the text it sits between.
  */
@@ -51,7 +51,7 @@ export function Ad({
   // it would pay for on every page.
   return (
     <div className="ad-band" data-twin="omit">
-      {band ? <div className="wrap">{unit}</div> : unit}
+      {band ? <div className="vg-site-wrap">{unit}</div> : unit}
     </div>
   );
 }

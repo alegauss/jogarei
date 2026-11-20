@@ -932,3 +932,4 @@
 
 ## Block K — The site on the design system
 
+- ✅ **PP860 (site and docs on the shared layer)** **The site keeps its own copy of the template that eight product sites share** — The site and its docs take Nav, Hero, Footer, sponsor, theme, prerender and OG card from the design system; every page keeps its text, and analytics waits on consent.

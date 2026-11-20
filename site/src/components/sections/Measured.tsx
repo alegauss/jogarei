@@ -1,16 +1,14 @@
+import { SiteRich as Rich, SiteSectionHead } from "@viglet/viglet-design-system/site";
 import { measured } from "../../lib/site-content";
-import { Rich } from "../ui/Rich";
 
 export function Measured() {
   return (
     <section id="measured">
-      <div className="wrap">
-        <div className="sec-head reveal">
-          <div className="eyebrow">{measured.eyebrow}</div>
-          <h2>{measured.heading}</h2>
-          <p>
+      <div className="vg-site-wrap">
+        <div className="reveal">
+          <SiteSectionHead eyebrow={measured.eyebrow} title={measured.heading}>
             <Rich runs={measured.intro} />
-          </p>
+          </SiteSectionHead>
         </div>
         <ul className="feat-list two reveal">
           {/* What the record carries and what compares two of them render as one list and are

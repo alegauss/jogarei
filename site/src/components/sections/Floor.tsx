@@ -1,10 +1,10 @@
+import { SiteRich as Rich } from "@viglet/viglet-design-system/site";
 import { floor } from "../../lib/site-content";
-import { Rich } from "../ui/Rich";
 
 export function Floor() {
   return (
     <section style={{ paddingTop: "20px" }}>
-      <div className="wrap reveal">
+      <div className="vg-site-wrap reveal">
         <div className="banner">
           <div className="lock">{floor.icon}</div>
           <h2>{floor.heading}</h2>

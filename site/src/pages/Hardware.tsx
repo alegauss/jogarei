@@ -1,7 +1,6 @@
-import { Nav } from "../components/Nav";
-import { Footer } from "../components/Footer";
+import { SiteRich as Rich } from "@viglet/viglet-design-system/site";
+import { Nav, Footer } from "../components/Chrome";
 import { Ad } from "../components/ui/Ad";
-import { Rich } from "../components/ui/Rich";
 import { hardware } from "../lib/site-content";
 
 // The hardware page: the product's own contract, written for a reader. The table is a table
@@ -11,12 +10,12 @@ export function Hardware() {
   return (
     <>
       <Nav />
-      <header className="hero page-hero" id="top">
-        <div className="wrap">
+      <header className="page-hero" id="top">
+        <div className="vg-site-wrap">
           <a className="feature-back" href="/pportal/">
             {hardware.backLabel}
           </a>
-          <div className="eyebrow">{hardware.eyebrow}</div>
+          <div className="vg-site-eyebrow">{hardware.eyebrow}</div>
           <h1>{hardware.heading}</h1>
           <p className="sub">
             <Rich runs={hardware.lead} />
@@ -25,7 +24,7 @@ export function Hardware() {
       </header>
 
       <section style={{ paddingTop: "28px" }}>
-        <div className="wrap">
+        <div className="vg-site-wrap">
           <div className="feature-body tight">
             <div className="feature-section reveal">
               <h2>{hardware.floorHeading}</h2>

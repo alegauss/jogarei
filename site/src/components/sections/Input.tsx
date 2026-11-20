@@ -1,18 +1,16 @@
+import { SiteRich as Rich, SiteSectionHead } from "@viglet/viglet-design-system/site";
 import { helpLines, input } from "../../lib/site-content";
 import { mappingDiagram } from "../../lib/diagrams";
-import { Rich } from "../ui/Rich";
 import { RawSvg } from "../ui/RawSvg";
 
 export function Input() {
   return (
     <section id="input">
-      <div className="wrap">
-        <div className="sec-head reveal">
-          <div className="eyebrow">{input.eyebrow}</div>
-          <h2>{input.heading}</h2>
-          <p>
+      <div className="vg-site-wrap">
+        <div className="reveal">
+          <SiteSectionHead eyebrow={input.eyebrow} title={input.heading}>
             <Rich runs={input.intro} />
-          </p>
+          </SiteSectionHead>
         </div>
         <div className="split reveal">
           <div className="split-txt">

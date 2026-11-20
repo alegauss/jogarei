@@ -6,7 +6,7 @@
 // list, so a flag renamed in the application fails the build here rather than printing a
 // line the program no longer answers.
 
-import { HOST_FLAGS, VERSION, FRAMEWORK, type HostFlag } from "./product.generated";
+import { HOST_FLAGS, VERSION, FRAMEWORK, type HostFlag } from "./product.generated.ts";
 
 export type { HostFlag };
 

@@ -1,16 +1,16 @@
+import { SiteRich as Rich, SiteSectionHead } from "@viglet/viglet-design-system/site";
 import { nonGoals } from "../../lib/site-content";
-import { Rich } from "../ui/Rich";
 
+// The design system has no counterpart for this list, so it stays here, under the shared
+// section head and on the shared tokens.
 export function NonGoals() {
   return (
     <section>
-      <div className="wrap">
-        <div className="sec-head reveal">
-          <div className="eyebrow">{nonGoals.eyebrow}</div>
-          <h2>{nonGoals.heading}</h2>
-          <p>
+      <div className="vg-site-wrap">
+        <div className="reveal">
+          <SiteSectionHead eyebrow={nonGoals.eyebrow} title={nonGoals.heading}>
             <Rich runs={nonGoals.intro} />
-          </p>
+          </SiteSectionHead>
         </div>
         <div className="nots reveal">
           {nonGoals.items.map((item) => (

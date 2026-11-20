@@ -3,7 +3,8 @@
 // public/logo.svg is the only drawing of that mark, and the Windows host cannot read it:
 // <ApplicationIcon> takes an .ico, which is a container of rasters. This turns the one into
 // the other, and lives here rather than in the repository's scripts/ because resvg - the
-// renderer og-image.mjs already uses - is a dependency of this package and not of that tree.
+// renderer the social card already goes through, by the design system's renderOgCard - is a
+// dependency of this package and not of that tree.
 //
 // It is NOT part of `npm run build`. A site build that writes into the application's tree is
 // a surprise, and the stamp below is what catches forgetting to run this instead.

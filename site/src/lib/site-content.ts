@@ -12,7 +12,10 @@
 // source through ./product, because a number in a sentence is true the day it is written and
 // wrong in silence afterwards.
 
-import { dotnet, flagLines, version } from "./product";
+import type { SponsorDeclaration } from "@viglet/viglet-design-system/site";
+// With its extension: vite.config.ts imports this module for THEME_KEY, and Vite's config
+// loader asks for one.
+import { dotnet, flagLines, version } from "./product.ts";
 
 export type Run =
   | string
@@ -44,6 +47,10 @@ export const parentUrl = "https://alegauss.com/";
 // return a 404 on the day the next version ships. `releases/latest` is the one link that
 // cannot go stale, and it is also where the checksums live.
 export const releasesUrl = `${repoUrl}/releases/latest`;
+
+// Where the light/dark choice is stored: read by the pre-paint script vite.config.ts inlines,
+// by the toggle and by the ad slots, so the three agree on one key.
+export const THEME_KEY = "pp-theme";
 
 // The nav lists ROUTES, never sections. It used to carry three landing anchors, and both of
 // that arrangement's problems came from the same root: a bare "#picture" does nothing at all
@@ -81,17 +88,20 @@ export const footer = {
 // Mirrors alegauss.com/sponsor.json, the canonical sponsor declaration for these
 // projects. Transcribed here rather than fetched at runtime: this site is prerendered, and
 // the whole point of naming a sponsor is that crawlers and readers meet it in the served
-// HTML.
-export const sponsor = {
-  label: "Sponsored by",
-  name: "Viglet",
-  url: "https://www.viglet.org",
-  siteLabel: "viglet.org",
-  logo: "/pportal/viglet/viglet-logo.png",
-  summary:
-    "Open source search and content tools for organisations with a lot to publish. Run on your own servers, with no per-user licence.",
+// HTML. Shaped as the design system's SponsorDeclaration, which SiteSponsor renders.
+export const sponsor: SponsorDeclaration = {
+  sponsor: {
+    label: "Sponsored by",
+    name: "Viglet",
+    url: "https://www.viglet.org",
+    siteLabel: "viglet.org",
+    logo: "/pportal/viglet/viglet-logo.png",
+    summary:
+      "Open source search and content tools for organisations with a lot to publish. Run on your own servers, with no per-user licence.",
+  },
   products: [
     {
+      id: "turing",
       name: "Viglet Turing",
       url: "https://turing.viglet.org/",
       logo: "/pportal/viglet/turing-logo.png",
@@ -99,6 +109,7 @@ export const sponsor = {
         "so visitors find what they came for, with AI answers drawn only from your own content",
     },
     {
+      id: "shio",
       name: "Viglet Shio",
       url: "https://shio.viglet.org/",
       logo: "/pportal/viglet/shio-logo.png",
@@ -106,7 +117,7 @@ export const sponsor = {
         "so a new page goes live the same day, reviewed and approved by your own team",
     },
   ],
-} as const;
+};
 
 /* ------------------------------------------------------------------ hero */
 

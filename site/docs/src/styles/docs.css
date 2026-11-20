@@ -1,23 +1,67 @@
-/* The palette, taken from site/src/index.css so /docs and / are one product rather than two.
-   Only the accent scale and the link colour are overridden: Starlight's greys, spacing and
-   type are its own, and re-deriving them here would be the redesign this file exists to avoid.
+/* The accent, read off the design system's tokens as the site next door keys them, so /docs
+   and / are one product rather than two and the violet is declared once (PP860). tokens.css is
+   the preset as plain custom properties; ../../../src/brand.css is the site's own re-key of the
+   cool tone to PPortal's accent, the same file site/src/index.css imports.
 
-   --violet #5b6cf9 is the brand constant next door. The five steps below are that hue at the
-   lightnesses Starlight asks for, and the pair under [data-theme] swap the same way the site's
-   tokens do - Starlight writes data-theme itself, so nothing here reads prefers-color-scheme. */
+   Only the accent scale and the link colour are taken: Starlight's greys, spacing and type are
+   its own, and re-deriving them here would be the redesign this file exists to avoid. The
+   steps are mapped per mode because Starlight asks for a different step of the brand on each
+   ground; Starlight writes data-theme itself, which is also what the tokens key on, so nothing
+   here reads prefers-color-scheme. */
+@import "@viglet/viglet-design-system/tokens.css";
+@import "../../../src/brand.css";
 
 :root {
-  --sl-color-accent-low: #d7dcfe;
-  --sl-color-accent: #3b47c4;
-  --sl-color-accent-high: #2f3aa8;
-  --sl-color-text-accent: #3b47c4;
+  --sl-color-accent-low: var(--vg-brand-mid);
+  --sl-color-accent: var(--vg-brand);
+  --sl-color-accent-high: var(--vg-brand-dark);
+  --sl-color-text-accent: var(--vg-brand);
 }
 
 :root[data-theme="dark"] {
-  --sl-color-accent-low: #1f2878;
-  --sl-color-accent: #5b6cf9;
-  --sl-color-accent-high: #b3bcff;
-  --sl-color-text-accent: #8f9dff;
+  --sl-color-accent-low: var(--vg-brand-mid);
+  --sl-color-accent: var(--vg-brand-light);
+  --sl-color-accent-high: var(--vg-brand-lighter);
+  --sl-color-text-accent: var(--vg-brand);
+}
+
+/* The analytics banner consent.js puts up on a first visit, fixed above the page. */
+.pp-consent {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 18px 20px;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: var(--vg-radius-panel);
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-white);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+  font-size: 0.9rem;
+}
+.pp-consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.pp-consent-actions button {
+  padding: 8px 16px;
+  border-radius: var(--vg-radius-control);
+  border: 1px solid var(--sl-color-gray-5);
+  background: var(--sl-color-black);
+  color: var(--sl-color-white);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pp-consent-actions .pp-consent-allow {
+  border-color: var(--sl-color-accent);
+  background: var(--sl-color-accent);
+  color: #fff;
 }
 
 /* The flag table renders one row per flag the host declares, and the argument column is a

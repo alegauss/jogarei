@@ -1,18 +1,16 @@
+import { SiteRich as Rich, SiteSectionHead } from "@viglet/viglet-design-system/site";
 import { windowSection } from "../../lib/site-content";
 import { consoleStateIcons, windowDiagram } from "../../lib/diagrams";
-import { Rich } from "../ui/Rich";
 import { RawSvg } from "../ui/RawSvg";
 
 export function WindowSection() {
   return (
     <section id="window">
-      <div className="wrap">
-        <div className="sec-head reveal">
-          <div className="eyebrow">{windowSection.eyebrow}</div>
-          <h2>{windowSection.heading}</h2>
-          <p>
+      <div className="vg-site-wrap">
+        <div className="reveal">
+          <SiteSectionHead eyebrow={windowSection.eyebrow} title={windowSection.heading}>
             <Rich runs={windowSection.intro} />
-          </p>
+          </SiteSectionHead>
         </div>
         <figure className="shot-frame reveal" style={{ margin: 0 }}>
           <RawSvg markup={windowDiagram} />
@@ -21,9 +19,8 @@ export function WindowSection() {
           </figcaption>
         </figure>
 
-        <div className="sec-head reveal" style={{ marginTop: "62px" }}>
-          <div className="eyebrow">{windowSection.statesEyebrow}</div>
-          <h2>{windowSection.statesHeading}</h2>
+        <div className="reveal" style={{ marginTop: "62px" }}>
+          <SiteSectionHead eyebrow={windowSection.statesEyebrow} title={windowSection.statesHeading} />
         </div>
         <div className="states reveal">
           {windowSection.states.map((state) => (
@@ -37,9 +34,8 @@ export function WindowSection() {
           ))}
         </div>
 
-        <div className="sec-head reveal" style={{ marginTop: "62px" }}>
-          <div className="eyebrow">{windowSection.detailsEyebrow}</div>
-          <h2>{windowSection.detailsHeading}</h2>
+        <div className="reveal" style={{ marginTop: "62px" }}>
+          <SiteSectionHead eyebrow={windowSection.detailsEyebrow} title={windowSection.detailsHeading} />
         </div>
         <ul className="feat-list two reveal">
           {windowSection.detailsList.map((runs, i) => (

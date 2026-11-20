@@ -1,8 +1,7 @@
 import { Fragment } from "react";
-import { Nav } from "../components/Nav";
-import { Footer } from "../components/Footer";
+import { SiteRich as Rich } from "@viglet/viglet-design-system/site";
+import { Nav, Footer } from "../components/Chrome";
 import { Ad } from "../components/ui/Ad";
-import { Rich } from "../components/ui/Rich";
 import { RawSvg } from "../components/ui/RawSvg";
 import { features, type FeatureRecord } from "../lib/features";
 import { compositionDiagram, mappingDiagram, windowDiagram } from "../lib/diagrams";
@@ -46,12 +45,12 @@ export function FeaturePage({ record }: { readonly record: FeatureRecord }) {
   return (
     <>
       <Nav />
-      <header className="hero page-hero" id="top">
-        <div className="wrap">
+      <header className="page-hero" id="top">
+        <div className="vg-site-wrap">
           <a className="feature-back" href="/pportal/features/">
             ← All pages
           </a>
-          <div className="eyebrow">{record.eyebrow}</div>
+          <div className="vg-site-eyebrow">{record.eyebrow}</div>
           <h1>{record.heading}</h1>
           <p className="sub">
             <Rich runs={record.lead} />
@@ -60,7 +59,7 @@ export function FeaturePage({ record }: { readonly record: FeatureRecord }) {
       </header>
 
       <section>
-        <div className="wrap">
+        <div className="vg-site-wrap">
           <Siblings slug={record.slug} />
           {record.figure && <Figure kind={record.figure} />}
           <div className="feature-body">

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
+import { SiteRich as Rich } from "@viglet/viglet-design-system/site";
 import { frameTrip } from "../lib/site-content";
-import { Rich } from "./ui/Rich";
 
 // The hero is a frame's journey rather than a feature list, because latency is what this
 // application is judged on and the path is where latency is spent. All steps render on the

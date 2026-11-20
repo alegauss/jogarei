@@ -1,6 +1,5 @@
-import { Nav } from "../components/Nav";
-import { Footer } from "../components/Footer";
-import { Rich } from "../components/ui/Rich";
+import { SiteRich as Rich } from "@viglet/viglet-design-system/site";
+import { Nav, Footer } from "../components/Chrome";
 import { FeatureCards } from "../components/ui/FeatureCards";
 import { featuresIndex } from "../lib/site-content";
 
@@ -12,12 +11,12 @@ export function Features() {
   return (
     <>
       <Nav />
-      <header className="hero page-hero" id="top">
-        <div className="wrap">
+      <header className="page-hero" id="top">
+        <div className="vg-site-wrap">
           <a className="feature-back" href="/pportal/">
             {featuresIndex.backLabel}
           </a>
-          <div className="eyebrow">{featuresIndex.eyebrow}</div>
+          <div className="vg-site-eyebrow">{featuresIndex.eyebrow}</div>
           <h1>{featuresIndex.heading}</h1>
           <p className="sub">
             <Rich runs={featuresIndex.lead} />
@@ -26,7 +25,7 @@ export function Features() {
       </header>
 
       <section style={{ paddingTop: "28px" }}>
-        <div className="wrap">
+        <div className="vg-site-wrap">
           <FeatureCards />
         </div>
       </section>

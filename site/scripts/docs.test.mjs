@@ -147,6 +147,22 @@ test("the docs fetch no third-party font at page load", () => {
   assert.deepEqual(offenders.map(relative), []);
 });
 
+test("no docs page loads analytics before consent", () => {
+  // PP860. The area asks the landing pages' question, by docs/src/consent.js inlined into every
+  // head, and that script names googletagmanager.com only to add the tag after a "granted". A
+  // script element whose src is the tag is the unconditional load this replaced.
+  const offenders = pages.filter((p) =>
+    /<script[^>]*\ssrc="https:\/\/www\.googletagmanager\.com/.test(readFileSync(p, "utf8")),
+  );
+  assert.deepEqual(offenders.map(relative), []);
+  for (const page of pages) {
+    assert.ok(
+      readFileSync(page, "utf8").includes('"alegauss-consent"'),
+      `${relative(page)} does not carry the consent script`,
+    );
+  }
+});
+
 test("every docs page has a unique title and a canonical carrying the base", () => {
   const titles = new Set();
   for (const page of pages) {

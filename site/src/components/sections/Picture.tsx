@@ -1,20 +1,16 @@
+import { SiteRich as Rich, SiteSectionHead } from "@viglet/viglet-design-system/site";
 import { picture } from "../../lib/site-content";
 import { compositionDiagram } from "../../lib/diagrams";
-import { Rich } from "../ui/Rich";
 import { RawSvg } from "../ui/RawSvg";
 
 export function Picture() {
   return (
     <section id="picture">
-      <div className="wrap">
-        <div className="sec-head reveal">
-          <div className="eyebrow">{picture.eyebrow}</div>
-          <h2>
-            <Rich runs={picture.headingRuns} />
-          </h2>
-          <p>
+      <div className="vg-site-wrap">
+        <div className="reveal">
+          <SiteSectionHead eyebrow={picture.eyebrow} title={<Rich runs={picture.headingRuns} />}>
             <Rich runs={picture.intro} />
-          </p>
+          </SiteSectionHead>
         </div>
         <RawSvg className="shot-frame reveal" markup={compositionDiagram} />
         <div className="grid" style={{ marginTop: "34px" }}>

@@ -1,0 +1,65 @@
+/* ============================================================================
+   The cool tone keyed to PPortal (PP860): the blue-violet ground the page always had, and
+   the accent the hub's projects.json declares for it, rgb 91,108,249 with #8f9dff as the
+   bright step. Everything the design system's site layer draws (the nav, the hero, the
+   buttons, the section heads, the feature index, the sponsor and the footer) reads these.
+
+   One file, imported by src/index.css and by docs/src/styles/docs.css, so the landing pages
+   and the documentation area are one product and the accent is declared once.
+
+   The dark block keys on the attribute the preset's own dark ground keys on, with :root
+   added so it wins over that block however the files are ordered; the light block is bare
+   :root and comes after the preset, so it wins over the preset's :root the same way. Both the
+   design system's pre-paint script and Starlight write data-theme on <html>.
+   ============================================================================ */
+
+:root {
+  --vg-background: #f6f7fd;
+  --vg-foreground: #0d1020;
+  --vg-card: #ffffff;
+  --vg-card-foreground: #0d1020;
+  --vg-popover: #ffffff;
+  --vg-popover-foreground: #0d1020;
+  --vg-muted: #eceffb;
+  --vg-muted-foreground: #4a5375;
+  --vg-border: #dde2f4;
+
+  /* the brand: --vg-brand-light is the accent itself, --vg-brand the accent as text, tuned
+     for contrast on the ground; -dark and -lighter are the deep and pale steps */
+  --vg-brand: #3b47c4;
+  --vg-brand-dark: #2f3aa8;
+  --vg-brand-light: #5b6cf9;
+  --vg-brand-lighter: #8f9dff;
+  --vg-brand-bg: rgba(91, 108, 249, 0.12);
+  --vg-brand-mid: #d7dcfe;
+  --vg-brand-border: rgba(91, 108, 249, 0.35);
+  /* the headline gradient, deepened in light so the bright end stays legible */
+  --vg-gradient: linear-gradient(120deg, #5b6cf9, #2f3aa8 55%, #1f2878);
+  --vg-site-glow: rgba(91, 108, 249, 0.1);
+
+  /* No display face is loaded, and the page fetches no font at all: the headings keep the
+     body's stack rather than falling to whatever Plus Jakarta Sans resolves to. */
+  --font-brand: var(--font-sans);
+}
+
+:root[data-theme="dark"] {
+  --vg-background: #080b16;
+  --vg-foreground: #e9ecfb;
+  --vg-card: #141b2e;
+  --vg-card-foreground: #e9ecfb;
+  --vg-popover: #141b2e;
+  --vg-popover-foreground: #e9ecfb;
+  --vg-muted: #0d1224;
+  --vg-muted-foreground: #a3aecb;
+  --vg-border: #2a3556;
+
+  --vg-brand: #8f9dff;
+  --vg-brand-dark: #2f3aa8;
+  --vg-brand-light: #5b6cf9;
+  --vg-brand-lighter: #b3bcff;
+  --vg-brand-bg: rgba(91, 108, 249, 0.12);
+  --vg-brand-mid: #1f2878;
+  --vg-brand-border: rgba(91, 108, 249, 0.35);
+  --vg-gradient: linear-gradient(120deg, #8f9dff, #5b6cf9 55%, #2f3aa8);
+  --vg-site-glow: rgba(91, 108, 249, 0.22);
+}

@@ -1,41 +1,32 @@
 @import "tailwindcss";
+/* The ground, the chrome and the violet come from the design system (PP860): tokens.css is the
+   preset as plain custom properties, keyed by data-tone="cool" on <html> and data-theme for the
+   mode, site.css styles the nav, hero, section heads, buttons, feature index, sponsor and
+   footer, and brand.css keys both to this product. No webfont is imported: --font-sans names
+   Inter with system fallbacks, and the site fetches no font at page load
+   (scripts/lint.test.mjs). */
+@import "@viglet/viglet-design-system/tokens.css";
+@import "@viglet/viglet-design-system/site.css";
+@import "./brand.css";
 
 /* ============================================================================
-   Design tokens. The palette is light-first on bare :root; the dark values
-   are redefined under prefers-color-scheme (guarded so an explicit light toggle
-   wins) and again under [data-theme="dark"] so the toggle wins in both directions.
+   The product's own tokens. Everything else on this page reads a --vg-* token.
 
    Two families of colour:
-   - brand constants (--violet*, and the console state hexes as drawn in the SVGs)
-     do not change with the theme;
-   - surface and accent tokens swap, so the page chrome inverts while the embedded
-     dark mock-ups (the terminal block, the SVG figures) keep their own palette.
+   - the console state hexes, as drawn in the SVGs, do not change with the theme;
+   - the tokens below swap, so the page chrome inverts while the embedded dark mock-ups
+     (the terminal block, the SVG figures) keep their own palette.
+
+   The design system's pre-paint script always sets data-theme, so the dark values key on
+   that attribute alone, as the preset's do.
    ============================================================================ */
 
 :root {
-  /* brand, constant across themes */
-  --violet: #5b6cf9;
-  --violet-bright: #8f9dff;
-  --violet-deep: #2f3aa8;
-
-  /* surfaces, light */
-  --bg: #f6f7fd;
-  --bg-2: #eceffb;
-  --panel: #ffffff;
-  --panel-2: #f2f4fe;
-  --line: #dde2f4;
-  --text: #0d1020;
-  --muted: #4a5375;
+  /* the quieter text step and the raised panel, which the preset has no name for */
   --muted-2: #626c92;
-
-  /* accent as text, tuned for contrast on the current surface */
-  --accent: #3b47c4;
-  --accent-strong: #2f3aa8;
-
-  /* the hero gradient, deepened in light so the bright end stays legible */
-  --grad-1: var(--violet);
-  --grad-2: var(--violet-deep);
-  --grad-3: #1f2878;
+  --panel-2: #f2f4fe;
+  /* the accent as code and inline links: one step deeper than the eyebrow's */
+  --accent-strong: var(--vg-brand-dark);
 
   /* console state, as *text*. The SVG icons keep their own literal hex */
   --running: #1a7f37;
@@ -43,9 +34,7 @@
   --stopped: #556069;
   --red: #c9353a;
 
-  /* chrome */
-  --nav-bg: rgba(246, 247, 253, 0.78);
-  --glow-1: rgba(91, 108, 249, 0.1);
+  /* the second, fainter glow under the page */
   --glow-2: rgba(91, 108, 249, 0.05);
 
   /* the signal, back layer to front, and the lit line on the nearest one */
@@ -54,74 +43,19 @@
   --sig-3: #7f8df2;
   --sig-lit: #ffffff;
 
-  --radius: 18px;
-  --maxw: 1120px;
-
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #080b16;
-    --bg-2: #0d1224;
-    --panel: #141b2e;
-    --panel-2: #1b2440;
-    --line: #2a3556;
-    --text: #e9ecfb;
-    --muted: #a3aecb;
-    --muted-2: #8592b5;
-
-    --accent: #8f9dff;
-    --accent-strong: #b3bcff;
-
-    --grad-1: var(--violet-bright);
-    --grad-2: var(--violet);
-    --grad-3: var(--violet-deep);
-
-    --running: #2ea043;
-    --starting: #d29a00;
-    --stopped: #8b949e;
-    --red: #e5484d;
-
-    --nav-bg: rgba(8, 11, 22, 0.74);
-    --glow-1: rgba(91, 108, 249, 0.22);
-    --glow-2: rgba(91, 108, 249, 0.1);
-
-    /* the same signal at night: the same hues taken down until they sit on #080b16 without
-       glowing, because a background that outshines the copy is a bug */
-    --sig-1: #2b3468;
-    --sig-2: #343f7f;
-    --sig-3: #3d4a96;
-    --sig-lit: #8f9dff;
-
-    color-scheme: dark;
-  }
-}
-
 :root[data-theme="dark"] {
-  --bg: #080b16;
-  --bg-2: #0d1224;
-  --panel: #141b2e;
-  --panel-2: #1b2440;
-  --line: #2a3556;
-  --text: #e9ecfb;
-  --muted: #a3aecb;
   --muted-2: #8592b5;
-
-  --accent: #8f9dff;
-  --accent-strong: #b3bcff;
-
-  --grad-1: var(--violet-bright);
-  --grad-2: var(--violet);
-  --grad-3: var(--violet-deep);
+  --panel-2: #1b2440;
+  --accent-strong: var(--vg-brand-lighter);
 
   --running: #2ea043;
   --starting: #d29a00;
   --stopped: #8b949e;
   --red: #e5484d;
 
-  --nav-bg: rgba(8, 11, 22, 0.74);
-  --glow-1: rgba(91, 108, 249, 0.22);
   --glow-2: rgba(91, 108, 249, 0.1);
 
   /* the same signal at night: the same hues taken down until they sit on #080b16 without
@@ -146,335 +80,38 @@
 html {
   scroll-behavior: smooth;
 }
-body {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
-code,
-kbd {
-  font-family:
-    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-.wrap {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 0 24px;
-}
-.accent {
-  color: var(--accent);
-}
 
-/* ambient background glow */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
+/* The ground keeps its fall from the page colour to the muted one under the two glows: the
+   shared layer's is flat. */
+.vg-site::before {
   background:
-    radial-gradient(900px 500px at 80% -5%, var(--glow-1), transparent 60%),
+    radial-gradient(900px 500px at 80% -5%, var(--vg-site-glow), transparent 60%),
     radial-gradient(700px 600px at -10% 20%, var(--glow-2), transparent 55%),
-    linear-gradient(180deg, var(--bg), var(--bg-2));
+    linear-gradient(180deg, var(--vg-background), var(--vg-muted));
 }
 
-/* ---------- nav ---------- */
-nav.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  background: var(--nav-bg);
-  border-bottom: 1px solid var(--line);
-}
-nav.site-nav .wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  gap: 16px;
-}
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex: 0 0 auto;
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 800;
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-}
-/* The mark carries its own silhouette, so it is sized by height and left to find its width.
-   A square box and a corner radius belong to a tile, which this mark is not. */
-.brand img {
-  height: 32px;
-  width: auto;
-  flex: 0 0 auto;
-}
-.parent {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  flex: 0 0 auto;
-  padding: 7px 13px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 0.8rem;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-}
-.parent b {
-  color: var(--text);
-  font-weight: 600;
-}
-.parent svg {
-  width: 12px;
-  height: 12px;
-  color: var(--muted-2);
-  transition: transform 0.2s, color 0.2s;
-}
-.parent:hover {
-  background: var(--panel);
-  border-color: var(--violet);
-  color: var(--text);
-}
-.parent:hover svg {
-  color: var(--violet);
-  transform: translate(1.5px, -1.5px);
-}
-/* "part of" goes long before the chip does, and the band where the nav is tight is the
-   words are the most decorative 40px in the row, and the band where the nav is tight is now
-   the band where a desktop reader sits rather than a phone one. */
-@media (max-width: 1320px) {
-  .parent .pre {
-    display: none;
-  }
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-}
-.nav-links a:not(.btn) {
-  color: var(--muted);
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: color 0.2s;
-  /* A two-word label is one item, not two: without this "The picture" breaks across lines
-     as soon as the row is tight, which sets the nav's height from the narrowest label
-     rather than from its content. .btn carries nowrap for the same reason. */
-  white-space: nowrap;
-}
-.nav-links a:not(.btn):hover {
-  color: var(--text);
-}
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 11px 20px;
-  border-radius: 11px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s;
-  white-space: nowrap;
-  cursor: pointer;
-}
-.btn-primary {
-  background: linear-gradient(135deg, var(--violet), var(--violet-deep));
-  color: #fff;
-  box-shadow: 0 8px 24px -8px rgba(46, 155, 214, 0.7);
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 32px -10px rgba(46, 155, 214, 0.85);
-}
-.btn-ghost {
-  background: var(--panel);
-  color: var(--text);
-  border: 1px solid var(--line);
-}
-.btn-ghost:hover {
-  background: var(--panel-2);
-  transform: translateY(-2px);
-}
-/* Two buttons stand in the nav, so the width left for the labels is tighter by a whole
-   button. Above 1320px the gap tightens and "part of" drops first, so there is a band that
-   keeps everything rather than dropping straight to the buttons.
+/* ---------- the shared chrome, where this product departs from it ---------- */
 
-   The point where the labels themselves go used to be 1180px, and it was set when they were
-   three anchors into the landing page: losing them cost a reader a scroll shortcut, which is
-   less than losing the download. They are routes now, and they are the only two, so losing
-   them costs the whole site's navigation instead - a phone reader would be left with a
-   download button and no way to reach a page. Two labels also take roughly half the width
-   four did. Both changes point the same way, so the point moved down rather than the rule
-   changing.
-
-   These numbers were chosen with margin rather than measured — this workspace has no
-   headless browser by design, so the honest thing is to say so. What is not a guess is the
-   direction: nowrap above means a row that no longer fits overflows instead of growing a
-   second line, which is why the labels give way early rather than late. */
-@media (max-width: 1320px) {
-  .nav-links {
-    gap: 16px;
-  }
-}
-@media (max-width: 620px) {
-  .nav-links a:not(.btn) {
-    display: none;
+/* The nav lists routes, not sections, and they are the only route links a reader has up
+   there: the shared layer drops the labels below 1180px, when they were scroll shortcuts
+   into one page. Here they go only on a phone, where the shared layer's own rule (the chip
+   and the ghost button first) takes over. */
+@media (min-width: 621px) and (max-width: 1180px) {
+  .vg-site-nav-links a:not(.vg-site-btn) {
+    display: inline;
   }
 }
 
-/* theme toggle */
-.theme-toggle {
-  display: inline-grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 auto;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-  color: var(--muted);
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
+/* The bottom padding is the signal's room: the band closes the hero, and the pills would
+   otherwise stand in it. */
+.vg-site-hero {
+  padding-bottom: 152px;
 }
-.theme-toggle:hover {
-  color: var(--text);
-  border-color: var(--violet);
+/* The frame's journey under the call to action carries its own spacing in its eyebrow. */
+.vg-site-hero .vg-site-hero-feature {
+  margin: 0;
 }
-.theme-toggle svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* ---------- hero ---------- */
-.hero {
-  /* the bottom padding is the ocean's room: the water closes the hero, and the pills would
-     otherwise stand in it */
-  padding: 84px 0 152px;
-  text-align: center;
-  position: relative;
-}
-.hero .wrap {
-  position: relative;
-  z-index: 1;
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 15px;
-  border-radius: 999px;
-  background: rgba(46, 155, 214, 0.12);
-  border: 1px solid rgba(46, 155, 214, 0.35);
-  color: var(--accent);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  margin-bottom: 28px;
-}
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--violet);
-  box-shadow: 0 0 10px var(--violet);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.35;
-  }
-}
-.hero h1 {
-  font-size: clamp(2.6rem, 6.5vw, 4.6rem);
-  line-height: 1.04;
-  font-weight: 900;
-  letter-spacing: -0.035em;
-  margin-bottom: 22px;
-}
-.hero h1 .grad {
-  background: linear-gradient(120deg, var(--grad-1), var(--grad-2) 55%, var(--grad-3));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.hero p.sub {
-  font-size: clamp(1.05rem, 2.2vw, 1.32rem);
-  color: var(--muted);
-  max-width: 700px;
-  margin: 0 auto 36px;
-  line-height: 1.55;
-}
-.hero-cta {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
-.hero-meta {
-  display: flex;
-  gap: 22px;
-  justify-content: center;
-  flex-wrap: wrap;
-  color: var(--muted-2);
-  font-size: 0.85rem;
-  margin-top: 8px;
-}
-.hero-meta span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.pills {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 34px;
-}
-.pill {
-  padding: 8px 14px;
-  border-radius: 10px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  font-size: 0.82rem;
-  color: var(--muted);
-  font-weight: 500;
-}
-.pill b {
-  color: var(--text);
-}
-/* A box-shadow follows the element's box, not the artwork's outline, so the drop shadow that sat
-   under a rounded square would now hang a rectangle behind a shape that has none. drop-shadow
-   filters the alpha channel instead, and traces the mark. */
-.hero-icon {
-  height: 104px;
-  width: auto;
-  margin: 0 auto 30px;
-  display: block;
-  filter: drop-shadow(0 18px 30px rgba(54, 51, 68, 0.45));
+.vg-site-hero-icon {
   animation: float 5s ease-in-out infinite;
 }
 @keyframes float {
@@ -485,6 +122,56 @@ nav.site-nav .wrap {
   50% {
     transform: translateY(-12px);
   }
+}
+.vg-site-hero-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* No border-top: the signal is the seam, and a rule drawn a few pixels above it reads as a
+   divider someone forgot to take out. The top padding is the band's room. */
+.vg-site-footer {
+  padding-top: 96px;
+  border-top: 0;
+}
+.vg-site-disclaimer code {
+  color: var(--accent-strong);
+}
+.consent-settings {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+/* The analytics banner: fixed above the page, never in the prerendered HTML. */
+.consent {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 18px 20px;
+  border: 1px solid var(--vg-border);
+  border-radius: var(--vg-radius-panel);
+  background: var(--vg-popover);
+  color: var(--vg-popover-foreground);
+  box-shadow: 0 24px 60px -20px color-mix(in oklab, var(--vg-foreground) 35%, transparent);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
 }
 
 /* ============================================================================
@@ -614,7 +301,7 @@ nav.site-nav .wrap {
   opacity: 0.72;
 }
 @media (max-width: 600px) {
-  .hero {
+  .vg-site-hero {
     padding-bottom: 112px;
   }
   .signal {
@@ -626,33 +313,10 @@ nav.site-nav .wrap {
 }
 
 /* ---------- section ---------- */
+/* The head each section opens with is the shared SiteSectionHead. */
 section {
   padding: 72px 0;
   position: relative;
-}
-.sec-head {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 52px;
-}
-.eyebrow {
-  color: var(--accent);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-.sec-head h2 {
-  font-size: clamp(1.9rem, 4vw, 2.7rem);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.12;
-  margin-bottom: 16px;
-}
-.sec-head p {
-  color: var(--muted);
-  font-size: 1.05rem;
 }
 
 /* ---------- feature grid ---------- */
@@ -672,9 +336,9 @@ section {
   }
 }
 .card {
-  background: linear-gradient(180deg, var(--panel), var(--bg-2));
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--vg-card), var(--vg-muted));
+  border: 1px solid var(--vg-border);
+  border-radius: var(--vg-radius-panel);
   padding: 26px;
   transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.25s;
   position: relative;
@@ -682,17 +346,17 @@ section {
 }
 .card:hover {
   transform: translateY(-4px);
-  border-color: rgba(46, 155, 214, 0.5);
-  box-shadow: 0 18px 40px -22px rgba(46, 155, 214, 0.6);
+  border-color: color-mix(in oklab, var(--vg-brand-light) 50%, transparent);
+  box-shadow: 0 18px 40px -22px color-mix(in oklab, var(--vg-brand-light) 60%, transparent);
 }
 .card .ico {
   width: 46px;
   height: 46px;
-  border-radius: 12px;
+  border-radius: var(--vg-radius-control);
   display: grid;
   place-items: center;
-  background: rgba(46, 155, 214, 0.14);
-  border: 1px solid rgba(46, 155, 214, 0.3);
+  background: color-mix(in oklab, var(--vg-brand-light) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--vg-brand-light) 30%, transparent);
   font-size: 1.4rem;
   margin-bottom: 18px;
 }
@@ -703,7 +367,7 @@ section {
   letter-spacing: -0.01em;
 }
 .card p {
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
   font-size: 0.93rem;
   line-height: 1.6;
 }
@@ -741,7 +405,7 @@ section {
   line-height: 1.15;
 }
 .split-txt p {
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
   font-size: 1.02rem;
   margin-bottom: 18px;
 }
@@ -761,20 +425,20 @@ section {
   flex: 0 0 auto;
   width: 22px;
   height: 22px;
-  border-radius: 6px;
+  border-radius: var(--vg-radius-control);
   display: grid;
   place-items: center;
-  background: rgba(46, 155, 214, 0.16);
+  background: color-mix(in oklab, var(--vg-brand-light) 16%, transparent);
   color: var(--accent-strong);
   font-size: 0.75rem;
   font-weight: 800;
   margin-top: 2px;
 }
 .feat-list b {
-  color: var(--text);
+  color: var(--vg-foreground);
 }
 .feat-list span {
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
 }
 .feat-list code {
   color: var(--accent-strong);
@@ -791,17 +455,17 @@ section {
   }
 }
 .shot-frame {
-  border-radius: 18px;
+  border-radius: var(--vg-radius-panel);
   padding: 14px;
-  background: linear-gradient(160deg, rgba(46, 155, 214, 0.12), transparent 60%),
-    var(--bg-2);
-  border: 1px solid var(--line);
+  background: linear-gradient(160deg, color-mix(in oklab, var(--vg-brand-light) 12%, transparent), transparent 60%),
+    var(--vg-muted);
+  border: 1px solid var(--vg-border);
 }
 .shot-frame svg {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: var(--vg-radius-control);
 }
 figcaption {
   color: var(--muted-2);
@@ -811,7 +475,7 @@ figcaption {
   line-height: 1.55;
 }
 figcaption b {
-  color: var(--text);
+  color: var(--vg-foreground);
 }
 figcaption code {
   color: var(--accent-strong);
@@ -820,7 +484,7 @@ figcaption code {
 /* ---------- terminal (always a dark island) ---------- */
 .term {
   background: #060f16;
-  border: 1px solid var(--line);
+  border: 1px solid var(--vg-border);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.85);
@@ -887,10 +551,10 @@ figcaption code {
   }
 }
 .state {
-  border-radius: 16px;
+  border-radius: var(--vg-radius-panel);
   padding: 24px;
-  border: 1px solid var(--line);
-  background: linear-gradient(180deg, var(--panel), var(--bg-2));
+  border: 1px solid var(--vg-border);
+  background: linear-gradient(180deg, var(--vg-card), var(--vg-muted));
   text-align: center;
 }
 .state svg {
@@ -923,7 +587,7 @@ figcaption code {
   color: var(--stopped);
 }
 .state p {
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
   font-size: 0.9rem;
 }
 .state code {
@@ -933,9 +597,9 @@ figcaption code {
 
 /* ---------- banner ---------- */
 .banner {
-  background: linear-gradient(135deg, rgba(46, 155, 214, 0.1), var(--panel));
-  border: 1px solid rgba(46, 155, 214, 0.3);
-  border-radius: var(--radius);
+  background: linear-gradient(135deg, color-mix(in oklab, var(--vg-brand-light) 10%, transparent), var(--vg-card));
+  border: 1px solid color-mix(in oklab, var(--vg-brand-light) 30%, transparent);
+  border-radius: var(--vg-radius-panel);
   padding: 40px;
   text-align: center;
 }
@@ -946,7 +610,7 @@ figcaption code {
   letter-spacing: -0.02em;
 }
 .banner p {
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
   max-width: 700px;
   margin: 0 auto;
   font-size: 1rem;
@@ -969,8 +633,8 @@ figcaption code {
   gap: 16px;
 }
 .not {
-  border: 1px dashed var(--line);
-  border-radius: 14px;
+  border: 1px dashed var(--vg-border);
+  border-radius: var(--vg-radius-panel);
   padding: 20px 22px;
   background: color-mix(in srgb, var(--panel-2) 45%, transparent);
 }
@@ -988,7 +652,7 @@ figcaption code {
   font-weight: 800;
 }
 .not p {
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
   font-size: 0.9rem;
 }
 
@@ -1005,27 +669,27 @@ figcaption code {
   }
 }
 .step {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  background: var(--vg-card);
+  border: 1px solid var(--vg-border);
+  border-radius: var(--vg-radius-panel);
   padding: 24px;
   position: relative;
 }
 .step .n {
   width: 34px;
   height: 34px;
-  border-radius: 9px;
+  border-radius: var(--vg-radius-control);
   display: grid;
   place-items: center;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--violet), var(--violet-deep));
+  background: linear-gradient(135deg, var(--vg-brand-light), var(--vg-brand-dark));
   color: #fff;
   margin-bottom: 14px;
   font-size: 0.95rem;
 }
 .step .n.ask {
   background: var(--panel-2);
-  border: 1px solid var(--line);
+  border: 1px solid var(--vg-border);
   color: var(--accent-strong);
 }
 .step h4 {
@@ -1034,7 +698,7 @@ figcaption code {
   font-weight: 700;
 }
 .step p {
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
   font-size: 0.9rem;
 }
 .step code {
@@ -1069,200 +733,8 @@ figcaption code {
   font-family: inherit;
   white-space: nowrap;
 }
-.copy-btn {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 7px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #172c39;
-  border: 1px solid #22404f;
-  color: #9db3c1;
-  font-family: "Inter", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-}
-.copy-btn:hover {
-  background: #2e9bd6;
-  color: #fff;
-  border-color: #2e9bd6;
-}
-.copy-btn.copied {
-  background: rgba(46, 160, 67, 0.2);
-  color: #7ee6a0;
-  border-color: rgba(46, 160, 67, 0.5);
-}
-
-/* ---------- footer ---------- */
-footer {
-  /* no border-top: the water is the seam now, and a rule drawn a few pixels above it reads
-     as a divider someone forgot to take out */
-  padding: 96px 0 38px;
-  margin-top: 30px;
-  position: relative;
-  overflow: hidden;
-}
-footer .wrap {
-  position: relative;
-  z-index: 1;
-}
-.foot-grid {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.foot-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 800;
-}
-.foot-brand img {
-  height: 30px;
-  width: auto;
-}
-.foot-links {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.foot-links a {
-  color: var(--muted);
-  font-size: 0.9rem;
-  transition: color 0.2s;
-}
-.foot-links a:hover {
-  color: var(--accent);
-}
-.disclaimer {
-  color: var(--muted-2);
-  font-size: 0.8rem;
-  margin-top: 22px;
-  text-align: center;
-  max-width: 820px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-}
-.disclaimer code {
-  color: var(--accent-strong);
-}
-
-/* ---------- sponsor block ----------
-   Mirrors alegauss.com/sponsor.json. Sits between the footer links and the
-   disclaimer. Product tiles keep a white plate under the logo so the marks render as
-   published in both themes, never recoloured to fit this palette. */
-.sponsor {
-  margin-top: 30px;
-  padding-top: 26px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-.sponsor-mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  background: #fff;
-  padding: 3px;
-  flex: none;
-}
-.sponsor-body {
-  min-width: 0;
-}
-.sponsor-label {
-  display: block;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted-2);
-}
-.sponsor-name {
-  display: block;
-  margin-top: 2px;
-  font-weight: 800;
-  font-size: 1.02rem;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  text-decoration: none;
-}
-.sponsor-name:hover {
-  color: var(--accent);
-}
-.sponsor-body p {
-  margin-top: 6px;
-  max-width: 640px;
-  color: var(--muted);
-  font-size: 0.88rem;
-  line-height: 1.6;
-}
-.sponsor-body p a {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.sponsor-products {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
-}
-.sponsor-product {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 14px 9px 10px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--panel);
-  color: var(--text);
-  text-decoration: none;
-  transition: border-color 0.2s, transform 0.15s ease;
-}
-.sponsor-product:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-.sponsor-product img {
-  width: 28px;
-  height: 28px;
-  border-radius: 7px;
-  background: #fff;
-  padding: 2px;
-  flex: none;
-}
-.sponsor-product b {
-  display: block;
-  font-size: 0.86rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-.sponsor-product small {
-  display: block;
-  max-width: 280px;
-  color: var(--muted-2);
-  font-size: 0.76rem;
-  line-height: 1.45;
-}
-@media (max-width: 620px) {
-  .sponsor {
-    flex-direction: column;
-  }
-  .sponsor-product {
-    width: 100%;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .sponsor-product:hover {
-    transform: none;
-  }
-}
+/* The footer and its sponsor block are the shared SiteFooter and SiteSponsor; the copy
+   button, where a page wants one, is the shared SiteCopyButton. */
 
 /* reveal on scroll (S7: this animates its own opacity, it never moves the window) */
 .reveal {
@@ -1280,8 +752,7 @@ footer .wrap {
     transform: none;
     transition: none;
   }
-  .hero-icon,
-  .dot,
+  .vg-site-hero-icon,
   .wave-swell,
   .wave-drift {
     animation: none;
@@ -1294,7 +765,7 @@ footer .wrap {
 /* ---------- hero transcript: a dark island, like the terminals ---------- */
 .session-eyebrow {
   margin-top: 44px;
-  color: var(--accent);
+  color: var(--vg-brand);
   font-weight: 700;
   font-size: 0.8rem;
   letter-spacing: 0.12em;
@@ -1424,7 +895,7 @@ footer .wrap {
   color: var(--accent-strong);
 }
 .session-note b {
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
 }
 
 /* autoplay: hide steps only while the client is playing; SSR/no-JS shows them all */
@@ -1444,17 +915,30 @@ footer .wrap {
 }
 
 /* ---------- sub-pages: shared ---------- */
+/* A depth page opens on its own header rather than the landing hero: no mark, no badge and
+   no signal, because it is a page someone was linked to, not the front door. */
 .page-hero {
   padding: 72px 0 20px;
+  text-align: center;
+  position: relative;
+}
+.page-hero .vg-site-wrap {
+  position: relative;
+  z-index: 1;
 }
 .page-hero h1 {
   font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.04;
   font-weight: 900;
   letter-spacing: -0.03em;
   margin-bottom: 18px;
 }
-.wrap.narrow {
-  max-width: 780px;
+.page-hero p.sub {
+  font-size: clamp(1.05rem, 2.2vw, 1.32rem);
+  color: var(--vg-muted-foreground);
+  max-width: 700px;
+  margin: 0 auto 36px;
+  line-height: 1.55;
 }
 .page-status {
   max-width: 720px;
@@ -1463,7 +947,7 @@ footer .wrap {
   border-radius: 12px;
   background: rgba(210, 154, 0, 0.08);
   border: 1px solid rgba(210, 154, 0, 0.35);
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
   font-size: 0.9rem;
 }
 .page-status a {
@@ -1474,50 +958,14 @@ footer .wrap {
   color: var(--accent-strong);
 }
 .page-status b {
-  color: var(--text);
+  color: var(--vg-foreground);
 }
 
 /* ---------- /features depth pages ---------- */
-.feature-index {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
-}
-.feature-card {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 22px 24px;
-  background: linear-gradient(180deg, var(--panel), var(--bg-2));
-  transition: transform 0.2s, border-color 0.2s, box-shadow 0.25s;
-}
-.feature-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(46, 155, 214, 0.5);
-  box-shadow: 0 18px 40px -22px rgba(46, 155, 214, 0.6);
-}
-.feature-card h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  letter-spacing: -0.01em;
-}
-.feature-card p {
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.55;
-  flex: 1 1 auto;
-}
-.feature-card-go {
-  margin-top: 14px;
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 0.9rem;
-}
+/* The card grid is the shared SiteFeatureIndex's, on the landing and on /features alike. */
 .feature-back {
   display: inline-block;
-  color: var(--accent);
+  color: var(--vg-brand);
   font-size: 0.9rem;
   font-weight: 600;
   margin-bottom: 16px;
@@ -1536,7 +984,7 @@ footer .wrap {
   margin-bottom: 12px;
 }
 .feature-section p {
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
   font-size: 1.02rem;
   line-height: 1.65;
 }
@@ -1601,23 +1049,23 @@ footer .wrap {
 }
 .feature-siblings a {
   padding: 7px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  color: var(--muted);
+  border-radius: var(--vg-radius-full);
+  border: 1px solid var(--vg-border);
+  color: var(--vg-muted-foreground);
   font-size: 0.88rem;
   font-weight: 500;
   white-space: nowrap;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 .feature-siblings a:hover {
-  color: var(--text);
-  border-color: var(--violet);
-  background: var(--panel);
+  color: var(--vg-foreground);
+  border-color: var(--vg-brand-light);
+  background: var(--vg-card);
 }
 .feature-siblings a.current {
-  color: var(--text);
+  color: var(--vg-foreground);
   background: var(--panel-2);
-  border-color: var(--violet);
+  border-color: var(--vg-brand-light);
 }
 
 /* ---------- matrix table (the hardware page) ---------- */
@@ -1625,9 +1073,9 @@ footer .wrap {
   /* wide content scrolls inside its own box, so the page body never scrolls sideways */
   overflow-x: auto;
   margin: 18px 0 4px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--panel);
+  border: 1px solid var(--vg-border);
+  border-radius: var(--vg-radius-panel);
+  background: var(--vg-card);
 }
 .matrix {
   border-collapse: collapse;
@@ -1639,7 +1087,7 @@ footer .wrap {
 .matrix td {
   text-align: left;
   padding: 14px 18px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--vg-border);
   vertical-align: top;
 }
 .matrix tbody tr:last-child th,
@@ -1656,10 +1104,10 @@ footer .wrap {
 }
 .matrix td:first-child {
   width: 34%;
-  color: var(--text);
+  color: var(--vg-foreground);
 }
 .matrix td {
-  color: var(--muted);
+  color: var(--vg-muted-foreground);
 }
 .matrix code {
   color: var(--accent-strong);

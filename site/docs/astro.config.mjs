@@ -8,6 +8,7 @@
 //
 // Three things here are joins to the site next door, and each is asserted rather than
 // remembered: SiteDocsAreaTests reads this file, and scripts/docs.test.mjs reads what it built.
+import { readFileSync } from "node:fs";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import react from "@astrojs/react";
@@ -23,24 +24,14 @@ const BASE = "/pportal/docs";
 // which is one directory nobody would notice missing.
 const OUT_DIR = "../dist/docs";
 
-// The Google tag, the same one site/index.html carries, so the docs pages are measured with
-// the landing pages. Starlight's head config takes tags rather than raw HTML; it sorts these
-// right after the charset, viewport and title.
-const GA_ID = "G-6HG45Q9BHP";
-const GOOGLE_TAG = [
+// Google Analytics after consent, by the landing pages' flow and the hub's key (PP860), so the
+// docs pages are measured with the landing pages and ask one question with them. The script is
+// inlined rather than linked: a typed src is a link Astro does not rebase. Nothing in the head
+// loads googletagmanager.com; consent.js adds it only for a visitor who allowed it.
+const CONSENT = [
   {
     tag: "script",
-    attrs: { async: true, src: `https://www.googletagmanager.com/gtag/js?id=${GA_ID}` },
-  },
-  {
-    tag: "script",
-    content: `
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', '${GA_ID}');
-`,
+    content: readFileSync(new URL("./src/consent.js", import.meta.url), "utf8"),
   },
 ];
 
@@ -69,7 +60,7 @@ export default defineConfig({
       customCss: ["./src/styles/docs.css"],
       // A BreadcrumbList per page — see the file for why Google needs to be told.
       routeMiddleware: "./src/breadcrumbs.ts",
-      head: GOOGLE_TAG,
+      head: CONSENT,
       sidebar: [
         {
           label: "The host",

@@ -43,7 +43,8 @@ test("no source calls scrollIntoView", () => {
 // bare element, every other <nav> on the page gets all three: the sibling strip on the
 // feature pages became a second sticky bar and parked itself on top of the header as soon as
 // the page moved. Nothing failed - it rendered, and it was wrong - so the selector is held
-// here rather than remembered.
+// here rather than remembered. The header is the design system's SiteNav now, styled by
+// .vg-site-nav, and this keeps the page's own stylesheet from undoing that.
 test("the header's chrome is styled by its class, not by the nav element", () => {
   const css = readFileSync(join(siteDir, "src", "index.css"), "utf8");
   const bare = [...css.matchAll(/^nav[\s{,]/gm)].map((m) => m[0].trim());
@@ -51,8 +52,34 @@ test("the header's chrome is styled by its class, not by the nav element", () =>
     bare,
     [],
     "index.css styles the bare nav element, so every <nav> on the page inherits the " +
-      "header's sticky bar: scope the rule to nav.site-nav",
+      "header's sticky bar: scope the rule to a class",
   );
+});
+
+test("analytics loads only from the consent banner", () => {
+  // PP860. The banner's promise is that nothing reaches Google before a choice. A tag pasted
+  // back into the head would load on every page and the banner would go on asking regardless,
+  // so the template is held to carrying none and the consent component to being the only
+  // loader. The docs area's half is held in docs.test.mjs, against what it built.
+  const html = readFileSync(join(siteDir, "index.html"), "utf8");
+  assert.ok(!html.includes("googletagmanager.com"), "index.html loads analytics before consent");
+  const loaders = sourceFiles.filter((f) => readFileSync(f, "utf8").includes("googletagmanager.com"));
+  assert.deepEqual(loaders.map(relative), ["src/components/Consent.tsx"]);
+});
+
+test("the consent banner promises nothing a script loaded without consent breaks", () => {
+  // Every third-party script the source appends, Google's aside, loads without asking, so the
+  // banner may not say that nothing loads, and it has to name the one that does: the house ad.
+  const banner = readFileSync(join(siteDir, "src", "components", "Consent.tsx"), "utf8");
+  const hosts = new Set(
+    sourceFiles
+      .flatMap((f) => [...readFileSync(f, "utf8").matchAll(/"https:\/\/([^/"]+)\/[^"]*\.js"/g)])
+      .map((m) => m[1])
+      .filter((h) => !h.endsWith("googletagmanager.com")),
+  );
+  if (hosts.size === 0) return;
+  assert.ok(!/nothing is loaded/i.test(banner), `the banner says nothing loads, and ${[...hosts]} does`);
+  assert.ok(/\bad\b/i.test(banner), "the banner does not name the ad that loads either way");
 });
 
 test("no source fetches a third-party font at page load", () => {

@@ -9,7 +9,7 @@ npm install
 npm --prefix docs install     # the documentation area, a second npm project
 npm run dev                   # the site at http://localhost:5173/pportal/
 npm run dev:docs              # the docs at http://localhost:4321/pportal/docs/
-npm run build                 # generate, typecheck, build, social card, SSR build, prerender, docs
+npm run build                 # generate, typecheck, build, SSR build, social card + prerender, docs
 npm test                      # the site's own claims, against what the build produced
 ```
 
@@ -25,15 +25,26 @@ npm test                      # the site's own claims, against what the build pr
 - **The routes are a pair.** `src/routes.tsx` holds one metadata row and one component row
   per route, and an assertion at import time refuses either one without the other, in both
   directions, so a page cannot ship under another page's title.
-- **Every page is prerendered**, with its `<head>` patched by replace-or-throw: a drifted
-  template fails the build rather than publishing a page with the wrong canonical.
+- **The chrome is the design system's.** The nav, hero, section heads, buttons, feature index,
+  sponsor block, footer and theme toggle come from `@viglet/viglet-design-system/site`, on
+  `data-tone="cool"`, with its tokens re-keyed to PPortal's ground and violet in
+  `src/brand.css`. The docs area imports the same file, so the accent is declared once. What
+  stays here is the product's own: the frame's journey, the signal band, the sections, the
+  non-goals, the ad slot and the depth pages.
+- **Every page is prerendered** by the design system's `prerenderSite`, with its `<head>`
+  patched by replace-or-throw: a drifted template fails the build rather than publishing a
+  page with the wrong canonical. Its `renderOgCard` rasterises `public/og.svg` to the social
+  card in the same step.
 - **Every page has a Markdown twin** at the same address with `index.md`, converted from the
   same render as the HTML, so it cannot drift from the page. `manifest.json` lists the routes,
   the twins and their sizes; `robots.txt` and `sitemap.xml` are generated from the same route
   table.
-- **The theme follows the OS**, and a stored choice overrides it. The pre-paint script in
-  `index.html` applies the stored choice before first paint, because the token the body
-  background reads is keyed off `data-theme`.
+- **The theme follows the OS**, and a stored choice overrides it. The design system's
+  pre-paint script, inlined into `index.html` by `vite.config.ts`, applies it before first
+  paint, because the token the body background reads is keyed off `data-theme`.
+- **Google Analytics loads only after consent.** The banner in `src/components/Consent.tsx`
+  (and `docs/src/consent.js` for the docs area) uses the hub's key and measurement id, so one
+  answer covers alegauss.com and everything under it.
 
 ## The documentation area (`docs/`)
 
