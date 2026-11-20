@@ -181,6 +181,7 @@
 - ✅ **PP856** **no workflow builds the installer or attaches it to a GitHub release, so every installer comes off one desk** — release.yml builds through compile.cmd and package.cmd on a runner, refuses a tag the exe disagrees with, and drafts the release with the installer and SHA256SUMS.txt.
 - ✅ **PP63** **nothing in the tree can configure a Qt build carrying WebEngine, so PP46's before cannot be produced at all** — reference-build-msvc.ps1 builds the WebEngine Qt client from e4e482e7; measure-startup exits 0 on it, 208.6 MB of Chromium present (design recorded in `tools/measure-startup/README.md`).
 - ✅ **PP866** **Nothing says which of lib, gui, the spikes and the reference build can go now, or what each of the others waits on** — 55 unused paths left, among them jerasure, gf-complete and the frame-generation spike; what stays is named by PP867 to PP873 with its trigger.
+- ✅ **PP869** **every default build compiles cpp-steam-tools, which only the retired Qt client links** — A default configure no longer adds cpp-steam-tools: the submodule is built only with CHIAKI_ENABLE_GUI, whatever the cached option says.
 
 ## Block F — Managed core
 

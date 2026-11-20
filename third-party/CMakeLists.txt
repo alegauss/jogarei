@@ -27,14 +27,16 @@ endif()
 # against this library's own answers while it was still here, and PP842 recorded them into
 # tests/oracles/framepath.json so the comparison outlives the C.
 #
-# THE SUBMODULES STAY IN THE CHECKOUT, unbuilt, which is the choice PP33 made for holepunch.c and
-# PP632 for gui/: what a deletion owes is that nothing compiles or links it, and a directory git
-# already has costs nothing to leave. .gitmodules still declares both, and ForeignBinaries does not
-# walk third-party/ for exactly this reason.
+# The submodules stayed in the checkout, unbuilt, until PP866's audit found nothing reading them
+# either and removed both, with their .gitmodules entries.
 
 # PP33: curl is gone. holepunch.c was the only thing in lib/ that called it, and building curl
 # from source was the slowest step this tree had.
 
-if(CHIAKI_ENABLE_STEAM_SHORTCUT)
+# PP869: only the Qt client links cpp-steam-tools, and nothing builds the client since PP632, so a
+# default configure stopped adding it. The GUI half of the condition is not left to the option's
+# default: an option lives in CMakeCache.txt, and a tree configured before this would have gone on
+# compiling the library for ever.
+if(CHIAKI_ENABLE_STEAM_SHORTCUT AND CHIAKI_ENABLE_GUI)
 	add_subdirectory(cpp-steam-tools)
 endif()

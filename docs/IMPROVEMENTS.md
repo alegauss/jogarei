@@ -152,16 +152,6 @@ the outcome is written down and a certificate is reconsidered.
 Done when the application is listed in the Store and installs without a SmartScreen
 warning, or the reason it cannot be is recorded here.
 
-### §PP869 The Steam shortcut library follows the Qt client
-
-PP866's audit found third-party\cpp-steam-tools compiled by every default build, because
-CHIAKI_ENABLE_STEAM_SHORTCUT defaults to on, while only gui\CMakeLists.txt links it, and
-nothing builds gui\ since PP632. The managed host's Steam shortcut is its own code.
-
-Gate the option on CHIAKI_ENABLE_GUI in the root CMakeLists.txt, so a default configure
-neither adds the submodule nor compiles it, and the build stops paying for a library
-nothing it produces loads. The submodule itself goes with gui\.
-
 ### §PP870 The Go reference leaves with its reason
 
 PP866's audit found scripts\holepunch\ (the Go reference for the internet connection

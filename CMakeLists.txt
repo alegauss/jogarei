@@ -165,10 +165,10 @@ if(CHIAKI_LIB_ENABLE_MBEDTLS)
 	endif()
 endif()
 
-if(CHIAKI_ENABLE_STEAM_SHORTCUT)
+if(CHIAKI_ENABLE_STEAM_SHORTCUT AND CHIAKI_ENABLE_GUI)
 	message(STATUS "Steam shortcut enabled")
 else()
-	message(STATUS "Steam shortcut disabled")
+	message(STATUS "Steam shortcut disabled (only the Qt client links it - PP869)")
 endif()
 
 if(CHIAKI_ENABLE_FFMPEG_DECODER)

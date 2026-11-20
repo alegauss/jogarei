@@ -20,7 +20,6 @@
 
 - 📋 **PP301** (deps: —) (requires: runner) **no MSVC toolchain has ever compiled this tree, so the CI workflow's first push is the first time it is tried** — PP22 configures a runner the only way a runner can be, and everything built here so far came through MSYS2 MinGW64. → §PP301
 - 📋 **PP302** (deps: visibility VS58, PP863 ✅) **nothing signs the host or the installer, so SmartScreen warns on the first run of every release** — The Store signs the MSIX itself in place of a certificate, and claude-tray tests that path first, so this follows what it learns. → §PP302
-- 📋 **PP869** (deps: —) **every default build compiles cpp-steam-tools, which only the retired Qt client links** — CHIAKI_ENABLE_STEAM_SHORTCUT defaults to on while nothing the build produces loads the library. → §PP869
 - 📋 **PP870** (deps: —) **the Go holepunch reference stays in scripts only because an assertion's reason went with holepunch.c** — TheGoSourceStays says the Go documents the flow holepunch.c implements, and PP33 deleted holepunch.c. → §PP870
 - 📋 **PP871** (deps: —) **eight spikes and the alloc-budget gate stay in the tree because tests read their results where they ran** — A spike is a decision already taken, and its evidence belongs beside the test that reads it, not in the experiment. → §PP871
 - 📋 **PP872** (deps: PP864) **the reference build's script and patch stay in the tree after the before they exist for is measured** — PP864's cold rows are the last use of the reference build, and nothing rebuilds a before once it is recorded. → §PP872
