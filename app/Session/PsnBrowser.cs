@@ -137,13 +137,13 @@ public static class PsnBrowser
 public static class PsnBrowserSource
 {
     /// <summary>The dialog with the browser in it.</summary>
-    public const string DialogQml = @"gui\src\qml\PSNLoginDialog.qml";
+    public const string DialogQml = @"tests\oracles\gui\src\qml\PSNLoginDialog.qml";
 
     /// <summary>Where the profile hints and the redirect check live.</summary>
-    public const string BackendCpp = @"gui\src\qmlbackend.cpp";
+    public const string BackendCpp = @"tests\oracles\gui\src\qmlbackend.cpp";
 
     /// <summary>Where the Sec-Ch-Ua interceptor is declared.</summary>
-    public const string BackendHeader = @"gui\include\qmlbackend.h";
+    public const string BackendHeader = @"tests\oracles\gui\include\qmlbackend.h";
 
     /// <summary>One of the three, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

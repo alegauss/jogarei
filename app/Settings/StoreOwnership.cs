@@ -30,11 +30,12 @@ public static class StoreOwnership
     /// <summary>
     /// The client's process name, derived from the binary this port already names.
     ///
-    /// <see cref="GuiFreshness.ClientRelativePath"/> is what `compile.cmd gui` builds and what the
-    /// freshness check reads, so the name comes from there rather than being typed again.
+    /// <see cref="Session.QtClientBuild.ClientRelativePath"/> is what `compile.cmd gui` built, so the
+    /// name comes from there rather than being typed again. PP867: from there and not from
+    /// GuiFreshness, which went with gui/.
     /// </summary>
     public static string BuiltClientProcess { get; } =
-        Path.GetFileNameWithoutExtension(GuiFreshness.ClientRelativePath);
+        Path.GetFileNameWithoutExtension(Session.QtClientBuild.ClientRelativePath);
 
     /// <summary>
     /// The released client's name, which is not the one this tree builds.

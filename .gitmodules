@@ -4,6 +4,3 @@
 [submodule "third-party/nanopb"]
 	path = third-party/nanopb
 	url = https://github.com/nanopb/nanopb.git
-[submodule "third-party/cpp-steam-tools"]
-	path = third-party/cpp-steam-tools
-	url = https://github.com/streetpea/cpp-steam-tools.git

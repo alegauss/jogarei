@@ -328,7 +328,7 @@ public sealed class ControllerMappingDocument
 public static partial class ControllerMappingSource
 {
     /// <summary>The Qt client's backend.</summary>
-    public const string RelativePath = @"gui\src\qmlbackend.cpp";
+    public const string RelativePath = @"tests\oracles\gui\src\qmlbackend.cpp";
 
     /// <summary>The file, or null when this is not running out of a checkout.</summary>
     public static string? Locate() => SanitizerSource.LocateRelative(RelativePath);

@@ -31,12 +31,14 @@ public readonly record struct BuildOption(string Name, string Description, int M
 /// </summary>
 public static partial class BuildOptionsAreRead
 {
-    /// <summary>The build files an option can be declared or read in.</summary>
+    /// <summary>
+    /// The build files an option can be declared or read in. PP867: gui\CMakeLists.txt left the
+    /// list with gui\, and the four options only it read left CMakeLists.txt with it.
+    /// </summary>
     public static IReadOnlyList<string> Files { get; } =
     [
         "CMakeLists.txt",
         @"lib\CMakeLists.txt",
-        @"gui\CMakeLists.txt",
         @"test\CMakeLists.txt",
     ];
 

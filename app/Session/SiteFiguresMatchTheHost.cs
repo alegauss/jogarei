@@ -20,8 +20,8 @@ namespace Jogarei.Session;
 /// the site ships it.
 ///
 /// SO THE CHECK IS HERE RATHER THAN IN THE SITE'S OWN TESTS. test.cmd runs this suite and not npm,
-/// and this suite already reads gui/ and lib/ across the seam to hold the port against what it was
-/// ported from. Reading one directory further out is the same act.
+/// and this suite already reads lib/ and the Qt client's recorded files (tests\oracles\gui since
+/// PP867) to hold the port against what it was ported from. Reading one directory further out is the same act.
 ///
 /// FLAGS ONLY. The version and framework come off a csproj this suite has no quarrel with; the flags
 /// are the part that moved twice in one session.

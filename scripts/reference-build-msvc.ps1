@@ -11,8 +11,8 @@
   gate for a commit; nothing here is called from compile.cmd, test.cmd or package.cmd, and
   nothing in the gate calls this. Using it for ordinary work splits the build in two.
 
-  What it builds is not the current tree. The Qt client was retired by PP632 and gui\ no
-  longer compiles against lib\, so the source is a worktree of -Ref: by default e4e482e7,
+  What it builds is not the current tree. The Qt client was retired by PP632 and PP867
+  deleted gui\ from it, so the source is a worktree of -Ref: by default e4e482e7,
   the commit tools\measure-startup\qt-build-webengine-absent.json was measured on. The two
   rows then differ in WebEngine and in toolchain, and in nothing else that this tree did.
 

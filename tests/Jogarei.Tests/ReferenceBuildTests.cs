@@ -29,7 +29,6 @@ public class ReferenceBuildTests
         "package.cmd",
         @"scripts\build-windows.sh",
         @"scripts\test-windows.sh",
-        @"scripts\deploy-windows-msys2.sh",
         @".github\workflows\build.yml",
         @".github\workflows\release.yml",
     ];

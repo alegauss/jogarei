@@ -195,7 +195,7 @@ public static class ConsoleList
 public static partial class ConsoleListSource
 {
     /// <summary>Where the list is assembled.</summary>
-    public const string RelativePath = @"gui\src\qmlbackend.cpp";
+    public const string RelativePath = @"tests\oracles\gui\src\qmlbackend.cpp";
 
     /// <summary>The file, or null when this is not running out of a checkout.</summary>
     public static string? Locate() => SanitizerSource.LocateRelative(RelativePath);

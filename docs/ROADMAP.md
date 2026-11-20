@@ -25,7 +25,6 @@
 ## Block F — Managed core
 
 - ⏳ **PP853** (deps: PP723 ✅, PP717 ✅) (requires: console, a-person-looking) **no history packet reaches the wire in a live session, so a button press is the one input the console never hears** — Offline the press reaches the wire; one console run with buttons pressed says which live stage drops it. → §PP853
-- 📋 **PP867** (deps: —) **gui stays in the tree only because about 32 drift checks read the retired Qt client's source as their oracle** — Nothing builds gui since PP632, and recording what each check reads lets the folder go as json-c went in PP33. → §PP867
 
 ## Block G — Test discipline
 

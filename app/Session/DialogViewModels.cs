@@ -192,7 +192,7 @@ public static partial class DialogSource
 {
     /// <summary>The QML file for a dialog, or null outside a checkout.</summary>
     public static string? Locate(string dialog)
-        => SanitizerSource.LocateRelative(Path.Combine("gui", "src", "qml", dialog + ".qml"));
+        => SanitizerSource.LocateRelative(Path.Combine("tests", "oracles", "gui", "src", "qml", dialog + ".qml"));
 
     /// <summary>Whether the manual host dialog still represents "nothing chosen" as index -1.</summary>
     public static bool ManualHostUsesMinusOne(string qml)

@@ -22,7 +22,7 @@ namespace Jogarei.Session;
 public static partial class SessionSource
 {
     /// <summary>Where the touch paths live, relative to the repository root.</summary>
-    public const string RelativePath = @"gui\src\streamsession.cpp";
+    public const string RelativePath = @"tests\oracles\gui\src\streamsession.cpp";
 
     /// <summary>The file, or null when this is not running out of a checkout.</summary>
     public static string? Locate() => SanitizerSource.LocateRelative(RelativePath);

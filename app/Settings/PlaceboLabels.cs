@@ -156,10 +156,10 @@ public static class PlaceboLabels
 public static class PlaceboLabelSource
 {
     /// <summary>The colour mapping screen.</summary>
-    public const string ColorMappingQml = @"gui\src\qml\PlaceboColorMappingDialog.qml";
+    public const string ColorMappingQml = @"tests\oracles\gui\src\qml\PlaceboColorMappingDialog.qml";
 
     /// <summary>The renderer tuning screen.</summary>
-    public const string TuningQml = @"gui\src\qml\PlaceboSettingsDialog.qml";
+    public const string TuningQml = @"tests\oracles\gui\src\qml\PlaceboSettingsDialog.qml";
 
     /// <summary>One of the two, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

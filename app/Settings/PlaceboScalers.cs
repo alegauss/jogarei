@@ -157,10 +157,10 @@ public static class PlaceboFlags
 public static class PlaceboScalerSource
 {
     /// <summary>The store, which is where all of this is decided.</summary>
-    public const string SettingsCpp = @"gui\src\settings.cpp";
+    public const string SettingsCpp = @"tests\oracles\gui\src\settings.cpp";
 
     /// <summary>The tuning screen, for the labels.</summary>
-    public const string DialogQml = @"gui\src\qml\PlaceboSettingsDialog.qml";
+    public const string DialogQml = @"tests\oracles\gui\src\qml\PlaceboSettingsDialog.qml";
 
     /// <summary>One of the two, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

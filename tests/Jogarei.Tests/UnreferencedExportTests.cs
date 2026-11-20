@@ -28,8 +28,11 @@ public partial class UnreferencedExportTests(ITestOutputHelper output)
     /// <summary>Where the exports are declared.</summary>
     public const string HeadersRelativePath = @"lib\include\chiaki";
 
-    /// <summary>Where a reference to one could be. app\ is included: the shim is not the only seam.</summary>
-    public static IReadOnlyList<string> SearchTrees { get; } = ["lib", "gui", "shim", "test", "app"];
+    /// <summary>
+    /// Where a reference to one could be. app\ is included: the shim is not the only seam. PP867:
+    /// gui\ is not - it is deleted, and a recording of what the client called is not a caller.
+    /// </summary>
+    public static IReadOnlyList<string> SearchTrees { get; } = ["lib", "shim", "test", "app"];
 
     /// <summary>
     /// PP735: whether a match sits inside a string literal, which is a MODEL and not a call.
@@ -105,7 +108,8 @@ public partial class UnreferencedExportTests(ITestOutputHelper output)
 
     /// <summary>
     /// Twenty-three, as of PP793 - twelve PP290 found, four the literal rule uncovered and seven
-    /// the comment rule did. Kept in the tree rather than in a commit message, because the
+    /// the comment rule did. PP867 added twenty-eight whose only caller was the deleted Qt client.
+    /// Kept in the tree rather than in a commit message, because the
     /// value of the list is that the next person can see it without re-deriving it.
     ///
     /// They are NOT deleted here. They span keyboard input, the ambassador key derivation, the
@@ -169,6 +173,41 @@ public partial class UnreferencedExportTests(ITestOutputHelper output)
         "chiaki_senkusha_fini",
         "chiaki_senkusha_init",
         "chiaki_senkusha_run",
+
+        // PP867: the twenty-eight whose last caller was the Qt client. gui/ is deleted, and the
+        // recording of the files the drift checks read is evidence rather than a caller, so it is
+        // not swept. They are the client's own features - the PSN holepunch flow, the Opus encoder
+        // and decoder its microphone and audio sink used, the session's go-home, bed and
+        // microphone controls, discovery's wakeup. Measured by the sweep on the commit that deleted
+        // gui/, and recorded here for the reason senkusha's three are: dead in the tree the gate
+        // reads, with nobody yet having decided what to do about any of them.
+        "chiaki_discovery_wakeup",
+        "chiaki_ffmpeg_decoder_get_decode_stat",
+        "chiaki_holepunch_generate_client_device_uid",
+        "chiaki_holepunch_list_devices",
+        "chiaki_holepunch_main_thread_cancel",
+        "chiaki_holepunch_session_create",
+        "chiaki_holepunch_session_force_port_guessing",
+        "chiaki_holepunch_session_init",
+        "chiaki_holepunch_session_punch_hole",
+        "chiaki_holepunch_session_set_port_guessing_ports",
+        "chiaki_holepunch_session_set_port_guessing_socks",
+        "chiaki_holepunch_session_start",
+        "chiaki_holepunch_upnp_discover",
+        "chiaki_opus_decoder_fini",
+        "chiaki_opus_decoder_get_sink",
+        "chiaki_opus_decoder_init",
+        "chiaki_opus_encoder_fini",
+        "chiaki_opus_encoder_frame",
+        "chiaki_opus_encoder_header",
+        "chiaki_opus_encoder_init",
+        "chiaki_regist_start",
+        "chiaki_session_connect_microphone",
+        "chiaki_session_go_home",
+        "chiaki_session_goto_bed",
+        "chiaki_session_request_idr",
+        "chiaki_session_toggle_microphone",
+        "holepunch_session_create_offer",
     ];
 
     /// <summary>

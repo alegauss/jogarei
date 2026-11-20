@@ -16,7 +16,7 @@ namespace Jogarei.Session;
 public static partial class PadSource
 {
     /// <summary>Where the client maps a pad, relative to the repository root.</summary>
-    public const string RelativePath = @"gui\src\controllermanager.cpp";
+    public const string RelativePath = @"tests\oracles\gui\src\controllermanager.cpp";
 
     /// <summary>The client's file, or null outside a checkout.</summary>
     public static string? Locate() => SanitizerSource.LocateRelative(RelativePath);

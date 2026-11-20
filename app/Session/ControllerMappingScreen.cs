@@ -269,7 +269,7 @@ public sealed class ControllerMappingViewModel : DialogViewModel
 public static class ControllerMappingScreenSource
 {
     /// <summary>The screen.</summary>
-    public const string DialogQml = @"gui\src\qml\ControllerMappingDialog.qml";
+    public const string DialogQml = @"tests\oracles\gui\src\qml\ControllerMappingDialog.qml";
 
     /// <summary>The file, or null outside a checkout.</summary>
     public static string? Locate() => SanitizerSource.LocateRelative(DialogQml);

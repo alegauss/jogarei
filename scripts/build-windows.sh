@@ -50,22 +50,14 @@ if [[ $do_clean -eq 1 ]]; then
     rm -rf "$BUILD_DIR"
 fi
 
-# PP21: -DCHIAKI_ENABLE_GUI passed EXPLICITLY, not left to the default in CMakeLists.txt.
-#
-# option() does not override a value already in the cache. Changing that default to OFF and
-# running configure reported "CONFIGURE OK" on this machine while CHIAKI_ENABLE_GUI:BOOL=ON sat in
-# CMakeCache.txt from the first configure ever run here - so the Qt client went on being built,
-# and the only way that was noticed was deleting chiaki.exe and watching ninja link it again.
-#
-# A default is therefore correct for a fresh clone and inert everywhere else, which is the worst
-# of both: the edit reads as done, the tree reports success, and every existing checkout keeps the
-# dependency. Passed on the command line it overrides the cache on every configure, so what the
-# build does is what this line says rather than what some earlier run decided.
+# PP867: -DCHIAKI_ENABLE_GUI stood here, passed explicitly since PP21 because option() does not
+# override a value already in the cache. gui/ is deleted and the option with it, so there is no
+# client left for a stale cache to turn back on; a CHIAKI_ENABLE_GUI entry an old cache still holds
+# is read by nothing.
 # PP33: -DCHIAKI_ENABLE_HOLEPUNCH stood here and there is nothing left for it to admit. curl,
-# json-c and the shim's two oracles have left the tree; holepunch.c stays as SOURCE, the way gui/
-# did after PP598, because the port's drift checks read it and nothing builds it.
-cmake -S . -B "$BUILD_DIR" -G Ninja -DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
-    -DCHIAKI_ENABLE_GUI="${CHIAKI_ENABLE_GUI:-OFF}"
+# json-c and the shim's two oracles have left the tree; holepunch.c stays as SOURCE, because the
+# port's drift checks read it and nothing builds it.
+cmake -S . -B "$BUILD_DIR" -G Ninja -DCMAKE_BUILD_TYPE="$BUILD_TYPE"
 
 if [[ $do_build -eq 0 ]]; then
     echo "configure ok: every path the build graph names resolves"
@@ -94,20 +86,10 @@ fi
 # builds what it is asked for. Left out, the managed side would load whichever
 # chiaki-render.dll the last hand-run of ninja happened to leave, which is PP56 again with a
 # renderer on the far side.
-# PP21: `chiaki` is the QT CLIENT and is asked for only when it exists.
-#
-# Read from the cache the configure above just wrote, the same way chiaki-unit is below and for
-# the same reason: ninja hard-errors on a target that is not in the graph, so a build with the GUI
-# off would fail on the request rather than on anything real. The shim and the renderer stay
-# unconditional - PP4 built them outside CHIAKI_ENABLE_GUI precisely because they are the half of
-# the port with no Qt in it.
+# PP867: `chiaki`, the Qt client, was asked for here when the cache said it was configured. gui/
+# is deleted, so the shim and the renderer - the half of the port with no Qt in it - are the
+# targets.
 targets=(chiaki-shim chiaki-render)
-if grep -qx 'CHIAKI_ENABLE_GUI:BOOL=ON' "$BUILD_DIR/CMakeCache.txt" 2>/dev/null; then
-    targets+=(chiaki)
-    gui_built=1
-else
-    gui_built=0
-fi
 if [[ $do_tests -eq 1 ]]; then
     # Absent when the tree was configured with -DCHIAKI_ENABLE_TESTS=OFF, and asking ninja
     # for a target that does not exist is a hard error. Read from the cache the configure
@@ -126,24 +108,14 @@ if [[ $do_tests -eq 0 ]]; then
     echo "note: chiaki-unit was not built (notests), so ctest in $BUILD_DIR reports on an older binary" >&2
 fi
 
-# PP21: nothing to deploy when the client was not built, and saying so beats shipping a stale one.
+# PP269: the deploy refreshes the native DLLs in the portable tree, and the .NET resolver looks
+# THERE before it looks at the build directory. Turning the whole deploy off left every managed run
+# loading whatever shim happened to be in that tree - measured at four hours stale, with an entry
+# point the build had just added missing from it.
 #
-# Measured: with the GUI off but the deploy left alone, windeployqt happily packaged the
-# chiaki.exe a PREVIOUS build had left in the tree, printed its thirty-four Qt DLLs, and compile
-# then pointed at it as "run this one". A build that reports success while deploying a binary it
-# did not make is the same defect as PP56 with a whole application on the far side.
-if [[ $do_deploy -eq 1 && $gui_built -eq 0 ]]; then
-    echo "note: the Qt client is not built (CHIAKI_ENABLE_GUI is off), so the Qt deploy is skipped" >&2
-    do_deploy=0
-    deploy_native_only=1
-fi
-
-# PP269: the Qt deploy is also what refreshes the native DLLs in the portable tree, and the .NET
-# resolver looks THERE before it looks at the build directory. Turning the whole deploy off left
-# every managed run loading whatever shim happened to be in that tree - measured at four hours
-# stale, with an entry point the build had just added missing from it. The client's absence is a
-# reason not to package Qt, not a reason to stop refreshing the two libraries the host loads.
-if [[ ${deploy_native_only:-0} -eq 1 ]]; then
+# PP867: this is the only deploy now. The Qt one - windeployqt over the client, through
+# scripts/deploy-windows-msys2.sh - went with gui/, and so did the branch that chose between them.
+if [[ $do_deploy -eq 1 ]]; then
     mkdir -p "$DEPLOY_DIR"
     # Both come out of the shim directory - the render target is built beside it, not under a
     # directory of its own.
@@ -158,9 +130,8 @@ if [[ ${deploy_native_only:-0} -eq 1 ]]; then
 
     # PP492: SDL2 is the third library the .NET resolver loads out of this tree, and it is the one
     # no walk can find - the host opens it by name at runtime, so nothing here IMPORTS it. In a Qt
-    # build it arrives as a dependency of chiaki.exe; with the client off it has to be staged, the
-    # way the Qt deploy already stages SDL3 for the same reason. package.cmd checks all three and
-    # is what reported this missing.
+    # build it arrived as a dependency of chiaki.exe; without the client it has to be staged.
+    # package.cmd checks all three and is what reported this missing.
     if [[ -f /mingw64/bin/SDL2.dll ]]; then
         cp -f /mingw64/bin/SDL2.dll "$DEPLOY_DIR/"
         echo "note: staged SDL2.dll in $DEPLOY_DIR" >&2
@@ -169,24 +140,12 @@ if [[ ${deploy_native_only:-0} -eq 1 ]]; then
         echo "warning: /mingw64/bin/SDL2.dll not found - the host has no SDL to load" >&2
     fi
 
-    # PP492: and what all of those IMPORT, which PP269 left to the Qt deploy this branch exists
-    # because we are not running. Copying the libraries alone is enough on an incremental build,
-    # where the closure is already in the tree from the last GUI build, and produces a tree
-    # nothing can load from after a clean - the resolver finds the shim, TryLoad fails on a
-    # missing import, and the error says the DLL was not found at the path it is sitting at.
+    # PP492: and what all of those IMPORT, which PP269 left to the Qt deploy. Copying the
+    # libraries alone is enough on an incremental build, where the closure is already in the tree
+    # from the last GUI build, and produces a tree nothing can load from after a clean - the
+    # resolver finds the shim, TryLoad fails on a missing import, and the error says the DLL was
+    # not found at the path it is sitting at.
     if [[ ${#staged[@]} -gt 0 ]]; then
         PATH="/mingw64/bin:$PATH" ./scripts/deploy-native-deps.sh "$DEPLOY_DIR" "${staged[@]}" >&2
     fi
-fi
-
-if [[ $do_deploy -eq 1 ]]; then
-    # The tool dir goes on PATH inside the deploy script so that ldd can resolve
-    # libcpp-steam-tools.dll, so it has to be a POSIX path: a Windows-style
-    # "d:/..." would split on its own colon and silently drop the entry.
-    ./scripts/deploy-windows-msys2.sh \
-        "$DEPLOY_DIR" \
-        "$BUILD_DIR/gui/chiaki.exe" \
-        "$PWD/$BUILD_DIR/third-party/cpp-steam-tools" \
-        /mingw64 \
-        gui/src/qml
 fi

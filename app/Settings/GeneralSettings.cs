@@ -224,10 +224,10 @@ public sealed class GeneralSettingsViewModel : DialogViewModel
 public static class GeneralSettingsSource
 {
     /// <summary>Where the enum orders live.</summary>
-    public const string SettingsHeader = @"gui\include\settings.h";
+    public const string SettingsHeader = @"tests\oracles\gui\include\settings.h";
 
     /// <summary>Where the strings and the fallback live.</summary>
-    public const string SettingsCpp = @"gui\src\settings.cpp";
+    public const string SettingsCpp = @"tests\oracles\gui\src\settings.cpp";
 
     /// <summary>One of them, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

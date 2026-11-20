@@ -131,10 +131,10 @@ public static class InverseToneMapping
 public static class PlaceboColorMappingSource
 {
     /// <summary>The screen.</summary>
-    public const string DialogQml = @"gui\src\qml\PlaceboColorMappingDialog.qml";
+    public const string DialogQml = @"tests\oracles\gui\src\qml\PlaceboColorMappingDialog.qml";
 
     /// <summary>Where the words and the defaults live.</summary>
-    public const string SettingsCpp = @"gui\src\settings.cpp";
+    public const string SettingsCpp = @"tests\oracles\gui\src\settings.cpp";
 
     /// <summary>One of the two, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

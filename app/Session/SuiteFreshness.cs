@@ -9,7 +9,7 @@ namespace Jogarei.Session;
 ///
 /// THE TWO STOPPED BEING THE SAME THING. lib/src/remote/holepunch.c left the build with PP33 and
 /// stayed in the checkout, because this port's drift checks read C that no target compiles - the
-/// same reason gui/ is still here. Its mtime went ahead of the executable's, and from then on every
+/// same reason gui/ stayed until PP867 recorded what was read and deleted it. Its mtime went ahead of the executable's, and from then on every
 /// run of test.cmd opened with a warning whose own advice could not clear it: compile.cmd answers
 /// "ninja: no work to do", and ninja is right, because the file is in no graph.
 ///

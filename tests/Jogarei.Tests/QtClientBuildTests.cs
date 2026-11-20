@@ -13,16 +13,18 @@ namespace Jogarei.Tests;
 ///
 /// SO THESE HAVE TURNED OVER, the way PP591's did when the harness it described was deleted. They
 /// held that the affordance was real and must not go early; they hold that it is gone and must not
-/// come back. The expensive mistake was never doing it late - it was doing half of it, and the half
-/// that would have been left is answered by <see cref="GuiBuildState.Retired"/>.
+/// come back. The expensive mistake was never doing it late - it was doing half of it.
+///
+/// PP867 deleted gui/ itself, the CHIAKI_ENABLE_GUI option and GuiFreshness. These keep the
+/// argument from coming back, and say the source is gone.
 /// </summary>
 public class QtClientBuildTests
 {
     /// <summary>
-    /// compile.cmd still offers the argument, which is the piece no compiler reads.
+    /// compile.cmd no longer offers the argument, which is the piece no compiler reads.
     ///
-    /// The other two are held by the type system: QtClientBuild names GuiFreshness, so deleting the
-    /// check without deleting the record does not build. This is the one that could go silently.
+    /// PP867: the other two pieces are deleted - GuiFreshness and the option the argument set - so
+    /// this is the one left that could come back silently.
     /// </summary>
     [Fact]
     public void TheGateNoLongerOffersTheArgument()
@@ -59,46 +61,59 @@ public class QtClientBuildTests
     }
 
     /// <summary>
-    /// The three name one binary, and the record reaches it through GuiFreshness rather than
-    /// carrying its own copy.
-    ///
-    /// That reference is the retirement's guard: a second literal here would let the two drift, and
-    /// drift is what makes a half-done retirement possible in the first place.
+    /// PP867: the record and the store's ownership check mean one binary, the one `compile.cmd gui`
+    /// used to build - GuiFreshness owned it until it went with gui/.
     /// </summary>
     [Fact]
-    public void TheRecordAndTheCheckMeanOneBinary()
+    public void TheRecordAndTheStoreCheckMeanOneBinary()
     {
-        Assert.Equal(GuiFreshness.ClientRelativePath, QtClientBuild.ClientRelativePath);
-        Assert.Contains("chiaki.exe", QtClientBuild.ClientRelativePath, StringComparison.Ordinal);
+        Assert.Equal(@"build\gui\chiaki.exe", QtClientBuild.ClientRelativePath);
+        Assert.Equal(
+            Path.GetFileNameWithoutExtension(QtClientBuild.ClientRelativePath),
+            Jogarei.Settings.StoreOwnership.BuiltClientProcess);
     }
 
     /// <summary>
-    /// PP599: the client this retires is the same file that drives the C session's PSN path.
+    /// PP599 and PP867: the client this retired was the file that drove the C session's PSN path,
+    /// and nothing drives it now.
     ///
-    /// That join is what makes PP533's conversion unnecessary. PP596 holds that the Qt client is the
-    /// only thing putting a holepunch handle into a ChiakiSession; this holds that the same file is
-    /// the one whose build is going. So after the retirement nobody can enter session.c's PSN path,
-    /// and the nine asks are removed rather than converted to the five results Â§PP533 designed.
-    ///
-    /// Written as an identity between two models rather than as a sentence, because the conclusion
-    /// only holds while both name one file. A second PSN driver arriving, or the retirement moving
-    /// to some other target, puts the conversion back on the table - and this is what would say so.
+    /// PP596 held that the Qt client was the only thing putting a holepunch handle into a
+    /// ChiakiSession; PP599 held that the same file was the one whose build was going, which is why
+    /// the nine asks were removed rather than converted to the five results PP533 designed. PP867
+    /// deleted that file's tree: the PSN driver is a recording now, and it is not among the callers
+    /// of chiaki_session_init. A second PSN driver arriving would put the conversion back on the
+    /// table - and the caller list is what would say so.
     /// </summary>
     [Fact]
-    public void TheClientRetiringIsTheOneThatDrivesPsn()
+    public void TheClientThatDrovePsnIsARecordingAndNotACaller()
     {
         Assert.Equal(
             HolepunchSessionOwnership.QtClientRelativePath,
             QtClientBuild.PsnDriverRelativePath);
 
-        // And it is still the only one, which is PP596's half of the join.
-        Assert.Equal(
-            [@"gui\src\streamsession.cpp", @"shim\chiaki_shim.c"],
-            HolepunchSessionOwnership.SessionInitCallers);
+        Assert.StartsWith(@"tests\oracles\gui\", QtClientBuild.PsnDriverRelativePath, StringComparison.Ordinal);
 
-        Assert.Contains(
+        Assert.DoesNotContain(
             QtClientBuild.PsnDriverRelativePath,
             HolepunchSessionOwnership.SessionInitCallers);
+    }
+
+    /// <summary>
+    /// PP867: gui/ is gone from the checkout, which is the end state the retirement was heading for.
+    ///
+    /// A gui/ arriving back - a merge from upstream, a restore - would be a Qt client this tree has
+    /// no option to build and no check that reads it, since every drift check reads the recording.
+    /// </summary>
+    [Fact]
+    public void TheQtClientSourceIsGone()
+    {
+        if (SanitizerSource.RepositoryRoot() is not { } root)
+            return;
+
+        Assert.False(
+            Directory.Exists(Path.Combine(root, "gui")),
+            "gui/ is back in the checkout. PP867 deleted it after recording what the drift checks "
+                + @"read under tests\oracles\gui; those checks do not read gui/ any more.");
     }
 
     /// <summary>

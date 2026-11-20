@@ -15,10 +15,10 @@ namespace Jogarei.Session;
 /// build, which is the worst of the two states: the report somebody reads before asking whether it
 /// is still needed said yes.
 ///
-/// SO THE PROBE FOLLOWS THE CLIENT NOW, and this holds all three halves of that: speex is linked
-/// only by gui/, probed only where gui/ is built, and absent from lib/ entirely. Building with
-/// -DCHIAKI_ENABLE_GUI=ON restores every one of them unchanged, which is the difference between
-/// removing a dependency from the default build and removing it from the client.
+/// SO THE PROBE FOLLOWED THE CLIENT, and PP867 took both away: gui/ is deleted, and with it the
+/// CHIAKI_ENABLE_GUI option, the probe it gated, the CHIAKI_ENABLE_SPEEX option the probe set and
+/// cmake/FindSpeexDSP.cmake. What this holds now is the end state - nothing in the build probes for
+/// speexdsp or links it, and lib/ mentions it nowhere.
 ///
 /// WHAT THIS DOES NOT SETTLE is the other half of PP32. The managed host captures no microphone at
 /// all, so there is nothing yet for a noise or echo stage to run on - and what replaces speex, if
@@ -26,11 +26,8 @@ namespace Jogarei.Session;
 /// </summary>
 public static class SpeexBuildGate
 {
-    /// <summary>Where the probe is.</summary>
+    /// <summary>Where the probe was.</summary>
     public const string RootCMakeRelativePath = "CMakeLists.txt";
-
-    /// <summary>The one file allowed to link it.</summary>
-    public const string ClientCMakeRelativePath = @"gui\CMakeLists.txt";
 
     /// <summary>The library, which references speex nowhere.</summary>
     public const string LibRelativePath = "lib";
@@ -38,8 +35,8 @@ public static class SpeexBuildGate
     /// <summary>The linked target, spelled as CMake spells it.</summary>
     public const string LinkedTarget = "PkgConfig::SpeexDSP";
 
-    /// <summary>The option that has to gate the probe: the client's, not speex's own.</summary>
-    public const string ClientOption = "CHIAKI_ENABLE_GUI";
+    /// <summary>The probe, spelled as CMake spells it.</summary>
+    public const string Probe = "find_package(SpeexDSP";
 
     /// <summary>A file, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);
@@ -48,32 +45,17 @@ public static class SpeexBuildGate
     public static string? LocateLib() => SanitizerSource.LocateDirectory(LibRelativePath);
 
     /// <summary>
-    /// Whether the probe is gated on the client being built.
+    /// PP867: whether a CMake file still probes for speexdsp at all.
     ///
-    /// The condition and not the presence: a probe is fine, a probe that runs when nothing links its
-    /// result is what this is about. Found by reading the line that opens the block, so a guard
-    /// added further in - after the find_package has already run - does not satisfy it.
+    /// PP32 asked whether the probe was gated on the client; with the client deleted there is no
+    /// gate left to ask about, only whether the probe survived it. Comments are dropped first, for
+    /// the reason FilesLinkingSpeex records.
     /// </summary>
-    public static bool TheProbeIsGatedOnTheClient(string source)
+    public static bool Probes(string source)
     {
         ArgumentNullException.ThrowIfNull(source);
 
-        // Comments dropped, for the reason FilesLinkingSpeex records: the paragraph above this
-        // probe explains the guard, and a reader of raw text would find its words rather than it.
-        string cmake = Code(source);
-
-        int probe = cmake.IndexOf("find_package(SpeexDSP", StringComparison.Ordinal);
-        if (probe < 0)
-            return true; // No probe at all is the strongest form of the same answer.
-
-        int opens = cmake.LastIndexOf("if(", probe, StringComparison.Ordinal);
-        if (opens < 0)
-            return false;
-
-        int closes = cmake.IndexOf(')', opens);
-        return closes > opens
-            && closes < probe
-            && cmake[opens..closes].Contains(ClientOption, StringComparison.Ordinal);
+        return Code(source).Contains(Probe, StringComparison.Ordinal);
     }
 
     /// <summary>

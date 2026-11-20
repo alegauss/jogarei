@@ -16,9 +16,11 @@
 # ChiakiNative.Resolve tests File.Exists, finds the shim, and TryLoad fails on a missing import,
 # so the error says the DLL "was not found" and lists the path it is sitting at.
 #
-# PATH is the caller's. The Qt path puts the cpp-steam-tools directory on it first so that ldd can
-# resolve libcpp-steam-tools.dll, and this script does not second-guess that: a binary whose
-# dependencies ldd cannot resolve is reported, not silently skipped.
+# PP867: deploy-windows-msys2.sh, the Qt deploy that first carried this walk, went with gui/, so
+# build-windows.sh is the only caller now.
+#
+# PATH is the caller's, and this script does not second-guess it: a binary whose dependencies ldd
+# cannot resolve is reported, not silently skipped.
 
 set -euo pipefail
 

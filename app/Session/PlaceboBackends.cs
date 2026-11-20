@@ -29,7 +29,7 @@ namespace Jogarei.Session;
 public static partial class PlaceboBackends
 {
     /// <summary>The Qt window whose backend calls are being counted.</summary>
-    public const string WindowRelativePath = @"gui\src\qmlmainwindow.cpp";
+    public const string WindowRelativePath = @"tests\oracles\gui\src\qmlmainwindow.cpp";
 
     /// <summary>Where the build's libplacebo headers are, under the MSYS2 root compile.cmd uses.</summary>
     public static string HeaderDirectory

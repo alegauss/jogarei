@@ -28,7 +28,7 @@ public static class AudioHeaderArguments
     public const string LibRelativePath = @"lib\src\streamconnection.c";
 
     /// <summary>And where the Qt client builds its own.</summary>
-    public const string GuiRelativePath = @"gui\src\streamsession.cpp";
+    public const string GuiRelativePath = @"tests\oracles\gui\src\streamsession.cpp";
 
     /// <summary>
     /// The most channels a microphone header can plausibly declare.

@@ -15,20 +15,20 @@ namespace Jogarei.Session;
 /// resolver then finds the file, TryLoad fails on a missing import, and the error says the DLL "was
 /// not found" while listing the path it is sitting at.
 ///
-/// SO THE WALK IS A SCRIPT NOW, AND BOTH PATHS CALL IT. What is asserted here is that call, from
-/// both sides, because the tree it produces cannot be checked at all from a machine with no MSYS2:
-/// there is no ldd, no /mingw64, and the closure is a different set of files on a runner than it is
-/// here. A predicate over the scripts is what a checkout can answer.
+/// SO THE WALK IS A SCRIPT NOW. What is asserted here is the call to it, because the tree it
+/// produces cannot be checked at all from a machine with no MSYS2: there is no ldd, no /mingw64,
+/// and the closure is a different set of files on a runner than it is here. A predicate over the
+/// scripts is what a checkout can answer.
+///
+/// PP867: ONE PATH NOW. The Qt deploy, scripts/deploy-windows-msys2.sh, went with gui/, so the
+/// native-only deploy is the deploy and the branch that chose between the two is gone.
 /// </summary>
 public static class NativeDeploy
 {
-    /// <summary>The build driver, which owns the choice between the two deploy paths.</summary>
+    /// <summary>The build driver, which owns the deploy.</summary>
     public const string BuildRelativePath = @"scripts\build-windows.sh";
 
-    /// <summary>The Qt deploy, which packages the client and its closure.</summary>
-    public const string QtDeployRelativePath = @"scripts\deploy-windows-msys2.sh";
-
-    /// <summary>The closure walk itself, called by both.</summary>
+    /// <summary>The closure walk itself.</summary>
     public const string ClosureRelativePath = @"scripts\deploy-native-deps.sh";
 
     /// <summary>The two this repository builds, copied out of the build directory.</summary>
@@ -39,8 +39,8 @@ public static class NativeDeploy
     /// The one that is staged from MSYS2 instead, because no walk can find it.
     ///
     /// The host opens SDL2 by name at runtime, so nothing in the tree imports it and ldd never
-    /// reports it. A Qt build gets it as a dependency of chiaki.exe; a GUI-off build has to be told.
-    /// The Qt deploy stages SDL3 explicitly for exactly this reason, one version along.
+    /// reports it. A Qt build got it as a dependency of chiaki.exe; without the client it has to be
+    /// staged by name.
     /// </summary>
     public static IReadOnlyList<string> StagedFromMsys2 { get; } = ["SDL2.dll"];
 
@@ -50,9 +50,6 @@ public static class NativeDeploy
     /// <summary>The build driver, or null outside a checkout.</summary>
     public static string? LocateBuild() => SanitizerSource.LocateRelative(BuildRelativePath);
 
-    /// <summary>The Qt deploy, or null outside a checkout.</summary>
-    public static string? LocateQtDeploy() => SanitizerSource.LocateRelative(QtDeployRelativePath);
-
     /// <summary>The closure walk, or null outside a checkout.</summary>
     public static string? LocateClosure() => SanitizerSource.LocateRelative(ClosureRelativePath);
 
@@ -60,11 +57,12 @@ public static class NativeDeploy
     private const string ScriptName = "deploy-native-deps.sh";
 
     /// <summary>
-    /// Whether the native-only branch collects the closure as well as the two libraries.
+    /// Whether the deploy branch collects the closure as well as the two libraries.
     ///
-    /// The branch is <c>deploy_native_only</c>; the assertion is that it both stages the pair and
-    /// hands them to the walk. Staging alone is what PP269 shipped and what this repairs, so a
-    /// check for the copy loop would pass on the broken version.
+    /// The assertion is that it both stages the pair and hands them to the walk. Staging alone is
+    /// what PP269 shipped and what PP492 repaired, so a check for the copy loop would pass on the
+    /// broken version. PP867: the branch is <c>do_deploy</c> itself now - the native-only one used
+    /// to sit beside a Qt deploy and was keyed on <c>deploy_native_only</c>.
     /// </summary>
     public static bool TheNativeOnlyPathCollectsTheClosure(string buildScript)
     {
@@ -72,33 +70,29 @@ public static class NativeDeploy
 
         string text = buildScript.Replace("\r\n", "\n", StringComparison.Ordinal);
 
-        int branch = text.IndexOf("if [[ ${deploy_native_only:-0} -eq 1 ]]; then", StringComparison.Ordinal);
+        int branch = text.IndexOf("if [[ $do_deploy -eq 1 ]]; then", StringComparison.Ordinal);
         if (branch < 0)
             return false;
 
-        // To the end of the file is enough: this branch is the last thing before the Qt one, and a
-        // call that landed after both would not be inside either.
-        string after = text[branch..];
-        int qtBranch = after.IndexOf("if [[ $do_deploy -eq 1 ]]; then", StringComparison.Ordinal);
-        string body = qtBranch > 0 ? after[..qtBranch] : after;
+        // To the end of the file: the deploy is the last thing the script does.
+        string body = text[branch..];
 
         return body.Contains(ScriptName, StringComparison.Ordinal)
             && HostLibraries.All(dll => body.Contains(dll, StringComparison.Ordinal));
     }
 
     /// <summary>
-    /// Whether the Qt path delegates its walk rather than keeping a second copy of it.
-    ///
-    /// Both halves: the call is there, and the loop it replaced is not. A script that calls the
-    /// walk AND still carries its own would drift silently, since the two would agree until one
-    /// was edited.
+    /// PP867: whether the build script still calls the Qt deploy, which went with gui/. Comment
+    /// lines are skipped - the paragraph recording the removal names what was removed.
     /// </summary>
-    public static bool TheQtPathDelegatesItsWalk(string qtDeployScript)
+    public static bool CallsTheQtDeploy(string buildScript)
     {
-        ArgumentNullException.ThrowIfNull(qtDeployScript);
+        ArgumentNullException.ThrowIfNull(buildScript);
 
-        return qtDeployScript.Contains(ScriptName, StringComparison.Ordinal)
-            && !qtDeployScript.Contains("extract_dependencies()", StringComparison.Ordinal);
+        return buildScript.ReplaceLineEndings("\n").Split('\n')
+            .Where(line => !line.TrimStart().StartsWith('#'))
+            .Any(line => line.Contains("deploy-windows-msys2", StringComparison.Ordinal)
+                || line.Contains("windeployqt", StringComparison.Ordinal));
     }
 
     /// <summary>

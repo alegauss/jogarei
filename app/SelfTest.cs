@@ -472,7 +472,7 @@ public static class SelfTest
         IReadOnlyList<string>? prefFiles = PreferenceSource.Locate();
         if (prefFiles is null)
         {
-            Console.WriteLine(@"  --    the table against gui\src\settings.cpp  (not a checkout)");
+            Console.WriteLine(@"  --    the table against the recorded settings.cpp  (not a checkout)");
         }
         else
         {
@@ -1489,7 +1489,7 @@ public static class SelfTest
             string? cppSource = SanitizerSource.Locate();
             if (cppSource is null)
             {
-                // Not a failure. A published executable has no gui/src beside it, and a check
+                // Not a failure. A published executable has no recording beside it, and a check
                 // that cannot run should say so rather than pass.
                 Console.WriteLine($"  --    the Qt client's patterns  (no {SanitizerSource.RelativePath} here)");
             }
@@ -2228,7 +2228,7 @@ public static class SelfTest
             string? cmSource = SanitizerSource.LocateRelative(TouchpadExtentsSource.ControllerCppRelativePath);
             if (cmSource is null)
             {
-                Console.WriteLine(@"  --    the Qt client's SDL hints  (no gui\src\controllermanager.cpp here)");
+                Console.WriteLine($"  --    the Qt client's SDL hints  (no {TouchpadExtentsSource.ControllerCppRelativePath} here)");
             }
             else
             {
@@ -2364,7 +2364,7 @@ public static class SelfTest
             string? psnHeader = SanitizerSource.LocateRelative(PsnTokenSource.AccountHeader);
             if (psnHeader is null)
             {
-                Console.WriteLine(@"  --    the Qt client's PSN constants  (no gui\include\psnaccountid.h here)");
+                Console.WriteLine($"  --    the Qt client's PSN constants  (no {PsnTokenSource.AccountHeader} here)");
             }
             else
             {

@@ -30,7 +30,7 @@ public static partial class PreferenceSource
 {
     /// <summary>The two files the Qt client reads its preferences in.</summary>
     public static IReadOnlyList<string> RelativePaths { get; } =
-        [@"gui\src\settings.cpp", @"gui\include\settings.h"];
+        [@"tests\oracles\gui\src\settings.cpp", @"tests\oracles\gui\include\settings.h"];
 
     /// <summary>The files, or null when this is not running out of a checkout.</summary>
     public static IReadOnlyList<string>? Locate()

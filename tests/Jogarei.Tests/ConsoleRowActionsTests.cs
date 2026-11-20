@@ -214,10 +214,10 @@ public class ConsoleRowActionsTests : IDisposable
     }
 
     /// <summary>
-    /// PP629: both of the client's names are looked for, and one of them is derived.
+    /// PP629 and PP867: both of the client's names are looked for, and one of them is derived.
     ///
-    /// The locally built client is whatever <see cref="GuiFreshness.ClientRelativePath"/> names, so
-    /// it cannot drift from the binary the freshness check reads. The released one is a separate
+    /// The locally built client is whatever <see cref="QtClientBuild.ClientRelativePath"/> names, so
+    /// it cannot drift from the binary `compile.cmd gui` used to build. The released one is a separate
     /// name on purpose: somebody running this port is very likely running upstream's published
     /// build beside it, which is where their registrations came from.
     /// </summary>

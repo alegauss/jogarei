@@ -372,7 +372,7 @@ public sealed class StreamOverlayViewModel : DialogViewModel
 public static class StreamOverlaySource
 {
     /// <summary>The stream screen.</summary>
-    public const string StreamViewQml = @"gui\src\qml\StreamView.qml";
+    public const string StreamViewQml = @"tests\oracles\gui\src\qml\StreamView.qml";
 
     /// <summary>The file, or null outside a checkout.</summary>
     public static string? Locate() => SanitizerSource.LocateRelative(StreamViewQml);

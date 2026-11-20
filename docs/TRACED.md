@@ -50,7 +50,7 @@ only says "checked, fine" cannot be invalidated and will be re-traced.
 - **`--selftest` missing PP530's staleness guard** — deliberate and documented: it is run *by*
   the gate, from the host the gate just built.
 - **`compile.cmd gui` printing "Failed to find required Qt component WebEngineQuick" while
-  reporting OK** — `gui/CMakeLists.txt:11` asks for it *without* `REQUIRED` and line 71 guards
+  reporting OK** — `gui/CMakeLists.txt:11` (deleted with gui/ by PP867) asked for it *without* `REQUIRED` and line 71 guards
   on `_FOUND`. CMake's phrasing, not a broken build.
 - **`holepunch-test.c` compiled into the shipped library** — it is a separate `add_executable`,
   not library dead weight.
@@ -75,7 +75,7 @@ missed one both times. The rest came back clean.*
 - **PP295** — "this is what still calls the native receiver" **holds**; `streamconnection.c`
   calls four `chiaki_video_receiver_*` functions.
 - **PP32** — "the conversion between them is `SDL_AudioCVT` rather than speex" **holds**;
-  `SDL_AudioCVT`/`SDL_ConvertAudio` are live in `gui/streamsession.{h,cpp}`. This one looked
+  `SDL_AudioCVT`/`SDL_ConvertAudio` were live in `gui/streamsession.{h,cpp}` (the .cpp is recorded under `tests/oracles/gui/` since PP867 deleted gui/). This one looked
   likely to be stale given the unreconciled SDL2/SDL3 note above — it is not.
 - **PP322** — `--dcomp-demo --layers` resolves to `Views.DcompDemo.RunLayers()`, so the line is
   runnable the moment somebody looks.

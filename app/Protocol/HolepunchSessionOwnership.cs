@@ -37,8 +37,12 @@ public static class HolepunchSessionOwnership
     /// <summary>session.c, or null outside a checkout.</summary>
     public static string? LocateSession() => SanitizerSource.LocateRelative(SessionRelativePath);
 
-    /// <summary>Where the Qt client creates the session it never destroys.</summary>
-    public const string QtClientRelativePath = @"gui\src\streamsession.cpp";
+    /// <summary>
+    /// Where the Qt client created the session it never destroyed. PP867: a recording under
+    /// tests\oracles\gui, taken from gui\ before that tree was deleted - the client's half of the
+    /// ownership question is still read, from the copy, because nothing upstream changes it now.
+    /// </summary>
+    public const string QtClientRelativePath = @"tests\oracles\gui\src\streamsession.cpp";
 
     /// <summary>The shim, which is the second owner.</summary>
     public const string ShimRelativePath = @"shim\chiaki_shim.c";
@@ -70,7 +74,7 @@ public static class HolepunchSessionOwnership
     /// <summary>The function whose one caller is the whole of the reachability question.</summary>
     public const string SessionInit = "chiaki_session_init";
 
-    /// <summary>The Qt client, or null outside a checkout - and Qt is not built, so it may be gone.</summary>
+    /// <summary>The recorded Qt client source, or null outside a checkout.</summary>
     public static string? LocateQtClient() => SanitizerSource.LocateRelative(QtClientRelativePath);
 
     /// <summary>The shim, or null outside a checkout.</summary>
@@ -206,52 +210,28 @@ public static class HolepunchSessionOwnership
     }
 
     /// <summary>
-    /// PP596: the files that call chiaki_session_init, which is where a holepunch session can enter
-    /// one at all.
+    /// PP596 and PP867: the files that call chiaki_session_init, which is where a holepunch session
+    /// can enter one at all.
     ///
-    /// Two, and the difference between them is the whole finding. The Qt client passes a handle and
-    /// is not compiled by a default build - PP21 turned Qt off and PP529 records that only
-    /// `compile.cmd gui` builds it. The shim passes none, which
+    /// PP596 found two, and the difference between them was the whole finding. The Qt client passed
+    /// a handle and was not compiled by a default build; the shim passes none, which
     /// <see cref="TheShimNeverWiresTheHandleIn"/> holds. So nothing this port BUILDS reaches the
-    /// nine asks: they are compiled, and dead.
+    /// nine asks.
+    ///
+    /// PP867 deleted gui\, so the shim is the only caller left in the tree. What the client did is
+    /// kept at <see cref="QtClientRelativePath"/> as a recording, and a recording is not a caller.
     /// </summary>
-    public static IReadOnlyList<string> SessionInitCallers { get; } =
-        [QtClientRelativePath, ShimRelativePath];
+    public static IReadOnlyList<string> SessionInitCallers { get; } = [ShimRelativePath];
 
-    /// <summary>Where the field the Qt client needs is declared.</summary>
+    /// <summary>Where the holepunch_session field is declared.</summary>
     public const string SessionHeaderRelativePath = @"lib\include\chiaki\session.h";
 
     /// <summary>session.h, or null outside a checkout.</summary>
     public static string? LocateSessionHeader()
         => SanitizerSource.LocateRelative(SessionHeaderRelativePath);
 
-    /// <summary>
-    /// PP597: whether the Qt client still compiles against the field PP33's deletion would remove.
-    ///
-    /// This is a guard on a FUTURE change rather than on the tree as it is, which is why it is worth
-    /// writing down. PP596 established that nothing a default build compiles reaches the nine asks,
-    /// so deleting them changes no shipped behaviour - what it changes is whether gui/ can be
-    /// compiled at all, because streamsession.cpp assigns
-    /// <c>chiaki_connect_info.holepunch_session</c> and the field would be gone.
-    ///
-    /// AND THAT IS NOT A DEAD END, IT IS A PERMANENT RED. The drift checks only READ gui/, so they
-    /// survive; GuiFreshness does not. It compares the newest gui/ source against the client
-    /// somebody last built and reports Stale as a FAILURE, deliberately - PP270's argument that a
-    /// warning among four thousand passing tests is a warning nobody reads. `compile.cmd gui` is the
-    /// only thing that refreshes that binary. Take the field away and the command cannot run, so
-    /// every later edit to gui/ - which the drift checks require - leaves a client that can never be
-    /// made fresh again, for anyone who has ever built one.
-    ///
-    /// So PP33's session.c half owes a decision about gui/ in the same commit: retire the client's
-    /// build, or give GuiFreshness a state for "cannot be rebuilt". Whichever it is, this goes red
-    /// and names it.
-    /// </summary>
-    public static bool TheQtClientCompilesAgainstTheField(string qtClientSource, string sessionHeader)
-    {
-        ArgumentNullException.ThrowIfNull(qtClientSource);
-        ArgumentNullException.ThrowIfNull(sessionHeader);
-
-        return qtClientSource.Contains("." + ConnectInfoField, StringComparison.Ordinal)
-            && sessionHeader.Contains(ConnectInfoField, StringComparison.Ordinal);
-    }
+    // PP867: TheQtClientCompilesAgainstTheField stood here - PP597's guard on whether gui\ could
+    // still be compiled against the field PP33's deletion would remove. gui\ is deleted, so there is
+    // no client left whose buildability the field decides, and the guard went with GuiFreshness,
+    // the check it protected.
 }

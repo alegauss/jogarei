@@ -329,10 +329,10 @@ public sealed class VideoSettingsViewModel : DialogViewModel
 public static class VideoSettingsSource
 {
     /// <summary>Where availableDecoders and the property bridge live.</summary>
-    public const string QmlSettingsCpp = @"gui\src\qmlsettings.cpp";
+    public const string QmlSettingsCpp = @"tests\oracles\gui\src\qmlsettings.cpp";
 
     /// <summary>Where the empty decoder string becomes a NULL.</summary>
-    public const string StreamSessionCpp = @"gui\src\streamsession.cpp";
+    public const string StreamSessionCpp = @"tests\oracles\gui\src\streamsession.cpp";
 
     /// <summary>One of them, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

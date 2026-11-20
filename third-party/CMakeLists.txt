@@ -33,10 +33,5 @@ endif()
 # PP33: curl is gone. holepunch.c was the only thing in lib/ that called it, and building curl
 # from source was the slowest step this tree had.
 
-# PP869: only the Qt client links cpp-steam-tools, and nothing builds the client since PP632, so a
-# default configure stopped adding it. The GUI half of the condition is not left to the option's
-# default: an option lives in CMakeCache.txt, and a tree configured before this would have gone on
-# compiling the library for ever.
-if(CHIAKI_ENABLE_STEAM_SHORTCUT AND CHIAKI_ENABLE_GUI)
-	add_subdirectory(cpp-steam-tools)
-endif()
+# PP869 gated the Steam shortcut library on the Qt client, the only thing that linked it; PP867
+# deleted the client, and the submodule and its .gitmodules entry went with it.

@@ -62,14 +62,13 @@ public class BuildOptionsAreReadTests(ITestOutputHelper output)
     /// <summary>
     /// The options that ARE read are still read, so the rule did not pass by finding nothing.
     ///
-    /// These four gate real things - the Qt client, the decoder, the tests and the echo canceller -
-    /// and each is referenced well past the floor.
+    /// These gate real things - the decoder, the tests and the TLS library - and each is referenced
+    /// past the floor. PP867: the Qt client and the echo canceller were here and left with gui/.
     /// </summary>
     [Theory]
-    [InlineData("CHIAKI_ENABLE_GUI")]
     [InlineData("CHIAKI_ENABLE_FFMPEG_DECODER")]
     [InlineData("CHIAKI_ENABLE_TESTS")]
-    [InlineData("CHIAKI_ENABLE_SPEEX")]
+    [InlineData("CHIAKI_LIB_ENABLE_MBEDTLS")]
     public void TheLoadBearingOptionsAreStillRead(string name)
     {
         if (SanitizerSource.RepositoryRoot() is not { } root)
@@ -81,6 +80,26 @@ public class BuildOptionsAreReadTests(ITestOutputHelper output)
         Assert.True(
             one.Mentions >= BuildOptionsAreRead.Floor,
             $"{name} is declared and no longer read");
+    }
+
+    /// <summary>
+    /// PP867: the options only the Qt client read are gone with it, rather than left declared.
+    ///
+    /// Each was read in gui\CMakeLists.txt or in a block that existed only to serve it, so deleting
+    /// gui\ would have left them declared and unread - the rule above would have said so, and this
+    /// names them so a revert is legible.
+    /// </summary>
+    [Theory]
+    [InlineData("CHIAKI_ENABLE_GUI")]
+    [InlineData("CHIAKI_ENABLE_SPEEX")]
+    [InlineData("CHIAKI_GUI_ENABLE_SDL_GAMECONTROLLER")]
+    [InlineData("CHIAKI_ENABLE_STEAM_SHORTCUT")]
+    public void TheQtClientsOptionsAreGone(string name)
+    {
+        if (SanitizerSource.RepositoryRoot() is not { } root)
+            return;
+
+        Assert.DoesNotContain(BuildOptionsAreRead.All(root), one => one.Name == name);
     }
 
     /// <summary>

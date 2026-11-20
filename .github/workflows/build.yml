@@ -11,9 +11,8 @@
 # desk would only move the undocumented step. vcpkg.json is what the two have in common, and the
 # manifest is held against CMakeLists.txt on every commit (PP230) for exactly this step's sake.
 #
-# The Qt client stays OFF (PP21). Nothing here builds it, and that is the point: what CI proves is
-# the port - libchiaki, the shim, the renderer, chiaki-unit and the .NET host - not the client
-# being replaced.
+# The Qt client is not here (PP21 turned it off, PP867 deleted gui/). What CI proves is the port -
+# libchiaki, the shim, the renderer, chiaki-unit and the .NET host.
 name: build
 
 on: [push, pull_request]
@@ -28,8 +27,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # nanopb, cpp-steam-tools and test/munit are submodules the configure asks for by
-          # default. Without this the configure fails in third-party/ and reads as a build break.
+          # nanopb and test/munit are submodules the configure asks for by default. Without this
+          # the configure fails in third-party/ and reads as a build break.
           submodules: recursive
 
       - uses: actions/setup-dotnet@v4
@@ -59,7 +58,6 @@ jobs:
           cmake -S . -B build -G "Visual Studio 17 2022" -A x64
           -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
           -DVCPKG_TARGET_TRIPLET=x64-windows
-          -DCHIAKI_ENABLE_GUI=OFF
 
       - name: build the native side
         run: cmake --build build --config Release

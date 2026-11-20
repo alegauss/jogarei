@@ -46,8 +46,7 @@ echo "[flip] $FLIP: configuring chiaki-unit as the flip leaves it, in $BUILD"
 
 if ! cmake -S "$REPO" -B "$BUILD" -G Ninja \
 		-DCMAKE_BUILD_TYPE=Release \
-		-DCHIAKI_TRIAL_FLIP="$FLIP" \
-		-DCHIAKI_ENABLE_GUI=OFF >"$BUILD.log" 2>&1; then
+		-DCHIAKI_TRIAL_FLIP="$FLIP" >"$BUILD.log" 2>&1; then
 	echo "[flip] $FLIP: CONFIGURE FAILED - the tail of $BUILD.log:" >&2
 	tail -n 30 "$BUILD.log" >&2
 	exit 1

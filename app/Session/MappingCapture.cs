@@ -80,7 +80,7 @@ public sealed class MappingCapture
 public static partial class MappingSource
 {
     /// <summary>The Qt client's mapping code.</summary>
-    public const string RelativePath = @"gui\src\controllermanager.cpp";
+    public const string RelativePath = @"tests\oracles\gui\src\controllermanager.cpp";
 
     /// <summary>The file, or null when this is not running out of a checkout.</summary>
     public static string? Locate() => SanitizerSource.LocateRelative(RelativePath);

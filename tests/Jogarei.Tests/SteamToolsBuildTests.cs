@@ -5,24 +5,30 @@ using Xunit;
 namespace Jogarei.Tests;
 
 /// <summary>
-/// PP869: cpp-steam-tools is built only with the Qt client that links it.
+/// PP869 and PP867: cpp-steam-tools was built only with the Qt client that linked it, and left the
+/// tree with it.
 ///
-/// The option defaulted to on and every default configure added the submodule, so each build
-/// compiled a library nothing it produced loaded. The managed host's Steam shortcut is its own code.
+/// PP869 gated the submodule on the GUI, because every default configure compiled a library nothing
+/// it produced loaded. PP867 deleted the client, so the submodule, its .gitmodules entry and the
+/// gate went too. The managed host's Steam shortcut is its own code.
 /// </summary>
 public class SteamToolsBuildTests
 {
-    /// <summary>PP869: the submodule is added only when the GUI is.</summary>
+    /// <summary>PP867: nothing adds the submodule, and it is not in the checkout.</summary>
     [Fact]
-    public void TheSubmoduleIsAddedOnlyWithTheGui()
+    public void TheSubmoduleIsGone()
     {
         if (SanitizerSource.LocateRelative(@"third-party\CMakeLists.txt") is not { } path)
             return;
 
         string cmake = Regex.Replace(File.ReadAllText(path), @"(?m)#.*$", "");
-        Match guard = Regex.Match(cmake, @"if\((?<cond>[^)]*)\)\s*add_subdirectory\(cpp-steam-tools\)");
+        Assert.DoesNotContain("cpp-steam-tools", cmake, StringComparison.Ordinal);
 
-        Assert.True(guard.Success, "add_subdirectory(cpp-steam-tools) is no longer inside an if");
-        Assert.Contains("CHIAKI_ENABLE_GUI", guard.Groups["cond"].Value);
+        string root = SanitizerSource.RepositoryRoot()!;
+        Assert.False(Directory.Exists(Path.Combine(root, "third-party", "cpp-steam-tools")));
+
+        string gitmodules = Path.Combine(root, ".gitmodules");
+        if (File.Exists(gitmodules))
+            Assert.DoesNotContain("cpp-steam-tools", File.ReadAllText(gitmodules), StringComparison.Ordinal);
     }
 }

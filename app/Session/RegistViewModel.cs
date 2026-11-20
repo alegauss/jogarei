@@ -160,7 +160,7 @@ public sealed partial class RegistViewModel : INotifyPropertyChanged
 public static partial class RegistDialogSource
 {
     /// <summary>The QML being replaced.</summary>
-    public const string RelativePath = @"gui\src\qml\RegistDialog.qml";
+    public const string RelativePath = @"tests\oracles\gui\src\qml\RegistDialog.qml";
 
     /// <summary>The file, or null when this is not running out of a checkout.</summary>
     public static string? Locate() => SanitizerSource.LocateRelative(RelativePath);

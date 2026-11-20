@@ -102,7 +102,7 @@ public sealed partial class NumericSettingField
 public static partial class SettingsFieldSource
 {
     /// <summary>The screen being replaced.</summary>
-    public const string RelativePath = @"gui\src\qml\SettingsDialog.qml";
+    public const string RelativePath = @"tests\oracles\gui\src\qml\SettingsDialog.qml";
 
     /// <summary>The file, or null when this is not running out of a checkout.</summary>
     public static string? Locate() => SanitizerSource.LocateRelative(RelativePath);

@@ -248,13 +248,13 @@ public static class LenientBase64
 public static partial class RegistrationFlowSource
 {
     /// <summary>The QML that decides what opens.</summary>
-    public const string MainQml = @"gui\src\qml\Main.qml";
+    public const string MainQml = @"tests\oracles\gui\src\qml\Main.qml";
 
     /// <summary>The list, which is where the console PIN dialog is actually reached from.</summary>
-    public const string MainViewQml = @"gui\src\qml\MainView.qml";
+    public const string MainViewQml = @"tests\oracles\gui\src\qml\MainView.qml";
 
     /// <summary>The backend, which decides what the identifier is.</summary>
-    public const string Backend = @"gui\src\qmlbackend.cpp";
+    public const string Backend = @"tests\oracles\gui\src\qmlbackend.cpp";
 
     /// <summary>One of the three, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

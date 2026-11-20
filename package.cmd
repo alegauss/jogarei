@@ -74,7 +74,7 @@ if not exist "%BASH%" (
 )
 
 rem The SDK is refused rather than noted, which is where this differs from
-rem compile.cmd. There, a missing .NET SDK costs the .NET host and the Qt client
+rem compile.cmd. There, a missing .NET SDK costs the .NET host and the native side
 rem still builds, so it is a note. Here the .NET host IS the deliverable.
 where dotnet >nul 2>&1
 if errorlevel 1 (

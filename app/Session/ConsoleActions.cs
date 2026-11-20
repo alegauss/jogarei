@@ -196,10 +196,10 @@ public sealed class AutoConnectScreen
 public static partial class FrontDoorSource
 {
     /// <summary>The console list.</summary>
-    public const string MainViewQml = @"gui\src\qml\MainView.qml";
+    public const string MainViewQml = @"tests\oracles\gui\src\qml\MainView.qml";
 
     /// <summary>The auto-connect screen.</summary>
-    public const string AutoConnectQml = @"gui\src\qml\AutoConnectView.qml";
+    public const string AutoConnectQml = @"tests\oracles\gui\src\qml\AutoConnectView.qml";
 
     /// <summary>One of the two, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

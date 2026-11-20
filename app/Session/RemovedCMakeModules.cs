@@ -23,13 +23,12 @@ namespace Jogarei.Session;
 /// </summary>
 public static class RemovedCMakeModules
 {
-    /// <summary>The build files this rule reads.</summary>
+    /// <summary>The build files this rule reads. PP867: gui\CMakeLists.txt left with gui\.</summary>
     public static IReadOnlyList<string> Files { get; } =
     [
         "CMakeLists.txt",
         @"lib\CMakeLists.txt",
         @"lib\protobuf\CMakeLists.txt",
-        @"gui\CMakeLists.txt",
         @"test\CMakeLists.txt",
     ];
 

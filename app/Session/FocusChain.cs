@@ -92,7 +92,7 @@ public static partial class FocusChainSource
 
     /// <summary>One control's QML, or null when this is not running out of a checkout.</summary>
     public static string? Locate(string control)
-        => SanitizerSource.LocateRelative(Path.Combine("gui", "src", "qml", "controls", control + ".qml"));
+        => SanitizerSource.LocateRelative(Path.Combine("tests", "oracles", "gui", "src", "qml", "controls", control + ".qml"));
 
     /// <summary>The Qt key names a control's Keys.onPressed switches on.</summary>
     public static IReadOnlySet<string> KeysHandled(string qml)

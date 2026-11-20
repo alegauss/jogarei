@@ -14,9 +14,10 @@ namespace Jogarei.Tests;
 /// shim is the other caller of chiaki_session_init and passes no handle, which PP592 holds.
 ///
 /// SO THE DEPENDENCY THAT IS LEFT IN session.c IS A COMPILE-TIME ONE. Deleting the nine changes the
-/// behaviour of nothing this repository ships - it changes what gui/ can be compiled against, and
-/// gui/ is kept as the oracle the drift checks read. That is a different blocker from the one PP33's
-/// line implies, and a smaller one than a console.
+/// behaviour of nothing this repository ships - it changed what gui/ could be compiled against. That
+/// was a different blocker from the one PP33's line implied, and a smaller one than a console.
+/// PP867 then deleted gui/ outright, keeping the files the drift checks read as recordings under
+/// tests\oracles\gui.
 ///
 /// The four sites guarded on rudp rather than on the handle are held here too, and that one is not
 /// bookkeeping: an assignment to rudp outside the guard makes them reachable with a null handle, and
@@ -78,17 +79,18 @@ public class HolepunchReachTests(ITestOutputHelper output)
     }
 
     /// <summary>
-    /// Two files call chiaki_session_init, and only one of them passes a handle.
+    /// PP596 and PP867: one file calls chiaki_session_init, and it passes no handle.
     ///
-    /// That is the whole of the reachability argument, so it is named rather than counted: a third
-    /// caller is a third answer to "can the nine run", and it would arrive silently.
+    /// PP596 named two - the Qt client and the shim. PP867 deleted gui\, so the shim is the only
+    /// caller left; the client's streamsession.cpp survives as a recording under tests\oracles, and
+    /// the sweep skips that tree because a recording is evidence, not a caller. Named rather than
+    /// counted: a second caller is a second answer to "can the nine run", and it would arrive
+    /// silently.
     /// </summary>
     [Fact]
-    public void OnlyTwoThingsBuildAChiakiSession()
+    public void OnlyTheShimBuildsAChiakiSession()
     {
-        Assert.Equal(
-            [@"gui\src\streamsession.cpp", @"shim\chiaki_shim.c"],
-            HolepunchSessionOwnership.SessionInitCallers);
+        Assert.Equal([@"shim\chiaki_shim.c"], HolepunchSessionOwnership.SessionInitCallers);
 
         if (SanitizerSource.RepositoryRoot() is not { } root)
             return;
@@ -104,7 +106,8 @@ public class HolepunchReachTests(ITestOutputHelper output)
                 || relative.Contains(@"\third-party\", StringComparison.OrdinalIgnoreCase)
                 || relative.StartsWith("third-party", StringComparison.OrdinalIgnoreCase)
                 || relative.Contains(@"\.roadkeep\", StringComparison.OrdinalIgnoreCase)
-                || relative.StartsWith(".roadkeep", StringComparison.OrdinalIgnoreCase))
+                || relative.StartsWith(".roadkeep", StringComparison.OrdinalIgnoreCase)
+                || relative.StartsWith(@"tests\oracles\", StringComparison.OrdinalIgnoreCase))
             {
                 continue;
             }
@@ -131,10 +134,11 @@ public class HolepunchReachTests(ITestOutputHelper output)
     }
 
     /// <summary>
-    /// And the one that passes a handle is the Qt client, which is what makes the nine dead in a
+    /// And the one that passed a handle was the Qt client, which is what made the nine dead in a
     /// default build rather than merely rare.
     ///
     /// The shim's half is PP592's and is not repeated; this is the other side of the same sentence.
+    /// PP867: read from the recording of streamsession.cpp, since gui\ itself is deleted.
     /// </summary>
     [Fact]
     public void TheQtClientIsTheOnlyThingThatPassesAHandle()

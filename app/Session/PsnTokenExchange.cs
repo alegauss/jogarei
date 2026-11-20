@@ -229,16 +229,16 @@ public static partial class PsnTokenExchange
 public static partial class PsnTokenSource
 {
     /// <summary>Where the token exchange lives.</summary>
-    public const string TokenCpp = @"gui\src\psntoken.cpp";
+    public const string TokenCpp = @"tests\oracles\gui\src\psntoken.cpp";
 
     /// <summary>Where the account lookup lives.</summary>
-    public const string AccountCpp = @"gui\src\psnaccountid.cpp";
+    public const string AccountCpp = @"tests\oracles\gui\src\psnaccountid.cpp";
 
     /// <summary>Where the constants and the byte conversion live.</summary>
-    public const string AccountHeader = @"gui\include\psnaccountid.h";
+    public const string AccountHeader = @"tests\oracles\gui\include\psnaccountid.h";
 
     /// <summary>Where the expiry format is declared.</summary>
-    public const string SettingsCpp = @"gui\src\settings.cpp";
+    public const string SettingsCpp = @"tests\oracles\gui\src\settings.cpp";
 
     /// <summary>One of them, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

@@ -77,13 +77,13 @@ public readonly record struct TouchpadExtents(ushort MaxX, ushort MaxY)
 public static partial class TouchpadExtentsSource
 {
     /// <summary>Where the per-console pair is chosen.</summary>
-    public const string StreamSessionRelativePath = @"gui\src\streamsession.cpp";
+    public const string StreamSessionRelativePath = @"tests\oracles\gui\src\streamsession.cpp";
 
     /// <summary>Where the third pair is defined.</summary>
-    public const string ControllerHeaderRelativePath = @"gui\include\controllermanager.h";
+    public const string ControllerHeaderRelativePath = @"tests\oracles\gui\include\controllermanager.h";
 
     /// <summary>Where the SDL touchpad path scales by it.</summary>
-    public const string ControllerCppRelativePath = @"gui\src\controllermanager.cpp";
+    public const string ControllerCppRelativePath = @"tests\oracles\gui\src\controllermanager.cpp";
 
     /// <summary>One of them, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

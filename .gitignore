@@ -33,7 +33,6 @@ scripts/Output
 .vs
 CMakeSettings.json
 chiaki.rb
-gui/chiaking.rc
 *.jks
 secret.tar
 keystore-env.sh

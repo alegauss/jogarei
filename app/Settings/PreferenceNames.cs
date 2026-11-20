@@ -99,7 +99,7 @@ public static partial class PreferenceNames
     /// <summary>Every QML file the screens live in, or null outside a checkout.</summary>
     public static IReadOnlyList<string>? LocateQml()
     {
-        string? one = SanitizerSource.LocateRelative(Path.Combine("gui", "src", "qml", "SettingsDialog.qml"));
+        string? one = SanitizerSource.LocateRelative(Path.Combine("tests", "oracles", "gui", "src", "qml", "SettingsDialog.qml"));
         return one is null ? null : Directory.GetFiles(Path.GetDirectoryName(one)!, "*.qml");
     }
 

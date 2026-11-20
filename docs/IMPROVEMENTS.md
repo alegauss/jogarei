@@ -220,21 +220,6 @@ stage.
 
 The instrument that found it is in the run now, so a fix has a number to move.
 
-### §PP867 Drift checks on fixtures, then gui goes
-
-PP866's audit found gui\ (101 files, the Qt client PP632 retired) still in the tree for
-one reason: about 32 drift checks read its source as an oracle (Preferences,
-InputTranslation, SessionLogSanitizer and others). Nothing builds it.
-
-The way out is the one PP33 took for json-c: run each check once against gui\, record
-what it answered as a fixture beside the test, point the check at the fixture, and then
-delete gui\. With it go cmake\FindSDL2.cmake and FindSpeexDSP.cmake, the
-CHIAKI_ENABLE_GUI branch of the root CMakeLists.txt, and the option itself; and
-third-party\cpp-steam-tools, if the line that gates it has not already removed it.
-
-A check whose oracle has to stay live because upstream still changes gui\ is the
-exception, and says so in its own summary rather than keeping the folder by default.
-
 ### §PP868 The C and everything behind it leave together
 
 PP866's audit classed lib\ as removable only after the port: it is still compiled into

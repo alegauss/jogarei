@@ -5,10 +5,11 @@ using Xunit.Abstractions;
 namespace Jogarei.Tests;
 
 /// <summary>
-/// PP32: speexdsp is the Qt client's, and the build says so now.
+/// PP32 and PP867: speexdsp was the Qt client's, and it left with it.
 ///
-/// The three claims §PP32 made in prose, held against the tree instead: lib/ references speex
-/// nowhere, gui/ is the only thing that links it, and the probe runs only where gui/ is built.
+/// §PP32's claims, held against the tree: lib/ references speex nowhere, and gui/ was the only
+/// thing that linked it, so the probe ran only where gui/ was built. PP867 deleted gui/, so the end
+/// state is held instead - nothing links it and nothing probes for it.
 /// </summary>
 public class SpeexBuildGateTests(ITestOutputHelper output)
 {
@@ -18,33 +19,31 @@ public class SpeexBuildGateTests(ITestOutputHelper output)
             : null;
 
     /// <summary>
-    /// The probe follows the client, so a default configure does not go looking for it.
+    /// PP867: a configure does not go looking for it at all.
     ///
-    /// This is the change PP32 made. PP632 turned the client's build off and the probe went on
-    /// running, announcing a feature nothing linked - and the announcement is the part that matters,
-    /// because it is what a reader checks before asking whether a dependency is still needed.
+    /// PP32 gated the probe on the client, because PP632 had turned the client's build off and the
+    /// probe went on announcing a feature nothing linked. With the client deleted the gate has
+    /// nothing to follow, so the probe went too.
     /// </summary>
     [Fact]
-    public void TheProbeRunsOnlyWhereTheClientIsBuilt()
+    public void TheBuildNeverProbesForIt()
     {
         if (RootCMake() is not { } cmake)
             return;
 
-        Assert.True(
-            SpeexBuildGate.TheProbeIsGatedOnTheClient(cmake),
-            $"the speexdsp probe is no longer inside a {SpeexBuildGate.ClientOption} guard, so a "
-                + "default configure looks for a dependency nothing it builds links");
+        Assert.False(
+            SpeexBuildGate.Probes(cmake),
+            "CMakeLists.txt probes for speexdsp again, and nothing it builds links it");
     }
 
     /// <summary>
-    /// And gui/ is still the only place it is linked, which is what makes the gate correct.
+    /// PP867: and nothing links it, which is what made removing the probe correct.
     ///
-    /// Without this the gate would be a guess: a second target linking speex would make the guard
-    /// above hide a dependency the default build genuinely needs, and the failure would arrive at
-    /// link time on somebody else's machine.
+    /// A target linking speex now would need the probe back, and the failure would arrive at link
+    /// time on somebody else's machine.
     /// </summary>
     [Fact]
-    public void OnlyTheClientLinksIt()
+    public void NothingLinksIt()
     {
         if (SanitizerSource.RepositoryRoot() is not { } root)
             return;
@@ -52,7 +51,7 @@ public class SpeexBuildGateTests(ITestOutputHelper output)
         IReadOnlyList<string> linking = SpeexBuildGate.FilesLinkingSpeex(root);
         output.WriteLine(string.Join(", ", linking));
 
-        Assert.Equal([SpeexBuildGate.ClientCMakeRelativePath], linking);
+        Assert.Empty(linking);
     }
 
     /// <summary>
@@ -74,22 +73,15 @@ public class SpeexBuildGateTests(ITestOutputHelper output)
     }
 
     /// <summary>
-    /// The gate reader wants the guard on the line that OPENS the block, not anywhere inside it.
-    ///
-    /// A guard added after the find_package has already run reads like a fix and is not one. Both
-    /// shapes are given, because the reader would otherwise be satisfied by the second.
+    /// PP867: the probe reader finds a probe in code, and not one a comment names - the paragraph
+    /// recording why the probe went names it, and must not read as the probe being back.
     /// </summary>
     [Theory]
-    [InlineData("if(CHIAKI_ENABLE_GUI AND CHIAKI_ENABLE_SPEEX)\n find_package(SpeexDSP QUIET)\nendif()", true)]
-    [InlineData("if(CHIAKI_ENABLE_SPEEX)\n find_package(SpeexDSP QUIET)\n if(CHIAKI_ENABLE_GUI)\n endif()\nendif()", false)]
-    [InlineData("if(CHIAKI_ENABLE_SPEEX)\n find_package(SpeexDSP QUIET)\nendif()", false)]
-    public void TheGuardHasToOpenTheBlock(string cmake, bool gated)
-        => Assert.Equal(gated, SpeexBuildGate.TheProbeIsGatedOnTheClient(cmake));
-
-    /// <summary>And no probe at all is the same answer, more strongly.</summary>
-    [Fact]
-    public void ABuildThatNeverLooksForItPasses()
-        => Assert.True(SpeexBuildGate.TheProbeIsGatedOnTheClient("project(chiaki)"));
+    [InlineData("if(X)\n find_package(SpeexDSP QUIET)\nendif()", true)]
+    [InlineData("# find_package(SpeexDSP QUIET) stood here\nproject(chiaki)", false)]
+    [InlineData("project(chiaki)", false)]
+    public void AProbeIsFoundInCodeOnly(string cmake, bool probes)
+        => Assert.Equal(probes, SpeexBuildGate.Probes(cmake));
 
     /// <summary>
     /// A comment naming the target is not a place the target is linked.

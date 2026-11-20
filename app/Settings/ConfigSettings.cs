@@ -149,7 +149,7 @@ public static class ConfigSettingsSource
     public static string? LocateQml() => GeneralSettingsSource.LocateQml();
 
     /// <summary>Where the two defaults are declared. Named, so PP278's sweep can see it.</summary>
-    public const string SettingsHeaderRelativePath = @"gui\include\settings.h";
+    public const string SettingsHeaderRelativePath = @"tests\oracles\gui\include\settings.h";
 
     /// <summary>Where the two defaults are declared.</summary>
     public static string? LocateSettingsHeader()

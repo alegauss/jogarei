@@ -14,21 +14,12 @@ macro(tri_option name desc default)
 endmacro()
 
 option(CHIAKI_ENABLE_TESTS "Enable tests for Chiaki" ON)
-# PP21: OFF, which is what "the port is finished" means in the one place a machine can read it.
-#
-# Eight Qt modules hung off this, WebEngineQuick among them - a whole Chromium for one login
-# screen. While it defaulted ON a screen could be left behind and nobody would notice, because the
-# tree still built; with it OFF the toolchain is the thing that says so.
-#
-# What this does NOT do is delete gui/. Thirty-two files under app/ read that source to assert the
-# port still matches what it was ported from - the QML a screen came from, the switch a capture
-# reads, the format strings a mapping is written with - and every one of those checks reports
-# "could not run" rather than failing when the file is absent. Dropping the BUILD dependency is
-# this task; deleting the corpus those checks read would silence them, which is the opposite of
-# what this line is for. `-DCHIAKI_ENABLE_GUI=ON` still builds the Qt client from it.
-option(CHIAKI_ENABLE_GUI "Enable Qt GUI" OFF)
+# PP867: CHIAKI_ENABLE_GUI stood here, and gui/ is deleted. PP21 turned it OFF and PP632 retired
+# the Qt client's build; what kept the source was the drift checks that read it, and PP867 recorded
+# the files they read under tests/oracles/gui before deleting the tree. CHIAKI_ENABLE_SPEEX,
+# CHIAKI_GUI_ENABLE_SDL_GAMECONTROLLER and CHIAKI_ENABLE_STEAM_SHORTCUT went with it - only the
+# client read them - and so did cmake/FindSDL2.cmake and cmake/FindSpeexDSP.cmake.
 option(CHIAKI_LIB_ENABLE_OPUS "Use Opus as part of Chiaki Lib" ON)
-tri_option(CHIAKI_ENABLE_SPEEX "Use speex for echo cancelling mic playback" AUTO)
 # PP430: CHIAKI_ENABLE_RUDP stood here and nothing read it. It appeared once in the whole build -
 # its own declaration - while every other option here is referenced between three and fourteen
 # times, so setting it OFF changed nothing: holepunch.c, rudp.c and rudpsendbuffer.c are in the
@@ -40,17 +31,12 @@ tri_option(CHIAKI_ENABLE_SPEEX "Use speex for echo cancelling mic playback" AUTO
 #
 # This also removes PP313's second door rather than deciding it: there was never a door, because
 # the option was inert.
-if(CHIAKI_ENABLE_GUI)
-	set(CHIAKI_FFMPEG_DEFAULT ON)
-else()
-	set(CHIAKI_FFMPEG_DEFAULT AUTO)
-endif()
-tri_option(CHIAKI_ENABLE_FFMPEG_DECODER "Enable FFMPEG video decoder" ${CHIAKI_FFMPEG_DEFAULT})
+#
+# PP867: AUTO unconditionally. The default was ON only when the Qt client was built.
+tri_option(CHIAKI_ENABLE_FFMPEG_DECODER "Enable FFMPEG video decoder" AUTO)
 option(CHIAKI_LIB_ENABLE_MBEDTLS "Use mbedtls instead of OpenSSL as part of Chiaki Lib" OFF)
 option(CHIAKI_LIB_MBEDTLS_EXTERNAL_PROJECT "Fetch Mbed TLS instead of using system-provided libs" OFF)
 option(CHIAKI_LIB_OPENSSL_EXTERNAL_PROJECT "Use OpenSSL as CMake external project" OFF)
-option(CHIAKI_GUI_ENABLE_SDL_GAMECONTROLLER "Use SDL Gamecontroller for Input" ON)
-option(CHIAKI_ENABLE_STEAM_SHORTCUT "Add ability to create Steam shortcut" ON)
 # PP30: CHIAKI_USE_SYSTEM_JERASURE stood here and is gone with the library it chose between.
 # An option that selects a source for a dependency nothing links is a question with no consequence,
 # and BuildOptionsAreRead would have gone on reporting it as read because the block below read it.
@@ -82,7 +68,7 @@ set(CMAKE_CXX_STANDARD 11)
 #
 # chiaki-render (PP9) links PkgConfig::LIBPLACEBO and is built unconditionally beside the shim, for
 # the reason PP4 gives: it is the half with no Qt in it. But its dependency was discovered under
-# CHIAKI_ENABLE_GUI, so the first build with the GUI genuinely off failed at
+# the client's option, so the first build with the GUI genuinely off failed at
 # shim/CMakeLists.txt:53 - a target that has nothing to do with Qt, broken by removing Qt.
 #
 # That is the tail this task was filed for, arriving somewhere nobody predicted: not QString in a
@@ -90,31 +76,9 @@ set(CMAKE_CXX_STANDARD 11)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBPLACEBO REQUIRED libplacebo>=7.349.0 IMPORTED_TARGET)
 
-# PP32: and only where the client that links it is being built.
-#
-# PkgConfig::SpeexDSP is linked in exactly one place - gui/CMakeLists.txt, on the microphone path -
-# and lib/ references speex nowhere at all. PP632 retired the Qt client's build, so CHIAKI_ENABLE_GUI
-# is off by default and gui/ is not added; this probe went on running anyway and printing "Speex DSP
-# found echo cancelling and noise suppression enabled" on every configure of a tree that links it
-# nowhere. A configure line announcing a feature no target has is worse than silence: it is the
-# report somebody checks before asking whether the dependency is still needed.
-#
-# So the probe follows the client. Building with -DCHIAKI_ENABLE_GUI=ON restores it unchanged, which
-# is the point - this removes a dependency from the default build and not from the client.
-if(CHIAKI_ENABLE_GUI AND CHIAKI_ENABLE_SPEEX)
-	set(SpeexDSP_FOUND FALSE)
-	find_package(SpeexDSP QUIET)
-	pkg_check_modules(SpeexDSP speexdsp IMPORTED_TARGET)
-	if(SpeexDSP_FOUND)
-		set(CHIAKI_ENABLE_SPEEX ON)
-		message(STATUS "Speex DSP found echo cancelling and noise suppression enabled")
-	else()
-		set(CHIAKI_ENABLE_SPEEX OFF)
-		message(STATUS "Speex DSP not found echo cancelling and noise suppression disabled")
-	endif()
-elseif(NOT CHIAKI_ENABLE_GUI)
-	set(CHIAKI_ENABLE_SPEEX OFF)
-endif()
+# PP32: the speexdsp probe stood here, gated on the Qt client since PP632 because only the client's
+# microphone path linked it and lib/ references speex nowhere. PP867 deleted the client, so the probe,
+# its option and cmake/FindSpeexDSP.cmake went with it.
 
 # PP431: FindPython3, because CMP0148 says FindPythonInterp is REMOVED - not deprecated. The old
 # call worked only while cmake_minimum_required names 3.10 and so selects that policy's OLD
@@ -165,12 +129,6 @@ if(CHIAKI_LIB_ENABLE_MBEDTLS)
 	endif()
 endif()
 
-if(CHIAKI_ENABLE_STEAM_SHORTCUT AND CHIAKI_ENABLE_GUI)
-	message(STATUS "Steam shortcut enabled")
-else()
-	message(STATUS "Steam shortcut disabled (only the Qt client links it - PP869)")
-endif()
-
 if(CHIAKI_ENABLE_FFMPEG_DECODER)
 	find_package(FFMPEG COMPONENTS avcodec avutil avformat)
 	if(FFMPEG_FOUND)
@@ -195,14 +153,9 @@ endif()
 
 add_subdirectory(lib)
 
-# PP4: the seam the .NET host calls through. Built unconditionally and not behind
-# CHIAKI_ENABLE_GUI - it is the half of the port that has no Qt in it at all.
+# PP4: the seam the .NET host calls through - the half of the port that has no Qt in it at all.
+# PP867: the Qt client's branch stood below this, and went with gui/.
 add_subdirectory(shim)
-
-if(CHIAKI_ENABLE_GUI)
-	find_package(SDL2 MODULE REQUIRED)
-	add_subdirectory(gui)
-endif()
 
 if(CHIAKI_ENABLE_TESTS)
 	enable_testing()

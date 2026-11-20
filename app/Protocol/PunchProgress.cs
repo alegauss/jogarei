@@ -114,7 +114,7 @@ public static class PunchProgressSource
     public const string SessionRelativePath = @"lib\src\session.c";
 
     /// <summary>The client's backend, which turns them into a state.</summary>
-    public const string BackendRelativePath = @"gui\src\qmlbackend.cpp";
+    public const string BackendRelativePath = @"tests\oracles\gui\src\qmlbackend.cpp";
 
     /// <summary>session.c, or null outside a checkout.</summary>
     public static string? LocateSession() => SanitizerSource.LocateRelative(SessionRelativePath);

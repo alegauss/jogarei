@@ -13,13 +13,25 @@ namespace Jogarei.Session;
 /// say the two texts are identical.
 ///
 /// It only works in a checkout, which is honest rather than convenient: a published executable has
-/// no gui/src beside it, and a check that cannot run says so instead of passing. Every commit is
+/// no recording beside it, and a check that cannot run says so instead of passing. Every commit is
 /// made in a checkout, which is where the drift would be introduced.
+///
+/// PP867: gui/ is deleted. sessionlog.cpp - and every other file a drift check read out of gui/ -
+/// was recorded byte for byte under <see cref="QtClientRecording"/> first, so the comparison still
+/// runs against what the Qt client said; it just no longer depends on the client's tree existing.
 /// </summary>
 public static partial class SanitizerSource
 {
+    /// <summary>
+    /// PP867: where the Qt client's files that drift checks read are recorded, relative to the
+    /// repository root. Copied from gui/ at the commit that deleted it, with gui/'s own layout kept
+    /// below this directory (src\, src\qml\, include\) so each check reads the bytes it always did.
+    /// Nothing upstream edits these: the recording is the oracle, frozen.
+    /// </summary>
+    public const string QtClientRecording = @"tests\oracles\gui";
+
     /// <summary>Where the C++ patterns live, relative to the repository root.</summary>
-    public const string RelativePath = @"gui\src\sessionlog.cpp";
+    public const string RelativePath = @"tests\oracles\gui\src\sessionlog.cpp";
 
     /// <summary>The file, or null when this is not running out of a checkout.</summary>
     public static string? Locate() => LocateRelative(RelativePath);
@@ -67,7 +79,7 @@ public static partial class SanitizerSource
     ///
     /// PP276: from the ROOT, and not from the first directory going up that happens to hold a
     /// matching name. Those are the same answer for every multi-segment path this port asks for -
-    /// gui\src\sessionlog.cpp cannot exist twice above the executable - and a different answer the
+    /// tests\oracles\gui\src\sessionlog.cpp cannot exist twice above the executable - and a different answer the
     /// moment a name is short. PP275 asked for .gitignore, and app\.gitignore sits between the
     /// host's output directory and the root, so the walk returned three rules about bin and obj and
     /// the check was green on a file it had never opened.

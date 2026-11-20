@@ -35,7 +35,7 @@ public static class ForeignBinaries
     /// .gitignore instead.
     /// </summary>
     public static IReadOnlyList<string> SourceRelativeDirectories { get; } =
-        ["app", "lib", "shim", "gui", "scripts", "test", "tests", "cmake"];
+        ["app", "lib", "shim", "scripts", "test", "tests", "cmake"];
 
     /// <summary>
     /// Directory names skipped wherever they appear.
@@ -65,7 +65,7 @@ public static class ForeignBinaries
     /// Every file under the named directories, skipping the build output.
     ///
     /// Returned as full paths, and a directory that is not in this checkout is skipped rather than
-    /// reported - gui/ is absent from a source tree configured without the Qt client.
+    /// reported. PP867: gui/ left the list when it left the tree.
     /// </summary>
     public static IReadOnlyList<string> Walk(string root)
     {

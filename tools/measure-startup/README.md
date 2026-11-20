@@ -37,7 +37,7 @@ two reports that both declined to say are not thereby in the same state.
 
 **A build carrying WebEngine exists now (PP63); the "before" row PP46 quotes has not been taken
 yet.** MSYS2 has no `qt6-webengine`, so a MinGW build has `CHIAKI_HAVE_WEBENGINE` off, no
-Chromium in the tree, and `QtWebEngineQuick::initialize()` ([`gui/src/main.cpp`](../../gui/src/main.cpp),
+Chromium in the tree, and `QtWebEngineQuick::initialize()` (`gui/src/main.cpp` as of `e4e482e7`,
 guarded) never runs.
 Measuring here and calling it the before would be publishing a number for a build that had already
 dropped the thing being measured — exactly the folklore §PP46 exists to prevent.
@@ -67,8 +67,8 @@ anybody asked for.
 
 [`scripts/reference-build-msvc.ps1`](../../scripts/reference-build-msvc.ps1) builds the Qt client
 with MSVC/clang-cl against an msvc2022_64 Qt carrying WebEngineQuick, from a worktree of
-`e4e482e7`, the commit the row above was measured on. The current `gui\` no longer compiles
-(PP632). It runs this tool at the end, and its exit status is this tool's. Everything lands in
+`e4e482e7`, the commit the row above was measured on. `gui\` stopped compiling with PP632 and
+PP867 deleted it. It runs this tool at the end, and its exit status is this tool's. Everything lands in
 `build\reference\`; nothing in `compile.cmd`, `test.cmd` or CI calls it.
 
 Its row is [`qt-build-webengine-present.json`](qt-build-webengine-present.json): 208.6 MB of

@@ -26,15 +26,17 @@ namespace Jogarei.Session;
 /// order lives, and it names the pieces below through this type rather than copying them.
 ///
 /// THREE PIECES, AND THE HALF-DONE RETIREMENT WAS THE EXPENSIVE ONE. `compile.cmd`'s `gui` argument
-/// set CHIAKI_ENABLE_GUI=ON; <see cref="GuiFreshness"/> compared the built client against gui/ and
-/// failed on Stale; <see cref="GuiFreshness.ClientRelativePath"/> is the binary both meant. Removing
-/// the argument and leaving the check would have left every checkout that ever built a client
-/// permanently red with nothing able to clear it - so PP632 took the argument AND gave the check
-/// <see cref="GuiBuildState.Retired"/>, which is what PP597 asked for by name.
+/// set CHIAKI_ENABLE_GUI=ON; GuiFreshness compared the built client against gui/ and failed on
+/// Stale; <see cref="ClientRelativePath"/> is the binary both meant. Removing the argument and
+/// leaving the check would have left every checkout that ever built a client permanently red with
+/// nothing able to clear it - so PP632 took the argument AND gave the check a Retired state, which
+/// is what PP597 asked for by name.
 ///
-/// TWO OF THE THREE ARE HELD BY THE COMPILER, not by a test, and deliberately: this type names
-/// GuiFreshness below, so deleting that class without deleting this one does not build. Only the
-/// argument lives in a .cmd file no compiler reads, which is why it is the one with an assertion.
+/// PP867 FINISHED IT. gui/ is deleted, and with it the CHIAKI_ENABLE_GUI option and GuiFreshness -
+/// a freshness check over sources that no longer exist has nothing to compare. The files the drift
+/// checks read were recorded under tests\oracles\gui first. What stays here is the record of the
+/// retirement and the one guard no compiler gives: compile.cmd must not offer the argument again,
+/// because it would now set an option CMakeLists.txt does not declare.
 /// </summary>
 public static class QtClientBuild
 {
@@ -48,13 +50,15 @@ public static class QtClientBuild
     public const string CompileRelativePath = "compile.cmd";
 
     /// <summary>
-    /// The binary the argument produces and the check reads, named through GuiFreshness rather than
-    /// copied.
+    /// The binary the argument produced. PP867: held here now that GuiFreshness, which used to own
+    /// it, is deleted - <see cref="Settings.StoreOwnership"/> still derives the process name it looks
+    /// for from it, because a checkout that built the client before PP632 may still run that binary.
     ///
-    /// This reference is the retirement's own guard: it is what makes deleting GuiFreshness without
-    /// deleting this file a build error rather than a check that quietly stopped existing.
+    /// A property and not a const on purpose: build\gui\chiaki.exe exists only where somebody built
+    /// it once, and a const would put it in DriftCorpus, which reports a declared path that is
+    /// missing.
     /// </summary>
-    public static string ClientRelativePath => GuiFreshness.ClientRelativePath;
+    public static string ClientRelativePath { get; } = @"build\gui\chiaki.exe";
 
     /// <summary>compile.cmd, or null outside a checkout.</summary>
     public static string? LocateCompile() => SanitizerSource.LocateRelative(CompileRelativePath);

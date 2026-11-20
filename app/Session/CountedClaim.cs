@@ -41,8 +41,12 @@ public static partial class CountedClaims
     /// <summary>The two governed files that describe unshipped work, and so speak in the present.</summary>
     public static IReadOnlyList<string> Backlog { get; } = ["docs/ROADMAP.md", "docs/IMPROVEMENTS.md"];
 
-    /// <summary>Where a file the backlog sizes is looked for. Not test\, which shares basenames.</summary>
-    public static IReadOnlyList<string> ImplementationTrees { get; } = ["lib", "gui", "shim", "app"];
+    /// <summary>
+    /// Where a file the backlog sizes is looked for. Not test\, which shares basenames. PP867: not
+    /// gui\ any more either - it is deleted, and its recordings under tests\oracles\gui are evidence
+    /// rather than implementation.
+    /// </summary>
+    public static IReadOnlyList<string> ImplementationTrees { get; } = ["lib", "shim", "app"];
 
     /// <summary>Every claim in the backlog, file-sized and directory-sized together.</summary>
     public static IReadOnlyList<CountedClaim> All(string root)

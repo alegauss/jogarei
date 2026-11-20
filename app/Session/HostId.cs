@@ -30,10 +30,10 @@ public static class HostId
     public const int Bytes = 6;
 
     /// <summary>Where the client turns a host-id into an identity.</summary>
-    public const string DiscoveryManagerRelativePath = @"gui\src\discoverymanager.cpp";
+    public const string DiscoveryManagerRelativePath = @"tests\oracles\gui\src\discoverymanager.cpp";
 
     /// <summary>Where it spells that identity as the key everything is stored under.</summary>
-    public const string HostHeaderRelativePath = @"gui\include\host.h";
+    public const string HostHeaderRelativePath = @"tests\oracles\gui\include\host.h";
 
     /// <summary>
     /// Whether the client still parses the host-id from hex and refuses any other length.

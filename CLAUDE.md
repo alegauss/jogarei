@@ -35,10 +35,11 @@ means "read CMakeCache.txt", not "somebody changed ctrl.c".
 piped into `Select-String`, has twice aborted mid-run with "Falha no processo do host de teste".
 Re-run alone before believing either result.
 
-**`compile.cmd` does not build `gui/`.** `-DCHIAKI_ENABLE_GUI=OFF` is passed on every
-configure, so a `gui/` edit commits unbuilt and the gate is green on a file that does not
-compile. To build it: `$env:CHIAKI_ENABLE_GUI='ON'; .\compile.cmd nodeploy`, then a plain
-`compile.cmd` to put the tree back.
+**`gui/` is gone (PP867).** The Qt client's source, the `CHIAKI_ENABLE_GUI` option and the
+Qt deploy are deleted. The files the drift checks read are recordings under
+`tests\oracles\gui\` — frozen oracles, not source: never edit one to make a check pass, and
+never copy more of the old client there "to be safe" (`DriftCorpusTests` fails on a recorded file
+no check reads). A stale `CHIAKI_ENABLE_GUI` entry in an old `build\CMakeCache.txt` is harmless.
 
 ## Writing a file: the most expensive mistake in this repo
 

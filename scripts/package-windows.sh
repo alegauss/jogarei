@@ -11,8 +11,9 @@
 #
 # Why not just copy the portable tree
 # -----------------------------------
-# build/chiaki-ng-Win is windeployqt's output. It carries 34 Qt DLLs and a chiaki.exe, all for the
-# Qt client that PP21 turned off - so most of it is a build configuration this port does not ship,
+# build/chiaki-ng-Win was windeployqt's output. On a checkout that ever built the Qt client it
+# still carries 34 Qt DLLs and a chiaki.exe, all for the client PP21 turned off and PP867 deleted
+# - so most of it is a build configuration this port does not ship,
 # and some of it is older than the tree it sits in. Shipping that as "the payload" is shipping
 # whatever was last deployed rather than what the host loads. This walks instead: three roots, ldd
 # for the imports, and the transitive closure is 28 DLLs where the tree holds 83.
@@ -34,8 +35,8 @@ out_dir="$2"
 
 payload_libraries=(chiaki-shim.dll SDL2.dll chiaki-render.dll)
 
-# A missing root is a refusal and not a warning. deploy-windows-msys2.sh warns about the same two
-# files because the portable tree is still usable without them - the Qt client does not call them.
+# A missing root is a refusal and not a warning. deploy-windows-msys2.sh, the Qt deploy PP867
+# deleted with gui/, warned about the same two files because the Qt client did not call them.
 # Here they ARE the deliverable: a payload assembled without one of these is an installer that
 # fails on first launch, which is the least useful moment to find out.
 missing=()

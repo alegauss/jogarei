@@ -136,10 +136,10 @@ public static class PlaceboSectionPresets
 public static class PlaceboPresetSource
 {
     /// <summary>The renderer tuning screen.</summary>
-    public const string DialogQml = @"gui\src\qml\PlaceboSettingsDialog.qml";
+    public const string DialogQml = @"tests\oracles\gui\src\qml\PlaceboSettingsDialog.qml";
 
     /// <summary>Where the words and the defaults live.</summary>
-    public const string SettingsCpp = @"gui\src\settings.cpp";
+    public const string SettingsCpp = @"tests\oracles\gui\src\settings.cpp";
 
     /// <summary>One of the two, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

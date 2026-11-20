@@ -22,6 +22,12 @@ namespace Jogarei.Tests;
 /// So the corpus itself is asserted, once, here. Not the contents - the other tests do that - just
 /// that the files they open are on disk. If gui\ is deleted this goes red and names what stopped
 /// being checked, which is the difference between a decision and an accident.
+///
+/// PP867 WAS THE DECISION. gui\ is deleted, and the files the checks read were recorded first under
+/// tests\oracles\gui, the way PP33 recorded json-c's answers into tests\oracles\json-c.json. Every
+/// check now names the recording, so this still goes red if one of those goes - and
+/// <see cref="EveryRecordedQtFileIsReadByACheck"/> keeps the recording from growing back into a
+/// second gui\.
 /// </summary>
 public class DriftCorpusTests(ITestOutputHelper output)
 {
@@ -72,6 +78,50 @@ public class DriftCorpusTests(ITestOutputHelper output)
             "the source these checks read is gone, so they are passing without reading anything. "
                 + "Qt is no longer a build dependency (PP21), so nothing else will notice: "
                 + string.Join(", ", missing));
+    }
+
+    /// <summary>
+    /// PP867: every file recorded from the deleted Qt client is one a check reads, and gui\ itself
+    /// is gone.
+    ///
+    /// The recording is evidence and not a source tree: a file nobody reads is a file nobody would
+    /// notice drifting, and copying more of gui\ "to be safe" would rebuild the folder PP867
+    /// removed. Declared paths cover the C++; the QML is read by directory - PreferenceNames sweeps
+    /// src\qml, FocusChain reads src\qml\controls - so a .qml there counts as read by those sweeps.
+    /// </summary>
+    [Fact]
+    public void EveryRecordedQtFileIsReadByACheck()
+    {
+        string? root = SanitizerSource.RepositoryRoot();
+        Assert.NotNull(root);
+
+        Assert.False(Directory.Exists(Path.Combine(root, "gui")), "gui\\ is back; PP867 deleted it");
+
+        string recorded = Path.Combine(root, SanitizerSource.QtClientRecording);
+        Assert.True(Directory.Exists(recorded), $"{SanitizerSource.QtClientRecording} is missing");
+
+        IReadOnlyList<string> declared = DriftCorpus.Declared();
+        var unread = new List<string>();
+        int files = 0;
+
+        foreach (string file in Directory.EnumerateFiles(recorded, "*", SearchOption.AllDirectories))
+        {
+            files++;
+            string relative = Path.GetRelativePath(root, file);
+
+            if (Path.GetExtension(file).Equals(".qml", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            if (!declared.Contains(relative, StringComparer.OrdinalIgnoreCase))
+                unread.Add(relative);
+        }
+
+        output.WriteLine($"{files} recorded Qt client file(s)");
+        Assert.True(files > 0, "the recording is empty, so every check that reads it reads nothing");
+        Assert.True(
+            unread.Count == 0,
+            "recorded from gui\\ and read by no check - delete it, or declare the check that reads it: "
+                + string.Join(", ", unread));
     }
 
     /// <summary>

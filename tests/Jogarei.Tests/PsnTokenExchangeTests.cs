@@ -226,7 +226,7 @@ public class PsnTokenExchangeTests
         string? account = PsnTokenSource.Locate(PsnTokenSource.AccountCpp);
         string? header = PsnTokenSource.Locate(PsnTokenSource.AccountHeader);
         string? settings = PsnTokenSource.Locate(PsnTokenSource.SettingsCpp);
-        string? backend = PsnTokenSource.Locate(@"gui\src\qmlbackend.cpp");
+        string? backend = PsnTokenSource.Locate(@"tests\oracles\gui\src\qmlbackend.cpp");
         if (account is null || header is null || settings is null || backend is null)
             return;
 

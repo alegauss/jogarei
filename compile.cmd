@@ -3,10 +3,9 @@ rem =====================================================================
 rem compile.cmd - build chiaki-ng (Windows-only) through MSYS2 MinGW64
 rem
 rem Thin launcher around scripts\build-windows.sh, which holds the actual steps.
-rem By default it produces a *runnable* .\build\chiaki-ng-Win\chiaki.exe, with
-rem the MinGW runtime, Qt6 and FFmpeg DLLs next to it. The binary under
-rem .\build\gui\ links against C:\msys64\mingw64\bin and only starts inside an
-rem MSYS2 MinGW64 shell - double-clicking that one fails on missing DLLs.
+rem By default it builds the native side and the .NET host, and collects the
+rem native DLLs the host loads into the portable tree. PP867 deleted gui\, the
+rem Qt client's source, so there is no Qt binary here to build or to deploy.
 rem
 rem WHY THIS FILE MATTERS RIGHT NOW
 rem This is the gate for the stripping work. The tree is being reduced to a
@@ -65,10 +64,8 @@ rem Windows first, `find` is the Unix one, the pipeline errors, and the flag is
 rem silently ignored - a `nodeploy` that deploys anyway. A for loop over the
 rem arguments needs no external program and cannot be shadowed.
 set "ARGS=%*"
-rem What is handed to the shell script, which is not the same list: `gui` is this file's
-rem argument and sets an environment variable, so forwarding it would only earn the shell
-rem script's own usage error. Built through a subroutine because a for body cannot append to
-rem a variable it also reads without delayed expansion.
+rem What is handed to the shell script. Built through a subroutine because a for body cannot
+rem append to a variable it also reads without delayed expansion.
 set "SH_ARGS="
 set "DO_DEPLOY=1"
 set "CONFIGURE_ONLY="
@@ -88,8 +85,8 @@ for %%a in (%ARGS%) do (
     rem that produces a wall of errors is worse than no argument at all. PP598 decided that on
     rem 2026-08-31 and said it would ride in this commit.
     rem
-    rem gui\ stays as SOURCE. The port's drift checks read it to hold this port against what it
-    rem was ported from, so it is still edited - it is just no longer built by anything.
+    rem PP867 deleted gui\ itself. The files the port's drift checks read were recorded under
+    rem tests\oracles\gui first, so nothing in the tree reads gui\ any more.
     call :forward "%%~a"
     if /I "%%~a" neq "configure" if /I "%%~a" neq "nodeploy" if /I "%%~a" neq "notests" if /I "%%~a" neq "noapp" if /I "%%~a" neq "clean" if /I "%%~a" neq "deploy" set "BAD_ARG=%%~a"
 )
@@ -114,12 +111,12 @@ rem what has to be updated in the same commit. That is the point of it: the gate
 rem knows what it needs, so nobody has to remember.
 set "MISSING="
 call :need "scripts\build-windows.sh"      "the build steps; this file only launches them"
-if defined DO_DEPLOY call :need "scripts\deploy-windows-msys2.sh" "collects the portable tree - without it a full build fails at the last step"
+if defined DO_DEPLOY call :need "scripts\deploy-native-deps.sh" "collects the portable tree - without it a full build fails at the last step"
 call :need "CMakeLists.txt"                "the build graph root"
-call :need "gui\CMakeLists.txt"            "the Qt client"
+rem PP867: gui\CMakeLists.txt stood here, and went with gui\.
 call :need "lib\CMakeLists.txt"            "libchiaki"
 if not defined NO_TESTS call :need "test\CMakeLists.txt" "chiaki-unit, which a default build links so ctest is not left on a stale binary"
-if not defined NO_APP call :need "app\Jogarei.csproj" "the .NET host (PP1); compile.cmd noapp builds the Qt client alone"
+if not defined NO_APP call :need "app\Jogarei.csproj" "the .NET host (PP1); compile.cmd noapp builds the native side alone"
 if not defined NO_APP call :need "Jogarei.slnx"        "the solution the .NET host is built through (PP24)"
 if defined MISSING (
     echo.
@@ -235,7 +232,7 @@ echo.
 if defined CONFIGURE_ONLY goto ok_configure
 if defined DO_DEPLOY goto ok_deploy
 rem PP532: name what THIS run built. PP632: there is only one thing it can be now - the Qt
-rem client has no argument that builds it and gui\ no longer compiles at all.
+rem client has no argument that builds it, and PP867 deleted gui\.
 echo [compile] OK -^> %~dp0app\bin\Debug\net10.0-windows\win-x64\Jogarei.exe
 if defined LOCKED echo [compile]       %DEPLOY_DISP%\chiaki.exe still holds the previous build.
 if not defined LOCKED echo [compile]       Run compile.cmd without 'nodeploy' for a clickable build.
@@ -264,9 +261,8 @@ rem The stale one, named as stale. True and useful exactly when the recommendati
 rem it is the file a reader would otherwise double-click, and it is not what this run produced.
 if exist "%~dp0%BUILD_DIR%\gui\chiaki.exe" echo [compile]   ^(%~dp0%BUILD_DIR%\gui\chiaki.exe is an EARLIER run's Qt client, not this one's.^)
 echo.
-echo [compile] ^(the Qt client is RETIRED - PP598 decided it and PP632 did it, because gui\ calls
-echo [compile]  eleven holepunch exports and session.c has stopped asking. Its source stays in
-echo [compile]  gui\ because the port's drift checks read it, and nothing builds it.^)
+echo [compile] ^(the Qt client is RETIRED - PP598 decided it, PP632 stopped building it and PP867
+echo [compile]  deleted its source. The drift checks read recorded copies in tests\oracles\gui.^)
 exit /b 0
 
 rem ---------------------------------------------------------------------------

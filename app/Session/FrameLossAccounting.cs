@@ -23,7 +23,7 @@ namespace Jogarei.Session;
 public static class FrameLossAccounting
 {
     /// <summary>Where the frame-available handler lives, relative to the repository root.</summary>
-    public const string RelativePath = @"gui\src\qmlbackend.cpp";
+    public const string RelativePath = @"tests\oracles\gui\src\qmlbackend.cpp";
 
     /// <summary>The call that hands the count over and zeroes it. The region starts here.</summary>
     public const string PullCall = "chiaki_ffmpeg_decoder_pull_frame(";

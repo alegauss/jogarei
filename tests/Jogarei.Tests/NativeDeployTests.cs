@@ -4,24 +4,25 @@ using Xunit;
 namespace Jogarei.Tests;
 
 /// <summary>
-/// PP492: the deploy path a GUI-off build takes, and what it has to leave in the portable tree.
+/// PP492 and PP867: the deploy path, and what it has to leave in the portable tree.
 ///
 /// None of this can be checked by looking at the tree: the closure is twenty-five files here, a
 /// different set on a runner, and nothing at all on a machine with no MSYS2. What a checkout can
-/// answer is whether the branch calls the walk, which is the line PP269 was missing.
+/// answer is whether the branch calls the walk, which is the line PP269 was missing. PP867 removed
+/// the Qt deploy that sat beside it, with gui/.
 /// </summary>
 public class NativeDeployTests
 {
-    /// <summary>The three scripts this joins together are all on disk.</summary>
+    /// <summary>PP867: the two scripts this joins together are on disk, and the Qt deploy is not.</summary>
     [Fact]
-    public void TheThreeScriptsExist()
+    public void TheTwoScriptsExist()
     {
-        if (SanitizerSource.Locate() is null)
+        if (SanitizerSource.RepositoryRoot() is not { } root)
             return;
 
         Assert.NotNull(NativeDeploy.LocateBuild());
-        Assert.NotNull(NativeDeploy.LocateQtDeploy());
         Assert.NotNull(NativeDeploy.LocateClosure());
+        Assert.False(File.Exists(Path.Combine(root, "scripts", "deploy-windows-msys2.sh")));
     }
 
     /// <summary>
@@ -41,18 +42,18 @@ public class NativeDeployTests
     }
 
     /// <summary>
-    /// And the Qt path calls the same script rather than keeping the copy it had.
-    ///
-    /// Two implementations of one walk would agree until one was edited, and the one nobody runs
-    /// on this machine is the Qt one - so the copy left behind would be the stale half.
+    /// PP867: and the build no longer calls the Qt deploy, which packaged a client gui/ no longer
+    /// holds the source of.
     /// </summary>
     [Fact]
-    public void TheQtPathDelegatesTheSameWalk()
+    public void TheBuildNoLongerCallsTheQtDeploy()
     {
-        if (NativeDeploy.LocateQtDeploy() is not { } path)
+        if (NativeDeploy.LocateBuild() is not { } path)
             return;
 
-        Assert.True(NativeDeploy.TheQtPathDelegatesItsWalk(File.ReadAllText(path)));
+        Assert.False(NativeDeploy.CallsTheQtDeploy(File.ReadAllText(path)));
+        Assert.True(NativeDeploy.CallsTheQtDeploy("./scripts/deploy-windows-msys2.sh \"$DEPLOY_DIR\""));
+        Assert.False(NativeDeploy.CallsTheQtDeploy("# deploy-windows-msys2.sh went with gui/"));
     }
 
     /// <summary>

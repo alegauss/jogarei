@@ -213,10 +213,10 @@ public sealed class StreamWindowState
 public static class StreamWindowSource
 {
     /// <summary>The window.</summary>
-    public const string WindowCpp = @"gui\src\qmlmainwindow.cpp";
+    public const string WindowCpp = @"tests\oracles\gui\src\qmlmainwindow.cpp";
 
     /// <summary>Where WindowType is declared and numbered.</summary>
-    public const string SettingsHeader = @"gui\include\settings.h";
+    public const string SettingsHeader = @"tests\oracles\gui\include\settings.h";
 
     /// <summary>One of the two, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);

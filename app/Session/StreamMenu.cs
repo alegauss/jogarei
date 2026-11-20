@@ -326,10 +326,10 @@ public sealed class StreamMenuViewModel : DialogViewModel
 public static class StreamMenuSource
 {
     /// <summary>The menu window.</summary>
-    public const string MenuQml = @"gui\src\qml\StreamMenuWindow.qml";
+    public const string MenuQml = @"tests\oracles\gui\src\qml\StreamMenuWindow.qml";
 
     /// <summary>Where the two enums are declared, which is the half the QML does not show.</summary>
-    public const string WindowHeader = @"gui\include\qmlmainwindow.h";
+    public const string WindowHeader = @"tests\oracles\gui\include\qmlmainwindow.h";
 
     /// <summary>One of the two, or null outside a checkout.</summary>
     public static string? Locate(string relative) => SanitizerSource.LocateRelative(relative);
