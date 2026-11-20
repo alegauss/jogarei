@@ -53,25 +53,33 @@ public class ForeignBinariesTests(ITestOutputHelper output)
 
         Assert.False(
             File.Exists(Path.Combine(root, relative)),
-            $"{relative} is back - PP435 removed it, and .gitignore covers the two binaries");
+            $"{relative} is back - PP435 removed it, and PP870 removed the folder it lived in");
     }
 
     /// <summary>
-    /// The source beside them is the useful part and stays, so the removal cannot be read as
-    /// dropping the PSN token flow.
+    /// PP870: the Go source PP435 kept beside them is gone too.
+    ///
+    /// It stayed because it documented the flow lib/src/holepunch.c implemented, and PP33 deleted
+    /// holepunch.c; the flow is managed code now, held against PP297's recorded exchange. Before the
+    /// folder went, every endpoint and the client id the Go named were checked to be in app\, so the
+    /// PSN token flow is not dropped with it - which is what this asserts in its place.
     /// </summary>
-    [Theory]
-    [InlineData(@"scripts\holepunch\holepunch-go\psn-holepunch-token.go")]
-    [InlineData(@"scripts\holepunch\refresh-go\psn-refresh.go")]
-    [InlineData(@"scripts\holepunch\holepunch-go\go.mod")]
-    public void TheGoSourceStays(string relative)
+    [Fact]
+    public void TheGoReferenceIsGoneAndItsEndpointsAreInTheApp()
     {
         if (SanitizerSource.RepositoryRoot() is not { } root)
             return;
 
-        Assert.True(
-            File.Exists(Path.Combine(root, relative)),
-            $"{relative} is what documents the flow lib/src/holepunch.c implements");
+        Assert.False(Directory.Exists(Path.Combine(root, "scripts", "holepunch")), "scripts\\holepunch is back");
+
+        string app = string.Concat(
+            Directory.EnumerateFiles(Path.Combine(root, "app"), "*.cs", SearchOption.AllDirectories)
+                .Where(p => !p.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}", StringComparison.Ordinal))
+                .Select(File.ReadAllText));
+
+        Assert.Contains("ba495a24-818c-472b-b12d-ff231c1b5745", app);
+        Assert.Contains("/2.0/oauth/token", app);
+        Assert.Contains("remoteplay.dl.playstation.net/remoteplay/redirect", app);
     }
 
     /// <summary>

@@ -152,18 +152,6 @@ the outcome is written down and a certificate is reconsidered.
 Done when the application is listed in the Store and installs without a SmartScreen
 warning, or the reason it cannot be is recorded here.
 
-### §PP870 The Go reference leaves with its reason
-
-PP866's audit found scripts\holepunch\ (the Go reference for the internet connection
-flow) held in the tree only by ForeignBinariesTests.TheGoSourceStays, whose stated
-reason is that the Go source documents the flow lib\src\holepunch.c implements.
-holepunch.c left with PP33, and the flow is managed code now, held against PP297's
-recorded exchange.
-
-Retire that assertion, delete scripts\holepunch\, and if anything in the Go source is
-still the only statement of a protocol fact, move that fact into the managed type's
-summary first.
-
 ### §PP871 Spike readings become fixtures
 
 PP866's audit found eight spikes and gate\alloc-budget still in the tree, each held by a
