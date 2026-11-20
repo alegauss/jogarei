@@ -26,6 +26,12 @@ public static partial class BacklogDeps
     ///
     /// An em dash for "no deps" yields an empty set rather than a name, which is how roadkeep
     /// spells an empty group.
+    ///
+    /// Only an entry that STARTS with an id is read. One that starts with a project's name -
+    /// "visibility VS58", "claude-tray: T389" - is another backlog's line, which roadkeep files as
+    /// blocked outside this one. Reading every id-shaped token took VS58 for one of this
+    /// backlog's, and only because its prefix happens to be two letters like PP: VDS213 and T389
+    /// in the same kind of entry were never matched at all.
     /// </summary>
     public static IReadOnlySet<string> Of(string line)
     {
@@ -37,8 +43,15 @@ public static partial class BacklogDeps
         if (!group.Success)
             return ids;
 
-        foreach (Match id in IdRegex().Matches(group.Groups["ids"].Value))
-            ids.Add(id.Value);
+        foreach (string entry in group.Groups["ids"].Value.Split(','))
+        {
+            string trimmed = entry.Trim();
+            if (!LeadingIdRegex().IsMatch(trimmed))
+                continue;
+
+            foreach (Match id in IdRegex().Matches(trimmed))
+                ids.Add(id.Value);
+        }
 
         return ids;
     }
@@ -175,4 +188,9 @@ public static partial class BacklogDeps
 
     [GeneratedRegex(@"\b[A-Z]{2}\d+\b")]
     private static partial Regex IdRegex();
+
+    // A deps entry that is one of this backlog's ids (or a range of them), as opposed to one that
+    // names another project first.
+    [GeneratedRegex(@"^[A-Z]{2}\d+\b")]
+    private static partial Regex LeadingIdRegex();
 }

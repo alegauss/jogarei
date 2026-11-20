@@ -158,9 +158,11 @@ declared = [
     # A CI run: a push and a wait, not a step. Nothing in a checkout answers whether the
     # workflow goes green, which is the honest boundary PP22's assertions stop at.
     "runner",
-    # A code-signing certificate, which is a purchase and an identity check against a legal
-    # entity rather than anything a commit can produce.
-    "signing-certificate",
+    # "signing-certificate" stood here for PP302 and left on 2026-11-20. The portfolio review of
+    # 2026-10-30 re-pointed PP302 at the Store, which signs the MSIX itself, and at visibility VS58,
+    # so the line stopped declaring it - and BacklogRequirementsTests had been red since, on a name
+    # nothing waited on. If the Store path falls through, a certificate is a purchase again and
+    # this comes back with the line that needs it.
     # A display that varies its refresh rate, and something that can read a frame-time trace off
     # it. Declared for PP53 on 2026-09-03, whose shipped half measured that DXGI takes the tearing
     # flags on the composition path PP319 chose - an API answer, and PP163 is this tree's record of

@@ -19,6 +19,19 @@ public class BacklogDepsTests
     public void TheGroupIsReadWithItsMarkersStripped(string line, int count)
         => Assert.Equal(count, BacklogDeps.Of(line).Count);
 
+    /// <summary>
+    /// An entry that names another project first is that project's line, whatever its prefix
+    /// looks like. VS58 is two letters and a number, exactly the shape of this backlog's ids, and
+    /// was read as a dangling one from the portfolio review on 2026-10-30 until this.
+    /// </summary>
+    [Fact]
+    public void AnotherProjectsLineIsNotThisBacklogs()
+    {
+        var deps = BacklogDeps.Of("- 📋 **PP4** (deps: visibility VS58, PP7, claude-tray: T389) **s** — w. → §PP4");
+
+        Assert.Equal(["PP7"], deps);
+    }
+
     /// <summary>The ids come back without their markers, so a set can be compared.</summary>
     [Fact]
     public void TheIdsComeBackBare()
