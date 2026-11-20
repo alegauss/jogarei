@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # nanopb, jerasure, gf-complete and curl are submodules the configure asks for by
+          # nanopb, cpp-steam-tools and test/munit are submodules the configure asks for by
           # default. Without this the configure fails in third-party/ and reads as a build break.
           submodules: recursive
 

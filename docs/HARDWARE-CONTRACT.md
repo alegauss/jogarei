@@ -66,6 +66,22 @@ Worth stating plainly, because the tables in `spike/` read stronger than they ar
 So the floor above is a contract held by code review, not by measurement. Saying otherwise would be
 the folklore this block exists to refuse.
 
+## What the driver offers for frame generation
+
+Measured by PP50's spike on the RTX 4060 (driver 32.0.16.1074), recorded here when PP866 deleted
+the spike, so nobody has to rebuild it to learn the answer:
+
+- The D3D11 video processor offers **no frame-rate conversion**:
+  `D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_FRAME_RATE_CONVERSION` is absent, and the caps read `0x17`
+  under all three usages.
+- The 2-out-per-1-in custom rate it does offer **duplicates rather than interpolates**: the
+  generated frame is byte-identical to the previous one (0 of 2,073,600 pixels differ, with
+  `RepeatFrame` true or false), at 53.4 µs a frame.
+- Interpolation would need one future frame, a 33.3 ms hold at 30 fps, and DLSS Frame Generation
+  cannot apply to a decoded stream at all. There is no interpolation trade to take on this card.
+- Vortice mis-types `ppPastSurfaces`; the spike passed a hand-built array, and `--prove-arrays`
+  crashing with `0xC0000005` is what showed that array reached the driver.
+
 ## What the gate runs on
 
 Today: nothing. [`.github/workflows/roadkeep.yml`](../.github/workflows/roadkeep.yml) is the only

@@ -48,10 +48,11 @@
        PP438's reason: the solution decides who that policy binds, and PP436 added the other tool
        without it.
 
-       The four that stay out, each with its reason: spike/present-path, spike/video-upscale and
-       spike/frame-generation are records of an experiment's answer rather than live code, and
-       gate/alloc-budget's answer already migrated into AllocBudgetTests. None is named on the site,
-       and none ships an assertion of its own. -->
+       The three that stay out, each with its reason: spike/present-path and spike/video-upscale are
+       records of an experiment's answer rather than live code, and gate/alloc-budget's answer
+       already migrated into AllocBudgetTests. None is named on the site, and none ships an
+       assertion of its own. spike/frame-generation was the fourth; PP866 deleted it once its
+       answer was in docs/HARDWARE-CONTRACT.md. -->
   <Folder Name="/tools/">
     <Project Path="tools/compare-baselines/CompareBaselines.csproj" />
     <Project Path="tools/measure-startup/MeasureStartup.csproj" />

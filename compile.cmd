@@ -133,8 +133,6 @@ rem Submodules CMake adds by default. Each has an opt-out, so a missing one is a
 rem warning and not a refusal: it only fails the configure when the matching
 rem option was not set with it.
 call :warn_sub "third-party\nanopb"      "CHIAKI_USE_SYSTEM_NANOPB"
-call :warn_sub "third-party\jerasure"    "CHIAKI_USE_SYSTEM_JERASURE"
-call :warn_sub "third-party\gf-complete" "CHIAKI_USE_SYSTEM_JERASURE"
 rem PP33: third-party\curl stood here. It went with holepunch.c, which was the only file in lib/
 rem that called it - so there is no longer a submodule to warn about or an option to name.
 

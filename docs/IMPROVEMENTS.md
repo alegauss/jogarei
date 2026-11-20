@@ -152,30 +152,55 @@ the outcome is written down and a certificate is reconsidered.
 Done when the application is listed in the Store and installs without a SmartScreen
 warning, or the reason it cannot be is recorded here.
 
-### §PP866 A cleanup audit of the port's scaffolding
+### §PP869 The Steam shortcut library follows the Qt client
 
-The tree still carries what exists only to make the port: lib\ (45 .c files, still built
-into chiaki-shim.dll, which Jogarei.exe loads), gui\ (101 files, the retired Qt client
-the drift checks read), spike\ (nine projects, two in the solution and cited from 19
-files, some of them graduated into app\), scripts\reference-build-msvc.ps1 (PP864 still
-needs it), and behind lib\ the CMake graph, the MSYS2 build, test\ and the submodules.
-Nothing says which of them can go now and what each of the others waits on. The owner
-asked on 2026-11-20 for a cleanup audit.
+PP866's audit found third-party\cpp-steam-tools compiled by every default build, because
+CHIAKI_ENABLE_STEAM_SHORTCUT defaults to on, while only gui\CMakeLists.txt links it, and
+nothing builds gui\ since PP632. The managed host's Steam shortcut is its own code.
 
-The audit classifies every top-level directory and script that is not the product into
-three: removable now, removable after a named line, or kept, with the reason. What is
-removable now is removed in the same commit, through compile.cmd, test.cmd and
-package.cmd, so a deletion that something still reads turns a gate red rather than a
-build somewhere else. Spikes go first: one nothing references is a decision already
-taken, and its evidence belongs in docs\DECISIONS.md or HARDWARE-CONTRACT.md, never in
-the deleted project.
+Gate the option on CHIAKI_ENABLE_GUI in the root CMakeLists.txt, so a default configure
+neither adds the submodule nor compiles it, and the build stops paying for a library
+nothing it produces loads. The submodule itself goes with gui\.
 
-What waits is filed as its own line with its trigger as a dep: gui\ after the drift
-checks read recorded fixtures instead of the source, as PP33 did for json-c; lib\ and
-everything behind it when the shim's last export is ported.
+### §PP870 The Go reference leaves with its reason
 
-Done when every non-product path in the tree is either gone or named by an open line
-that says what removes it.
+PP866's audit found scripts\holepunch\ (the Go reference for the internet connection
+flow) held in the tree only by ForeignBinariesTests.TheGoSourceStays, whose stated
+reason is that the Go source documents the flow lib\src\holepunch.c implements.
+holepunch.c left with PP33, and the flow is managed code now, held against PP297's
+recorded exchange.
+
+Retire that assertion, delete scripts\holepunch\, and if anything in the Go source is
+still the only statement of a protocol fact, move that fact into the managed type's
+summary first.
+
+### §PP871 Spike readings become fixtures
+
+PP866's audit found eight spikes and gate\alloc-budget still in the tree, each held by a
+reader: EchoCancellation and OverlayDraw read the release JSON of spike\audio-effects
+and overlay-draw; SpikeRunQuality reads decode-path, opus-decode, video-hdr and
+video-upscale; ComSignaturesTests asserts decoder-choice and mic-capture declare COM
+signatures; other spikes compile present-path's Stats.cs. gate\alloc-budget is held by
+nothing but its README, whose proof method and the -fno-builtin-malloc flag the C
+counter needs are recorded nowhere else.
+
+Copy each reading into a fixture beside the test that reads it, retire the COM assertion
+or point it at app\, record alloc-budget's README in the test that already asserts its
+numbers, and then delete spike\ and gate\ with the .slnx comment that names them. A
+spike is a decision already taken; its evidence belongs beside its reader, not in the
+experiment.
+
+### §PP872 The reference build leaves after its last row
+
+PP63 left a reference build in the tree to produce PP46's before:
+scripts\reference-build-msvc.ps1, scripts\windows-vc\gf-complete.patch (which the script
+names, though it reads the copy inside its own worktree), and the build\reference
+worktree it creates. PP864 still needs it, for the cold row of the Qt build.
+
+Once PP864's rows are recorded, the before is measured and nothing will rebuild it:
+delete the script and the patch, drop ReferenceBuildTests' script checks while keeping
+the assertion on the measured row, prune the worktree, and leave the rows and the README
+table as the record.
 
 ## Block F — Managed core
 
@@ -232,6 +257,35 @@ running sender queues and offers history offline. The live run's new counters na
 stage.
 
 The instrument that found it is in the run now, so a fix has a number to move.
+
+### §PP867 Drift checks on fixtures, then gui goes
+
+PP866's audit found gui\ (101 files, the Qt client PP632 retired) still in the tree for
+one reason: about 32 drift checks read its source as an oracle (Preferences,
+InputTranslation, SessionLogSanitizer and others). Nothing builds it.
+
+The way out is the one PP33 took for json-c: run each check once against gui\, record
+what it answered as a fixture beside the test, point the check at the fixture, and then
+delete gui\. With it go cmake\FindSDL2.cmake and FindSpeexDSP.cmake, the
+CHIAKI_ENABLE_GUI branch of the root CMakeLists.txt, and the option itself; and
+third-party\cpp-steam-tools, if the line that gates it has not already removed it.
+
+A check whose oracle has to stay live because upstream still changes gui\ is the
+exception, and says so in its own summary rather than keeping the folder by default.
+
+### §PP868 The C and everything behind it leave together
+
+PP866's audit classed lib\ as removable only after the port: it is still compiled into
+chiaki-shim.dll, which Jogarei.exe loads, and the drift checks read it as the oracle the
+managed code is held against.
+
+Behind it stands everything that exists only to build it: the CMake graph and its cmake\
+modules, the MSYS2 MinGW64 toolchain compile.cmd drives, test\ and its munit submodule
+(the C suite with its floor of 71 cases), third-party\nanopb, and shim\ itself. They go
+together, in one commit, when the shim's last export is ported and no check needs the C
+as an oracle, which is the same moment compile.cmd stops needing MSYS2.
+
+Set aside until then: nothing here can start while the shim exports anything.
 
 ## Block G — Test discipline
 
@@ -380,5 +434,19 @@ Below the display's minimum, low framerate compensation changes the behaviour ag
 that too is read rather than assumed.
 
 ## Block J — Public documentation
+
+### §PP873 The repository's own community files
+
+PP866's audit found chiaki-ng's own files still published by GitHub from this
+repository: .github\funding.yml (buy_me_a_coffee: streetpea, upstream's author), the
+issue templates written for chiaki-ng, .github\copilot-instructions.md describing the Qt
+client, and CONTRIBUTOR_GUIDE.md in chiaki-ng's words, which the site's Contributing
+link points at.
+
+Each is what a visitor to alegauss/jogarei reads about how to fund, report and
+contribute, and each describes another project. funding.yml goes, since streetpea is not
+this project's author; the templates and the guide are rewritten for Jogarei (Windows
+only, no release yet, issues here); the Copilot instructions are rewritten for the WPF
+host or deleted. The credit to chiaki-ng stays in the README.
 
 ## Block K — The site on the design system

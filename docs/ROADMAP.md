@@ -20,11 +20,15 @@
 
 - 📋 **PP301** (deps: —) (requires: runner) **no MSVC toolchain has ever compiled this tree, so the CI workflow's first push is the first time it is tried** — PP22 configures a runner the only way a runner can be, and everything built here so far came through MSYS2 MinGW64. → §PP301
 - 📋 **PP302** (deps: visibility VS58, PP863 ✅) **nothing signs the host or the installer, so SmartScreen warns on the first run of every release** — The Store signs the MSIX itself in place of a certificate, and claude-tray tests that path first, so this follows what it learns. → §PP302
-- 📋 **PP866** (deps: —) **Nothing says which of lib, gui, the spikes and the reference build can go now, or what each of the others waits on** — The port's scaffolding stays in the tree for ever unless each piece has a named trigger, and the owner asked for the audit. → §PP866
+- 📋 **PP869** (deps: —) **every default build compiles cpp-steam-tools, which only the retired Qt client links** — CHIAKI_ENABLE_STEAM_SHORTCUT defaults to on while nothing the build produces loads the library. → §PP869
+- 📋 **PP870** (deps: —) **the Go holepunch reference stays in scripts only because an assertion's reason went with holepunch.c** — TheGoSourceStays says the Go documents the flow holepunch.c implements, and PP33 deleted holepunch.c. → §PP870
+- 📋 **PP871** (deps: —) **eight spikes and the alloc-budget gate stay in the tree because tests read their results where they ran** — A spike is a decision already taken, and its evidence belongs beside the test that reads it, not in the experiment. → §PP871
+- 📋 **PP872** (deps: PP864) **the reference build's script and patch stay in the tree after the before they exist for is measured** — PP864's cold rows are the last use of the reference build, and nothing rebuilds a before once it is recorded. → §PP872
 
 ## Block F — Managed core
 
 - ⏳ **PP853** (deps: PP723 ✅, PP717 ✅) (requires: console, a-person-looking) **no history packet reaches the wire in a live session, so a button press is the one input the console never hears** — Offline the press reaches the wire; one console run with buttons pressed says which live stage drops it. → §PP853
+- 📋 **PP867** (deps: —) **gui stays in the tree only because about 32 drift checks read the retired Qt client's source as their oracle** — Nothing builds gui since PP632, and recording what each check reads lets the folder go as json-c went in PP33. → §PP867
 
 ## Block G — Test discipline
 
@@ -39,6 +43,8 @@
 - ⏳ **PP53** (deps: PP11 ✅, PP41 ✅) (requires: variable-refresh-display) **frames arrive with network jitter and are presented against a fixed refresh, so each waits for a vblank it missed** — the reading itself: a display that varies its refresh, and a trace saying the frame arrived unpaced. → §PP53
 
 ## Block J — Public documentation
+
+- 📋 **PP873** (deps: —) **The repository still publishes chiaki-ng's funding link, issue templates, contributor guide and Copilot notes** — GitHub shows them to every visitor of alegauss/jogarei, and each one describes another project or another author. → §PP873
 
 ## Block K — The site on the design system
 

@@ -17,6 +17,7 @@
 ## Block F — Managed core
 
 - ⏸ **PP107** (deps: —) **the reorder queue's drop does not remove the element and its peek dereferences a null takion passes it** — set aside (accepted; five assertions pin both.): The suite calls and pins both, and both are on takion's re-check-MACs path, where a rejected packet is delivered anyway. → §PP107
+- ⏸ **PP868** (deps: —) **lib, the C build behind it, the C suite and MSYS2 stay until the shim stops exporting anything** — set aside (resumes when the shim exports nothing): The C is the oracle the port is held against and still runs in the shim, so it leaves in one commit when the last export is ported. → §PP868
 
 ## Block G — Test discipline
 
