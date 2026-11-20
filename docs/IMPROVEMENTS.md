@@ -381,27 +381,6 @@ that too is read rather than assumed.
 
 ## Block J — Public documentation
 
-### §PP862 PP862 — A README of its own
-
-From the portfolio review of 30/10/2026 (visibility, `produtos/pportal.md`). The
-repository's README is still chiaki-ng's: its logo, its name as the title, its Discord
-and a link to its site. A visitor arriving at the repository learns about the upstream
-project and nothing about this one: that it is a Windows-only application rebuilt in
-.NET 10 and WPF, what it does differently, that there is no release yet, and that its
-issues belong here, not in chiaki-ng's Discord. The site already says all of this; the
-README contradicts it.
-
-The README is rewritten for this project, under its new name: one sentence on what it
-is, the differences that matter (native Windows interface with controller navigation,
-ten-bit presentation, hardware decode on the card present, side by side with chiaki-ng),
-the status stated plainly (no release, the open input defects PP853 and PP854), the
-build steps, and the licence. The credit to Chiaki and chiaki-ng stays, as a section
-that thanks them and links them, along with the non-affiliation notice. chiaki-ng's
-README moves to a credits file if any of it is still needed.
-
-Done when the README's title, logo and links are this project's, and chiaki-ng appears
-only as credited origin.
-
 ### §PP863 PP863 — Sony's marks only where they describe compatibility
 
 From the portfolio review of 30/10/2026 (visibility, `produtos/pportal.md`). Beyond the

@@ -931,6 +931,7 @@
 - ✅ **PP446** **the site has no documentation area, so a page explaining how a frame reaches the screen has nowhere to be published** — A documentation area at /pportal/docs, built by Starlight into the site's dist, with three joins between the two builds asserted on both sides (design recorded in `site/README.md`).
 - ✅ **PP861** **The name reads as Sony's PlayStation Portal, a mark this project does not own** — The repository is alegauss/jogarei and the site serves at alegauss.com/jogarei/, so Jogarei is the only name from the repository to the window.
 - ✅ **PP865** **The projects, the solution and the namespace are still named ChiakiNg after the product became Jogarei** — Jogarei.slnx, app\Jogarei.csproj, tests\Jogarei.Tests and tests\Jogarei.Cases, with the Jogarei namespace in every source; lib\ and the Chiaki settings paths stay.
+- ✅ **PP862** **The repository's README is still chiaki-ng's, so a visitor learns about the upstream and nothing about this port** — The README is Jogarei's: what it is, what it does differently, no release and the open PP853 and PP854, the build steps, and chiaki-ng as credited origin.
 
 ## Block K — The site on the design system
 
