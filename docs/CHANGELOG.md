@@ -902,6 +902,7 @@
 - ✅ **PP61** **the startup harness labels a warm run cold, because the OS file cache outlives the process** — the caller states the cache, the report stamps it, and unknown compares with nothing.
 - ✅ **PP482** **PP303's middle option needs a size budget for this application, and nothing measures the package at all** — the payload and the installer are measured against ceilings that may fall and may not rise, on PP38's contract, needing no Qt build to produce a number.
 - ✅ **PP528** **the pulled loss count is discarded on the two returns before presentFrame, so frames_dropped under-reports** — The two returns now carry the count to the next frame that presents, and a check over the region refuses a third that would not.
+- 🗑 **PP303** **PP46's before costs two multi-gigabyte installs for a number about an application this port is not a version of** — abandoned: Overtaken: the owner had PP63 built on 2026-10-12 and PP46 measured both builds, so the cost this weighed was already paid.
 
 ## Block I — NVIDIA path
 

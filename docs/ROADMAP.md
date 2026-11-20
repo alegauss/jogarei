@@ -29,7 +29,6 @@
 
 ## Block H — Performance and telemetry
 
-- 💭 **PP303** (deps: PP46 ✅) **PP46's before costs two multi-gigabyte installs for a number about an application this port is not a version of** — PP277 settled that this is a new application and not upstream's next, so a delta against a Qt build compares two products. → §PP303
 - 💭 **PP822** (deps: PP53 ⏳) **nothing reads DXGI's frame statistics, so present timing is what the client believes rather than what the panel did** — PP53's criterion asks for a frame-time trace, not a flag DXGI accepted; GetFrameStatistics is the instrument, and waits on the video plane owning a swapchain. → §PP822
 - 📋 **PP864** (deps: PP46 ✅) (requires: a-cold-boot) **neither the Qt nor the WPF build has a start-up time taken on a cold cache, so the cold-start claim stays unmeasured** — PP46 measured both builds warm, and a warm first run is not the cold start a release note would quote. → §PP864
 

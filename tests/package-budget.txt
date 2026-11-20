@@ -14,9 +14,9 @@
 # a new application rather than upstream's next version - a delta between two products
 # being a weaker sentence than a budget for one.
 #
-# This is the budget for one, and it needs no Qt at all. It does not decide PP303: keep
-# both, re-base PP46 on this, or retire both, are all still open and all the author's call.
-# What it removes is the argument that the no-Qt option would have to be built first.
+# This is the budget for one, and it needs no Qt at all. It never decided PP303. Events
+# did, on 2026-11-20: PP63 had been built and PP46 measured both builds, so PP303 was
+# retired as overtaken. This budget stays the gate on the application's own size.
 #
 # The numbers are over whatever package.cmd produced, in whatever configuration it ran -
 # because that is the artifact a user is handed. A native tree with a different ffmpeg is a

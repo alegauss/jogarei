@@ -6,9 +6,10 @@ namespace ChiakiNg.Tests;
 /// <summary>
 /// PP482, PP303: the application's own size, as a ceiling rather than a delta.
 ///
-/// PP303 asks whether PP46 still earns PP63's two multi-gigabyte installs, and says the answer is the
-/// author's. This does not answer it - it removes one thing from the argument, by showing that the
-/// no-Qt option PP303 lists second is measurable today rather than something to be built first.
+/// PP303 asked whether PP46 still earned PP63's two multi-gigabyte installs, and said the answer was
+/// the author's. This never answered it - it removed one thing from the argument, by showing that the
+/// no-Qt option PP303 listed second was measurable rather than something to be built first. PP303 was
+/// retired as overtaken on 2026-11-20, once PP63 and PP46 had both been done.
 ///
 /// The contract is PP38's ratchet: each number may fall and may not rise, and a fall owes a lowering.
 /// </summary>

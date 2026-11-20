@@ -22,13 +22,14 @@ public readonly record struct BudgetLine(string Name, double Mib, int CeilingMib
 /// <summary>
 /// PP482, under PP303: how big this application is, as a ceiling rather than as a delta.
 ///
-/// PP303 is an idea, and it asks a question it says is the author's to answer: PP46 measures cold start
-/// and installer size against a Qt build carrying QtWebEngine, PP63's two multi-gigabyte installs exist
-/// to produce that build, and PP277 has since settled that this is a new application rather than
+/// PP303 was an idea, and it asked a question it said was the author's to answer: PP46 measures cold
+/// start and installer size against a Qt build carrying QtWebEngine, PP63's two multi-gigabyte installs
+/// exist to produce that build, and PP277 has since settled that this is a new application rather than
 /// upstream's next version - so the delta compares two products. Keep both, re-base PP46 on this
-/// application alone, or retire both.
+/// application alone, or retire both. Events answered it on 2026-11-20: PP63 had been built, PP46
+/// measured both builds, and PP303 was retired as overtaken. This budget stays the gate either way.
 ///
-/// THIS DOES NOT ANSWER IT. What it does is remove one thing from the argument: the middle option said
+/// This never answered it. What it did was remove one thing from the argument: the middle option said
 /// "cold start and installer size as a budget with a ceiling, needing no Qt at all", and that half of
 /// it turned out to be measurable today. The payload package.cmd stages and the installer it compresses
 /// are both on disk after a package run, so the no-Qt option does not have to be built before it can be

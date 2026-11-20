@@ -230,31 +230,6 @@ Reflex-capable monitor, so no number can be taken today. Taken later against a c
 tree, it measures the port instead of the client - the same window that closes on PP39
 closes on this.
 
-### §PP303 Whether PP46 still earns PP63
-
-PP46 was filed when this port read as chiaki-ng continued by other means: same name,
-same version, the next thing a user of it would install. Under that reading, "dropping
-the bundled browser makes startup and the installer smaller" is a claim about an
-upgrade, and measuring it against the build being replaced is the only honest way to
-state it.
-
-That reading was settled against on 2026-08-22, in PP277: this is a new application
-rather than upstream's next version, it inherits nothing from an installed one, and its
-installer now says so with an identity of its own. A delta measured against a Qt build
-is then a comparison between two products, which is a different sentence and a weaker
-one.
-
-What it costs to keep is not small. PP63 is what produces the before, and PP63 is two
-multi-gigabyte installs - Build Tools with the C++ workload, and Qt for msvc2022_64
-carrying QtWebEngine from an account-gated installer - plus a second toolchain that the
-task itself argues has to be kept away from ordinary work.
-
-So the question is whether PP46 still earns PP63, and there are three answers. Keep
-both. Re-base PP46 on this application alone - cold start and installer size as a budget
-with a ceiling, needing no Qt at all. Or retire both, and let the browser this port does
-not bundle be a fact rather than a measurement. What a number is for is the author's
-call.
-
 ### §PP822 The instrument PP53's criterion describes
 
 PP53 asks whether a frame arrives unpaced against a fixed refresh, and its own criterion
