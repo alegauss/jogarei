@@ -71,10 +71,35 @@ with MSVC/clang-cl against an msvc2022_64 Qt carrying WebEngineQuick, from a wor
 (PP632). It runs this tool at the end, and its exit status is this tool's. Everything lands in
 `build\reference\`; nothing in `compile.cmd`, `test.cmd` or CI calls it.
 
-Its first row is [`qt-build-webengine-present.json`](qt-build-webengine-present.json): 208.6 MB
-of Chromium in a 489.3 MB tree, exit `0`. It was taken with `--cache-state warm` on the build
-machine, so **its cold figure is not the before**. That needs a `cold-boot` or `dropped` run,
-and it is PP46's to take. The script's `-CacheState` passes the state through.
+Its row is [`qt-build-webengine-present.json`](qt-build-webengine-present.json): 208.6 MB of
+Chromium in a 489.3 MB tree, exit `0`. The script also compiles that commit's own
+`chiaki-ng.iss` over the tree, so the before has a real installer, not just a tree standing in
+for one.
+
+## Before and after (PP46)
+
+Both rows were taken on 2026-11-20 on one machine, back to back, with `--cache-state warm`. The
+after is the WPF payload `package.cmd` stages, [`wpf-build.json`](wpf-build.json), and its
+installer is the one `package.cmd` compiles.
+
+| | Qt + WebEngine (before) | WPF (after) |
+|---|---|---|
+| installer | **159.7 MB** | **91.2 MB** |
+| tree | 489.3 MB in 1510 files | 192.3 MB in 19 files |
+| chromium in tree | 208.6 MB | none |
+| idle working set | **475.1 MB** (median of 3) | **203.4 MB** (median of 3) |
+| first run, to responsive | 4335 ms | 966 ms |
+| warm, to responsive | 1572 ms (median of 2) | 632 ms (median of 2) |
+
+The installer and the idle working set are the two numbers no cache state moves, and
+`StartupBeforeAfterTests` holds that the after is lower on both. The times are not release-note
+figures. Run 1 here is a warm start, because both executables had run before on this boot. The
+Qt build's warm start also moved from 1097 ms (2026-10-12) to 1572 ms on the same source and toolchain. **The
+cold start is still owed (PP864)**: it needs a `cold-boot` row for each build, after a reboot and
+before either executable runs.
+
+The after is not "the same build minus WebEngine". It is a different UI toolkit as well, so the
+delta is the port's, not Chromium's alone. Chromium alone is the 208.6 MB in the before's tree.
 
 ## Three things the numbers are not
 

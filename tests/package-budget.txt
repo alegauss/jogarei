@@ -22,5 +22,5 @@
 # because that is the artifact a user is handed. A native tree with a different ffmpeg is a
 # legitimate reason for a rise, argued in the commit that raises it.
 
-payload_mib 198
-installer_mib 93
+payload_mib 193
+installer_mib 92

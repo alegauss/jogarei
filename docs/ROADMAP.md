@@ -29,9 +29,9 @@
 
 ## Block H — Performance and telemetry
 
-- ⏳ **PP46** (deps: PP42 ✅, PP63 ✅) **the claim that dropping the bundled browser makes startup and the installer smaller is untested** — A Chromium leaving the build should be visible in cold start and in megabytes, and stating it without measuring is how a port collects folklore. → §PP46
-- 💭 **PP303** (deps: PP46 ⏳) **PP46's before costs two multi-gigabyte installs for a number about an application this port is not a version of** — PP277 settled that this is a new application and not upstream's next, so a delta against a Qt build compares two products. → §PP303
+- 💭 **PP303** (deps: PP46 ✅) **PP46's before costs two multi-gigabyte installs for a number about an application this port is not a version of** — PP277 settled that this is a new application and not upstream's next, so a delta against a Qt build compares two products. → §PP303
 - 💭 **PP822** (deps: PP53 ⏳) **nothing reads DXGI's frame statistics, so present timing is what the client believes rather than what the panel did** — PP53's criterion asks for a frame-time trace, not a flag DXGI accepted; GetFrameStatistics is the instrument, and waits on the video plane owning a swapchain. → §PP822
+- 📋 **PP864** (deps: PP46 ✅) (requires: a-cold-boot) **neither the Qt nor the WPF build has a start-up time taken on a cold cache, so the cold-start claim stays unmeasured** — PP46 measured both builds warm, and a warm first run is not the cold start a release note would quote. → §PP864
 
 ## Block I — NVIDIA path
 
@@ -47,16 +47,6 @@
 ## Block K — The site on the design system
 
 - 📋 **PP860** (deps: viglet-design-system: VDS213–VDS215, claude-tray: T389) **The site keeps its own copy of the template that eight product sites share** — The shared Nav, Hero, Footer and sponsor slot drift apart in each copy, and the design system now carries them once. → §PP860
-
-## Done when — PP46
-
-- **The three numbers are recorded on the Qt build** Cold start to the console list,
-  installer size, and process working set at idle - alongside the rest of the baseline,
-  in the same record the sink already writes. This is the before, and PP63 is what makes
-  it buildable.
-- **And again on the WPF build, in the same record** A delta needs both halves written
-  the same way. These are the two numbers most likely to be quoted in a release note,
-  and a quoted number nobody measured survives long past the day it stopped being true.
 
 ## Done when — PP49
 

@@ -170,6 +170,12 @@ declared = [
     # commit produces one. Kin to PP55's deferral, which names a Reflex-capable display, and NOT the
     # same absence: a monitor can vary its refresh without carrying a latency analyser.
     "variable-refresh-display",
+    # A machine just rebooted, with neither measured executable launched since. Declared for
+    # PP46 on 2026-11-20: measure-startup's cold figure is only cold on a cold cache, a session
+    # cannot reboot the machine it runs on, and dropping the standby list needs an elevation this
+    # session does not have. Its other numbers - installer, tree, idle working set - were taken
+    # warm and do not move with the cache.
+    "a-cold-boot",
     # "a-person-looking" was declared here for PP163 and left with it on 2026-08-23. PP284's window
     # was looked at, and the reading was a fourth outcome it had not predicted - solid red over the
     # whole client area, with --topmost reading identically. Worth keeping from the entry that

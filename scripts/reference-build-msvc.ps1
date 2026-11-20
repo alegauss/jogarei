@@ -267,6 +267,22 @@ $qmlDir = Join-Path $Src 'gui\src\qml'
 "import QtQuick`nimport QtWebEngine`nItem {}`n" | Set-Content -Encoding ascii (Join-Path $qmlDir 'qtwebengine_import.qml')
 Run 'windeployqt' { & "$QtRoot\bin\windeployqt.exe" --no-translations --release "--qmldir=$qmlDir" "$Deploy\chiaki.exe" }
 
+# ---- installer (PP46) ----------------------------------------------------------
+# The reference commit's own .iss over the tree just deployed, so the installer PP46 compares
+# is the one this build would have shipped and not the tree standing in for it. The .iss
+# reads its payload from ..\chiaki-ng-Win beside scripts\, so a junction puts it there.
+Stage 'installer (the reference commit''s chiaki-ng.iss)'
+$iscc = @("$env:LOCALAPPDATA\Programs\Inno Setup 6\ISCC.exe", "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe",
+          "$env:ProgramFiles\Inno Setup 6\ISCC.exe") | Where-Object { Test-Path $_ } | Select-Object -First 1
+if (-not $iscc) { $iscc = (Get-Command iscc.exe -ErrorAction SilentlyContinue).Source }
+if (-not $iscc) { Fail 'no Inno Setup 6 (ISCC.exe) - package.cmd needs the same one' }
+$payloadLink = Join-Path $Src 'chiaki-ng-Win'
+if (-not (Test-Path $payloadLink)) { New-Item -ItemType Junction -Path $payloadLink -Target $Deploy | Out-Null }
+$installer = Join-Path $Out 'chiaki-ng-windows-installer.exe'
+if (Test-Path $installer) { Remove-Item $installer -Force }
+Run 'ISCC' { & $iscc /Q "/O$Out" "$Src\scripts\chiaki-ng.iss" }
+Write-Host ("[reference] installer {0:N1} MB  {1}" -f ((Get-Item $installer).Length / 1MB), $installer)
+
 # ---- measure (the assertion) ---------------------------------------------------
 if ($NoMeasure) { Write-Host "`n[reference] built: $Deploy\chiaki.exe (not measured)"; exit 0 }
 Stage 'measure-startup'

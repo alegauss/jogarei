@@ -212,21 +212,6 @@ The instrument that found it is in the run now, so a fix has a number to move.
 
 ## Block H — Performance and telemetry
 
-### §PP46 Two numbers that are easy and get assumed
-
-QtWebEngine is in the build for one login screen and WebView2 replaces it with a control
-the operating system already carries. The expected result is a smaller installer and a
-faster cold start, and both are trivially measurable and routinely asserted without
-being.
-
-Cold start to the console list, installer size, and process working set at idle.
-Recorded on the Qt build alongside the rest of the baseline, then again after, in the
-same record the sink already writes.
-
-Small task, and it is here because these are the two numbers most likely to be quoted in
-a release note. A quoted number that nobody measured is the kind of claim that survives
-long past the day it stopped being true.
-
 ### §PP55 The instrument outside the process
 
 PP40 shipped the half that a regression test can use: input queueing, the console's
@@ -292,6 +277,31 @@ third time when the plane exists.
 It also needs no variable-refresh display, which PP53 does. On a fixed panel it still
 says whether a present met its vblank or missed one, which is the half of PP53's
 question that hardware is not gating.
+
+### §PP864 Two rows taken after a reboot
+
+PP46 recorded the before and the after on 2026-11-20, both with --cache-state warm: the
+installer, the tree and the idle working set, which no cache state moves. The start-up
+time is in both rows too, and it is a warm start wearing the cold label, because both
+executables had run on that boot. PP61 is why the harness says so instead of hiding it.
+
+What is left is one row per build taken cold. After a reboot, and before either
+executable has run:
+
+    scripts\reference-build-msvc.ps1 -CacheState cold-boot
+
+for the before, which ends by measuring and writes its row under build\reference, then
+measure-startup --cache-state cold-boot on build\chiaki-ng-package\ChiakiNg.exe for the
+after. The order matters: one reboot covers both rows only if the first launch of each
+executable is the measured one. A second reboot between them is equally valid.
+
+Both rows replace the warm ones in tools\measure-startup, the table in its README gains
+the cold figures, and StartupBeforeAfterTests then asserts the two declare cold-boot.
+That is the assertion this line ships with.
+
+A session cannot reboot the machine it runs on, and dropping the standby list instead
+(--cache-state dropped) needs elevation the agent sessions here do not have. So this
+requires a-cold-boot.
 
 ## Block I — NVIDIA path
 
