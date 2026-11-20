@@ -20,6 +20,7 @@
 
 - 📋 **PP301** (deps: —) (requires: runner) **no MSVC toolchain has ever compiled this tree, so the CI workflow's first push is the first time it is tried** — PP22 configures a runner the only way a runner can be, and everything built here so far came through MSYS2 MinGW64. → §PP301
 - 📋 **PP302** (deps: visibility VS58, PP863) **nothing signs the host or the installer, so SmartScreen warns on the first run of every release** — The Store signs the MSIX itself in place of a certificate, and claude-tray tests that path first, so this follows what it learns. → §PP302
+- 📋 **PP866** (deps: —) **Nothing says which of lib, gui, the spikes and the reference build can go now, or what each of the others waits on** — The port's scaffolding stays in the tree for ever unless each piece has a named trigger, and the owner asked for the audit. → §PP866
 
 ## Block F — Managed core
 

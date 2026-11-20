@@ -152,6 +152,31 @@ the outcome is written down and a certificate is reconsidered.
 Done when the application is listed in the Store and installs without a SmartScreen
 warning, or the reason it cannot be is recorded here.
 
+### §PP866 A cleanup audit of the port's scaffolding
+
+The tree still carries what exists only to make the port: lib\ (45 .c files, still built
+into chiaki-shim.dll, which Jogarei.exe loads), gui\ (101 files, the retired Qt client
+the drift checks read), spike\ (nine projects, two in the solution and cited from 19
+files, some of them graduated into app\), scripts\reference-build-msvc.ps1 (PP864 still
+needs it), and behind lib\ the CMake graph, the MSYS2 build, test\ and the submodules.
+Nothing says which of them can go now and what each of the others waits on. The owner
+asked on 2026-11-20 for a cleanup audit.
+
+The audit classifies every top-level directory and script that is not the product into
+three: removable now, removable after a named line, or kept, with the reason. What is
+removable now is removed in the same commit, through compile.cmd, test.cmd and
+package.cmd, so a deletion that something still reads turns a gate red rather than a
+build somewhere else. Spikes go first: one nothing references is a decision already
+taken, and its evidence belongs in docs\DECISIONS.md or HARDWARE-CONTRACT.md, never in
+the deleted project.
+
+What waits is filed as its own line with its trigger as a dep: gui\ after the drift
+checks read recorded fixtures instead of the source, as PP33 did for json-c; lib\ and
+everything behind it when the shim's last export is ported.
+
+Done when every non-product path in the tree is either gone or named by an open line
+that says what removes it.
+
 ## Block F — Managed core
 
 ### §PP107 The two that were said to be uncalled
