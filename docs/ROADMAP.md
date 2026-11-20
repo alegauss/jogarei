@@ -39,9 +39,10 @@
 
 ## Block J — Public documentation
 
-- 📋 **PP861** (deps: visibility VS59) **The name reads as Sony's PlayStation Portal, a mark this project does not own** — The author decided to rename it before a first release spreads the name, and the choice is made in visibility VS59. → §PP861
-- 📋 **PP862** (deps: PP861) **The repository's README is still chiaki-ng's, so a visitor learns about the upstream and nothing about this port** — The site already says what this project is, and the README a GitHub visitor reads first contradicts it. → §PP862
-- 📋 **PP863** (deps: PP861) **PlayStation leads the site's title, the hero and the repository description, as if it were the product's name** — In a title the mark reads as identity rather than compatibility, the use most likely to draw a complaint or a store refusal. → §PP863
+- ⏳ **PP861** (deps: github: owner confirms the repository rename) **The name reads as Sony's PlayStation Portal, a mark this project does not own** — The GitHub repository is still alegauss/pportal, so the site's /jogarei/ path and its repo links wait on the rename. → §PP861
+- 📋 **PP862** (deps: PP861 ⏳) **The repository's README is still chiaki-ng's, so a visitor learns about the upstream and nothing about this port** — The site already says what this project is, and the README a GitHub visitor reads first contradicts it. → §PP862
+- 📋 **PP863** (deps: PP861 ⏳) **PlayStation leads the site's title, the hero and the repository description, as if it were the product's name** — In a title the mark reads as identity rather than compatibility, the use most likely to draw a complaint or a store refusal. → §PP863
+- 📋 **PP865** (deps: PP861 ⏳) **The projects, the solution and the namespace are still named ChiakiNg after the product became Jogarei** — The owner asked for the file names and every reference to follow the product, and a name the code keeps leaks into every path and stack trace. → §PP865
 
 ## Block K — The site on the design system
 
@@ -93,6 +94,12 @@
 - **the pad still drives the console after the window loses focus and regains it** A
   live --stream run with a click into another window and back keeps the pad working, and
   its pad timeline reports that inputs never went quiet under a live wire.
+
+## Done when — PP861
+
+- **The GitHub repository is alegauss/jogarei** gh repo view alegauss/jogarei answers,
+  the old name redirects, the local remote points at the new URL, and the site deploys
+  at alegauss.com/jogarei/ after the push that follows the rename.
 
 ## Non-goals
 

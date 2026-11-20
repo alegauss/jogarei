@@ -48,7 +48,7 @@ public class HostCommandLineTests(ITestOutputHelper output)
     /// <summary>
     /// The argument --capture-mapping takes is a path, and a path is not a flag.
     ///
-    /// Refusing a bare word would turn "ChiakiNg.exe --capture-mapping out.png" into an error about
+    /// Refusing a bare word would turn "Jogarei.exe --capture-mapping out.png" into an error about
     /// out.png, which is the kind of strictness that gets a check deleted rather than fixed.
     /// </summary>
     [Fact]

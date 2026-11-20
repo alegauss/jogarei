@@ -1,14 +1,14 @@
-# The PPortal site
+# The Jogarei site
 
-The public site, at <https://alegauss.com/pportal/>. It is a separate npm project from
+The public site, at <https://alegauss.com/jogarei/>. It is a separate npm project from
 the .NET solution and it builds to its own `dist/`, because `docs/` belongs to roadkeep and
 is never a web root.
 
 ```
 npm install
 npm --prefix docs install     # the documentation area, a second npm project
-npm run dev                   # the site at http://localhost:5173/pportal/
-npm run dev:docs              # the docs at http://localhost:4321/pportal/docs/
+npm run dev                   # the site at http://localhost:5173/jogarei/
+npm run dev:docs              # the docs at http://localhost:4321/jogarei/docs/
 npm run build                 # generate, typecheck, build, SSR build, social card + prerender, docs
 npm test                      # the site's own claims, against what the build produced
 ```
@@ -27,7 +27,7 @@ npm test                      # the site's own claims, against what the build pr
   directions, so a page cannot ship under another page's title.
 - **The chrome is the design system's.** The nav, hero, section heads, buttons, feature index,
   sponsor block, footer and theme toggle come from `@viglet/viglet-design-system/site`, on
-  `data-tone="cool"`, with its tokens re-keyed to PPortal's ground and violet in
+  `data-tone="cool"`, with its tokens re-keyed to Jogarei's ground and violet in
   `src/brand.css`. The docs area imports the same file, so the accent is declared once. What
   stays here is the product's own: the frame's journey, the signal band, the sections, the
   non-goals, the ad slot and the depth pages. PP860 made the move, following claude-tray's
@@ -55,7 +55,7 @@ is what the ledger's `design recorded in site/README.md` points at. PP642 made t
 check: the entry names this file and this file names PP446, so a paragraph that never arrived is
 a red test rather than a claim nobody reads.
 
-`/pportal/docs` is a **second npm project** with its own toolchain — Astro and Starlight —
+`/jogarei/docs` is a **second npm project** with its own toolchain — Astro and Starlight —
 building into this one's `dist/docs`. It exists because the renderer above holds its copy as
 data and has no Markdown pipeline, no highlighting, no sidebar and no search, and writing
 those four is writing a documentation framework. Starlight is those four, plus a Pagefind index

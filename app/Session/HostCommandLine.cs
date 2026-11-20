@@ -206,7 +206,7 @@ public static partial class HostCommandLine
     public static string Usage()
     {
         var text = new StringBuilder();
-        text.AppendLine("ChiakiNg.exe - PlayStation remote play, Windows only.");
+        text.AppendLine(App.ProductName + ".exe - PlayStation remote play, Windows only.");
         text.AppendLine();
         text.AppendLine("With no flag it opens the application. Otherwise:");
         text.AppendLine();

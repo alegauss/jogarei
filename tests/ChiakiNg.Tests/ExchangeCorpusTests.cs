@@ -7,7 +7,7 @@ namespace ChiakiNg.Tests;
 /// <summary>
 /// PP297: the recording that had never been made, now made - and held to what it promised.
 ///
-/// This is a real exchange with a real PS5, taken by `ChiakiNg.exe --capture-exchange`: the console
+/// This is a real exchange with a real PS5, taken by `Jogarei.exe --capture-exchange`: the console
 /// woken out of standby, the session request and its answer, the control channel through login and
 /// session id, and the heartbeats that follow. It is the oracle the four untested modules -
 /// session.c, ctrl.c, streamconnection.c and senkusha.c - are to be ported against, because a state

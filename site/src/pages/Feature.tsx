@@ -26,7 +26,7 @@ function Siblings({ slug }: { slug: string }) {
         <a
           className={f.slug === slug ? "current" : undefined}
           aria-current={f.slug === slug ? "page" : undefined}
-          href={`/pportal/features/${f.slug}/`}
+          href={`/jogarei/features/${f.slug}/`}
           key={f.slug}
         >
           {f.heading}
@@ -47,7 +47,7 @@ export function FeaturePage({ record }: { readonly record: FeatureRecord }) {
       <Nav />
       <header className="page-hero" id="top">
         <div className="vg-site-wrap">
-          <a className="feature-back" href="/pportal/features/">
+          <a className="feature-back" href="/jogarei/features/">
             ← All pages
           </a>
           <div className="vg-site-eyebrow">{record.eyebrow}</div>
@@ -87,7 +87,7 @@ export function FeaturePage({ record }: { readonly record: FeatureRecord }) {
                 )}
                   {record.slug === "picture" && s.heading === "Paced by the display" && (
                     <p>
-                      <a className="feature-link" href="/pportal/hardware/">
+                      <a className="feature-link" href="/jogarei/hardware/">
                         What this asks of your GPU →
                       </a>
                     </p>

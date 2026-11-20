@@ -21,8 +21,19 @@ namespace ChiakiNg;
 public partial class App : Application
 {
     /// <summary>
+    /// PP861: the name a user sees, from the installer to the window. One place, so the main
+    /// window's title, the stream window's, the About button and the Steam shortcut cannot disagree.
+    ///
+    /// The executable carries it too, through the csproj's AssemblyName, and the installer's
+    /// MyAppName is held against that. What does NOT carry it is the settings store: the
+    /// organisation and application in <see cref="QtPaths"/> stay Chiaki's on purpose, because this
+    /// port reads the settings chiaki-ng already wrote.
+    /// </summary>
+    public const string ProductName = "Jogarei";
+
+    /// <summary>
     /// A WinExe is built with no console, so writing to stdout from one goes nowhere by default.
-    /// Attaching to the parent's console is what makes `ChiakiNg.exe --selftest` print into the
+    /// Attaching to the parent's console is what makes `Jogarei.exe --selftest` print into the
     /// shell that launched it; a run with no parent console (double-clicked) simply fails this
     /// call and the selftest still sets the exit code.
     /// </summary>
@@ -33,7 +44,7 @@ public partial class App : Application
 
     /// <summary>
     /// Make Console.Write actually reach somewhere. AttachConsole alone is not enough and that
-    /// is measured, not assumed: with only the attach, `ChiakiNg.exe --selftest` exited 0 and
+    /// is measured, not assumed: with only the attach, `Jogarei.exe --selftest` exited 0 and
     /// printed nothing at all. The process was started with no console, so the CLR had already
     /// bound Console.Out to a null writer, and attaching one afterwards does not rebind it.
     ///
@@ -49,7 +60,7 @@ public partial class App : Application
         // The order is the whole of it, and it cost two wrong versions. AttachConsole does not
         // add a console beside the standard handles - it REPLACES them with the console's. So a
         // run whose stdout was already a file or a pipe loses that redirect the moment it is
-        // called, and `ChiakiNg.exe --selftest > out.txt` writes a zero-byte file and exits 0.
+        // called, and `Jogarei.exe --selftest > out.txt` writes a zero-byte file and exits 0.
         // A redirected caller already has somewhere to write; only a bare double-click or a
         // prompt with no redirect needs a console attached at all.
         if (!Bind())
@@ -974,7 +985,7 @@ public partial class App : Application
         if (unknown.Count > 0)
         {
             ReopenStdOut();
-            Console.Error.WriteLine($"ChiakiNg: no such flag: {string.Join(", ", unknown)}");
+            Console.Error.WriteLine($"{ProductName}: no such flag: {string.Join(", ", unknown)}");
             Console.Error.WriteLine();
             Console.Error.Write(HostCommandLine.Usage());
             Environment.Exit(2);

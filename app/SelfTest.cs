@@ -54,7 +54,7 @@ internal sealed class FakePreferences : IPreferences
 
 /// <summary>
 /// PP2's assertion, and the shape claude-tray already uses: a selftest inside the executable,
-/// run with `ChiakiNg.exe --selftest`, printing one line per case and exiting non-zero on the
+/// run with `Jogarei.exe --selftest`, printing one line per case and exiting non-zero on the
 /// first failure.
 ///
 /// Why not a test project. There is not one yet, and choosing the framework and the solution

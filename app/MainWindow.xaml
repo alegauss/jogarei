@@ -1,7 +1,8 @@
 <Window x:Class="ChiakiNg.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="chiaki-ng"
+        xmlns:local="clr-namespace:ChiakiNg"
+        Title="{x:Static local:App.ProductName}"
         Width="1280" Height="720"
         WindowStartupLocation="CenterScreen">
   <!-- Opens empty, as PP1 filed it: the size a 720p stream wants and the title an installer and a
@@ -10,7 +11,7 @@
        rather than an event handler, and a content host is that with nothing assumed about which
        screen goes in it. The placeholder is what shows while nothing has. -->
   <Grid>
-    <TextBlock x:Name="Placeholder" Text="chiaki-ng"
+    <TextBlock x:Name="Placeholder" Text="{x:Static local:App.ProductName}"
                HorizontalAlignment="Center" VerticalAlignment="Center"
                FontSize="24" Opacity="0.5" />
 

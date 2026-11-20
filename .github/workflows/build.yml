@@ -129,6 +129,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: chiaki-ng-host
-          path: app/bin/Release/net10.0-windows/win-x64/publish/ChiakiNg.exe
+          name: jogarei-host
+          path: app/bin/Release/net10.0-windows/win-x64/publish/Jogarei.exe
           if-no-files-found: error

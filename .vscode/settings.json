@@ -36,7 +36,7 @@
   // MSYS2 gcc version because the kit's name does, so a toolchain update makes it stale.
   "cmake.defaultKit": "GCC 16.2.0 x86_64-w64-mingw32 (mingw64)",
 
-  "window.title": "PPortal ${separator} ${dirty}${activeEditorShort} ${separator} ${appName}",
+  "window.title": "Jogarei ${separator} ${dirty}${activeEditorShort} ${separator} ${appName}",
 
   // Status bar in PlayStation blue so this worktree is easy to spot
   "workbench.colorCustomizations": {

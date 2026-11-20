@@ -131,7 +131,7 @@ public class MappingScreenClickTests
     {
         var window = new MainWindow();
 
-        Assert.Equal("chiaki-ng", window.Message);
+        Assert.Equal("Jogarei", window.Message);
 
         window.ShowMessage("no pad SDL can map - plug one in and start again");
 

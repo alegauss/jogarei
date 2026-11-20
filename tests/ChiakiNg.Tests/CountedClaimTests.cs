@@ -24,7 +24,7 @@ namespace ChiakiNg.Tests;
 /// present tense, and a premise there is load-bearing for a decision nobody has made.
 ///
 /// PP304 moved the scanning and the counting into <see cref="CountedClaims"/>, so that
-/// `ChiakiNg.exe --recount` answers the same question this does and additionally prints the
+/// `Jogarei.exe --recount` answers the same question this does and additionally prints the
 /// correction. The assertions stayed here; only where they read from changed.
 /// </summary>
 public class CountedClaimTests(ITestOutputHelper output)

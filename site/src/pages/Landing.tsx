@@ -32,7 +32,7 @@ export function Landing() {
     <>
       <Nav />
       <SiteHero
-        icon={{ src: "/pportal/logo.svg", alt: "PPortal logo", logoShape: "mark" }}
+        icon={{ src: "/jogarei/logo.svg", alt: "Jogarei logo", logoShape: "mark" }}
         badge={hero.badge}
         title={hero.titleLead}
         titleAccent={hero.titleAccent}
@@ -78,7 +78,7 @@ export function Landing() {
         description="Each section above has a page to link at, whether from a README, an issue or a search result."
         goLabel="Read the page →"
         items={features.map((f) => ({
-          href: `/pportal/features/${f.slug}/`,
+          href: `/jogarei/features/${f.slug}/`,
           heading: f.heading,
           description: f.description,
         }))}

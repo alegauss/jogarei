@@ -9,7 +9,7 @@ export function FeatureCards() {
   return (
     <div className="vg-site-feature-index reveal">
       {features.map((f) => (
-        <a className="vg-site-feature-card" href={`/pportal/features/${f.slug}/`} key={f.slug}>
+        <a className="vg-site-feature-card" href={`/jogarei/features/${f.slug}/`} key={f.slug}>
           <h3>{f.heading}</h3>
           <p>{f.description}</p>
           <span className="vg-site-feature-card-go">Read the page →</span>

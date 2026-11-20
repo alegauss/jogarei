@@ -17,9 +17,9 @@ public class SteamShortcutTests
     /// branch - the same "" against "default" distinction PP14 found in the profile dialog.
     /// </summary>
     [Theory]
-    [InlineData("", "chiaki-ng", "")]
-    [InlineData("couch", "chiaki-ng couch", "--profile=couch")]
-    [InlineData("work", "chiaki-ng work", "--profile=work")]
+    [InlineData("", "Jogarei", "")]
+    [InlineData("couch", "Jogarei couch", "--profile=couch")]
+    [InlineData("work", "Jogarei work", "--profile=work")]
     public void TheDefaultsComeFromTheProfile(string profile, string name, string options)
     {
         Assert.Equal(name, SteamShortcutViewModel.DefaultName(profile));
@@ -49,7 +49,7 @@ public class SteamShortcutTests
     [Fact]
     public void TheTwoJoinsAreDifferent()
     {
-        Assert.Equal("chiaki-ng couch", SteamShortcutViewModel.DefaultName("couch"));
+        Assert.Equal("Jogarei couch", SteamShortcutViewModel.DefaultName("couch"));
         Assert.Equal("--profile=couch", SteamShortcutViewModel.DefaultOptions("couch"));
     }
 
@@ -133,14 +133,14 @@ public class SteamShortcutTests
     {
         var model = new SteamShortcutViewModel
         {
-            Name = "  chiaki-ng couch  ",
+            Name = "  Jogarei couch  ",
             Options = "  --profile=couch  ",
             SteamBasePath = @"  C:\Steam  ",
         };
 
         (string name, string options, string basePath) = model.Request();
 
-        Assert.Equal("chiaki-ng couch", name);
+        Assert.Equal("Jogarei couch", name);
         Assert.Equal("--profile=couch", options);
         Assert.Equal(@"  C:\Steam  ", basePath);
     }
@@ -222,7 +222,7 @@ public class SteamShortcutTests
 
                 var create = (Button)view.FindName("CreateButton");
                 Assert.True(create.IsEnabled);
-                Assert.Equal("chiaki-ng couch", ((TextBox)view.FindName("NameField")).Text);
+                Assert.Equal("Jogarei couch", ((TextBox)view.FindName("NameField")).Text);
                 Assert.Equal("--profile=couch", ((TextBox)view.FindName("OptionsField")).Text);
 
                 ((TextBox)view.FindName("NameField")).Text = "   ";

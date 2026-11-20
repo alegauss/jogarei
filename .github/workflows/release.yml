@@ -1,6 +1,6 @@
 # PP856: the installer, built on a runner and attached to a GitHub release.
 #
-# package.cmd is what produces chiaki-ng-windows-installer.exe, and until this file it ran on one
+# package.cmd is what produces jogarei-windows-installer.exe, and until this file it ran on one
 # desk: MSYS2 at C:\msys64, libplacebo and SDL2 built there by hand, Inno Setup installed once.
 # build.yml proves the MSVC side builds and packages nothing, so a release was whatever that one
 # machine last compiled.
@@ -125,7 +125,7 @@ jobs:
       - name: the tag is the version the exe carries
         shell: pwsh
         run: |
-          $built = (Get-Item build\chiaki-ng-package\ChiakiNg.exe).VersionInfo.ProductVersion.Trim()
+          $built = (Get-Item build\chiaki-ng-package\Jogarei.exe).VersionInfo.ProductVersion.Trim()
           $tagged = "$env:GITHUB_REF_NAME" -replace '^v', ''
           Write-Output "tag $env:GITHUB_REF_NAME, built $built"
           if ($built -ne $tagged) {
@@ -139,8 +139,8 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force dist | Out-Null
-          $installer = "dist\PPortal-Setup-$env:VERSION.exe"
-          Copy-Item build\chiaki-ng-windows-installer.exe $installer
+          $installer = "dist\Jogarei-Setup-$env:VERSION.exe"
+          Copy-Item build\jogarei-windows-installer.exe $installer
           '{0}  {1}' -f (Get-FileHash $installer -Algorithm SHA256).Hash.ToLower(), (Split-Path $installer -Leaf) |
             Out-File -FilePath dist\SHA256SUMS.txt -Encoding ascii
           Get-Content dist\SHA256SUMS.txt
@@ -159,9 +159,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "$env:GITHUB_REF_NAME" `
-            "dist\PPortal-Setup-$env:VERSION.exe" `
+            "dist\Jogarei-Setup-$env:VERSION.exe" `
             dist\SHA256SUMS.txt `
-            --title "PPortal $env:VERSION" `
+            --title "Jogarei $env:VERSION" `
             --generate-notes `
             --verify-tag `
             --draft

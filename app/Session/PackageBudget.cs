@@ -55,7 +55,7 @@ public static class PackageBudget
     public const string PayloadRelativePath = @"build\chiaki-ng-package";
 
     /// <summary>And the installer itself.</summary>
-    public const string InstallerRelativePath = @"build\chiaki-ng-windows-installer.exe";
+    public const string InstallerRelativePath = @"build\jogarei-windows-installer.exe";
 
     /// <summary>The two names the file carries.</summary>
     public const string PayloadBudget = "payload_mib";

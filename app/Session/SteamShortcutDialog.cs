@@ -31,7 +31,7 @@ namespace ChiakiNg.Session;
 public sealed class SteamShortcutViewModel : DialogViewModel
 {
     /// <summary>What the name field starts as when no profile is in use.</summary>
-    public const string BaseName = "chiaki-ng";
+    public const string BaseName = App.ProductName;
 
     private string name;
     private string options;
@@ -66,7 +66,7 @@ public sealed class SteamShortcutViewModel : DialogViewModel
 
     /// <summary>
     /// The name field's default: the application name, and the profile after a SPACE where there is
-    /// one. A profile named "couch" gives "chiaki-ng couch".
+    /// one. A profile named "couch" gives "Jogarei couch".
     /// </summary>
     public static string DefaultName(string? currentProfile)
         => string.IsNullOrEmpty(currentProfile) ? BaseName : BaseName + " " + currentProfile;

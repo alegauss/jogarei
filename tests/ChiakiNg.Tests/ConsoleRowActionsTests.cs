@@ -205,7 +205,7 @@ public class ConsoleRowActionsTests : IDisposable
     {
         var model = new ConsoleListViewModel(null, static () => [], null, null, new AcceptingRemover())
         {
-            Processes = () => ["explorer", "ChiakiNg"],
+            Processes = () => ["explorer", "Jogarei"],
         };
 
         model.Remove(Manual("10.0.0.9"));
@@ -228,7 +228,7 @@ public class ConsoleRowActionsTests : IDisposable
 
         Assert.True(StoreOwnership.ClientIsRunning(["Chiaki"]));
         Assert.True(StoreOwnership.ClientIsRunning(["CHIAKI-NG"]));
-        Assert.False(StoreOwnership.ClientIsRunning(["chiakiwhatever", "ChiakiNg"]));
+        Assert.False(StoreOwnership.ClientIsRunning(["chiakiwhatever", "Jogarei"]));
         Assert.False(StoreOwnership.ClientIsRunning([]));
     }
 

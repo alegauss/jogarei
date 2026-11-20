@@ -72,7 +72,7 @@ public class BuildWorkflowTests(ITestOutputHelper output)
               - run: dotnet build ChiakiNg.slnx -c Debug
               - uses: actions/upload-artifact@v4
                 with:
-                  path: app/bin/Release/net10.0-windows/win-x64/publish/ChiakiNg.exe
+                  path: app/bin/Release/net10.0-windows/win-x64/publish/Jogarei.exe
         """;
 
     /// <summary>A path the repository answers for is picked out of the noise around it.</summary>
@@ -103,7 +103,7 @@ public class BuildWorkflowTests(ITestOutputHelper output)
     [Fact]
     public void WhatTheBuildWritesIsNotWhatItReads()
     {
-        Assert.True(BuildWorkflow.IsBuildOutput("app/bin/Release/net10.0-windows/win-x64/publish/ChiakiNg.exe"));
+        Assert.True(BuildWorkflow.IsBuildOutput("app/bin/Release/net10.0-windows/win-x64/publish/Jogarei.exe"));
         Assert.True(BuildWorkflow.IsBuildOutput("build/chiaki-ng-package"));
         Assert.False(BuildWorkflow.IsBuildOutput("app/ChiakiNg.csproj"));
     }

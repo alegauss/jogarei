@@ -18,15 +18,19 @@
 
 ; PP277: the name this port INSTALLS under, and it is deliberately not upstream's.
 ;
-; It is spelled the way the assembly is - ChiakiNg, as in ChiakiNg.exe, ChiakiNg.slnx and the
-; AssemblyName the csproj sets - so the selftest can hold it against that project rather than
-; against a literal here. It is also what {app} and the Start Menu group are built from, which is
-; the half of PP277 the AppId below does not cover: two installers with different identities
-; writing into one {autopf}\chiaki-ng would collide on the directory anyway.
-#define MyAppName "ChiakiNg"
-#define MyAppPublisher "Street Pea"
-#define MyAppURL "https://streetpea.github.io/chiaki-ng/"
-#define MyAppExeName "ChiakiNg.exe"
+; It is spelled the way the assembly is - Jogarei, as in Jogarei.exe and the AssemblyName the
+; csproj sets - so the selftest can hold it against that project rather than against a literal
+; here. It is also what {app} and the Start Menu group are built from, which is the half of PP277
+; the AppId below does not cover: two installers with different identities writing into one
+; {autopf}\chiaki-ng would collide on the directory anyway.
+;
+; This file keeps its upstream name, scripts\chiaki-ng.iss: package.cmd, the selftest, the release
+; workflow's test and the reference build all name it by path, and nobody downloading the
+; installer ever sees it. OutputBaseFilename below is the name that reaches a user.
+#define MyAppName "Jogarei"
+#define MyAppPublisher "Alexandre Oliveira"
+#define MyAppURL "https://alegauss.com/jogarei/"
+#define MyAppExeName "Jogarei.exe"
 #define MyAppPath "..\build\chiaki-ng-package"
 
 ; The payload is read at COMPILE time, twice: once for the version below and once for the
@@ -83,13 +87,13 @@ LicenseFile=..\LICENSES\AGPL-3.0-only-OpenSSL.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=chiaki-ng-windows-installer
+OutputBaseFilename=jogarei-windows-installer
 ; Into build\, which is ignored, because an installer is output and not source. Upstream's
 ; OutputDir was the repository root, which is how a 90 MB artefact ends up in a diff.
 OutputDir=..\build
 ; PP330: the same file the installed executable carries, and not upstream's mark. What this
-; installs is ChiakiNg.exe, so a setup window wearing the client's icon offers the wrong one.
-SetupIconFile=..\assets\pportal.ico
+; installs is Jogarei.exe, so a setup window wearing the client's icon offers the wrong one.
+SetupIconFile=..\assets\jogarei.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

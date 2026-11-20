@@ -418,4 +418,27 @@ Done when no title, heading or name on the site, the README, the repository or t
 installer contains PlayStation or PS, and the body text names the consoles only
 descriptively.
 
+### §PP865 The code's own names follow the product
+
+PP861 renames what a user sees and keeps the code's own names, so the tree still says
+ChiakiNg in 1248 files: app\ChiakiNg.csproj, tests\ChiakiNg.Tests and
+tests\ChiakiNg.Cases, ChiakiNg.slnx, and the ChiakiNg.* namespace that opens 1187 C#
+files. The owner asked on 2026-11-20 for the file names and every reference to follow
+the product.
+
+The move is mechanical and has to be one commit, because a half-renamed tree does not
+build: `git mv` the three projects, their folders and the solution to Jogarei, then
+replace the token ChiakiNg with Jogarei in every tracked text file, byte for byte. Not
+through Get-Content and Set-Content, which re-encode a BOM-less file as ANSI; a script
+that reads and writes bytes. Then every script, workflow and test that names a project,
+a folder or the solution by path.
+
+What stays: lib\ and its chiaki_ names (the vendored C, which a non-goal forbids
+patching), chiaki-shim.dll and chiaki-render.dll (the native boundary's names, not
+ChiakiNg), the settings and registry paths under Chiaki that the port reads from
+chiaki-ng on purpose, the ledger's past entries, and the PP prefix.
+
+Done when `git grep ChiakiNg` outside the governed docs' history returns nothing, and
+compile.cmd, test.cmd and package.cmd are green on the renamed tree.
+
 ## Block K — The site on the design system

@@ -5,7 +5,7 @@ using Xunit.Abstractions;
 namespace ChiakiNg.Tests;
 
 /// <summary>
-/// PP446: the documentation area at /pportal/docs, held against the site it is built beside.
+/// PP446: the documentation area at /jogarei/docs, held against the site it is built beside.
 ///
 /// The area is a second npm project with a second toolchain, and what joins it to the first is
 /// three lines in three files. None of the three fails loudly: a build order that empties the area
@@ -45,8 +45,8 @@ public class SiteDocsAreaTests(ITestOutputHelper output)
         if (SiteDocsArea.Read() is not { } files)
             return;
 
-        Assert.Equal("/pportal/", SiteDocsArea.SiteBase(files.Vite));
-        Assert.Equal("/pportal/docs", SiteDocsArea.DocsBase(files.Astro));
+        Assert.Equal("/jogarei/", SiteDocsArea.SiteBase(files.Vite));
+        Assert.Equal("/jogarei/docs", SiteDocsArea.DocsBase(files.Astro));
         Assert.Equal("../dist/docs", SiteDocsArea.DocsOutDir(files.Astro));
     }
 
@@ -102,20 +102,20 @@ public class SiteDocsAreaTests(ITestOutputHelper output)
     public void ABaseThatDisagreesWithTheSiteIsReported()
     {
         const string Package = """{ "scripts": { "build": "node scripts/prerender.mjs && npm run build:docs" } }""";
-        const string Vite = """export const BASE = "/pportal/";""";
+        const string Vite = """export const BASE = "/jogarei/";""";
 
         string reported = Assert.Single(SiteDocsArea.Unmet(Package, Vite, Base("/docs")));
-        Assert.Contains("/pportal/docs", reported, StringComparison.Ordinal);
+        Assert.Contains("/jogarei/docs", reported, StringComparison.Ordinal);
 
         // And the agreeing pair is not reported.
-        Assert.Empty(SiteDocsArea.Unmet(Package, Vite, Base("/pportal/docs")));
+        Assert.Empty(SiteDocsArea.Unmet(Package, Vite, Base("/jogarei/docs")));
     }
 
     /// <summary>The expected base is derived from the site's, whatever the repository is renamed to.</summary>
     [Fact]
     public void TheExpectedBaseFollowsARename()
     {
-        Assert.Equal("/pportal/docs", SiteDocsArea.Expected("/pportal/"));
+        Assert.Equal("/jogarei/docs", SiteDocsArea.Expected("/jogarei/"));
         Assert.Equal("/other/docs", SiteDocsArea.Expected("/other/"));
         Assert.Equal("/other/docs", SiteDocsArea.Expected("/other"));
     }
@@ -131,11 +131,11 @@ public class SiteDocsAreaTests(ITestOutputHelper output)
 
         const string Package = """{ "scripts": { "build": "node scripts/prerender.mjs && npm run build:docs" } }""";
         string astro = """
-            const BASE = "/pportal/docs";
+            const BASE = "/jogarei/docs";
             const OUT_DIR = "dist";
             """;
 
-        string reported = Assert.Single(SiteDocsArea.Unmet(Package, """export const BASE = "/pportal/";""", astro));
+        string reported = Assert.Single(SiteDocsArea.Unmet(Package, """export const BASE = "/jogarei/";""", astro));
         Assert.Contains("site/dist", reported, StringComparison.Ordinal);
     }
 
@@ -146,11 +146,11 @@ public class SiteDocsAreaTests(ITestOutputHelper output)
         const string Package = """{ "scripts": { "build": "node scripts/prerender.mjs && npm run build:docs" } }""";
 
         Assert.Contains(
-            SiteDocsArea.Unmet(Package, "", Base("/pportal/docs")),
+            SiteDocsArea.Unmet(Package, "", Base("/jogarei/docs")),
             s => s.Contains("no longer exports a BASE", StringComparison.Ordinal));
 
         Assert.Contains(
-            SiteDocsArea.Unmet(Package, """export const BASE = "/pportal/";""", """const OUT_DIR = "../dist/docs";"""),
+            SiteDocsArea.Unmet(Package, """export const BASE = "/jogarei/";""", """const OUT_DIR = "../dist/docs";"""),
             s => s.Contains("no longer declares a BASE", StringComparison.Ordinal));
     }
 

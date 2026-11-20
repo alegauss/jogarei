@@ -54,10 +54,13 @@ public class ConfigSettingsTests
         Assert.False(model.VerboseLogs);
     }
 
-    /// <summary>The About button builds its text from the application's name and an appended -ng.</summary>
+    /// <summary>
+    /// The About button names the product (PP861), not Qt's application name with -ng appended as
+    /// the QML does: that name is the settings store's and stays Chiaki.
+    /// </summary>
     [Fact]
-    public void TheAboutButtonAppendsNgToTheApplicationName()
-        => Assert.Equal("About Chiaki-ng", ConfigSettingsViewModel.AboutCaption(QtPaths.Application));
+    public void TheAboutButtonNamesTheProduct()
+        => Assert.Equal("About Jogarei", ConfigSettingsViewModel.AboutCaption(App.ProductName));
 
     /// <summary>
     /// The profile is passed in rather than read from the tab's own store, which is the whole

@@ -30,7 +30,7 @@ public readonly record struct CountedClaim(
 /// spelled exactly, into whichever governed command that document takes. Measured over one session:
 /// three fixes, six corrections, one of them addressed to the wrong section on the first try.
 ///
-/// So the reading moved here, where both the test and <c>ChiakiNg.exe --recount</c> reach it, and
+/// So the reading moved here, where both the test and <c>Jogarei.exe --recount</c> reach it, and
 /// what this adds over the test is <see cref="Remedy"/> - the exact roadkeep call that fixes one
 /// claim, with the anchor resolved and both numbers filled in. It does not WRITE: the governed
 /// files are roadkeep's, a hook denies a hand edit to them, and a tool that went around that would

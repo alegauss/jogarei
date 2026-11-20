@@ -9,7 +9,7 @@
 #   below it - the debt was paid, so lower this line in the same commit, or the ratchet
 #             quietly loosens by exactly what was just gained
 #
-# `ChiakiNg.exe --ratchet` (PP305) lists what is owed, each id beside the ledger's own
+# `Jogarei.exe --ratchet` (PP305) lists what is owed, each id beside the ledger's own
 # sentence for it - which is how to tell a task with no test from one whose tests were
 # written under the id it continued. The second kind is paid by naming both ids.
 #

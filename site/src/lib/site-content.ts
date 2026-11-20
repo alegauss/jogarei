@@ -28,18 +28,18 @@ export type Rich = Run[];
 /* ------------------------------------------------------------------ meta + chrome */
 
 export const meta = {
-  title: "PPortal: PlayStation Remote Play, rebuilt for Windows",
+  title: "Jogarei: PlayStation Remote Play, rebuilt for Windows",
   description:
     "A free PlayStation Remote Play client for Windows, built on .NET 10 and WPF. Ten-bit video through DirectComposition, hardware decode on whatever card you own, your consoles and pairings carried over, and no bundled browser.",
   og: {
-    title: "PPortal",
+    title: "Jogarei",
     description:
       "PlayStation Remote Play as a Windows application: WPF on the system Fluent theme, ten-bit video through DirectComposition, and the decode path your machine actually has.",
-    url: "https://alegauss.com/pportal/",
+    url: "https://alegauss.com/jogarei/",
   },
 } as const;
 
-export const repoUrl = "https://github.com/alegauss/pportal";
+export const repoUrl = "https://github.com/alegauss/jogarei";
 export const parentUrl = "https://alegauss.com/";
 
 // The release page rather than a file: the installer carries its version in its name, so
@@ -59,28 +59,28 @@ export const THEME_KEY = "pp-theme";
 // destinations. Two entries also fit where four did not, which is what lets the labels
 // survive far further down the width than they used to.
 //
-// "Docs" is the third and it leaves this site: /pportal/docs/ is a separate build under the
+// "Docs" is the third and it leaves this site: /jogarei/docs/ is a separate build under the
 // same base, so it is written as a path like the other two and there is no route for it here.
 export const navLinks = [
-  { href: "/pportal/features/", label: "Features" },
-  { href: "/pportal/hardware/", label: "Hardware" },
-  { href: "/pportal/docs/", label: "Docs" },
+  { href: "/jogarei/features/", label: "Features" },
+  { href: "/jogarei/hardware/", label: "Hardware" },
+  { href: "/jogarei/docs/", label: "Docs" },
 ] as const;
 
 export const footer = {
   links: [
     // Below 620px the nav's labels give way to the buttons, so these two are the only route
     // links a phone reader has. They lead the list for that reason.
-    { href: "/pportal/features/", label: "Features" },
-    { href: "/pportal/hardware/", label: "Hardware" },
-    { href: "/pportal/docs/", label: "Docs" },
+    { href: "/jogarei/features/", label: "Features" },
+    { href: "/jogarei/hardware/", label: "Hardware" },
+    { href: "/jogarei/docs/", label: "Docs" },
     { href: repoUrl, label: "GitHub" },
     { href: releasesUrl, label: "Releases" },
     { href: `${repoUrl}/blob/main/CONTRIBUTOR_GUIDE.md`, label: "Contributing" },
     { href: `${repoUrl}/blob/main/COPYING`, label: "Licence" },
   ],
   disclaimer:
-    "Unofficial community project. Not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment. “PlayStation”, “PS4” and “PS5” are trademarks of Sony Interactive Entertainment Inc. PPortal is free software under the AGPL-3.0, and it stands on the Chiaki and chiaki-ng projects, whose protocol work made it possible. © 2026 Alexandre Oliveira.",
+    "Unofficial community project. Not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment. “PlayStation”, “PS4” and “PS5” are trademarks of Sony Interactive Entertainment Inc. Jogarei is free software under the AGPL-3.0, and it stands on the Chiaki and chiaki-ng projects, whose protocol work made it possible. © 2026 Alexandre Oliveira.",
 } as const;
 
 /* --------------------------------------------------------------- sponsor */
@@ -95,7 +95,7 @@ export const sponsor: SponsorDeclaration = {
     name: "Viglet",
     url: "https://www.viglet.org",
     siteLabel: "viglet.org",
-    logo: "/pportal/viglet/viglet-logo.png",
+    logo: "/jogarei/viglet/viglet-logo.png",
     summary:
       "Open source search and content tools for organisations with a lot to publish. Run on your own servers, with no per-user licence.",
   },
@@ -104,7 +104,7 @@ export const sponsor: SponsorDeclaration = {
       id: "turing",
       name: "Viglet Turing",
       url: "https://turing.viglet.org/",
-      logo: "/pportal/viglet/turing-logo.png",
+      logo: "/jogarei/viglet/turing-logo.png",
       inline:
         "so visitors find what they came for, with AI answers drawn only from your own content",
     },
@@ -112,7 +112,7 @@ export const sponsor: SponsorDeclaration = {
       id: "shio",
       name: "Viglet Shio",
       url: "https://shio.viglet.org/",
-      logo: "/pportal/viglet/shio-logo.png",
+      logo: "/jogarei/viglet/shio-logo.png",
       inline:
         "so a new page goes live the same day, reviewed and approved by your own team",
     },
@@ -126,9 +126,9 @@ export const hero = {
   titleLead: "PlayStation Remote Play,",
   titleAccent: "rebuilt as a Windows app.",
   sub: [
-    "PPortal streams your PS5 or PS4 to a window that behaves like the rest of Windows: ",
+    "Jogarei streams your PS5 or PS4 to a window that behaves like the rest of Windows: ",
     { b: "WPF on the system Fluent theme" },
-    ", ten bits of colour composed by DirectComposition, and hardware decode on the card the machine already has. It reads the consoles and the pairings you have already set up, so the first run is not a setup.",
+    ", ten bits of colour composed by DirectComposition, and hardware decode on the card the machine already has. It reads the consoles and the pairings you have already set up, so the first run is not a setup. Jogarei is Portuguese for “I will play”.",
   ] as Rich,
   // No emoji on these three, and that is a writing rule rather than a taste: an emoji glued
   // to the front of a feature line is the most recognisable mannerism of a generated landing
@@ -205,7 +205,7 @@ export const why = {
   eyebrow: "Why it was rebuilt",
   heading: "A remote play client that is a Windows program",
   intro: [
-    "The stream is the hard part and the Chiaki and chiaki-ng projects are what worked it out. PPortal is a port of that work rather than a shell around it: the transport, the reordering, the error correction and the frame path are its own code, each one held against the C it replaces. Everything else is new — a window that follows the OS theme, a decode path chosen on the machine's own answer, and an installer that does not carry a second browser — and all of it runs on ",
+    "The stream is the hard part and the Chiaki and chiaki-ng projects are what worked it out. Jogarei is a port of that work rather than a shell around it: the transport, the reordering, the error correction and the frame path are its own code, each one held against the C it replaces. Everything else is new — a window that follows the OS theme, a decode path chosen on the machine's own answer, and an installer that does not carry a second browser — and all of it runs on ",
     { b: dotnet() },
     ".",
   ] as Rich,
@@ -295,8 +295,8 @@ export const input = {
     [{ b: "Not only a PlayStation pad." }, " SDL is called directly rather than rewritten, so anything it can map arrives mapped, an Xbox controller included, and the haptics the console sends fold to plain rumble on a pad with no haptic motors."] as Rich,
     [{ b: "Keyboard too." }, " Every key binding is a row in the settings, for the machine where the pad is in another room."] as Rich,
   ],
-  terminalTitle: "pportal.exe --help",
-  helpLead: "PPortal opens the application when you run it with nothing. The rest are the diagnostics for when a pad, a driver or a machine disagrees with you:",
+  terminalTitle: "Jogarei.exe --help",
+  helpLead: "Jogarei opens the application when you run it with nothing. The rest are the diagnostics for when a pad, a driver or a machine disagrees with you:",
   helpNote: "An unrecognised flag is refused with this list and a non-zero exit, rather than silently opening the window.",
 };
 
@@ -383,7 +383,7 @@ export const floor = {
     ] as Rich,
   ],
   linkLabel: "The hardware page →",
-  linkHref: "/pportal/hardware/",
+  linkHref: "/jogarei/hardware/",
 };
 
 /* ------------------------------------------------------------------ non-goals */
@@ -446,10 +446,10 @@ export const download = {
 // is only the page's own frame: what the list is, and why there is a page per part at all.
 export const featuresIndex = {
   meta: {
-    title: "Features: one page per part of PPortal",
+    title: "Features: one page per part of Jogarei",
     description:
       "The video path, the controllers, the screens, the latency work and the setup, each with a page of its own that says how it is built rather than that it exists.",
-    ogTitle: "PPortal: features",
+    ogTitle: "Jogarei: features",
     ogDescription:
       "Five pages, one per part of the client: the picture, controllers, screens, latency and setup.",
   },
@@ -463,10 +463,10 @@ export const featuresIndex = {
 
 export const hardware = {
   meta: {
-    title: "Hardware: what PPortal asks of your GPU",
+    title: "Hardware: what Jogarei asks of your GPU",
     description:
       "NVIDIA is where the tuning goes, and first is not only: hardware decode, a vendor-neutral renderer and an SDR present hold on a machine with no NVIDIA card, and a missing feature is missing from the menu.",
-    ogTitle: "PPortal: hardware",
+    ogTitle: "Jogarei: hardware",
     ogDescription:
       "The floor a machine with no NVIDIA card keeps, and what absence is allowed to look like.",
   },

@@ -3,13 +3,13 @@
 ```
 cd app
 dotnet build                     debug, framework-dependent, ~1s incremental
-dotnet publish -c Release        one self-contained ChiakiNg.exe, ~62 MB
+dotnet publish -c Release        one self-contained Jogarei.exe, ~62 MB
 dotnet run                       open the window
-ChiakiNg.exe --selftest          run the assertions, print the Qt store, exit 0 or 1
+Jogarei.exe --selftest          run the assertions, print the Qt store, exit 0 or 1
 ```
 
 Output lives at `bin\<config>\net10.0-windows\win-x64\`, and the publish at
-`…\win-x64\publish\ChiakiNg.exe`.
+`…\win-x64\publish\Jogarei.exe`.
 
 ## What this is, and what it is not
 
@@ -31,7 +31,7 @@ not this one's.
   `dotnet build` too and lay the whole runtime down every time — claude-tray measured 252 files
   and 155.6 MB, turning a no-op build from 1.2s into 81s and then 395s on unchanged source.
 - **`RuntimeIdentifier` is unconditional**, so the output path is the same in Debug and Release
-  and anything that spells `…\win-x64\ChiakiNg.exe` stays true.
+  and anything that spells `…\win-x64\Jogarei.exe` stays true.
 - **The version is in one place.** `<Version>` in the csproj, tracking the Qt client's
   `CHIAKI_VERSION` from `CMakeLists.txt`. `app.manifest` needs its own four-part copy, and
   nothing in the SDK relates the two, so the `VerifyManifestVersion` target **fails the build**
@@ -53,7 +53,7 @@ lost, which is the failure the whole class exists to prevent.
 
 Output is bound to the inherited handle first and a console attached only if there is none.
 `AttachConsole` **replaces** the standard handles rather than adding to them, so attaching first
-destroys a redirect: `ChiakiNg.exe --selftest > out.txt` wrote a zero-byte file and exited 0
+destroys a redirect: `Jogarei.exe --selftest > out.txt` wrote a zero-byte file and exited 0
 until that order was fixed.
 
 ## Why WPF and not WinForms

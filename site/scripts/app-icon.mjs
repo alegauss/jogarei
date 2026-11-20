@@ -19,8 +19,8 @@ const siteDir = join(here, "..");
 const repoDir = join(siteDir, "..");
 
 const logoPath = join(siteDir, "public", "logo.svg");
-const icoPath = join(repoDir, "assets", "pportal.ico");
-const stampPath = join(repoDir, "assets", "pportal.ico.source");
+const icoPath = join(repoDir, "assets", "jogarei.ico");
+const stampPath = join(repoDir, "assets", "jogarei.ico.source");
 
 // 16 is the title bar, 32 the taskbar and Alt-Tab, 256 what a large-icon Explorer view and
 // the installer's own window ask for. The rest are what Windows scales between rather than
@@ -139,7 +139,7 @@ const digest = createHash("sha256").update(logo.replace(/\r\n/g, "\n"), "utf8").
 writeFileSync(
   stampPath,
   [
-    "# PP330: what assets/pportal.ico was rendered from. Written by site/scripts/app-icon.mjs;",
+    "# PP330: what assets/jogarei.ico was rendered from. Written by site/scripts/app-icon.mjs;",
     "# AppIconTests fails when the source below no longer hashes to this.",
     "source site/public/logo.svg",
     `sha256 ${digest}`,
@@ -149,5 +149,5 @@ writeFileSync(
 );
 
 console.log(
-  `app-icon: assets/pportal.ico  ${SIZES.join(", ")}  (${(ico.length / 1024).toFixed(0)} kB)`,
+  `app-icon: assets/jogarei.ico  ${SIZES.join(", ")}  (${(ico.length / 1024).toFixed(0)} kB)`,
 );

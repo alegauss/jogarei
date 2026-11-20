@@ -125,11 +125,18 @@ public sealed class ConfigSettingsViewModel : DialogViewModel
     /// <summary>The mask the session gets, which is everything less one bit.</summary>
     public ChiakiLogLevel LogMask => LogSwitches.MaskFor(VerboseLogs);
 
-    /// <summary>The About button's text, which appends -ng to the application's own name.</summary>
-    public static string AboutCaption(string applicationName)
+    /// <summary>
+    /// The About button's text: "About" and the product's name.
+    ///
+    /// PP861 parted this from the QML, which appends -ng to Qt's application name and so says
+    /// "About Chiaki-ng". That name is the settings store's (<see cref="QtPaths.Application"/>), kept
+    /// on purpose so the port reads chiaki-ng's settings; the product a user sees is called
+    /// something else, and the button names that one.
+    /// </summary>
+    public static string AboutCaption(string productName)
     {
-        ArgumentNullException.ThrowIfNull(applicationName);
-        return $"About {applicationName}-ng";
+        ArgumentNullException.ThrowIfNull(productName);
+        return $"About {productName}";
     }
 }
 

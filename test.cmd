@@ -82,7 +82,7 @@ if defined NO_APP (
 )
 if not exist "%~dp0app\ChiakiNg.csproj" goto after_app
 
-set "APP_EXE=%~dp0app\bin\Debug\net10.0-windows\win-x64\ChiakiNg.exe"
+set "APP_EXE=%~dp0app\bin\Debug\net10.0-windows\win-x64\Jogarei.exe"
 if not exist "%APP_EXE%" (
     rem Two absences, and only one is the caller's fault. No SDK means this machine cannot
     rem produce the binary and its C suite still counts, so that is a note. An SDK with nothing
@@ -93,7 +93,7 @@ if not exist "%APP_EXE%" (
         echo [test] .NET host: no .NET SDK here, selftest not run ^(the C suite above still counts^)
         goto after_app
     )
-    echo [test] .NET host: app\bin\Debug\...\ChiakiNg.exe does not exist - run compile.cmd first.
+    echo [test] .NET host: app\bin\Debug\...\Jogarei.exe does not exist - run compile.cmd first.
     echo [test]            Refusing rather than reporting green over assertions nobody ran.
     exit /b 1
 )

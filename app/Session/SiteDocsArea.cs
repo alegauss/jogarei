@@ -14,7 +14,7 @@ namespace ChiakiNg.Session;
 /// `build:docs` anywhere earlier in the chain and the client build deletes the whole area on its
 /// way past, leaving a deploy artefact that is correct except for one missing directory.
 ///
-/// THE BASE. GitHub Pages derives "/pportal/" from the repository name, and Astro rewrites only
+/// THE BASE. GitHub Pages derives "/jogarei/" from the repository name, and Astro rewrites only
 /// the links it generates itself. A base that disagrees with site/vite.config.ts publishes an area
 /// whose every internal link is wrong, and the dev server serves all of them.
 ///
@@ -172,11 +172,11 @@ public static partial class SiteDocsArea
     [GeneratedRegex(@"""build""\s*:\s*""(?<script>[^""]*)""")]
     private static partial Regex BuildScriptRegex();
 
-    // export const BASE = "/pportal/";
+    // export const BASE = "/jogarei/";
     [GeneratedRegex(@"export\s+const\s+BASE\s*=\s*""(?<base>[^""]+)""")]
     private static partial Regex SiteBaseRegex();
 
-    // const BASE = "/pportal/docs";
+    // const BASE = "/jogarei/docs";
     [GeneratedRegex(@"(?<!export\s)const\s+BASE\s*=\s*""(?<base>[^""]+)""")]
     private static partial Regex DocsBaseRegex();
 

@@ -15,8 +15,8 @@ public class InstallerIdentityTests
 {
     /// <summary>The two lines, as the script spells them.</summary>
     private const string Script = """
-        #define MyAppName "ChiakiNg"
-        #define MyAppExeName "ChiakiNg.exe"
+        #define MyAppName "Jogarei"
+        #define MyAppExeName "Jogarei.exe"
 
         [Setup]
         AppId={{68DF7098-C6C6-4186-9099-44C66A60793A}
@@ -65,6 +65,6 @@ public class InstallerIdentityTests
     [Fact]
     public void TheInstalledNameIsTheDefineAndNotTheReferenceToIt()
     {
-        Assert.Equal("ChiakiNg", InstallerScript.InstalledName(Script));
+        Assert.Equal("Jogarei", InstallerScript.InstalledName(Script));
     }
 }

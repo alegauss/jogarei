@@ -25,9 +25,9 @@ import { Signal } from "./ui/Signal";
 // The mark carries its own silhouette, so it is sized by height and left to find its width: a
 // square box and a corner radius belong to a tile, which this mark is not.
 const brand = {
-  href: "/pportal/",
-  name: "PPortal",
-  logo: "/pportal/logo.svg",
+  href: "/jogarei/",
+  name: "Jogarei",
+  logo: "/jogarei/logo.svg",
   logoShape: "mark",
 } as const;
 

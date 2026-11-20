@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "The technical documentation area, at /pportal/docs. Its own npm project, building into the site's dist/docs.",
+  "description": "The technical documentation area, at /jogarei/docs. Its own npm project, building into the site's dist/docs.",
   "scripts": {
     "prebuild": "node scripts/assets.mjs",
     "dev": "npm run prebuild && astro dev",

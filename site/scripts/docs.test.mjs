@@ -20,7 +20,7 @@ import { fileURLToPath } from "node:url";
 const siteDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 const distDir = join(siteDir, "dist");
 const docsDir = join(distDir, "docs");
-const BASE = "/pportal/";
+const BASE = "/jogarei/";
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
@@ -101,7 +101,7 @@ test("no absolute href or src in the docs escapes the base", () => {
   assert.deepEqual(
     escaped,
     [],
-    "a root-absolute link that does not carry /pportal/ is served locally and 404s in "
+    "a root-absolute link that does not carry /jogarei/ is served locally and 404s in "
       + "production, because GitHub Pages puts every path under the repository name",
   );
 });

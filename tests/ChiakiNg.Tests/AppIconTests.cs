@@ -22,8 +22,8 @@ namespace ChiakiNg.Tests;
 public partial class AppIconTests
 {
     /// <summary>The rendered icon, and the stamp the renderer writes beside it.</summary>
-    private const string IconRelativePath = @"assets\pportal.ico";
-    private const string StampRelativePath = @"assets\pportal.ico.source";
+    private const string IconRelativePath = @"assets\jogarei.ico";
+    private const string StampRelativePath = @"assets\jogarei.ico.source";
 
     /// <summary>The mark itself, spelled as the stamp spells it - forward slashes and all.</summary>
     private const string LogoRelativePath = "site/public/logo.svg";
@@ -47,12 +47,12 @@ public partial class AppIconTests
         Assert.True(root is not null, "not running out of a checkout");
 
         string named = DeclaredIn(ApplicationIconRegex(), Path.Combine(root, ProjectRelativePath));
-        Assert.Equal(@"..\assets\pportal.ico", named);
+        Assert.Equal(@"..\assets\jogarei.ico", named);
         Assert.True(File.Exists(Path.Combine(root, IconRelativePath)), IconRelativePath);
     }
 
     /// <summary>
-    /// The installer wears the icon of the thing it installs. It packages ChiakiNg.exe (PP274), so
+    /// The installer wears the icon of the thing it installs. It packages Jogarei.exe (PP274), so
     /// the two paths resolve to one file - the csproj's is relative to <c>app\</c> and the script's
     /// to <c>scripts\</c>, which is the whole reason this is asserted and not read off.
     /// </summary>

@@ -5,7 +5,7 @@
   //
   // The Debug build, which is what `compile.cmd` leaves and what the interaction tests have always
   // driven. The RID is in the path because the app sets RuntimeIdentifier unconditionally.
-  "executable": "app/bin/Debug/net10.0-windows/win-x64/ChiakiNg.exe",
+  "executable": "app/bin/Debug/net10.0-windows/win-x64/Jogarei.exe",
 
   "sourceRoot": "app",
 

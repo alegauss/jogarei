@@ -85,7 +85,7 @@ public static class StreamRun
 
         var window = new Window
         {
-            Title = "ChiakiNg",
+            Title = App.ProductName,
             Width = 1280,
             Height = 720,
             Background = System.Windows.Media.Brushes.Black,

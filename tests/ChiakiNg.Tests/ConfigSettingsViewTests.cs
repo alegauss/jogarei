@@ -60,7 +60,7 @@ public class ConfigSettingsViewTests
         Assert.False(verbose.IsChecked);
     });
 
-    /// <summary>The About button is built from the name the two clients share.</summary>
+    /// <summary>The About button is built from the product's name (PP861).</summary>
     [Fact]
     public void TheAboutButtonNamesThisApplication() => Apartment.Run(() =>
     {
@@ -68,7 +68,7 @@ public class ConfigSettingsViewTests
         Realise(view);
 
         Assert.Equal(
-            ConfigSettingsViewModel.AboutCaption(QtPaths.Application),
+            ConfigSettingsViewModel.AboutCaption(App.ProductName),
             ((Button)view.FindName("AboutButton")).Content);
     });
 }
