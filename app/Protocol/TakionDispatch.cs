@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which branch of takion_handle_packet a datagram took.</summary>
 public enum TakionDispatchBranch

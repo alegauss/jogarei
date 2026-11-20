@@ -1,6 +1,6 @@
-﻿using ChiakiNg.Session;
+﻿using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>How the lookup for the websocket's host ended.</summary>
 public enum FqdnLookupOutcome

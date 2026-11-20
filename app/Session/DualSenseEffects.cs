@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP127: the 47-byte effects report a DualSense is sent, built here instead of by SDL_zero and

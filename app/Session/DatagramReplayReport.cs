@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text;
-using ChiakiNg.Protocol;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>Why a replay printed nothing.</summary>
 public enum ReplayOutcome
@@ -348,7 +348,7 @@ public static class DatagramReplayReport
 
         foreach (CapturedDatagram datagram in datagrams)
         {
-            if (TakionPacketMac.ReadKeyPosition(datagram.Head, out uint low) == ChiakiNg.Native.ChiakiError.Success)
+            if (TakionPacketMac.ReadKeyPosition(datagram.Head, out uint low) == Jogarei.Native.ChiakiError.Success)
                 lows.Add(low);
         }
 
@@ -484,7 +484,7 @@ public static class DatagramReplayReport
             byte[] theirs = [.. datagram.Head];
 
             TakionPacketMac.MacResult managed = TakionPacketMac.Apply(mine, gmac: null);
-            ChiakiNg.Native.ChiakiError native =
+            Jogarei.Native.ChiakiError native =
                 Takion.PacketMacWithoutCrypt(theirs, keyPos: 0, out byte[]? before);
 
             if (managed.Error != native

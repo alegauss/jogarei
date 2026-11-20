@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One constant that has to be derived rather than written down again.</summary>
 /// <param name="File">The file it lives in, relative to app/Protocol.</param>

@@ -1,7 +1,7 @@
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>The five fields an INIT_ACK carries, before any of them is judged.</summary>
 public readonly record struct TakionInitAck(

@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP33: what one session message asks for, as the flags a caller waits on.

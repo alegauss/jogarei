@@ -1,8 +1,8 @@
 using System.Text;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP293: the session request and the answer's three headers - the outermost thing session.c does,

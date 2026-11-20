@@ -1,8 +1,8 @@
 using System.Net.Sockets;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>How far the control channel's TCP connect got, and why it stopped.</summary>
 public enum CtrlSocketOutcome

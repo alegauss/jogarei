@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP358: every response parser in lib/src matches header names without regard to case.

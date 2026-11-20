@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP16: the Controllers tab's rumble combo, and the one label out of six that is not its own word.

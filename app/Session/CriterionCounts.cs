@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One number a criterion states, and the program value it was copied from.</summary>
 /// <param name="About">The task whose criterion it is.</param>

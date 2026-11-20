@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
 using System.Security.Cryptography;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP298: GHASH and the GCM tag. PP817: as the ORACLE, and as a fallback nothing here expects.
@@ -14,7 +14,7 @@ namespace ChiakiNg.Protocol;
 /// PP817 ASKED THE PLATFORM RATHER THAN THE WRAPPER, AND THE PLATFORM SAYS YES. That measurement
 /// was about AesGcm's contract and was read as though it were about the algorithm - CNG takes a
 /// nonce as a buffer and a length, accepts the block-sized one, and agrees with every tag below.
-/// So <see cref="ChiakiNg.Native.CngGcm"/> is what the live GMAC goes through now.
+/// So <see cref="Jogarei.Native.CngGcm"/> is what the live GMAC goes through now.
 ///
 /// WHICH MAKES THIS MORE USEFUL AND NOT LESS. An independent second implementation is what says
 /// CNG was asked correctly, and it is held to chiaki's own bytes - so the two disagreeing is a

@@ -1,6 +1,6 @@
-﻿using ChiakiNg.Session;
+﻿using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Where a session is in its life.</summary>
 public enum SessionPhase

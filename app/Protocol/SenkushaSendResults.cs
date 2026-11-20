@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP379: no call in senkusha.c has its answer discarded, and the disconnect says when it failed.

@@ -1,11 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Threading;
-using ChiakiNg.Protocol;
-using ChiakiNg.Session;
-using ChiakiNg.Settings;
+using Jogarei.Protocol;
+using Jogarei.Session;
+using Jogarei.Settings;
 
-namespace ChiakiNg;
+namespace Jogarei;
 
 /// <summary>
 /// PP1: the application object. PP2 added the one thing it does before drawing anything.

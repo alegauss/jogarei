@@ -1,7 +1,7 @@
 using System.Text.Json;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP33: how a candidate address was arrived at.

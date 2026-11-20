@@ -1,7 +1,7 @@
 using System.Text;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP727, under PP707: stream_connection_send_big's payload - the message that asks for a stream.

@@ -2,9 +2,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Views;
+namespace Jogarei.Views;
 
 /// <summary>
 /// PP284: the window PP163's last question is answered by looking at.

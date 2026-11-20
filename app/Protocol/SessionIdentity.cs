@@ -1,9 +1,9 @@
 using System.Net.Sockets;
 using System.Security.Cryptography;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP337, continuing PP293: what chiaki_session_init decides before anything reaches the network.

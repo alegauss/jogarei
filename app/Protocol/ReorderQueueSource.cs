@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP107: the check that makes an ACCEPTED defect expire loudly.

@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>One managed enum and the C enum it mirrors.</summary>
 /// <param name="Managed">The managed type, whose declared order is the claim.</param>

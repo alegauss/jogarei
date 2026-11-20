@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What one arriving ctrl message does to the remote crypt counter.</summary>
 /// <param name="DecryptAt">The counter value the payload is decrypted at.</param>

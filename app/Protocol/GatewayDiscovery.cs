@@ -1,6 +1,6 @@
-﻿using ChiakiNg.Session;
+﻿using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which of the five places writes the gateway status.</summary>
 public enum StatusWriter

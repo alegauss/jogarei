@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>The stream connection's six exit labels, in the order they cascade.</summary>
 public enum StreamExitLabel

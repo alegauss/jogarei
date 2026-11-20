@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP368: nothing that owns a thread is released with a bare free, and nothing is copied into an

@@ -1,5 +1,5 @@
 {
-  // WW88. The mapping screen, driven, migrated out of tests\ChiakiNg.Tests\Interaction.cs.
+  // WW88. The mapping screen, driven, migrated out of tests\Jogarei.Tests\Interaction.cs.
   //
   // PP227 wrote that file because PP223's tests call the plain method underneath a handler and never
   // raise a press, so whether a real press reaches it at all went unobserved — and a picture cannot

@@ -1,7 +1,7 @@
 using System.Text.Json;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Why a device list could not be read.</summary>
 public enum DeviceListResult

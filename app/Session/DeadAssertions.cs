@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP318: assertions that compare two constants, which no analyzer names.

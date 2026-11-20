@@ -1,7 +1,7 @@
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What one ping of the round-trip test came to.</summary>
 public enum SenkushaPing

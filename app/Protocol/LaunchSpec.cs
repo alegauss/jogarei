@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// ChiakiLaunchSpec, reduced to what the format actually substitutes.

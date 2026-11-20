@@ -1,8 +1,8 @@
 using System.Net;
-using ChiakiNg.Native;
-using ChiakiNg.Settings;
+using Jogarei.Native;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP600: where the console list's three inputs come from, which nothing had ever assembled.

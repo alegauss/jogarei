@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>An encoder and the message its failure log claims to have been encoding.</summary>
 /// <param name="Function">The C function name.</param>

@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One decision the C's recorder makes, and where the port makes the same one.</summary>
 /// <param name="InTheC">The text of the decision, as feedbacksender.c writes it.</param>

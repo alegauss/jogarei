@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP528: the region between the decoder pull and the presenter, where a loss count can go

@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>Which side of the audio engine a capture reads.</summary>
 public enum CaptureSide

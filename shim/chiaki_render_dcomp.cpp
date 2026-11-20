@@ -208,7 +208,7 @@ done:
 static HWND chiaki_render_dcomp_window(void)
 {
 	HINSTANCE instance = GetModuleHandleW(nullptr);
-	static const wchar_t *class_name = L"ChiakiNgDCompProbe";
+	static const wchar_t *class_name = L"JogareiDCompProbe";
 	WNDCLASSEXW cls = {};
 
 	cls.cbSize = sizeof(cls);

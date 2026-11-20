@@ -1,12 +1,12 @@
 using System.Text;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP29: discovery's pure half in managed code, where PP6 only wrapped it.
 ///
-/// ChiakiNg.Session.Discovery reaches every one of these through the shim and says so - "nothing in
+/// Jogarei.Session.Discovery reaches every one of these through the shim and says so - "nothing in
 /// this file writes a byte of the protocol itself". That was the right call when a reply parser on
 /// this side of the seam was the one piece of discovery a console would have to be present to
 /// disprove. It is not the right call now: the shim IS the oracle, so the parser can be written

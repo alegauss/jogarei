@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace ChiakiNg;
+namespace Jogarei;
 
 /// <summary>
 /// The window that opens empty (PP1), and PP223's one way to put something in it.

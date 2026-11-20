@@ -1,7 +1,7 @@
 using System.Net.WebSockets;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP33: the one call site that is not an HTTP transfer - PSN's push notification WebSocket.

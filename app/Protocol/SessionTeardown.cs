@@ -1,7 +1,7 @@
-﻿using ChiakiNg.Native;
-using ChiakiNg.Session;
+﻿using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which of the session thread's two exits a failure takes.</summary>
 public enum SessionExit

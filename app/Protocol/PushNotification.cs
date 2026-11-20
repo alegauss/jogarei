@@ -1,7 +1,7 @@
 using System.Text.Json;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP33: what arrives on the push socket, as the FLAGS the core waits on.

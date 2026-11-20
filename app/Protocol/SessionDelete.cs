@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP235: deleting a session, and the messages that name a different call.

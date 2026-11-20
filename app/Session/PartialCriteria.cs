@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP582: every partially-shipped line has a definition of done.

@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP23: the registration crypto, driven from managed code so both implementations can be run on

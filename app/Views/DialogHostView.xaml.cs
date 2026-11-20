@@ -1,9 +1,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Views;
+namespace Jogarei.Views;
 
 /// <summary>
 /// PP19: the dialog host.

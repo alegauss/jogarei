@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>The three bounds one asked-for sample length settles.</summary>
 /// <param name="WindowMicroseconds">How long the capture keeps taking datagrams.</param>

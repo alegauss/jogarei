@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP23's next module: PP342's table, replayed against PP297's recording.
@@ -83,7 +83,7 @@ public sealed class CtrlExchangeParticipant(CtrlFeatures features) : IExchangePa
         ArgumentNullException.ThrowIfNull(payload);
 
         // Not this conversation. See the note on the class.
-        if (channel != ChiakiNg.Native.ChiakiMessageTap.CtrlChannel)
+        if (channel != Jogarei.Native.ChiakiMessageTap.CtrlChannel)
             return [];
 
         ushort? received = TypeOf(payload);

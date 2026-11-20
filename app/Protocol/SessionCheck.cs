@@ -1,6 +1,6 @@
-﻿using ChiakiNg.Session;
+﻿using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>How a session check ended, in the outcomes the core distinguishes.</summary>
 public enum SessionCheckOutcome

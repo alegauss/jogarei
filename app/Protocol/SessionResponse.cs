@@ -1,7 +1,7 @@
 using System.Globalization;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What the console answered a session request with.</summary>
 /// <param name="Success">Whether the session was granted. See <see cref="SessionResponse"/> for what that means.</param>

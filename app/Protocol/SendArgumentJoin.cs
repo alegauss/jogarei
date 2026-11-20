@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Reflection;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// One managed call into a takion send, and the C call site it ports.

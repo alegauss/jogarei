@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>
 /// PP708: the WASAPI surface, once, for the two directions this port opens.

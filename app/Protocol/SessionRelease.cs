@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One step of chiaki_session_fini, in the order it runs.</summary>
 public enum SessionReleaseStep

@@ -12,7 +12,7 @@ export interface HostFlag {
   readonly summary: string;
 }
 
-/** The application version, from app/ChiakiNg.csproj. */
+/** The application version, from app/Jogarei.csproj. */
 export const VERSION = "1.10.0";
 
 /** The target framework it builds against, from the same file. */

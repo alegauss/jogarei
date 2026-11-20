@@ -1,9 +1,9 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Views;
+namespace Jogarei.Views;
 
 /// <summary>
 /// PP18/PP223: the controller mapping screen, and the clicks that reach the pad.

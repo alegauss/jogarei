@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP16: what the port calls each preference, which PP2 deferred on purpose.

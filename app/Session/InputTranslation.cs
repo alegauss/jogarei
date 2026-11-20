@@ -1,6 +1,6 @@
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// ControllerButtonExt, the values settings.h assigns above libchiaki's own button bits so the two

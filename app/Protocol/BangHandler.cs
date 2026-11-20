@@ -1,7 +1,7 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 using Google.Protobuf;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What one message arriving in EXPECT_BANG came to.</summary>
 public enum BangOutcome

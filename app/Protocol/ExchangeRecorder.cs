@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP326: the wire between PP323's tap and PP297's recording, which were both built and never

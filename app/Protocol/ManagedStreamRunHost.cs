@@ -1,8 +1,8 @@
 ﻿using System.Net;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Where a stream run's four stage timings go, which is SessionBaseline in the application.</summary>
 public interface IStageSink

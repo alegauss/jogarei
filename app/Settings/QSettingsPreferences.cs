@@ -1,6 +1,6 @@
 using Microsoft.Win32;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>How a preference is spelled in the store. Maps 1:1 onto QVariant's to* conversions.</summary>
 public enum QSettingsKind { String, Bool, Int, UInt, Double, Rect, ByteArray }

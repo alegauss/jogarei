@@ -1,7 +1,7 @@
 ﻿using System.Net;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>Where a session got to, as the front door needs to say it.</summary>
 public enum ConsoleSessionState

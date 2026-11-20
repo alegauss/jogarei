@@ -1,6 +1,6 @@
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>What one dpad-touch step did, which is what the Qt side drives its two timers off.</summary>
 public enum DpadTouchAction

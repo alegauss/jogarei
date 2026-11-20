@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What the offer concludes about the NAT it is behind.</summary>
 public enum NatVerdict

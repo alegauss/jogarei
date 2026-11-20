@@ -1,6 +1,6 @@
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which socket the flow is asking for - the only thing telling the two calls apart.</summary>
 public enum HolepunchPortType

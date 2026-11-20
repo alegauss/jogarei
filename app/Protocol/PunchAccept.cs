@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>How the wait for the console's ACCEPT ended.</summary>
 public enum AcceptWaitOutcome

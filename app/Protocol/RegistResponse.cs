@@ -1,12 +1,12 @@
 using System.Globalization;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// What a console sends back when it accepts a registration.
 ///
-/// NOT ChiakiNg.Settings.RegisteredHost, which is the console as the registry stores it. This is
+/// NOT Jogarei.Settings.RegisteredHost, which is the console as the registry stores it. This is
 /// the wire form it arrives in, and the two carry different fields for different reasons.
 /// </summary>
 /// <param name="Nickname">The console's name, as the user sees it.</param>

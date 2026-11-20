@@ -1,8 +1,8 @@
 using System.Windows.Controls;
 using System.Windows.Input;
-using ChiakiNg.Settings;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Views;
+namespace Jogarei.Views;
 
 /// <summary>
 /// PP167: the settings dialog.

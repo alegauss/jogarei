@@ -1,6 +1,6 @@
-﻿using ChiakiNg.Session;
+﻿using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Every wait the holepunch flow makes, and what bounds it.</summary>
 public enum HolepunchWait

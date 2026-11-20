@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>The states senkusha's machine declares, in the order senkusha.c declares them.</summary>
 public enum SenkushaState

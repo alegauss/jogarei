@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP23: vl_rbsp itself, reachable so <see cref="VlRbsp"/> can be held against it.

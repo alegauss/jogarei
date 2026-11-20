@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What one data message came to.</summary>
 public enum StreamDataResult

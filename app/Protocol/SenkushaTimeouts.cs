@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP791: senkusha's three waits, which had no managed counterpart until something waited them.

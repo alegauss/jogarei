@@ -1,6 +1,6 @@
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP756: where a pad's state goes, as an interface rather than as the C session.

@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One shape both matrix constructions are asked for.</summary>
 /// <param name="K">Source units.</param>

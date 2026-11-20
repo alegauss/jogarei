@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP23: libchiaki's own serial-number comparison, reachable so the managed one can be held against

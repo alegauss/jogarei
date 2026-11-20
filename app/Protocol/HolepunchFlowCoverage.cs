@@ -1,6 +1,6 @@
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// A session that answers the nine asks and records which of them the flow used.

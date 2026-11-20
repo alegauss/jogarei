@@ -1,7 +1,7 @@
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP356, under PP294: the ctrl request, and the crypt counter it spends before sending anything.

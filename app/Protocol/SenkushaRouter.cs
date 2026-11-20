@@ -1,7 +1,7 @@
 using System.Net;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which of senkusha's callback arms a datagram reached, or that it reached none.</summary>
 public enum SenkushaRoute

@@ -1,4 +1,4 @@
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>What one pass through the resampler did.</summary>
 /// <param name="Fed">Bytes handed in.</param>

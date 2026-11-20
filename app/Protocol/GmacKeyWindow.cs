@@ -1,6 +1,6 @@
-﻿using ChiakiNg.Session;
+﻿using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which GMAC key a packet is authenticated under, and how it has to be obtained.</summary>
 /// <param name="Index">The refresh window the packet belongs to.</param>

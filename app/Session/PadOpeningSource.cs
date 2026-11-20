@@ -1,6 +1,6 @@
-using ChiakiNg.Protocol;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP835: whether the run reaches its draw loop without waiting for a controller.

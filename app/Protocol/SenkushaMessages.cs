@@ -1,4 +1,4 @@
-﻿namespace ChiakiNg.Protocol;
+﻿namespace Jogarei.Protocol;
 
 /// <summary>One thing senkusha puts on the wire, as its own chokepoint takes it.</summary>
 /// <param name="Channel">

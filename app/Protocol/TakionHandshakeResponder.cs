@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Where a responder is in the three-step exchange.</summary>
 public enum TakionResponderState

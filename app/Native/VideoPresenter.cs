@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>
 /// PP700: the renderer that lives between frames, which the port's one-frame probe was not.

@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Runtime.InteropServices;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>PP851: a render endpoint that is a DualSense, as the engine needs it named.</summary>
 /// <param name="Id">IMMDevice::GetId, which is what XAudio2 masters on.</param>

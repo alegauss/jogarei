@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP316: what the build does with a warning, held against the projects the gate builds.
@@ -19,11 +19,11 @@ namespace ChiakiNg.Session;
 /// PP438: WHAT THE GATE BUILDS IS THE SOLUTION, and this used to be a hardcoded pair. Its reason was
 /// written down and was true - "spike\, gate\ and tools\ carry csproj files of their own and no gate
 /// compiles them" - and PP436 made it false in the same commit that relied on it, by adding
-/// tools/compare-baselines to ChiakiNg.slnx so compile.cmd would build the tool the site names. That
+/// tools/compare-baselines to Jogarei.slnx so compile.cmd would build the tool the site names. That
 /// project declared no TreatWarningsAsErrors, so the gate compiled code whose warnings had no
 /// recipient: PP316's own defect, reintroduced by a task that was widening coverage.
 ///
-/// So the list is derived. compile.cmd runs `dotnet build ChiakiNg.slnx`, which makes the solution the
+/// So the list is derived. compile.cmd runs `dotnet build Jogarei.slnx`, which makes the solution the
 /// thing that decides, and a project added to it tomorrow obeys this policy without anybody
 /// remembering this file exists. It is PP434's lesson: a list standing for a graph is green because
 /// of what a file happened to contain.
@@ -31,7 +31,7 @@ namespace ChiakiNg.Session;
 public static partial class WarningPolicy
 {
     /// <summary>The test assembly. The host is <see cref="BuildWorkflow.HostProjectRelativePath"/>.</summary>
-    public const string TestProjectRelativePath = @"tests\ChiakiNg.Tests\ChiakiNg.Tests.csproj";
+    public const string TestProjectRelativePath = @"tests\Jogarei.Tests\Jogarei.Tests.csproj";
 
     /// <summary>
     /// The solution compile.cmd builds, which is what decides who this policy binds.

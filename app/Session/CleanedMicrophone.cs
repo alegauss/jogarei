@@ -1,6 +1,6 @@
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>What one pass through the cleaning stage produced.</summary>
 /// <param name="Cleaned">Bytes at the announced rate, or zero while the filter is still filling.</param>

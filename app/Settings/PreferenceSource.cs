@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>One <c>value("key", default).toX()</c> call, as the Qt client spells it.</summary>
 /// <param name="Key">The key literal.</param>

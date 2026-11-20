@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What one channel carried in a replay, in packets and bytes on the wire.</summary>
 /// <param name="Packets">How many datagrams.</param>

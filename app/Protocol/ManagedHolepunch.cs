@@ -1,6 +1,6 @@
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Where a managed holepunch stopped, and what it produced if it did not.</summary>
 /// <param name="FailedAt">The sequence that failed, or null where none did.</param>

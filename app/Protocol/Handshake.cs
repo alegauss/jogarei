@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP23: the handshake's key agreement, driven from managed code against a recorded exchange.
@@ -191,7 +191,7 @@ public sealed class GkCrypt : IDisposable
         return (keyBase, iv);
     }
 
-    [System.Runtime.InteropServices.DllImport(ChiakiNg.Native.ChiakiNative.Library,
+    [System.Runtime.InteropServices.DllImport(Jogarei.Native.ChiakiNative.Library,
         EntryPoint = "chiaki_shim_gkcrypt_key_and_iv",
         CallingConvention = System.Runtime.InteropServices.CallingConvention.Cdecl)]
     [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.I1)]

@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which of the two shapes a pad info message is, told apart by its length alone.</summary>
 public enum PadInfoLayout

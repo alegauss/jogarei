@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP232: the STUN lists fetched at connect time, and the two rules for reading them.

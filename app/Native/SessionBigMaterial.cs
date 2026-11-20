@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using System.Text;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>What senkusha measured, which is what a launch spec describes the link with.</summary>
 /// <param name="MtuIn">The inbound MTU the console agreed to.</param>

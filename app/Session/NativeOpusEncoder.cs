@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP694: what opusencoder.c does to a frame, through the shim, as the oracle.

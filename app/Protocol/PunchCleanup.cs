@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which of the two endings a punch reaches.</summary>
 public enum PunchEnding

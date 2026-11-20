@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP629: who owns the settings store when two applications are editing it.

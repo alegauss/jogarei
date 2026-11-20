@@ -1,7 +1,7 @@
-﻿using ChiakiNg.Native;
-using ChiakiNg.Session;
+﻿using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Where a datagram goes once it is stamped.</summary>
 public interface ITakionWire

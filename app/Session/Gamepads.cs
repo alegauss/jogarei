@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// One SDL event, as much of it as the device slice reads: the type, when SDL stamped it, and the

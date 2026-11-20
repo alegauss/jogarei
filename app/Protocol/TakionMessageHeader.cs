@@ -1,7 +1,7 @@
 ﻿using System.Buffers.Binary;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>PP672: what takion_recv_message_cookie_ack decides about one datagram.</summary>
 public enum TakionCookieAckVerdict

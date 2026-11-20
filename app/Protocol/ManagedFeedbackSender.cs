@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// A monotonic clock, in the two units feedbacksender.c reads one in.

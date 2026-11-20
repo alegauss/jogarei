@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP720: how the suite decides its binary is stale, and why the tree is the wrong thing to ask.

@@ -1,8 +1,8 @@
 using System.Windows;
 using System.Windows.Controls;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Views;
+namespace Jogarei.Views;
 
 /// <summary>
 /// PP13: the front door's code-behind, which was a constructor and nothing else.

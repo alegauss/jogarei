@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>A view model that raises its own property and the button's, for the reason in PP37.</summary>
 public abstract class DialogViewModel : INotifyPropertyChanged

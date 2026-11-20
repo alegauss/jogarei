@@ -1,7 +1,7 @@
-using ChiakiNg.Native;
-using ChiakiNg.Protocol;
+using Jogarei.Native;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP773: the derivation a bang leads to, over the session's own ECDH pair.

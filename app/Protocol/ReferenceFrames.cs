@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What to do about a P-frame whose reference frame is missing.</summary>
 /// <param name="Present">The reference the slice asked for is held; nothing to do.</param>

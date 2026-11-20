@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP9: the facts the renderer decision rests on, read rather than remembered.

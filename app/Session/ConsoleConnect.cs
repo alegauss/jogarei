@@ -1,7 +1,7 @@
-using ChiakiNg.Native;
-using ChiakiNg.Settings;
+using Jogarei.Native;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>Why a row cannot start a session, or that it can.</summary>
 public enum ConnectRefusal

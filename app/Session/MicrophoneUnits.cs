@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP652: the accumulator between a capture device's packets and the console's units.

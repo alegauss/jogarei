@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Native;
-using ChiakiNg.Protocol;
+using Jogarei.Native;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>Where decoded PCM goes, and what the stream's shape turned out to be.</summary>
 public interface IPcmSink

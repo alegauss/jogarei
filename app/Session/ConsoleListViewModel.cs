@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
-using ChiakiNg.Native;
-using ChiakiNg.Settings;
+using Jogarei.Native;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>A console the user typed in by address.</summary>
 public readonly record struct ManualConsole(string Address, string Mac, bool Registered);

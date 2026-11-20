@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP16: the Video tab's window-type combo, where the label and the stored string are DIFFERENT

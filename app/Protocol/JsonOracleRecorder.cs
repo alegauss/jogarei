@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text.Json;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP33: walks <see cref="JsonOracleCases"/> through the real json-c and writes down every answer.

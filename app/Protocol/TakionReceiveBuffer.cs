@@ -1,9 +1,9 @@
 using System.Buffers;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP485, under PP27: the per-datagram allocation, which takion.c does twice and this does not do

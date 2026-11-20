@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP76: the arithmetic that puts every decoded frame in exactly one column.

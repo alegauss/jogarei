@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What the select on the stop pipe answered.</summary>
 public enum TakionSelectOutcome

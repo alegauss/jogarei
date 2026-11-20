@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>What the mapping screen asked the input subsystem to do, in order.</summary>
 public enum MappingAction

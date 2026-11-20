@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP6: the check that keeps the shim's one undeclared import honest.

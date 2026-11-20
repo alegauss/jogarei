@@ -1,6 +1,6 @@
-﻿using ChiakiNg.Session;
+﻿using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One attempt in the bind ladder.</summary>
 /// <param name="Port">The port tried. 0 is the last rung and means "any".</param>

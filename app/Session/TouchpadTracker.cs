@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP129: SDL's fingers mapped onto the console's two touch slots.

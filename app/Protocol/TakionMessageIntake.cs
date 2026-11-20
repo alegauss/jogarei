@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What the message layer decided about one control datagram.</summary>
 public enum TakionMessageVerdict

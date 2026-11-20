@@ -1,6 +1,6 @@
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP511, under PP27: the wire between the tap's fifth channel and PP510's capture.
@@ -88,11 +88,11 @@ public static class TakionDatagramTapSource
 
     /// <summary>messagetap.h, or null outside a checkout.</summary>
     public static string? LocateHeader()
-        => ChiakiNg.Session.SanitizerSource.LocateRelative(HeaderRelativePath);
+        => Jogarei.Session.SanitizerSource.LocateRelative(HeaderRelativePath);
 
     /// <summary>The dispatch, where the emit is.</summary>
     public static string? HandleBody(string takionSource)
-        => ChiakiNg.Session.CFunction.Body(takionSource, "static void takion_handle_packet");
+        => Jogarei.Session.CFunction.Body(takionSource, "static void takion_handle_packet");
 
     /// <summary>
     /// Whether the emit still sits ABOVE the MAC gate.
@@ -191,5 +191,5 @@ public static class TakionDatagramTapSource
 
     /// <summary>The head length the header declares.</summary>
     public static long? HeadBytesIn(string header)
-        => ChiakiNg.Session.CDefine.Value(header, "CHIAKI_MESSAGE_TAP_TAKION_HEAD");
+        => Jogarei.Session.CDefine.Value(header, "CHIAKI_MESSAGE_TAP_TAKION_HEAD");
 }

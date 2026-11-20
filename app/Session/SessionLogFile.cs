@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
-using ChiakiNg.Settings;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP5: sessionlog.cpp's file naming and rotation, with no QDir or QDateTime in it.

@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What the data handler did with one message.</summary>
 public enum TakionDataPushVerdict

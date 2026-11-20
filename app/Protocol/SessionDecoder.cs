@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP700: the decoder a session decodes into, which nothing in this port had.

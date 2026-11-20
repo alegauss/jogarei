@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP16: the audio buffer, which is measured in three different units.

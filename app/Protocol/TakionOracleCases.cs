@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What one step does to a reorder queue.</summary>
 public enum QueueOpKind

@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which side of the tree a consumer of takion's three files is on.</summary>
 public enum TakionConsumerKind

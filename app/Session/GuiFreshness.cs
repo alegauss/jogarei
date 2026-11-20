@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>What a check of the Qt client's build found, or why it could not answer.</summary>
 public enum GuiBuildState

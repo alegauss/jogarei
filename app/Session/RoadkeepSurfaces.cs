@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP595: the roadkeep surfaces this repository carries, and the wiring that makes them reachable

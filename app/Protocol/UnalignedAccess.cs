@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One multi-byte access through a pointer cast, and whether it claims alignment.</summary>
 /// <param name="File">Which file it is in.</param>

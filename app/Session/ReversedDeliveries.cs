@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One shipped task that did not hold, and what became of it.</summary>
 /// <param name="Id">The delivery.</param>

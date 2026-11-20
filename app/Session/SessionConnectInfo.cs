@@ -1,7 +1,7 @@
-using ChiakiNg.Native;
-using ChiakiNg.Settings;
+using Jogarei.Native;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>ChiakiCodec. The values are the wire's, and the strings are what the store holds.</summary>
 public enum ChiakiCodec { H264 = 0, H265 = 1, H265Hdr = 2 }

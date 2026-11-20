@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>What a check of the running host found, or why it could not answer.</summary>
 public enum HostBuildState

@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using System.Text;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>How json-c numbers the types it can hold. The order is json_type's, not a choice.</summary>
 public enum JsonCType

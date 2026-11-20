@@ -42,7 +42,6 @@
 
 - 📋 **PP862** (deps: PP861 ✅) **The repository's README is still chiaki-ng's, so a visitor learns about the upstream and nothing about this port** — The site already says what this project is, and the README a GitHub visitor reads first contradicts it. → §PP862
 - 📋 **PP863** (deps: PP861 ✅) **PlayStation leads the site's title, the hero and the repository description, as if it were the product's name** — In a title the mark reads as identity rather than compatibility, the use most likely to draw a complaint or a store refusal. → §PP863
-- 📋 **PP865** (deps: PP861 ✅) **The projects, the solution and the namespace are still named ChiakiNg after the product became Jogarei** — The owner asked for the file names and every reference to follow the product, and a name the code keeps leaks into every path and stack trace. → §PP865
 
 ## Block K — The site on the design system
 

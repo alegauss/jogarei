@@ -1,6 +1,6 @@
-﻿using ChiakiNg.Session;
+﻿using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What a slice parse learned. Zeroed before every parse, for the reason in the class note.</summary>
 public struct BitstreamSlice

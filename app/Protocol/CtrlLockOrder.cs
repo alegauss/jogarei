@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One place two mutexes are held at once, and in which order.</summary>
 /// <param name="Where">The function, as the C names it.</param>

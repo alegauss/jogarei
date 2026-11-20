@@ -1,6 +1,6 @@
-using ChiakiNg.Settings;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>What one navigation means to the login.</summary>
 public enum PsnNavigation

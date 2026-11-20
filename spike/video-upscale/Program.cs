@@ -142,7 +142,7 @@ internal static class Program
             // 200-300us against a p50 near 70; the p50s never moved and the means moved by half.
             // The ratio is printed and not judged - the verdict is the gate's, because whether a
             // long tail is noise depends on what the spike measures. See
-            // ChiakiNg.Session.SpikeRunQuality.
+            // Jogarei.Session.SpikeRunQuality.
             foreach (Stats side in (Stats[])[off.Timing, on.Timing])
                 Console.WriteLine($"tail       : {side.Name} p99/p50 = {side.P99OverP50:F2}");
             Console.WriteLine("  near 1.0 is a reading; PP49's contaminated runs sat at 1.87 and above.");

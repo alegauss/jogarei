@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Native;
-using ChiakiNg.Protocol;
+using Jogarei.Native;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP825: the four stages with a device on one end and a takion on the other.

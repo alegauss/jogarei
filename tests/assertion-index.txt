@@ -41,50 +41,50 @@ PP113 app/SelfTest.cs
 PP114 app/SelfTest.cs
 PP115 app/SelfTest.cs
 PP116 app/SelfTest.cs
-PP120 tests/ChiakiNg.Tests/GmacVectorTests.cs
-PP122 tests/ChiakiNg.Tests/BitstreamTruncationTests.cs
-PP134 app/SelfTest.cs tests/ChiakiNg.Tests/RenderProbeTests.cs
-PP136 tests/ChiakiNg.Tests/FocusChainBehaviorTests.cs
-PP137 tests/ChiakiNg.Tests/FocusVisualTests.cs
-PP138 tests/ChiakiNg.Tests/ConsoleListTests.cs
-PP139 tests/ChiakiNg.Tests/DialogViewModelTests.cs
-PP143 tests/ChiakiNg.Tests/ConsoleListViewTests.cs
-PP144 tests/ChiakiNg.Tests/PsnTokenExchangeTests.cs
-PP145 tests/ChiakiNg.Tests/PsnLoginViewModelTests.cs tests/ChiakiNg.Tests/PsnLoginViewTests.cs
-PP146 tests/ChiakiNg.Tests/JsonCTests.cs
-PP148 tests/ChiakiNg.Tests/VideoSettingsTests.cs tests/ChiakiNg.Tests/VideoSettingsViewTests.cs
-PP150 tests/ChiakiNg.Tests/ReorderQueueOracleTests.cs
-PP151 app/SelfTest.cs tests/ChiakiNg.Tests/FrameTimingTests.cs
-PP152 tests/ChiakiNg.Tests/VlRbspOracleTests.cs
-PP153 tests/ChiakiNg.Tests/BitstreamParserOracleTests.cs
-PP154 tests/ChiakiNg.Tests/BitstreamRewriteOracleTests.cs tests/ChiakiNg.Tests/VlRbspOracleTests.cs
-PP155 tests/ChiakiNg.Tests/DisplaySettingsTests.cs tests/ChiakiNg.Tests/DisplaySettingsViewTests.cs
-PP156 tests/ChiakiNg.Tests/SteamShortcutTests.cs
-PP157 tests/ChiakiNg.Tests/StreamSettingsTests.cs tests/ChiakiNg.Tests/StreamSettingsViewTests.cs
-PP158 tests/ChiakiNg.Tests/AudioSettingsTests.cs
-PP160 tests/ChiakiNg.Tests/ConsoleSettingsTests.cs tests/ChiakiNg.Tests/ConsoleSettingsViewTests.cs
-PP161 tests/ChiakiNg.Tests/KeySettingsTests.cs tests/ChiakiNg.Tests/KeySettingsViewTests.cs
-PP166 tests/ChiakiNg.Tests/ConfigSettingsTests.cs tests/ChiakiNg.Tests/ConfigSettingsViewTests.cs
-PP169 tests/ChiakiNg.Tests/PlaceboPresetsTests.cs
-PP170 tests/ChiakiNg.Tests/PlaceboTuningOptionsTests.cs
-PP174 tests/ChiakiNg.Tests/TouchpadSingleAnswerTests.cs
-PP175 tests/ChiakiNg.Tests/RenderProbeTests.cs
-PP178 tests/ChiakiNg.Tests/BaselineLineTests.cs tests/ChiakiNg.Tests/PlaceboTuningOptionsTests.cs
-PP180 tests/ChiakiNg.Tests/BaselineStageTests.cs
-PP181 tests/ChiakiNg.Tests/BaselineDefaultsTests.cs
-PP185 tests/ChiakiNg.Tests/SuiteCoverageTests.cs
-PP186 tests/ChiakiNg.Tests/CurlSemanticsTests.cs
-PP187 tests/ChiakiNg.Tests/HttpTransferTests.cs
-PP188 tests/ChiakiNg.Tests/PushSocketTests.cs
-PP189 tests/ChiakiNg.Tests/HttpTransferTests.cs
-PP193 tests/ChiakiNg.Tests/CandidateTests.cs
-PP199 tests/ChiakiNg.Tests/PortAllocationTests.cs
-PP200 tests/ChiakiNg.Tests/StunMessageTests.cs
-PP202 tests/ChiakiNg.Tests/RudpSendBufferTests.cs
-PP203 tests/ChiakiNg.Tests/RudpExchangeTests.cs
-PP204 tests/ChiakiNg.Tests/PortGuessingTests.cs
-PP205 tests/ChiakiNg.Tests/NatProbeTests.cs
-PP206 tests/ChiakiNg.Tests/PsnEndpointsTests.cs
-PP208 tests/ChiakiNg.Tests/HolepunchIdentifiersTests.cs
-PP209 tests/ChiakiNg.Tests/DeviceListTests.cs
-PP285 tests/ChiakiNg.Tests/CountedClaimTests.cs
+PP120 tests/Jogarei.Tests/GmacVectorTests.cs
+PP122 tests/Jogarei.Tests/BitstreamTruncationTests.cs
+PP134 app/SelfTest.cs tests/Jogarei.Tests/RenderProbeTests.cs
+PP136 tests/Jogarei.Tests/FocusChainBehaviorTests.cs
+PP137 tests/Jogarei.Tests/FocusVisualTests.cs
+PP138 tests/Jogarei.Tests/ConsoleListTests.cs
+PP139 tests/Jogarei.Tests/DialogViewModelTests.cs
+PP143 tests/Jogarei.Tests/ConsoleListViewTests.cs
+PP144 tests/Jogarei.Tests/PsnTokenExchangeTests.cs
+PP145 tests/Jogarei.Tests/PsnLoginViewModelTests.cs tests/Jogarei.Tests/PsnLoginViewTests.cs
+PP146 tests/Jogarei.Tests/JsonCTests.cs
+PP148 tests/Jogarei.Tests/VideoSettingsTests.cs tests/Jogarei.Tests/VideoSettingsViewTests.cs
+PP150 tests/Jogarei.Tests/ReorderQueueOracleTests.cs
+PP151 app/SelfTest.cs tests/Jogarei.Tests/FrameTimingTests.cs
+PP152 tests/Jogarei.Tests/VlRbspOracleTests.cs
+PP153 tests/Jogarei.Tests/BitstreamParserOracleTests.cs
+PP154 tests/Jogarei.Tests/BitstreamRewriteOracleTests.cs tests/Jogarei.Tests/VlRbspOracleTests.cs
+PP155 tests/Jogarei.Tests/DisplaySettingsTests.cs tests/Jogarei.Tests/DisplaySettingsViewTests.cs
+PP156 tests/Jogarei.Tests/SteamShortcutTests.cs
+PP157 tests/Jogarei.Tests/StreamSettingsTests.cs tests/Jogarei.Tests/StreamSettingsViewTests.cs
+PP158 tests/Jogarei.Tests/AudioSettingsTests.cs
+PP160 tests/Jogarei.Tests/ConsoleSettingsTests.cs tests/Jogarei.Tests/ConsoleSettingsViewTests.cs
+PP161 tests/Jogarei.Tests/KeySettingsTests.cs tests/Jogarei.Tests/KeySettingsViewTests.cs
+PP166 tests/Jogarei.Tests/ConfigSettingsTests.cs tests/Jogarei.Tests/ConfigSettingsViewTests.cs
+PP169 tests/Jogarei.Tests/PlaceboPresetsTests.cs
+PP170 tests/Jogarei.Tests/PlaceboTuningOptionsTests.cs
+PP174 tests/Jogarei.Tests/TouchpadSingleAnswerTests.cs
+PP175 tests/Jogarei.Tests/RenderProbeTests.cs
+PP178 tests/Jogarei.Tests/BaselineLineTests.cs tests/Jogarei.Tests/PlaceboTuningOptionsTests.cs
+PP180 tests/Jogarei.Tests/BaselineStageTests.cs
+PP181 tests/Jogarei.Tests/BaselineDefaultsTests.cs
+PP185 tests/Jogarei.Tests/SuiteCoverageTests.cs
+PP186 tests/Jogarei.Tests/CurlSemanticsTests.cs
+PP187 tests/Jogarei.Tests/HttpTransferTests.cs
+PP188 tests/Jogarei.Tests/PushSocketTests.cs
+PP189 tests/Jogarei.Tests/HttpTransferTests.cs
+PP193 tests/Jogarei.Tests/CandidateTests.cs
+PP199 tests/Jogarei.Tests/PortAllocationTests.cs
+PP200 tests/Jogarei.Tests/StunMessageTests.cs
+PP202 tests/Jogarei.Tests/RudpSendBufferTests.cs
+PP203 tests/Jogarei.Tests/RudpExchangeTests.cs
+PP204 tests/Jogarei.Tests/PortGuessingTests.cs
+PP205 tests/Jogarei.Tests/NatProbeTests.cs
+PP206 tests/Jogarei.Tests/PsnEndpointsTests.cs
+PP208 tests/Jogarei.Tests/HolepunchIdentifiersTests.cs
+PP209 tests/Jogarei.Tests/DeviceListTests.cs
+PP285 tests/Jogarei.Tests/CountedClaimTests.cs

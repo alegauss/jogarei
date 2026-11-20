@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP289: frameprocessor.c, in managed code.

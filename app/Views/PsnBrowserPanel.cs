@@ -1,9 +1,9 @@
 using System.Windows.Controls;
-using ChiakiNg.Session;
+using Jogarei.Session;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.Wpf;
 
-namespace ChiakiNg.Views;
+namespace Jogarei.Views;
 
 /// <summary>
 /// PP7: the embedded browser, filling the slot PsnLoginView left for it.

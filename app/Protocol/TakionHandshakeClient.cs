@@ -1,8 +1,8 @@
 using System.Net;
 using System.Net.Sockets;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Where the client is in the exchange.</summary>
 public enum TakionClientState

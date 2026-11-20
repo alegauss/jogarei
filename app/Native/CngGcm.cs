@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>What a provider says it will accept, in BYTES.</summary>
 /// <param name="Minimum">The shortest tag it will produce.</param>
@@ -29,7 +29,7 @@ public readonly record struct CngTagLengths(int Minimum, int Maximum, int Increm
 /// BCRYPT_AUTH_TAG_LENGTH reports the range a provider supports rather than a constant a wrapper
 /// picked. So the two questions have answers, and this is where they are read.
 ///
-/// NOTHING HERE REPLACES <see cref="ChiakiNg.Protocol.Ghash"/> ON ITS OWN. A tag this produces is
+/// NOTHING HERE REPLACES <see cref="Jogarei.Protocol.Ghash"/> ON ITS OWN. A tag this produces is
 /// worth having only where it equals the one the port already computes, which is held to chiaki's,
 /// which is OpenSSL's. The oracle costs nothing because it already exists.
 ///

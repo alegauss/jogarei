@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One send or recv, and the buffer expression it passes.</summary>
 /// <param name="File">Repository-relative, with forward slashes as the scan finds them.</param>

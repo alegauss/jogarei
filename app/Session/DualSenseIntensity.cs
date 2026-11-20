@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// ChiakiDualSenseEffectIntensity, with the console's own numbers.

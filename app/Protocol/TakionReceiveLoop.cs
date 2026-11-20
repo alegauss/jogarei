@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>How one receive ended.</summary>
 public enum TakionReceiveOutcome

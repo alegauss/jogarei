@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP568: the rule about patching the C this repository vendors, held where a verb cannot drop it.

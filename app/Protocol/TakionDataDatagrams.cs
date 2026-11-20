@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP675: the three data datagrams takion sends, as bytes.

@@ -1,9 +1,9 @@
 using System.Buffers.Binary;
 using System.Globalization;
 using System.Net;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Why a STUN response was not usable.</summary>
 public enum StunResult

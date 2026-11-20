@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One buffer the printer encodes into.</summary>
 /// <param name="Name">What it holds.</param>
@@ -172,7 +172,7 @@ public static class RequestPrinterSource
 
     /// <summary>Where the encoder lives, so the check above has something to read.</summary>
     public static string? LocateEncoder()
-        => ChiakiNg.Session.SanitizerSource.LocateRelative(EncoderRelativePath);
+        => Jogarei.Session.SanitizerSource.LocateRelative(EncoderRelativePath);
 
     /// <summary>Whether the source sizes are still the ones that make the branch unreachable.</summary>
     public static bool TheSizesStillMakeItUnreachable(string core)

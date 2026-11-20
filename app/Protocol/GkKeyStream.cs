@@ -1,9 +1,9 @@
 ﻿using System.Buffers;
 using System.Security.Cryptography;
 
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP26: the session key stream, which is AES-CTR with the counter running the wrong way.

@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP421, under PP23: senkusha's handshake, replayed as a conversation.
@@ -103,7 +103,7 @@ public sealed class SenkushaExchangeParticipant : IExchangeParticipant
     {
         ArgumentNullException.ThrowIfNull(channel);
 
-        return channel == ChiakiNg.Native.ChiakiMessageTap.SenkushaChannel
+        return channel == Jogarei.Native.ChiakiMessageTap.SenkushaChannel
             ? [Render(SenkushaMessage.TakionProtocolRequest)]
             : [];
     }
@@ -114,7 +114,7 @@ public sealed class SenkushaExchangeParticipant : IExchangeParticipant
         ArgumentNullException.ThrowIfNull(channel);
         ArgumentNullException.ThrowIfNull(payload);
 
-        if (channel != ChiakiNg.Native.ChiakiMessageTap.SenkushaChannel)
+        if (channel != Jogarei.Native.ChiakiMessageTap.SenkushaChannel)
             return [];
 
         return TypeOf(payload) switch

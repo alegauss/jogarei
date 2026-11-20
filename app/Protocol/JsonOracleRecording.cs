@@ -1,8 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What json-c answered for one document and one path, accessor by accessor.</summary>
 /// <param name="Json">The document, as it was handed to the parser.</param>

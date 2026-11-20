@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>Where a part of a live run host comes from when the console is real.</summary>
 public enum PartSupply
@@ -46,7 +46,7 @@ public readonly record struct LiveHostPart(
 public static class LiveHostParts
 {
     /// <summary>The type whose constructor this is about.</summary>
-    public const string HostTypeName = "ChiakiNg.Protocol.ManagedStreamRunHost";
+    public const string HostTypeName = "Jogarei.Protocol.ManagedStreamRunHost";
 
     /// <summary>
     /// The eleven, in the constructor's own order.

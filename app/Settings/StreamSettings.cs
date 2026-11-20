@@ -1,6 +1,6 @@
-﻿using ChiakiNg.Session;
+﻿using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>Which console's half of the tab is showing. Dialog state, not a preference.</summary>
 public enum StreamConsole { Ps4 = 0, Ps5 = 1 }

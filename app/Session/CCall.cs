@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP386: whether a C call HAPPENS, asked without reference to how it is punctuated.

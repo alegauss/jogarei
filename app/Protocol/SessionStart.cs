@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Why a start attempt ended, before anything is reported.</summary>
 public enum StartFailure

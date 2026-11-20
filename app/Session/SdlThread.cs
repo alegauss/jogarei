@@ -1,6 +1,6 @@
 using System.Collections.Concurrent;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>How <see cref="SdlThread.Start"/> ended.</summary>
 public enum SdlStart
@@ -66,7 +66,7 @@ public sealed class SdlThread : IDisposable
         thread = new Thread(Run)
         {
             IsBackground = true,
-            Name = "ChiakiNg SDL",
+            Name = "Jogarei SDL",
         };
     }
 

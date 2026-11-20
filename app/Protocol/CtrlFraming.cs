@@ -1,8 +1,8 @@
 using System.Buffers.Binary;
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP341, under PP294: the eight bytes in front of every control message, and the length that did

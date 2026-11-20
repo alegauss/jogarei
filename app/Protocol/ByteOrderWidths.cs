@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One byte-order conversion in the C, and the width of the read inside it.</summary>
 /// <param name="File">Which file it is in.</param>

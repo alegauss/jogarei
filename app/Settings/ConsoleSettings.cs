@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP16: the settings screen's Consoles tab - two lists that look alike and are not.

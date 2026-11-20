@@ -1,6 +1,6 @@
 using Microsoft.Win32;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>One console the user has already registered, as the Qt client stored it.</summary>
 public sealed record RegisteredHost

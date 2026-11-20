@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>One row of the Keys tab: a console button, its display name and the key bound to it.</summary>
 public readonly record struct KeyBinding(int ButtonValue, string ButtonName, string KeyName);

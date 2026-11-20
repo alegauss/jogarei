@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace ChiakiNg.Views;
+namespace Jogarei.Views;
 
 /// <summary>
 /// PP10: the stream overlay. A constructor, by the rule PP13 set.

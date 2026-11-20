@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>The four numbers the C announces a microphone with, in the C's own parameter order.</summary>
 /// <param name="Channels">One. The port announced sixteen once, which is PP422's whole story.</param>

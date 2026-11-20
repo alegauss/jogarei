@@ -1,4 +1,4 @@
-﻿namespace ChiakiNg.Protocol;
+﻿namespace Jogarei.Protocol;
 
 /// <summary>One datagram as a timing run needs it.</summary>
 /// <param name="ArrivalMicroseconds">Since the first datagram of the capture, not wall clock.</param>

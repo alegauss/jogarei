@@ -1,9 +1,9 @@
 using System.Runtime.InteropServices;
 using System.Text;
-using ChiakiNg.Native;
-using ChiakiNg.Settings;
+using Jogarei.Native;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP23: the four stages before the handoff, plus the decode.
@@ -11,7 +11,7 @@ namespace ChiakiNg.Session;
 /// Five and not six. The present stage is the handoff, which the baseline keeps separately - it is
 /// in the latency estimate, and a stage counted there as well would inflate a number a session is
 /// judged by. Named <c>FrameStageTimer</c> rather than FrameStage because
-/// <see cref="ChiakiNg.Protocol.FrameStage"/> already means the frame processor's two, and the two
+/// <see cref="Jogarei.Protocol.FrameStage"/> already means the frame processor's two, and the two
 /// sets are not the same thing.
 /// </summary>
 public enum FrameStageTimer

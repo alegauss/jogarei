@@ -1,7 +1,7 @@
-<UserControl x:Class="ChiakiNg.Views.ConsoleListView"
+<UserControl x:Class="Jogarei.Views.ConsoleListView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:session="clr-namespace:ChiakiNg.Session">
+             xmlns:session="clr-namespace:Jogarei.Session">
   <!--
     PP13: the front door, and the first screen with a view model behind it.
 

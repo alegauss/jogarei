@@ -29,13 +29,13 @@ on:
       - "site/**"
       - ".github/workflows/site.yml"
       # the copy states the version and the flag list, and both are generated from these
-      - "app/ChiakiNg.csproj"
+      - "app/Jogarei.csproj"
       - "app/Session/HostCommandLine.cs"
   pull_request:
     paths:
       - "site/**"
       - ".github/workflows/site.yml"
-      - "app/ChiakiNg.csproj"
+      - "app/Jogarei.csproj"
       - "app/Session/HostCommandLine.cs"
   workflow_dispatch:
 

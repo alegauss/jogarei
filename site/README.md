@@ -19,7 +19,7 @@ npm test                      # the site's own claims, against what the build pr
   it and never contain it, so a claim is an array element a reviewer can check against the
   product rather than a string welded into the markup that displays it.
 - **No figure is typed.** `scripts/product.mjs` reads the version and the target framework
-  out of `app/ChiakiNg.csproj` and the flag list out of `app/Session/HostCommandLine.cs` on
+  out of `app/Jogarei.csproj` and the flag list out of `app/Session/HostCommandLine.cs` on
   every build, and the copy reaches them through `src/lib/product.ts`. A version typed into a
   sentence is true the day it is typed and wrong in silence afterwards.
 - **The routes are a pair.** `src/routes.tsx` holds one metadata row and one component row

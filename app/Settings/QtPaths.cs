@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP3: where the Qt client puts a file, stated once so the .NET host puts it in the same place.

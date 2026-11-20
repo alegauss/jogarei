@@ -1,7 +1,7 @@
 using System.Windows.Controls;
-using ChiakiNg.Settings;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Views;
+namespace Jogarei.Views;
 
 /// <summary>
 /// PP16: the Controllers tab.

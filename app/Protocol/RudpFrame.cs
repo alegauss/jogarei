@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP33: what a RUDP packet says it is. Plain values, and NOT a mask - the low byte is 0x30 for

@@ -56,7 +56,7 @@ rem ---- preflight ---------------------------------------------------------
 rem Same contract as compile.cmd's: name the missing file here, in a second,
 rem rather than let dotnet or a shell script describe it halfway through.
 set "MISSING="
-call :need "app\ChiakiNg.csproj"          "the .NET host; there is nothing to package without it"
+call :need "app\Jogarei.csproj"          "the .NET host; there is nothing to package without it"
 call :need "scripts\package-windows.sh"   "the native payload walk; this file only launches it"
 call :need "%NATIVE_DIR%\chiaki-shim.dll" "the native tree compile.cmd deploys - run it first"
 if defined MISSING (
@@ -95,7 +95,7 @@ rem are all conditioned on Release in the csproj, deliberately, so that a publis
 rem cannot quietly stop being self-contained.
 if not defined DO_PUBLISH goto published
 echo [package] publishing the host ...
-dotnet publish "%~dp0app\ChiakiNg.csproj" -c Release --nologo -v quiet
+dotnet publish "%~dp0app\Jogarei.csproj" -c Release --nologo -v quiet
 if errorlevel 1 (
     echo.
     echo [package] FAILED - the host did not publish.

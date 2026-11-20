@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One step a launcher runs and judges, named by the line that runs it.</summary>
 /// <param name="Where">The launcher, repository-relative.</param>
@@ -61,7 +61,7 @@ public static class GateVerdicts
         new(GateAndCiAgree.LocalRelativePaths[0], "roadkeep lint", "the governed files"),
         new(
             GateAndCiAgree.LocalRelativePaths[0],
-            "dotnet test \"%~dp0ChiakiNg.slnx\" --nologo -v quiet --filter \"Category!=Interaction\"",
+            "dotnet test \"%~dp0Jogarei.slnx\" --nologo -v quiet --filter \"Category!=Interaction\"",
             "the xUnit suite"),
         new(
             CompileMessages.RelativePath,
@@ -69,7 +69,7 @@ public static class GateVerdicts
             "the native side"),
         new(
             CompileMessages.RelativePath,
-            "dotnet build \"%~dp0ChiakiNg.slnx\" -c Debug --nologo -v quiet",
+            "dotnet build \"%~dp0Jogarei.slnx\" -c Debug --nologo -v quiet",
             "the .NET host"),
     ];
 

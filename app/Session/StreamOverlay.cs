@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Windows.Media;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP10: what the General tab's Audio/Video setting turns off, as the bitmask it really is.

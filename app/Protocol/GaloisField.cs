@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP286: GF(2^8), the arithmetic every FEC operation in this protocol is built out of.

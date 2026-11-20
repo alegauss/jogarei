@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One ledger entry that says where its deleted design went.</summary>
 /// <param name="Id">The task.</param>

@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Who this end is, for the reply it will build.</summary>
 /// <param name="LocalId">The local hashed identifier, twenty bytes.</param>

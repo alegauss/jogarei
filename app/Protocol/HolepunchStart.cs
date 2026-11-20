@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One step of the start, in the order chiaki_holepunch_session_start runs them.</summary>
 public enum HolepunchStartStep

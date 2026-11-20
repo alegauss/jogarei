@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One "&lt;file&gt; is &lt;n&gt; lines" claim, and where it was written.</summary>
 /// <param name="Document">The governed file carrying it, repository-relative with forward slashes.</param>

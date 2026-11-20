@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Settings;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP19: which of a dialog's THREE exits was taken.

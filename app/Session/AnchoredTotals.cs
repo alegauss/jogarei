@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One "N lines" phrase in the backlog that no claim covers.</summary>
 /// <param name="Document">The backlog file it is in.</param>

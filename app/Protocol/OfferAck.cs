@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What the websocket thread does with a notification inside the auto-ACK window.</summary>
 public enum OfferAckOutcome

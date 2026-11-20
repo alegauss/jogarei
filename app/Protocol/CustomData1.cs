@@ -1,7 +1,7 @@
 using System.Text;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP33: the sixteen bytes the console hides in customData1, behind base64 TWICE.

@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP645: which committed spike run is a reading and which one is the machine being busy.

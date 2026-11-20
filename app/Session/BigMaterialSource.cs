@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One thing the BIG needs, and where a composition root is allowed to get it.</summary>
 /// <param name="What">The field, as the C's send_big names it.</param>

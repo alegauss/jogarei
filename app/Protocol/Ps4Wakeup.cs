@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP239: waking a PS4, which takes two requests - the first one asking where the second should go.

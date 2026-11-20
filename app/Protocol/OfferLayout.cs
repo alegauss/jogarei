@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which shape the offer's candidate array ends up in.</summary>
 public enum OfferShape

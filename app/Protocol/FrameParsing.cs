@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.Json;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP215: one frame, one document, and no parser state in between.

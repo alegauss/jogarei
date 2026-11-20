@@ -1,8 +1,8 @@
 ﻿using System.Net;
-using ChiakiNg.Native;
-using ChiakiNg.Protocol;
+using Jogarei.Native;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP762: the composition root the handover was waiting for.

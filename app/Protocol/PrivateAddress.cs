@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which of the two local candidates fills in a winner's mapped address.</summary>
 public enum MappedSource

@@ -1,9 +1,9 @@
 using System.Globalization;
 using System.Text.Json;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP785: walks <see cref="TakionOracleCases"/> through the real wrappers and writes down every

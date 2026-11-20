@@ -1,6 +1,6 @@
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What the BANG said, once one has arrived.</summary>
 /// <param name="VersionAccepted">bang_payload.version_accepted, checked first.</param>

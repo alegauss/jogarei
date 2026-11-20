@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One thing about the punch a caller might want to change.</summary>
 public enum PunchSetting

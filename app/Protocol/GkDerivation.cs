@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP26: what a session's key stream and its GMAC keys are derived FROM.

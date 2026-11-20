@@ -1,7 +1,7 @@
 using System.Globalization;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP16: the four values that together are "logged in to PSN", and the fact that it takes all four.

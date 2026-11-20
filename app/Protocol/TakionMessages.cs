@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What nanopb read out of a takion message, for the fields that are scalars.</summary>
 public readonly record struct DecodedTakionMessage(

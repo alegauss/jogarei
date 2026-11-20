@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>Where the microphone already exists in this port, and what each place is.</summary>
 /// <param name="Where">The file, relative to the repository root.</param>

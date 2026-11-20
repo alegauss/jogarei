@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP423: blanking the fields of a protobuf, so a message can be recorded without its keys.

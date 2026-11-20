@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP16: the General tab's two action combos, whose index is the property and whose string is what

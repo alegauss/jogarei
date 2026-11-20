@@ -1,6 +1,6 @@
-using ChiakiNg.Protocol;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>Who runs the session thread's stream phase on a given tree.</summary>
 public enum StreamDriver

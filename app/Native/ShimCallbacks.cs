@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>One C callback typedef and the file whose thunk is passed for it.</summary>
 /// <param name="Typedef">The typedef's name in chiaki_shim.h.</param>

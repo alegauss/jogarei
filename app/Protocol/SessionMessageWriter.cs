@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP33: writing a session message, which is done with format strings and not with a JSON library.

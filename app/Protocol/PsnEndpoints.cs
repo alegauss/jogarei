@@ -1,7 +1,7 @@
 using System.Globalization;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP33: the PSN endpoints the hole punching talks to, and the fixed-size buffers they are built in.

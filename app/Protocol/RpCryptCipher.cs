@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP26: the cipher every rpcrypt payload goes through - AES-128 in CFB128, keyed on bright.

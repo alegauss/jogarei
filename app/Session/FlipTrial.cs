@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One arranged deletion, and what its trial takes out of the suite.</summary>
 /// <param name="Name">What <c>flip.cmd</c> is given, and what cmake compares against.</param>

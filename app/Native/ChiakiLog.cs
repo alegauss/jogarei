@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>
 /// The CHIAKI_LOG_* bits, which are a mask and not an ordering: a log lets through the levels

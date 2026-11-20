@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>A quaternion, as the console is told the pad is oriented.</summary>
 public readonly record struct Orientation(float X, float Y, float Z, float W);

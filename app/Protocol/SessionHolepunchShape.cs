@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which of the two shapes session.c is in.</summary>
 public enum SessionShape
@@ -133,16 +133,16 @@ public static class SessionHolepunchShape
     /// </summary>
     public static IReadOnlyList<string> ConvertedTests { get; } =
     [
-        @"tests\ChiakiNg.Tests\HolepunchDirectionTests.cs",
-        @"tests\ChiakiNg.Tests\HolepunchFlowTests.cs",
-        @"tests\ChiakiNg.Tests\HolepunchReachTests.cs",
-        @"tests\ChiakiNg.Tests\HolepunchSeamTests.cs",
-        @"tests\ChiakiNg.Tests\HolepunchSocketOwnershipTests.cs",
-        @"tests\ChiakiNg.Tests\HolepunchStateTests.cs",
-        @"tests\ChiakiNg.Tests\PunchProgressTests.cs",
-        @"tests\ChiakiNg.Tests\SessionRegistForkTests.cs",
-        @"tests\ChiakiNg.Tests\SessionReleaseTests.cs",
-        @"tests\ChiakiNg.Tests\SessionRequestAddressTests.cs",
+        @"tests\Jogarei.Tests\HolepunchDirectionTests.cs",
+        @"tests\Jogarei.Tests\HolepunchFlowTests.cs",
+        @"tests\Jogarei.Tests\HolepunchReachTests.cs",
+        @"tests\Jogarei.Tests\HolepunchSeamTests.cs",
+        @"tests\Jogarei.Tests\HolepunchSocketOwnershipTests.cs",
+        @"tests\Jogarei.Tests\HolepunchStateTests.cs",
+        @"tests\Jogarei.Tests\PunchProgressTests.cs",
+        @"tests\Jogarei.Tests\SessionRegistForkTests.cs",
+        @"tests\Jogarei.Tests\SessionReleaseTests.cs",
+        @"tests\Jogarei.Tests\SessionRequestAddressTests.cs",
     ];
 
     /// <summary>The call a converted file makes, which is how one is recognised.</summary>

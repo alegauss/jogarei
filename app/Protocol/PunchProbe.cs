@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP243: the probe sent to every candidate address, and the arrays sized to answer it.

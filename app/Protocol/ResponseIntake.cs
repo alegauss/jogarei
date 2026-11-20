@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Every way one response's turn through the intake can end.</summary>
 public enum IntakeExit

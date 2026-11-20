@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP218: what `Jogarei.exe --controllers` prints.

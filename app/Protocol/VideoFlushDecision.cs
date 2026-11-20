@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What a failed flush asks the receiver to do.</summary>
 /// <param name="ReportCorrupt">Send a corrupt-frame message for the range below.</param>

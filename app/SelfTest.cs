@@ -2,12 +2,12 @@ using System.Buffers.Binary;
 using System.Text;
 using Google.Protobuf;
 using Microsoft.Win32;
-using ChiakiNg.Settings;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
-using ChiakiNg.Protocol;
+using Jogarei.Settings;
+using Jogarei.Native;
+using Jogarei.Session;
+using Jogarei.Protocol;
 
-namespace ChiakiNg;
+namespace Jogarei;
 
 /// <summary>
 /// A preference store held in a dictionary, so PP5's translation can be exercised on the branches
@@ -2771,7 +2771,7 @@ public static class SelfTest
                 var delivered = new List<int>();
                 using (var vr = new VideoReceiver(
                     (f, _, _) => { delivered.Add(f.Length); return true; },
-                    ChiakiNg.Session.ChiakiCodec.H264))
+                    Jogarei.Session.ChiakiCodec.H264))
                 {
                     vr.StreamInfo(profileHdr, 1920, 1080);
 
@@ -2838,7 +2838,7 @@ public static class SelfTest
                 var unit = new byte[2 + payload.Length];
                 payload.CopyTo(unit, 2);
 
-                using (var vr = new VideoReceiver(Take, ChiakiNg.Session.ChiakiCodec.H264))
+                using (var vr = new VideoReceiver(Take, Jogarei.Session.ChiakiCodec.H264))
                 {
                     Check("the stream info is accepted", vr.StreamInfo(profileHeader, 1920, 1080));
                     // Nothing is delivered yet. The header does not go out when the profiles are
@@ -2870,7 +2870,7 @@ public static class SelfTest
                 var refused = new List<int>();
                 using (var vr = new VideoReceiver(
                     (f, _, _) => { refused.Add(f.Length); return false; },
-                    ChiakiNg.Session.ChiakiCodec.H264))
+                    Jogarei.Session.ChiakiCodec.H264))
                 {
                     vr.StreamInfo(profileHeader, 1920, 1080);
                     vr.AvPacket(1, 0, 1, 0, unit);
@@ -3079,7 +3079,7 @@ public static class SelfTest
                     h264.Count == 4 && h265.Count == 4,
                     $"{h264.Count}/{h265.Count}");
 
-                using (var bs = new Bitstream(ChiakiNg.Session.ChiakiCodec.H264))
+                using (var bs = new Bitstream(Jogarei.Session.ChiakiCodec.H264))
                 {
                     Check("an H.264 stream's parameter sets parse", bs.ReadHeader(h264["header"]));
                     Check("an I slice is an I slice",
@@ -3092,7 +3092,7 @@ public static class SelfTest
                         bs.ReadSlice(h264["slice_p_ref_5"])?.ToString() ?? "<null>");
                 }
 
-                using (var bs = new Bitstream(ChiakiNg.Session.ChiakiCodec.H265))
+                using (var bs = new Bitstream(Jogarei.Session.ChiakiCodec.H265))
                 {
                     Check("an H.265 stream parses the same three ways",
                         bs.ReadHeader(h265["header"])
@@ -3105,7 +3105,7 @@ public static class SelfTest
                 // change that reopens it says which bug it is.
                 IReadOnlyDictionary<string, byte[]> issue213 =
                     CryptoVectors.InFunction(bsFile, "test_bitstream_issue_213");
-                using (var bs = new Bitstream(ChiakiNg.Session.ChiakiCodec.H265))
+                using (var bs = new Bitstream(Jogarei.Session.ChiakiCodec.H265))
                 {
                     Check("issue 213's slice still reads as a P frame referencing 0",
                         bs.ReadHeader(issue213["header"])
@@ -3119,7 +3119,7 @@ public static class SelfTest
                 // stream is not necessarily rewritable, which is what the refusal below is about.
                 IReadOnlyDictionary<string, byte[]> setRef =
                     CryptoVectors.InFunction(bsFile, "test_bitstream_set_ref_h265");
-                using (var bs = new Bitstream(ChiakiNg.Session.ChiakiCodec.H265))
+                using (var bs = new Bitstream(Jogarei.Session.ChiakiCodec.H265))
                 {
                     Check("the set-ref case's header parses", bs.ReadHeader(setRef["header"]));
 

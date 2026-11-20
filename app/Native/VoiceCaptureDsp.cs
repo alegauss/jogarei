@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>What the Voice Capture DSP said when it was asked for a format.</summary>
 /// <param name="Rate">Samples a second.</param>

@@ -3,11 +3,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
-using ChiakiNg.Native;
-using ChiakiNg.Protocol;
-using ChiakiNg.Views;
+using Jogarei.Native;
+using Jogarei.Protocol;
+using Jogarei.Views;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP700: a window with a console in it, which is the whole line's point.
@@ -438,8 +438,8 @@ public static class StreamRun
 
         // PP858: the Controllers tab's two haptics rows, which this run used to type as Normal and
         // the default override. Read once, here, from the store the tab writes.
-        ChiakiNg.Settings.HapticsSettings hapticsSettings = ChiakiNg.Settings.HapticsSettings.From(
-            new ChiakiNg.Settings.QSettingsPreferences(new ChiakiNg.Settings.QSettingsStore()));
+        Jogarei.Settings.HapticsSettings hapticsSettings = Jogarei.Settings.HapticsSettings.From(
+            new Jogarei.Settings.QSettingsPreferences(new Jogarei.Settings.QSettingsStore()));
 
         Task<bool> opening = Task.Run(() =>
         {

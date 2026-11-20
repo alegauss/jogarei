@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>Who measures the link on a given tree.</summary>
 public enum SenkushaDriver

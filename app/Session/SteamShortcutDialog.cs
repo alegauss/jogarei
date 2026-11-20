@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Settings;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP19: the non-Steam shortcut dialog - the last of the tail, and the one that writes outside the

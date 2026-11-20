@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One device as SDL enumerates it, at the index it currently occupies.</summary>
 /// <param name="IsGameController">Whether SDL has a mapping for it. Joysticks without one are skipped.</param>

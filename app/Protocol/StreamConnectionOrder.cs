@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One ordering the run depends on, and what a port loses by not keeping it.</summary>
 /// <param name="Lead">What it is, in a sentence.</param>

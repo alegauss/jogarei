@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One CHIAKI_EVENT_HOLEPUNCH, by the only field it carries.</summary>
 public enum PunchProgressEvent

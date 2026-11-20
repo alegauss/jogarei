@@ -1,8 +1,8 @@
 ﻿using System.Buffers.Binary;
 using System.Net;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Where a takion is in its life, which is what says whether its state exists.</summary>
 public enum TakionStage

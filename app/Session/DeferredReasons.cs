@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>A set-aside line whose reason names something the project declares.</summary>
 /// <param name="Id">The line.</param>

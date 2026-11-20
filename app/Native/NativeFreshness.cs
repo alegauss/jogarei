@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>Why a freshness check could not answer, or that it did.</summary>
 public enum FreshnessVerdict

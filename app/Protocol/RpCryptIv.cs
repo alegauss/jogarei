@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP26: the IV every rpcrypt block is encrypted under, derived in managed code.

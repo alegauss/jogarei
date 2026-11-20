@@ -1,7 +1,7 @@
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>ChiakiRumbleEvent: three bytes, the first of which nobody has named.</summary>
 /// <param name="Unknown">buf[0]. The C calls it unknown and passes it on regardless.</param>

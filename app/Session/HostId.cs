@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP624: the one spelling of a console's identity, because this port had two that never met.

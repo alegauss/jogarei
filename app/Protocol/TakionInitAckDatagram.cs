@@ -1,8 +1,8 @@
 using System.Buffers.Binary;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP672: an INIT_ACK read by the client - the five fields, and the cookie it has to echo.

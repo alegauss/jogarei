@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>
 /// PP816: the speakers again, over the queue Windows already ships.

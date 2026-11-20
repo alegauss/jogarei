@@ -203,7 +203,7 @@ internal static class Program
     ///
     /// It prints the ratio and does NOT refuse. The verdict belongs to the gate, which knows which
     /// spikes' tails are noise and which spike's tail is its finding - see
-    /// ChiakiNg.Session.SpikeRunQuality, and run test.cmd after copying a run over the release-*.json
+    /// Jogarei.Session.SpikeRunQuality, and run test.cmd after copying a run over the release-*.json
     /// beside this file.
     /// </summary>
     private static void Tail(params Stats[] sides)

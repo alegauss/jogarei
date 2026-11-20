@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One control: the file it names, and which way the build graph has to answer about it.</summary>
 /// <param name="Where">The class that declares it, for the failure message.</param>

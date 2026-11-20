@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using System.Globalization;
-using ChiakiNg.Protocol;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One side's cost, as microseconds per datagram over a run of batches.</summary>
 /// <param name="Name">Which side.</param>
@@ -110,7 +110,7 @@ public static class MacGateTiming
     private static void NativeGate(CapturedDatagram datagram)
     {
         byte[] head = [.. datagram.Head];
-        ChiakiNg.Native.ChiakiError error = Takion.PacketMacWithoutCrypt(head, keyPos: 0, out byte[]? before);
+        Jogarei.Native.ChiakiError error = Takion.PacketMacWithoutCrypt(head, keyPos: 0, out byte[]? before);
         GC.KeepAlive(before);
         GC.KeepAlive(error);
     }

@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace ChiakiNg.Views;
+namespace Jogarei.Views;
 
 /// <summary>
 /// PP16: the Keys tab.

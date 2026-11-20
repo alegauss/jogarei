@@ -1,6 +1,6 @@
-using ChiakiNg.Protocol;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP786: the C suite's other switch, for the three test files takion's deletion takes.

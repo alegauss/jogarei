@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>A QRect as QSettings spells it: `@Rect(x y width height)`.</summary>
 public readonly record struct QRectValue(int X, int Y, int Width, int Height);

@@ -1,6 +1,6 @@
-﻿using ChiakiNg.Native;
+﻿using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// What a stream run needs from the world, named for the C calls it stands in for.

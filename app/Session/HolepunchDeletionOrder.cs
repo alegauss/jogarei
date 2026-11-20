@@ -1,6 +1,6 @@
-using ChiakiNg.Protocol;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One step of PP33's deletion, and whether the C changes in it.</summary>
 /// <param name="Name">What the step is called.</param>

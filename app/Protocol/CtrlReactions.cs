@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Which pad and keyboard features a session asked for, since the burst depends on them.</summary>
 /// <param name="DualSense">connect_info.enable_dualsense.</param>

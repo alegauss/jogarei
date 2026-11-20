@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP5: the volume step of PushAudioFrame, which is SDL_MixAudioFormat into a zeroed buffer.

@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Who owns the decoded video headers at a point in the streaminfo handler.</summary>
 public enum ProfileOwner

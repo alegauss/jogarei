@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text.Json;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One side's offer: who it is, how its NAT behaves, and where it might be reached.</summary>
 /// <param name="Sid">This side's session id.</param>

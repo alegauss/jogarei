@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>Which of a display target's modes is in force. Not stored - derived from the value.</summary>
 public enum DisplayTargetMode

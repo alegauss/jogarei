@@ -1,8 +1,8 @@
 using System.Buffers.Binary;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// One v7 AV header, with the payload named by where it sits.

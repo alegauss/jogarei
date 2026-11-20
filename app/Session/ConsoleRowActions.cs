@@ -1,8 +1,8 @@
 using System.Net;
 using System.Net.Sockets;
-using ChiakiNg.Settings;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>Why a row cannot be woken, or that it can.</summary>
 public enum WakeRefusal

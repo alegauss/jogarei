@@ -119,8 +119,8 @@ call :need "CMakeLists.txt"                "the build graph root"
 call :need "gui\CMakeLists.txt"            "the Qt client"
 call :need "lib\CMakeLists.txt"            "libchiaki"
 if not defined NO_TESTS call :need "test\CMakeLists.txt" "chiaki-unit, which a default build links so ctest is not left on a stale binary"
-if not defined NO_APP call :need "app\ChiakiNg.csproj" "the .NET host (PP1); compile.cmd noapp builds the Qt client alone"
-if not defined NO_APP call :need "ChiakiNg.slnx"        "the solution the .NET host is built through (PP24)"
+if not defined NO_APP call :need "app\Jogarei.csproj" "the .NET host (PP1); compile.cmd noapp builds the Qt client alone"
+if not defined NO_APP call :need "Jogarei.slnx"        "the solution the .NET host is built through (PP24)"
 if defined MISSING (
     echo.
     echo [compile] Cannot build: the file^(s^) above are read by this build.
@@ -171,7 +171,7 @@ if not defined CONFIGURE_ONLY if defined NO_APP echo [compile] .NET host  : SKIP
 rem PP532: "after the native side" rather than "after the Qt client", which named something no
 rem ordinary run builds. The claim PP74 wanted here is the ORDERING - the host goes last - and
 rem that is true whether or not `gui` asked for a client.
-if not defined CONFIGURE_ONLY if not defined NO_APP echo [compile] .NET host  : ChiakiNg.slnx built after the native side
+if not defined CONFIGURE_ONLY if not defined NO_APP echo [compile] .NET host  : Jogarei.slnx built after the native side
 if defined DO_DEPLOY echo [compile] portable   : %DEPLOY_DISP%
 if not defined DO_DEPLOY if not defined CONFIGURE_ONLY echo [compile] portable   : skipped
 echo.
@@ -218,8 +218,8 @@ echo.
 rem PP24: the SOLUTION and not the project. Building what Visual Studio opens is what keeps
 rem the two honest - a solution that has lost a project, or that names one which does not
 rem build, is a red build here rather than a surprise on somebody elses F5.
-echo [compile] building ChiakiNg.slnx ...
-dotnet build "%~dp0ChiakiNg.slnx" -c Debug --nologo -v quiet
+echo [compile] building Jogarei.slnx ...
+dotnet build "%~dp0Jogarei.slnx" -c Debug --nologo -v quiet
 rem PP682: the pair again, and this is the call it matters most for - dotnet is what
 rem produces the negative code the single test cannot see.
 if errorlevel 1 goto host_failed

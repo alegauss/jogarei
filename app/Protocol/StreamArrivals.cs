@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What one arrival came to, which is the three dispatch layers' answers together.</summary>
 /// <param name="Route">Layer one: what the callback did with the takion event.</param>

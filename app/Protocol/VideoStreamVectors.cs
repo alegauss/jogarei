@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One recorded packet off a real stream, and the NALU it decrypts to.</summary>
 /// <param name="Packet">The bytes as they came off the wire, header and encrypted payload.</param>

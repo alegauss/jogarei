@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>The unit fields of one audio AV head, which is all of it that fits in a kept head.</summary>
 /// <param name="UnitIndex">Which unit of the frame this datagram is.</param>

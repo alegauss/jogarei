@@ -1,8 +1,8 @@
 using System.Globalization;
-using ChiakiNg.Protocol;
-using ChiakiNg.Session;
+using Jogarei.Protocol;
+using Jogarei.Session;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>What a managed wait is to the C wait beside it.</summary>
 public enum WaitKind

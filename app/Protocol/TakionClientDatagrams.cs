@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP672, under PP27: the two datagrams the CLIENT sends, as bytes.

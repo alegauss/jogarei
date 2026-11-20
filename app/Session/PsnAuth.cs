@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using System.Text;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP7: the PSN login, everywhere except inside the browser.

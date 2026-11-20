@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP550, under PP33: <see cref="IHolepunchPunchSteps"/> over the pieces that actually run.

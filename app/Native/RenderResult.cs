@@ -1,4 +1,4 @@
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>What opening a render device did.</summary>
 /// <remarks>

@@ -1,8 +1,8 @@
 using System.Net;
-using ChiakiNg.Native;
-using ChiakiNg.Protocol;
+using Jogarei.Native;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP809, under PP784: the composition root PP792's seam was waiting for.

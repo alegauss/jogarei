@@ -1,9 +1,9 @@
 ﻿using System.Buffers.Binary;
 using System.Net;
 using System.Security.Cryptography;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP791, under PP784: the first implementation of <see cref="ISenkushaRunHost"/> outside the tests.

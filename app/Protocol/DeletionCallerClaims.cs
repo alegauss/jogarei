@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>A line whose subject is deleting C, and the module it deletes.</summary>
 /// <param name="Id">The task.</param>

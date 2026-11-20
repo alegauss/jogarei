@@ -1,7 +1,7 @@
 using System.Globalization;
-using ChiakiNg.Settings;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP10: how the video fills the window.

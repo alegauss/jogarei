@@ -2,11 +2,11 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using ChiakiNg.Native;
-using ChiakiNg.Protocol;
-using ChiakiNg.Settings;
+using Jogarei.Native;
+using Jogarei.Protocol;
+using Jogarei.Settings;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>PP514: which recording a capture run produces. The session path is the same for both.</summary>
 public enum SessionCaptureKind

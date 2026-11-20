@@ -1,4 +1,4 @@
-<UserControl x:Class="ChiakiNg.Views.ControllerMappingView"
+<UserControl x:Class="Jogarei.Views.ControllerMappingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <!--

@@ -1,6 +1,6 @@
-using ChiakiNg.Protocol;
+using Jogarei.Protocol;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP846: where a rumble goes once the fold has produced one.

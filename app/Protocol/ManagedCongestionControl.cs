@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>The two numbers one congestion packet carries, after the clamp has had them.</summary>
 /// <param name="Received">What the console is told arrived.</param>

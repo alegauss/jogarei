@@ -1,4 +1,4 @@
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP212: one notification as it sits on the queue.
@@ -127,7 +127,7 @@ public enum NotificationWaitOutcome
 /// PP212: waiting for a notification, which is a cursor walk and a timeout that is not one.
 ///
 /// Split from the condition variable it runs on for the reason
-/// <see cref="ChiakiNg.Session.FocusChainBehavior.Decide"/> gives: sleeping needs a thread, and
+/// <see cref="Jogarei.Session.FocusChainBehavior.Decide"/> gives: sleeping needs a thread, and
 /// deciding whether to sleep again needs nothing but a clock. Everything below is driven by the
 /// caller's loop, in the same order the core's loop drives it.
 ///

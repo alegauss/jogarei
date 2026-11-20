@@ -1,8 +1,8 @@
 using System.Buffers.Binary;
 using System.Text;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP351, under PP294: the four things a screen can ask the control channel for, and the bytes that

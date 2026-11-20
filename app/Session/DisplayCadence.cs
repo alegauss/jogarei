@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP321: how a tick of the buffered pacer ended, which is four answers and not two.

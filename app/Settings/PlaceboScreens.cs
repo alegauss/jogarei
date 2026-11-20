@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP17: one row of either placebo screen - a label, a slider and the number beside it.

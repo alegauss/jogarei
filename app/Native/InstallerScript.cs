@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Native;
+namespace Jogarei.Native;
 
 /// <summary>
 /// PP274: what the Inno Setup script says it packages, read back out of the script.
@@ -27,7 +27,7 @@ public static partial class InstallerScript
     public const string RelativePath = @"scripts\chiaki-ng.iss";
 
     /// <summary>The project that names the executable, relative to the repository root.</summary>
-    public const string ProjectRelativePath = @"app\ChiakiNg.csproj";
+    public const string ProjectRelativePath = @"app\Jogarei.csproj";
 
     /// <summary>The command that writes the payload, relative to the repository root.</summary>
     public const string CommandRelativePath = "package.cmd";

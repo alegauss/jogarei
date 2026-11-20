@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Why a received data ack was or was not acted on.</summary>
 public enum TakionAckVerdict

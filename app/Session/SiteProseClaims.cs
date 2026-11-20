@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>What kind of thing an inline-code value in the site's prose is.</summary>
 public enum ProseClaimKind
@@ -32,7 +32,7 @@ public readonly record struct ProseClaim(string Code, ProseClaimKind Kind);
 /// and `d3d11va`. All three checkable ones are right today, and nothing checked them - which is
 /// PP434's shape, where a green answer came from what the files happened to contain.
 ///
-/// THE TOOL WAS IN NO BUILD. compile.cmd builds ChiakiNg.slnx; this tree has seven first-party csproj
+/// THE TOOL WAS IN NO BUILD. compile.cmd builds Jogarei.slnx; this tree has seven first-party csproj
 /// files and the solution named two. So the front page promised what compare-baselines prints while
 /// no gate here compiled it. PP436 put it in the solution, and this holds the join.
 ///
@@ -50,7 +50,7 @@ public static partial class SiteProseClaims
     public const string HostRelativePath = @"app\Session\HostCommandLine.cs";
 
     /// <summary>And the solution compile.cmd builds.</summary>
-    public const string SolutionRelativePath = "ChiakiNg.slnx";
+    public const string SolutionRelativePath = "Jogarei.slnx";
 
     /// <summary>
     /// Inline-code values that name nothing in this tree, each with why it is exempt.

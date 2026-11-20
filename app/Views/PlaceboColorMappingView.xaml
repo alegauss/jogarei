@@ -1,7 +1,7 @@
-<UserControl x:Class="ChiakiNg.Views.PlaceboColorMappingView"
+<UserControl x:Class="Jogarei.Views.PlaceboColorMappingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:views="clr-namespace:ChiakiNg.Views">
+             xmlns:views="clr-namespace:Jogarei.Views">
   <!--
     PP17: the Color Mapping Settings screen.
 

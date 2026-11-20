@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using System.Text;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>What a recorded exchange supplies, which is what the five value-returning asks read.</summary>
 /// <param name="PsIp">The address the console was reached at.</param>

@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP749: chiaki_takion_format_congestion, which was the one takion datagram with no managed writer.

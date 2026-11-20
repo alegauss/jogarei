@@ -1,4 +1,4 @@
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP211: how focus moves inside the controller mapping grid, which is not how it moves anywhere

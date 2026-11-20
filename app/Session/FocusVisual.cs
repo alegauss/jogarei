@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP12: how a focused control shows it, and the gap that reading the Qt client turned up.

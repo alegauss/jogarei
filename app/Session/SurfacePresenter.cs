@@ -1,7 +1,7 @@
 using System.Windows.Interop;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>
 /// PP135: the shared surface handed to WPF, which is the last link of PP9's chain.

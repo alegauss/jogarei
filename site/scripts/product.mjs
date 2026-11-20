@@ -6,7 +6,7 @@
 // through src/lib/product.ts.
 //
 // Two sources, both in this repository:
-//   app/ChiakiNg.csproj            the version and the target framework
+//   app/Jogarei.csproj            the version and the target framework
 //   app/Session/HostCommandLine.cs the flags the host answers, with their summaries
 //
 // The second one is already held against the dispatch it describes by an assertion in the
@@ -35,13 +35,13 @@ function matchOrThrow(text, re, label, source) {
   return m[1].trim();
 }
 
-const csproj = read("app/ChiakiNg.csproj");
-const version = matchOrThrow(csproj, /<Version>([^<]+)<\/Version>/, "a Version", "ChiakiNg.csproj");
+const csproj = read("app/Jogarei.csproj");
+const version = matchOrThrow(csproj, /<Version>([^<]+)<\/Version>/, "a Version", "Jogarei.csproj");
 const framework = matchOrThrow(
   csproj,
   /<TargetFramework>([^<]+)<\/TargetFramework>/,
   "a TargetFramework",
-  "ChiakiNg.csproj",
+  "Jogarei.csproj",
 );
 
 // The Flags list, as C# record constructions: new("--name", "[arg]", "summary").
@@ -77,7 +77,7 @@ export interface HostFlag {
   readonly summary: string;
 }
 
-/** The application version, from app/ChiakiNg.csproj. */
+/** The application version, from app/Jogarei.csproj. */
 export const VERSION = ${JSON.stringify(version)};
 
 /** The target framework it builds against, from the same file. */

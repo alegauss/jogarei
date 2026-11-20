@@ -1,7 +1,7 @@
 using System.Globalization;
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP17: the number beside each slider, whose decimals are the STEP's decimals - on all forty rows.

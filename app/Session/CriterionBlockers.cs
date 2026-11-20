@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>One id a criterion names as something still to happen, and where it was named.</summary>
 /// <param name="About">The task whose criterion names it.</param>

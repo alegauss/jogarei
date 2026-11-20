@@ -1,7 +1,7 @@
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>Where a packet's MAC and key position live, for one base type.</summary>
 /// <param name="MacOffset">Where the four-byte GMAC starts.</param>

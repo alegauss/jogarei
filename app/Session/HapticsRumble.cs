@@ -1,6 +1,6 @@
 ﻿using System.Buffers.Binary;
 
-namespace ChiakiNg.Session;
+namespace Jogarei.Session;
 
 /// <summary>settings/rumble_haptics_intensity, in the order settings.h declares it.</summary>
 public enum RumbleHapticsIntensity

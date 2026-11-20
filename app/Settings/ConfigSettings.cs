@@ -1,7 +1,7 @@
-﻿using ChiakiNg.Native;
-using ChiakiNg.Session;
+﻿using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP16: the two logging switches, and the fact that neither of them stores a level.

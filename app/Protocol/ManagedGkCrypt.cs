@@ -1,8 +1,8 @@
 using System.Buffers;
-using ChiakiNg.Native;
-using ChiakiNg.Session;
+using Jogarei.Native;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One step stream_connection_init_crypt takes, in the order it takes them.</summary>
 public enum GkCryptStep

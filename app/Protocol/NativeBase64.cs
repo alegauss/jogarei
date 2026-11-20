@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
-using ChiakiNg.Native;
+using Jogarei.Native;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>
 /// PP269: the library's own base64 encoder, reachable so a claim about it can be run.
@@ -70,7 +70,7 @@ public static class NativeBase64Source
 
     /// <summary>The header, or null outside a checkout.</summary>
     public static string? Locate()
-        => ChiakiNg.Session.SanitizerSource.LocateRelative(HeaderRelativePath);
+        => Jogarei.Session.SanitizerSource.LocateRelative(HeaderRelativePath);
 
     /// <summary>
     /// Whether the error is still the thirteenth member, counted rather than read off a comment.

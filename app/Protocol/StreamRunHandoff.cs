@@ -1,6 +1,6 @@
-using ChiakiNg.Session;
+using Jogarei.Session;
 
-namespace ChiakiNg.Protocol;
+namespace Jogarei.Protocol;
 
 /// <summary>One thing PP696's commit adds, and where it goes.</summary>
 /// <param name="RelativePath">The file it is added to.</param>

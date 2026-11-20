@@ -1,4 +1,4 @@
-namespace ChiakiNg.Settings;
+namespace Jogarei.Settings;
 
 /// <summary>
 /// PP16: a combo whose INDEX is the property and whose STRING is what the store holds.
