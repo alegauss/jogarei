@@ -381,25 +381,6 @@ that too is read rather than assumed.
 
 ## Block J — Public documentation
 
-### §PP861 PP861 — Carrying a name without a Sony mark through the product
-
-From the portfolio review of 30/10/2026 (visibility, `produtos/pportal.md`), where the
-author decided to review the name. "PPortal" reads as PlayStation Portal, Sony's own
-device built for exactly this use, so the name borrows a mark the project does not own;
-the site's "unofficial" notice does not change what the name itself suggests, and a
-complaint would arrive after the first release had spread it.
-
-The new name is chosen in the visibility repository (its VS59, together with
-quickshell's), with the usual checks: free on GitHub, winget, the Microsoft Store and as
-a domain, and with nothing of Sony's in it (no PlayStation, PS, Portal or DualSense).
-This line carries the chosen name through the product: the executable and the window
-title, the installer and its install folder, the icon's file name, the repository name
-(GitHub redirects the old one), the site and its `llms.txt`. The side-by-side install
-with chiaki-ng stays as it is, and the task prefix stays `PP`.
-
-Done when the new name is the only one a user sees from the download to the window, and
-nothing in it is a Sony mark.
-
 ### §PP862 PP862 — A README of its own
 
 From the portfolio review of 30/10/2026 (visibility, `produtos/pportal.md`). The
