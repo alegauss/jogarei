@@ -18,8 +18,8 @@ namespace Jogarei.Session;
 /// tail is contamination only where the tail cannot be the finding. It cannot be here: both NVIDIA
 /// spikes time a DRAINED BATCH of blts on the video engine, so each sample is already an average of
 /// twenty-five and a spike in one is another process. It very much can be elsewhere - PP65's whole
-/// result is a 103us median against a 26990us p99 in spike/decode-path, which this limit would
-/// reject as noise while it is the thing that shipped. That spike is not bound and must not be.
+/// result is a 103us median against a 26990us p99 in the decode-path run, which this limit would
+/// reject as noise while it is the thing that shipped. That run is not bound and must not be.
 /// </summary>
 public static class SpikeRunQuality
 {
@@ -34,14 +34,20 @@ public static class SpikeRunQuality
     public const double TailLimit = 1.5;
 
     /// <summary>
+    /// Where the committed runs live. PP871 deleted spike\ and moved each reading, byte for byte,
+    /// beside the tests that read it; the experiments are gone and their answers are not.
+    /// </summary>
+    public const string FixtureDirectory = @"tests\Jogarei.Tests\fixtures\spikes";
+
+    /// <summary>
     /// The runs this binds, by path. A list rather than a glob, because being bound is a claim
     /// about what a spike's tail MEANS and no directory walk can make it.
     /// </summary>
     public static IReadOnlyList<string> BoundRuns { get; } =
     [
-        @"spike\video-hdr\release-4060-engaged.json",
-        @"spike\video-upscale\release-4060-no-engage.json",
-        @"spike\video-upscale\release-4060-no-engage-2.json",
+        FixtureDirectory + @"\video-hdr\release-4060-engaged.json",
+        FixtureDirectory + @"\video-upscale\release-4060-no-engage.json",
+        FixtureDirectory + @"\video-upscale\release-4060-no-engage-2.json",
     ];
 
     /// <summary>
@@ -54,8 +60,8 @@ public static class SpikeRunQuality
     /// </summary>
     public static IReadOnlyList<string> Excluded { get; } =
     [
-        @"spike\decode-path\release-4060.json",
-        @"spike\opus-decode\release-managed-vs-native.json",
+        FixtureDirectory + @"\decode-path\release-4060.json",
+        FixtureDirectory + @"\opus-decode\release-managed-vs-native.json",
     ];
 
     /// <summary>One timing series out of a run's JSON.</summary>

@@ -27,7 +27,7 @@ heading would have taken a latency win as gated on hardware it does not need.
 | **Hardware decode via d3d11va** | [`qmlsettings.cpp`](../gui/src/qmlsettings.cpp) lists `vulkan`, `d3d11va` and `cuda`, each filtered by `hwDecoderRuntimeAvailable`. The choice itself is [`chiaki_decoder_choice`](../lib/src/decoderchoice.c): cuda only when the window reports an NVIDIA card *and* ffmpeg lists it; otherwise vulkan, then d3d11va. **This row is the one with a test.** [`test/decoderchoice.c`](../test/decoderchoice.c) asserts it on the machine it is written for - no NVIDIA card, an OpenGL window, d3d11va listed - and dropping the d3d11va arm turns the suite red (§PP77). |
 | **A vendor-neutral renderer** | Vulkan is the default and OpenGL is the fallback when Vulkan initialisation fails ([`qmlmainwindow.cpp`](../gui/src/qmlmainwindow.cpp)). Neither is an NVIDIA path, and the fallback is taken on the driver's answer rather than on the vendor. |
 | **A present that can tear, with no vendor extension** | Variable refresh is not an NVIDIA feature and PP53 measured it as DXGI's: `DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING` with `DXGI_PRESENT_ALLOW_TEARING`, which is the same pair FreeSync and VESA Adaptive-Sync answer to. **This row has a test.** `VendorNeutralPresentTests` reads every file of the render shim — the swapchain probes, the DirectComposition trees, both tearing probes — and fails if any of them names a GPU vendor at all, with `chiaki_shim.c` as the control that shows the check can find one (§PP647). |
-| **An SDR present with no NGX** | Nothing in the tree loads NGX, and the present path asks for neither vendor feature. Both are now priced and neither is integrated: RTX Video Super Resolution did not engage on this card ([`spike/video-upscale`](../spike/video-upscale), §PP47), and RTX Video HDR does engage, cheaply ([`spike/video-hdr`](../spike/video-hdr), §PP49). A feature that is measured is still not a feature that is shipped, and this row is about the second. |
+| **An SDR present with no NGX** | Nothing in the tree loads NGX, and the present path asks for neither vendor feature. Both are now priced and neither is integrated: RTX Video Super Resolution did not engage on this card (§PP47), and RTX Video HDR does engage, cheaply (§PP49); see "What the deleted spikes measured" below. A feature that is measured is still not a feature that is shipped, and this row is about the second. |
 
 ## What absence looks like
 
@@ -42,9 +42,8 @@ saying an NVIDIA card would be better is a requirement with a friendly voice.
 **And there is a third shape, which §PP648 measured rather than predicted.** A driver feature can be
 present, offered, and switched off in the vendor's own control panel — and then the option *is* in
 the menu, every call succeeds, and nothing happens. RTX Video Super Resolution does not engage on
-this RTX 4060 ([`spike/video-upscale`](../spike/video-upscale), §PP47 and §PP648) while RTX Video
-HDR does ([`spike/video-hdr`](../spike/video-hdr), §PP49) — same card, same driver, same API. So the
-toggles are per feature.
+this RTX 4060 (§PP47 and §PP648) while RTX Video HDR does (§PP49) — same card, same driver, same
+API. So the toggles are per feature. `SpikeExtensionEchoTests` holds the three committed runs.
 
 That binds anything built on one of them: **a vendor feature that reports success is not a vendor
 feature that ran.** Whatever ships has to read back the effect rather than the return code, the way
@@ -52,7 +51,7 @@ both spikes compare pixels, or the setting will claim to be on for users whose p
 
 ## What the evidence actually covers
 
-Worth stating plainly, because the tables in `spike/` read stronger than they are:
+Worth stating plainly, because the spikes' tables read stronger than they are:
 
 - All three hardware decode paths are measured, not just cuda (§PP48, ledger), and the paced
   numbers put cuda **last** of the three (§PP71). The non-NVIDIA path is not the unmeasured one.
@@ -81,6 +80,53 @@ the spike, so nobody has to rebuild it to learn the answer:
   cannot apply to a decoded stream at all. There is no interpolation trade to take on this card.
 - Vortice mis-types `ppPastSurfaces`; the spike passed a hand-built array, and `--prove-arrays`
   crashing with `0xC0000005` is what showed that array reached the driver.
+
+## What the deleted spikes measured
+
+PP871 deleted `spike/` once every decision in it was taken. The committed readings a test reads
+are fixtures under `tests/Jogarei.Tests/fixtures/spikes`, byte for byte; what only the READMEs
+held is here. Every number is from the RTX 4060 above, driver 32.0.16.1074, Windows 11.
+
+- **Present path** (§PP43, §PP58). A `D3DImage` shared surface holds 59.9 fps with a 42–47 µs
+  present median and a ~5 ms p99. An `HwndHost` child window presented from
+  `CompositionTarget.Rendering` holds ~31.8 fps: `PresentEx` waits a vblank even with
+  `PresentInterval.Immediate`, and that wait serialises with WPF's own vblank-synchronised tick.
+  From a background thread the same window holds 60.0 fps; a `D3DImage` cannot be driven off the UI
+  thread at all. `AddDirtyRect` is 37 of the shared surface's 47 µs. A `RenderTargetBitmap`
+  capture proves the drawing, never the presenting.
+- **FFmpeg decode** (§PP48, §PP65, §PP71), 1080p60 H.264 at ~29 Mbps. Unpaced, the three hardware
+  decoders sit within 13% of each other, cuda and vulkan within 0.1% (one engine). What differs is
+  the per-frame `av_hwframe_transfer_data` readback: cuda 793 µs, d3d11va 2 253 µs, vulkan none
+  (1 880 µs without its exemption); software decode is 5 462 µs. d3d11va's 103 µs median against
+  a 26 990 µs p99 is the harness feeding twelve times real time: paced at 60 fps it is 285 µs p50
+  and 548 µs p99, and `extra_hw_frames` of 0, 4 or 16 changes nothing. Paced totals per frame are
+  vulkan ~400, d3d11va ~2 550, cuda ~2 900 µs; cuda's paced median is four to eight times the
+  others', with the clocks falling in the idle 90% of each interval (implicated, not proven). HEVC
+  was not measured.
+- **Media Foundation** (§PP650, §PP818, §PP826, §PP828). One D3D11-aware decoder per codec:
+  Microsoft's H.264 MFT, and `HEVCVideoExtension`, a Store extension a user can uninstall. "No
+  hardware URL" does not mean the CPU decodes. Paced H.264 costs ~750 µs a frame; unpaced it is
+  bimodal (180 µs p50, 14 500 µs p99) exactly as d3d11va was. The output is `D3D11_BIND_DECODER`
+  only (bind `0x200`, NV12 1920x1088, array of 8), so a renderer copies it, GPU to GPU, in ~25 µs.
+  Leaving FFmpeg would drop 87.6 MB of DLLs and the cuda and vulkan choices. Three traps each gave
+  a plausible wrong answer: `MFT_ENUM_FLAG_TRANSCODE_ONLY` narrows the search; `MF_SA_D3D11_AWARE`
+  belongs to the created transform, not the activate; and `[ComImport]` inheritance does not
+  compose a vtable, so each interface is declared flat.
+- **RTX Video Super Resolution and RTX Video HDR** (§PP47, §PP648, §PP49). Two different D3D11
+  video-processor stream extensions, both from mpv's `vf_d3d11vpp.c`: super resolution is
+  `d43ce1b3-1f4b-48ac-baee-c3c25375e6f7` (version 1, method 2), true HDR is
+  `fdd62bb4-620b-4fd7-9ab3-1e59d0d544b3` (version 4, method 3). Super resolution changed 0 of
+  8,294,400 pixels in two runs; the plain 1080p-to-4K processor scale it would add to costs
+  262.9 µs. True HDR moved 2,073,580 of 2,073,600 pixels for 29.0 µs a frame over a 69.6 µs
+  SDR-to-PQ conversion. Auto processing must stay on: turning it off disables both extensions while
+  every call succeeds. D3D11 timestamp queries run on the 3D queue and cannot time
+  `VideoProcessorBlt` (194 of 200 intervals did not advance), so the instrument is wall clock over a
+  drained batch of 25 blts; without the drain it reads 0.2 µs. DLSS Super Resolution cannot apply to
+  a decoded stream at all.
+- **The rest live in the types that took the decision**: microphone capture in `WasapiCapture` and
+  `MicrophoneUnits` (§PP652), echo cancellation in `EchoCancellation` (§PP52), the HUD overlay in
+  `OverlayDraw` (§PP641), and the Opus decoder in `OpusDependency` and `SpikeRunQualityTests`
+  (§PP32, §PP651).
 
 ## What the gate runs on
 

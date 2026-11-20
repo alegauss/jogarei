@@ -24,6 +24,29 @@ namespace Jogarei.Tests;
 ///
 /// What is NOT claimed is that the native side allocates nothing; that is the C's own test and it
 /// still runs. What is claimed is that the SEAM adds nothing, which is the half this port owns.
+///
+/// PP871: WHAT gate\alloc-budget HELD, now that it is deleted. PP44's gate was a standalone
+/// managed replay with a reference parse (TakionAvHeader) beside the C counter; this class
+/// replaced its managed half, and its README is recorded here because nothing else had it.
+/// - The method. test/allocbudget.c wraps malloc/calloc/realloc at link time (-Wl,--wrap) and
+///   counts every call inside libchiaki while replaying the captured packet through parse,
+///   reassemble and flush, 200 frames x 7 source units = 1400 packets: 0 bytes, 0 calls. The
+///   first frame is exempt because unit_slots and frame_buf are sized there from a field in the
+///   payload and reused after; only FEC reconstruction allocates, on frames that lost a unit.
+/// - The receive step is outside that zero (PP59): 3 calls and 1754 bytes per video packet - the
+///   1500-byte receive buffer malloc'd in takion_av_thread_func, its realloc to the received size
+///   (174 here), and the 80-byte TakionAVPacketEntry in takion_handle_packet_av. The buffer pair
+///   is replayed at the same sizes, since the real loop needs a live socket.
+/// - The flag. The counter needs -fno-builtin-malloc, -fno-builtin-calloc and
+///   -fno-builtin-realloc on BOTH chiaki-lib (lib/CMakeLists.txt) and chiaki-unit
+///   (test/CMakeLists.txt, beside the --wrap link options). Without it on the library the
+///   compiler emits builtin calls the linker never sees as undefined, --wrap redirects nothing,
+///   and the gate passes blind.
+/// - The red runs that proved both halves. A malloc(64) in chiaki_frame_processor_put_unit failed
+///   the C half with 64 &lt;= 0, exactly the injected size; a payload.ToArray() per packet failed
+///   the managed half at 184 bytes a packet. The first C attempt, with --wrap and no -fno-builtin
+///   on the library, counted 0 for that same malloc(64) - which is why the C suite's
+///   counter_sees_allocations case exists, and why <see cref="TheCounterSeesAnAllocation"/> does.
 /// </summary>
 public class AllocBudgetTests
 {

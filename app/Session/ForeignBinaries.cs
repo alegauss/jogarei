@@ -30,8 +30,9 @@ public static class ForeignBinaries
     /// <summary>
     /// The directories this port's own source lives in.
     ///
-    /// Named rather than "everything below the root": build/, spike/ and gate/ hold real build
-    /// output, and a rule that walked them would be a rule about a .gitignore instead.
+    /// Named rather than "everything below the root": build/ holds real build output (as spike/
+    /// and gate/ did until PP871 deleted them), and a rule that walked it would be a rule about a
+    /// .gitignore instead.
     /// </summary>
     public static IReadOnlyList<string> SourceRelativeDirectories { get; } =
         ["app", "lib", "shim", "gui", "scripts", "test", "tests", "cmake"];

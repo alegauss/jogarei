@@ -14,7 +14,7 @@ namespace Jogarei.Tests;
 /// accepted, a rebuild against the compositor - and said choosing needs the cost of each.
 ///
 /// THE FIRST SHAPE'S PRICE WAS A PREMISE, NOT A MEASUREMENT. The section prices it as "a
-/// full-screen copy at HUD update rate", and spike/overlay-draw asked the machine instead. A
+/// full-screen copy at HUD update rate", and PP641's overlay-draw spike asked the machine instead. A
 /// composition visual carries its own size, and PP10's HUD measures 156x138: rendering the tree at
 /// that size costs 128 microseconds, and rendering it across a 4K plane costs 18,390 - more than a
 /// whole 60fps frame. So the option as described was never available, and the option as it is costs
@@ -24,6 +24,9 @@ namespace Jogarei.Tests;
 /// arithmetic that turns a microsecond figure into a verdict. And the numbers, read out of the
 /// spike's committed file rather than transcribed - PP666's lesson, because a table copied from a
 /// measurement is a claim wearing the measurement's authority.
+///
+/// PP871: the file is a fixture under tests\Jogarei.Tests\fixtures\spikes now, kept byte for byte
+/// when spike\ was deleted; ScaffoldingAuditTests fails if a checkout cannot find it.
 /// </summary>
 public class OverlayDrawTests(ITestOutputHelper output)
 {

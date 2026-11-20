@@ -114,6 +114,8 @@
 # PP47's finding a second time. A test over that would assert that a
 # GUID literal contains the digits it contains - a check on a copy of the source, which is the
 # shape PP611's exemption already refused. It is recorded in the spike's README and in §PP49.
+# (PP871 deleted spike/; this finding and PP650's, PP818's and PP826's below are now recorded in
+# docs/HARDWARE-CONTRACT.md, under "What the deleted spikes measured".)
 # exempt PP49 - an evaluation: RTX Video HDR engages at 29.0us a frame, which is the number it reported.
 #
 # PP650 is the fourth, and it is one of PP307's sixteen measurements again: its deliverable is what

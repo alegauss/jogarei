@@ -11,14 +11,18 @@ namespace Jogarei.Tests;
 /// PP49 chose which of six runs to commit by looking at whether its p99 sat near its p50. That
 /// judgement was nowhere in the tree, so a re-run produced whatever the machine was doing that
 /// minute and nothing said which of the two it was. This is that judgement, written down.
+///
+/// PP871: the runs are fixtures under tests\Jogarei.Tests\fixtures\spikes now, copied byte for
+/// byte when spike\ was deleted, and every test below still finds each one or goes red.
 /// </summary>
 public class SpikeRunQualityTests(ITestOutputHelper output)
 {
     /// <summary>
-    /// Every bound run reads as a measurement, which is what makes it committable.
+    /// Every bound run reads as a measurement, which is what makes it committable. PP871: and in a
+    /// checkout every one of them is found.
     ///
     /// This is the check the discipline needs to be mechanical: take a run, copy it over the
-    /// release-*.json beside it, and the gate says whether it was a reading or an afternoon of the
+    /// release-*.json in the fixtures, and the gate says whether it was a reading or an afternoon of the
     /// machine being busy. Nothing about the run is trusted - the ratio is recomputed from the p50
     /// and p99 the file itself records.
     /// </summary>
@@ -51,12 +55,15 @@ public class SpikeRunQualityTests(ITestOutputHelper output)
         }
 
         // PP271's shape: a list nothing resolved would satisfy the loop above by finding nothing.
-        if (SpikeRunQuality.Locate(SpikeRunQuality.BoundRuns[0]) is not null)
+        // PP871: keyed on the checkout rather than on the first run, so a move that lost every
+        // fixture goes red instead of skipping.
+        if (SanitizerSource.RepositoryRoot() is not null)
             Assert.Equal(SpikeRunQuality.BoundRuns.Count, checkedRuns);
     }
 
     /// <summary>
-    /// And every excluded run WOULD fail it, which is the whole reason the list is a list.
+    /// And every excluded run WOULD fail it, which is the whole reason the list is a list. PP871: and
+    /// in a checkout every one of them is found.
     ///
     /// Asserted rather than commented, because an exclusion nobody checks is indistinguishable from
     /// one somebody forgot to remove. PP65's result is a 103us median send against a 26990us p99,
@@ -88,12 +95,13 @@ public class SpikeRunQualityTests(ITestOutputHelper output)
             Assert.DoesNotContain(relative, SpikeRunQuality.BoundRuns);
         }
 
-        if (SpikeRunQuality.Locate(SpikeRunQuality.Excluded[0]) is not null)
+        if (SanitizerSource.RepositoryRoot() is not null)
             Assert.Equal(SpikeRunQuality.Excluded.Count, checkedRuns);
     }
 
     /// <summary>
-    /// PP651, for PP32: the opus run's two sides, and which of them the limit is about.
+    /// PP651, for PP32: the opus run's two sides, and which of them the limit is about. PP871 moved
+    /// the run into the fixtures.
     ///
     /// The managed decoder costs more per frame and jitters far more, and neither is near a budget:
     /// a frame is 10 ms and both medians are tens of microseconds. So cost decides nothing here,
@@ -106,7 +114,7 @@ public class SpikeRunQualityTests(ITestOutputHelper output)
     [Fact]
     public void TheOpusRunsManagedSideIsTheSlowAndJitteryOne()
     {
-        if (SpikeRunQuality.Locate(@"spike\opus-decode\release-managed-vs-native.json") is not { } path)
+        if (SpikeRunQuality.Locate(SpikeRunQuality.FixtureDirectory + @"\opus-decode\release-managed-vs-native.json") is not { } path)
             return;
 
         IReadOnlyList<SpikeRunQuality.Series> series =

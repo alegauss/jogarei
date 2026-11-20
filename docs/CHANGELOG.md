@@ -183,6 +183,7 @@
 - ✅ **PP866** **Nothing says which of lib, gui, the spikes and the reference build can go now, or what each of the others waits on** — 55 unused paths left, among them jerasure, gf-complete and the frame-generation spike; what stays is named by PP867 to PP873 with its trigger.
 - ✅ **PP869** **every default build compiles cpp-steam-tools, which only the retired Qt client links** — A default configure no longer adds cpp-steam-tools: the submodule is built only with CHIAKI_ENABLE_GUI, whatever the cached option says.
 - ✅ **PP870** **the Go holepunch reference stays in scripts only because an assertion's reason went with holepunch.c** — scripts\holepunch is gone; the endpoints and client id the Go named were confirmed in app\, and a test holds them there in its place.
+- ✅ **PP871** **eight spikes and the alloc-budget gate stay in the tree because tests read their results where they ran** — spike and gate are gone: seven readings moved byte for byte into test fixtures, alloc-budget's method into AllocBudgetTests, and the findings into the hardware contract.
 
 ## Block F — Managed core
 

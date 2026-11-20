@@ -33,7 +33,7 @@ public class PhraseCensusTests(ITestOutputHelper output)
     /// <summary>
     /// And one in the test project, which is a recording file for a different reason.
     ///
-    /// ComSignatures sweeps app/, tests/, spike/ and tools/, and its own TESTS declare the defect on
+    /// ComSignatures sweeps app/, tests/ and tools/ (spike/ until PP871), and its own TESTS declare the defect on
     /// purpose - four of them, which is what the check reported on its first run. So the fixture
     /// carries the marker too, and the shape stops being "app/ has censuses and tests do not".
     /// </summary>

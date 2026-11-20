@@ -11,13 +11,16 @@ namespace Jogarei.Tests;
 /// binds a vendor path to an absence a user cannot see and PP648 found that a call which succeeds
 /// is not a feature that ran - and both bind a path that exists.
 ///
-/// spike/audio-effects asked whether it does. On an RTX 4060 with a current driver and the vendor's
+/// PP52's audio-effects spike asked whether it does. On an RTX 4060 with a current driver and the vendor's
 /// own app installed it is not reachable at all: the SDK is not a driver feature but a
 /// redistributable this port would ship. Windows's own Voice Capture DSP is registered and ships
 /// nothing.
 ///
 /// READ FROM THE SPIKE'S FILE, not transcribed. PP666's lesson applies hardest to a measurement: a
 /// table copied out of one carries its authority and none of its checking.
+///
+/// PP871: the file is a fixture under tests\Jogarei.Tests\fixtures\spikes now, kept byte for byte
+/// when spike\ was deleted; ScaffoldingAuditTests fails if a checkout cannot find it.
 /// </summary>
 public class EchoCancellationTests(ITestOutputHelper output)
 {

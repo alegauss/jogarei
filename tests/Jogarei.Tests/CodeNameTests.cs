@@ -36,7 +36,8 @@ public class CodeNameTests
 
     /// <summary>
     /// PP865: no source, project, script or workflow says the old name. Build output is skipped:
-    /// a bin\ or obj\ left by an earlier build is not the tree.
+    /// a bin\ or obj\ left by an earlier build is not the tree. PP871 deleted gate\ and spike\, so
+    /// they are no longer walked.
     /// </summary>
     [Fact]
     public void NoSourceSaysTheOldName()
@@ -45,7 +46,7 @@ public class CodeNameTests
             return;
 
         var found = new List<string>();
-        foreach (string top in new[] { "app", "tests", "tools", "scripts", "shim", "gate", "spike", ".github" })
+        foreach (string top in new[] { "app", "tests", "tools", "scripts", "shim", ".github" })
         {
             string dir = Path.Combine(root, top);
             if (!Directory.Exists(dir))

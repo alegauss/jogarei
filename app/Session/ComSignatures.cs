@@ -23,9 +23,10 @@ public readonly record struct UnpreservedComMethod(string Where, string Interfac
 /// The corrected run inverted the finding and the conclusion drawn from it, and the only reason it
 /// was caught is that the numbers looked odd enough to re-read.
 ///
-/// WHICH IS WHY THIS IS A CHECK AND NOT A NOTE. PP650's spike is clean and backs a shipped decision
-/// about the video decoder, so the tree already carries a COM surface a decision rests on. The
-/// failure is silent, the fix is one attribute, and nothing between the two was looking.
+/// WHICH IS WHY THIS IS A CHECK AND NOT A NOTE. PP650's spike was clean and backed a shipped
+/// decision about the video decoder, and app\Native now declares WASAPI and the Voice Capture DSP
+/// itself, so the shipped client carries a COM surface. The failure is silent, the fix is one
+/// attribute, and nothing between the two was looking.
 ///
 /// WHAT IS ALLOWED. A method returning void is not reading a status and needs nothing; the CLR's
 /// rewrite is only a problem where the declaration claims the return. So the check reads the return
@@ -45,8 +46,12 @@ public static partial class ComSignatures
     /// <summary>The return types that claim a status the caller reads.</summary>
     public static IReadOnlyList<string> StatusReturns { get; } = ["int", "uint"];
 
-    /// <summary>The directories a sweep reads, which is every part of the tree that holds C#.</summary>
-    public static IReadOnlyList<string> SweptDirectories { get; } = ["app", "tests", "spike", "tools"];
+    /// <summary>
+    /// The directories a sweep reads, which is every part of the tree that holds C#. PP871 deleted
+    /// spike\, whose two projects were this check's first subjects; app\Native's WASAPI and DMO
+    /// declarations are its subjects now.
+    /// </summary>
+    public static IReadOnlyList<string> SweptDirectories { get; } = ["app", "tests", "tools"];
 
     /// <summary>
     /// This check's own tests, excluded: they declare the defect on purpose.

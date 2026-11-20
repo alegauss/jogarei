@@ -38,7 +38,7 @@ public readonly record struct DspShape(
 /// that a call which succeeds is not a feature that ran. Both bind a path that EXISTS, and whether
 /// it exists had not been asked.
 ///
-/// IT DOES NOT, ON A MACHINE WITH THE CARD. spike/audio-effects read an RTX 4060 with a current
+/// IT DOES NOT, ON A MACHINE WITH THE CARD. PP52's audio-effects spike read an RTX 4060 with a current
 /// driver and the vendor's own app installed: NVAFX_SDK_DIR unset, NVIDIA Broadcast absent, and no
 /// audio-effects runtime anywhere under either NVIDIA tree. The SDK is not a driver feature. It is
 /// a redistributable this port would have to ship, models included, per effect.
@@ -58,8 +58,12 @@ public readonly record struct DspShape(
 /// </summary>
 public static class EchoCancellation
 {
-    /// <summary>The spike's committed reading, where every fact below comes from.</summary>
-    public const string ReadingRelativePath = @"spike\audio-effects\release-audio-effects-win11.json";
+    /// <summary>
+    /// The spike's committed reading, where every fact below comes from. PP871 deleted spike\ and
+    /// kept this file byte for byte as a test fixture; only the tests read it.
+    /// </summary>
+    public const string ReadingRelativePath =
+        SpikeRunQuality.FixtureDirectory + @"\audio-effects\release-audio-effects-win11.json";
 
     /// <summary>The in-box transform's class id, which is what "registered" means here.</summary>
     public const string VoiceCaptureDspClsid = "{745057c7-f353-4f2d-a7ee-58434477730e}";

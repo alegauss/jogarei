@@ -40,7 +40,7 @@ public class ManagedOpusEncoderTests(ITestOutputHelper output)
     /// A deterministic signal, chosen to be work rather than silence.
     ///
     /// Silence encodes to almost nothing and would measure the call rather than the encoder, which
-    /// is the same reason spike/opus-decode builds its corpus this way. Two tones and a little
+    /// is the same reason PP32's opus-decode spike (deleted by PP871) built its corpus this way. Two tones and a little
     /// noise, from a fixed seed, so the comparison below is the same comparison on every machine -
     /// which is what "recorded input" has to mean for a path with no microphone in CI.
     /// </summary>

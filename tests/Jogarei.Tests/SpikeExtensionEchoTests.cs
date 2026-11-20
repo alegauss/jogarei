@@ -24,19 +24,22 @@ namespace Jogarei.Tests;
 /// paragraph contains the words it contains.
 ///
 /// It goes red rather than stale. If either run is re-taken on a driver that starts writing the
-/// buffer, the echo stops being identical, and the paragraph in both spikes has to be re-read
-/// instead of quietly becoming false.
+/// buffer, the echo stops being identical, and the finding has to be re-read instead of quietly
+/// becoming false.
+///
+/// PP871: the runs are fixtures under tests\Jogarei.Tests\fixtures\spikes, copied byte for byte
+/// when spike\ was deleted; the READMEs' prose is in docs\HARDWARE-CONTRACT.md.
 /// </summary>
 public class SpikeExtensionEchoTests(ITestOutputHelper output)
 {
     /// <summary>PP47's run: the extension was accepted and the picture did not change.</summary>
-    private const string Upscale = @"spike\video-upscale\release-4060-no-engage.json";
+    private const string Upscale = SpikeRunQuality.FixtureDirectory + @"\video-upscale\release-4060-no-engage.json";
 
     /// <summary>PP49's: a different extension on the same card, and it worked.</summary>
-    private const string Hdr = @"spike\video-hdr\release-4060-engaged.json";
+    private const string Hdr = SpikeRunQuality.FixtureDirectory + @"\video-hdr\release-4060-engaged.json";
 
     /// <summary>PP648's: PP47's spike run again, after PP49 proved the panel is reachable.</summary>
-    private const string UpscaleAgain = @"spike\video-upscale\release-4060-no-engage-2.json";
+    private const string UpscaleAgain = SpikeRunQuality.FixtureDirectory + @"\video-upscale\release-4060-no-engage-2.json";
 
     private static JsonElement? Run(string relative)
         => SanitizerSource.LocateRelative(relative) is { } path
@@ -72,7 +75,7 @@ public class SpikeExtensionEchoTests(ITestOutputHelper output)
             upscaleEcho == hdrEcho,
             $"the read-back differs between the two runs - '{upscaleEcho}' against '{hdrEcho}' - so "
                 + "it may distinguish an extension that engaged from one that did not, and both "
-                + "spikes' READMEs say it cannot");
+                + "hardware contract says it cannot");
     }
 
     /// <summary>
@@ -99,6 +102,9 @@ public class SpikeExtensionEchoTests(ITestOutputHelper output)
     /// is a record nobody can re-take. So the field has to keep existing - and a run written without
     /// it would leave this quietly passing on a missing property, which is why the shape is asserted
     /// rather than the sentence about it.
+    ///
+    /// PP871 deleted the spikes' source, so nothing re-takes these runs now; what stays asserted
+    /// is that the committed fixtures still carry the read-back the two tests above compare.
     /// </summary>
     [Fact]
     public void BothRunsStillRecordTheReadBack()

@@ -152,22 +152,6 @@ the outcome is written down and a certificate is reconsidered.
 Done when the application is listed in the Store and installs without a SmartScreen
 warning, or the reason it cannot be is recorded here.
 
-### §PP871 Spike readings become fixtures
-
-PP866's audit found eight spikes and gate\alloc-budget still in the tree, each held by a
-reader: EchoCancellation and OverlayDraw read the release JSON of spike\audio-effects
-and overlay-draw; SpikeRunQuality reads decode-path, opus-decode, video-hdr and
-video-upscale; ComSignaturesTests asserts decoder-choice and mic-capture declare COM
-signatures; other spikes compile present-path's Stats.cs. gate\alloc-budget is held by
-nothing but its README, whose proof method and the -fno-builtin-malloc flag the C
-counter needs are recorded nowhere else.
-
-Copy each reading into a fixture beside the test that reads it, retire the COM assertion
-or point it at app\, record alloc-budget's README in the test that already asserts its
-numbers, and then delete spike\ and gate\ with the .slnx comment that names them. A
-spike is a decision already taken; its evidence belongs beside its reader, not in the
-experiment.
-
 ### §PP872 The reference build leaves after its last row
 
 PP63 left a reference build in the tree to produce PP46's before:

@@ -41,7 +41,7 @@ public readonly record struct OverlayTiming(
 /// THE PREMISE WAS THE EXPENSIVE PART, AND IT WAS NOT A PROPERTY OF THE OPTION. PP641's section
 /// prices the first shape as "a full-screen copy at HUD update rate". A composition visual carries
 /// its own size and offset, and PP10's HUD is a corner of text: nothing requires the overlay surface
-/// to be the plane's size. spike/overlay-draw measured both, and the two are three orders of
+/// to be the plane's size. PP641's overlay-draw spike measured both, and the two are three orders of
 /// magnitude apart - 128 microseconds at the HUD's own 156x138, against 18,390 across a 4K plane,
 /// which is MORE THAN AN ENTIRE 60fps FRAME. So the option as described cannot be done at all, and
 /// the option as it actually is costs under one percent of a frame at a rate far below frame rate.
@@ -59,8 +59,12 @@ public readonly record struct OverlayTiming(
 /// </summary>
 public static class OverlayDraw
 {
-    /// <summary>The spike's committed reading, which is where every timing below comes from.</summary>
-    public const string ReadingRelativePath = @"spike\overlay-draw\release-wpf-hud.json";
+    /// <summary>
+    /// The spike's committed reading, which is where every timing below comes from. PP871 deleted
+    /// spike\ and kept this file byte for byte as a test fixture; only the tests read it.
+    /// </summary>
+    public const string ReadingRelativePath =
+        SpikeRunQuality.FixtureDirectory + @"\overlay-draw\release-wpf-hud.json";
 
     /// <summary>The shape PP641 chose, and the reason it is not the one its section priced.</summary>
     public const OverlayShape Chosen = OverlayShape.BitmapPerUpdate;

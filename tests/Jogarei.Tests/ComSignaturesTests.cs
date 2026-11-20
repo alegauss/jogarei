@@ -12,9 +12,10 @@ namespace Jogarei.Tests;
 /// compared against an uninitialised local. It did not crash - it answered, and the answer was the
 /// opposite of the truth about every capture device on this machine.
 ///
-/// THE CHECK IS HERE BECAUSE THE FAILURE IS SILENT. PP650's spike is clean and backs a shipped
-/// decision about the video decoder, so the tree already carries a COM surface a decision rests on.
-/// One attribute separates a reading from a fabrication, and until now nothing looked.
+/// THE CHECK IS HERE BECAUSE THE FAILURE IS SILENT. PP650's spike was clean and backed a shipped
+/// decision about the video decoder, and since PP871 deleted the spikes the surface it guards is
+/// app\Native's own WASAPI and DMO declarations. One attribute separates a reading from a
+/// fabrication, and until now nothing looked.
 ///
 /// PP705: this file RECORDS the phrases it judges, so every sweep here skips it. Its
 /// fixtures declare the defect on purpose, which is what made it the first file the check
@@ -42,6 +43,11 @@ public class ComSignaturesTests(ITestOutputHelper output)
     ///
     /// PP271's rule, which bites hardest here: a sweep that found no COM interfaces at all would
     /// satisfy the check on a tree full of broken ones.
+    ///
+    /// PP871: this used to name the mic-capture and decoder-choice spikes. They are deleted, and the
+    /// COM surface that matters is the shipped one: app\Native\Wasapi.cs, PP652's capture grown out
+    /// of the mic-capture spike, and app\Native\Dmo.cs, the Voice Capture DSP. Media Foundation has
+    /// no counterpart in app\, so decoder-choice's half is retired rather than repointed.
     /// </summary>
     [Fact]
     public void TheSweepFindsTheFilesThatDeclareComInterfaces()
@@ -52,10 +58,8 @@ public class ComSignaturesTests(ITestOutputHelper output)
 
         output.WriteLine("declaring COM interfaces: " + string.Join(", ", declaring));
 
-        // The two spikes, which are the whole COM surface this tree has: app/ reaches native code
-        // through the shim's C ABI and declares no COM at all.
-        Assert.Contains(declaring, one => one.Contains("mic-capture", StringComparison.OrdinalIgnoreCase));
-        Assert.Contains(declaring, one => one.Contains("decoder-choice", StringComparison.OrdinalIgnoreCase));
+        Assert.Contains(@"app\Native\Wasapi.cs", declaring);
+        Assert.Contains(@"app\Native\Dmo.cs", declaring);
 
         // And this file is NOT among them, because it declares the defect on purpose. The first run
         // reported four of its own fixtures, which is the failure the exemption exists against.
