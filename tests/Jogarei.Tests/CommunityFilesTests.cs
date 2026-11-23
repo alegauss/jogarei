@@ -23,7 +23,7 @@ public class CommunityFilesTests
         Assert.False(File.Exists(Path.Combine(root, ".github", "copilot-instructions.md")));
     }
 
-    /// <summary>PP873: the issue templates and the guide describe Jogarei, not the upstream or its platforms.</summary>
+    /// <summary>PP873: the issue templates and the guide describe Transmiti, not the upstream or its platforms.</summary>
     [Theory]
     [InlineData(@".github\ISSUE_TEMPLATE\bug_report.md")]
     [InlineData(@".github\ISSUE_TEMPLATE\feature_request.md")]
@@ -35,7 +35,7 @@ public class CommunityFilesTests
 
         string text = File.ReadAllText(path);
 
-        Assert.Contains("Jogarei", text);
+        Assert.Contains("Transmiti", text);
         Assert.DoesNotContain("Steam Deck", text);
         Assert.DoesNotContain("Flatpak", text);
         Assert.DoesNotContain("chiaki-ng Version", text);

@@ -22,9 +22,9 @@ public class ReadmeTests
         if (Readme() is not { } readme)
             return;
 
-        Assert.Contains("\n# Jogarei\n", readme.Replace("\r\n", "\n", StringComparison.Ordinal));
+        Assert.Contains("\n# Transmiti\n", readme.Replace("\r\n", "\n", StringComparison.Ordinal));
         Assert.Contains("site/public/logo.svg", readme);
-        Assert.Contains("https://alegauss.com/jogarei/", readme);
+        Assert.Contains("https://alegauss.com/transmiti/", readme);
     }
 
     /// <summary>

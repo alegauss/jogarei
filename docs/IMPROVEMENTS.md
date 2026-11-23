@@ -223,8 +223,8 @@ The instrument that found it is in the run now, so a fix has a number to move.
 ### §PP868 The C and everything behind it leave together
 
 PP866's audit classed lib\ as removable only after the port: it is still compiled into
-chiaki-shim.dll, which Jogarei.exe loads, and the drift checks read it as the oracle the
-managed code is held against.
+chiaki-shim.dll, which Transmiti.exe loads, and the drift checks read it as the oracle
+the managed code is held against.
 
 Behind it stands everything that exists only to build it: the CMake graph and its cmake\
 modules, the MSYS2 MinGW64 toolchain compile.cmd drives, test\ and its munit submodule
@@ -381,5 +381,11 @@ Below the display's minimum, low framerate compensation changes the behaviour ag
 that too is read rather than assumed.
 
 ## Block J — Public documentation
+
+### §PP875 Rename the code to Transmiti
+
+PP865 did this for ChiakiNg to Jogarei. Over a thousand sources carry the namespace, so
+it gets its own commit after PP874 lands the visible name; lib\ and the Chiaki settings
+paths stay.
 
 ## Block K — The site on the design system

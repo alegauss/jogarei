@@ -48,7 +48,7 @@ const written = prerenderSite({
   // The manifest lists the routes, their twins and their sizes, so a reader that is not a
   // browser can find the whole site from one file. No build timestamp: the same input builds
   // byte-identical output.
-  manifest: { name: "Jogarei", base: "/jogarei/", llms: "llms.txt" },
+  manifest: { name: "Transmiti", base: "/transmiti/", llms: "llms.txt" },
   // The sitemap's lastmod is one date over the whole authored tree (src, public, index.html),
   // read from git rather than the build clock: a rebuild that changed nothing would otherwise
   // tell a crawler that every page did. A tarball with no .git omits it, which beats a guess.

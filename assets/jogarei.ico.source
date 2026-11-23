@@ -1,5 +1,0 @@
-# PP330: what assets/jogarei.ico was rendered from. Written by site/scripts/app-icon.mjs;
-# AppIconTests fails when the source below no longer hashes to this.
-source site/public/logo.svg
-sha256 984af635f3474960cd0893b4c278e9fce1826251db69c68514befe0f56d25a6c
-sizes 16,24,32,48,64,128,256

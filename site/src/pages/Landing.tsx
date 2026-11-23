@@ -32,7 +32,7 @@ export function Landing() {
     <>
       <Nav />
       <SiteHero
-        icon={{ src: "/jogarei/logo.svg", alt: "Jogarei logo", logoShape: "mark" }}
+        icon={{ src: "/transmiti/logo.svg", alt: "Transmiti logo", logoShape: "mark" }}
         badge={hero.badge}
         title={hero.titleLead}
         titleAccent={hero.titleAccent}
@@ -78,7 +78,7 @@ export function Landing() {
         description="Each section above has a page to link at, whether from a README, an issue or a search result."
         goLabel="Read the page →"
         items={features.map((f) => ({
-          href: `/jogarei/features/${f.slug}/`,
+          href: `/transmiti/features/${f.slug}/`,
           heading: f.heading,
           description: f.description,
         }))}

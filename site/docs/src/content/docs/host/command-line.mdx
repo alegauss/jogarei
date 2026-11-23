@@ -1,11 +1,11 @@
 ---
 title: The host's command line
-description: The flags Jogarei.exe answers, read out of the application's own source.
+description: The flags Transmiti.exe answers, read out of the application's own source.
 ---
 
 import { HostFlags } from "../../../components/HostFlags";
 
-`Jogarei.exe` opens the console list when it is given no flag — the consoles on your network,
+`Transmiti.exe` opens the console list when it is given no flag — the consoles on your network,
 with a Connect on any that is registered. Every flag below is declared in one list in
 `app/Session/HostCommandLine.cs`, and a name it does not declare is refused rather than ignored —
 a mistyped flag does not silently open the window.
@@ -15,7 +15,7 @@ application, the rename lands here in the same commit.
 
 ## For running it
 
-The ones the front page prints. Each does something a person running Jogarei might want, and
+The ones the front page prints. Each does something a person running Transmiti might want, and
 none of them needs a checkout. `--consoles` is what running it with no flag at all does; it is
 named here because a run that asked for a diagnostic screen instead can ask for this one back.
 
@@ -38,7 +38,7 @@ diagnostics you run once:
   ships it.
 
 Both refuse rather than answer when the host running them is older than `app/`, and name the
-source that moved. There is more than one `Jogarei.exe` on a machine that has built this tree —
+source that moved. There is more than one `Transmiti.exe` on a machine that has built this tree —
 `compile.cmd` builds one and prints where, and a publish leaves another behind — and a stale copy
 reads the current backlog with rules the tree has moved past, which is a wrong answer that looks
 exactly like a right one. Run the host `compile.cmd` names.

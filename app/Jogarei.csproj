@@ -22,8 +22,8 @@
          upstream's client, this port replaces it, and the mark on the download page is this
          one. The second copy is stamped rather than avoided, so the test says when it is stale.
          The window inherits this; MainWindow names no Icon, which is what keeps it one file. -->
-    <ApplicationIcon>..\assets\jogarei.ico</ApplicationIcon>
-    <AssemblyName>Jogarei</AssemblyName>
+    <ApplicationIcon>..\assets\transmiti.ico</ApplicationIcon>
+    <AssemblyName>Transmiti</AssemblyName>
     <RootNamespace>Jogarei</RootNamespace>
     <!-- Single source of truth for the version, and it tracks the Qt client's: CMakeLists.txt
          sets CHIAKI_VERSION 1.10.0, the two executables ship from one tree, and a port whose
@@ -39,7 +39,7 @@
          the lifetime bug the 22 libchiaki callbacks would otherwise each be one GC away from. -->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <!-- Unconditional, so the output path is the same in Debug and Release and every script
-         and note that spells bin\<config>\net10.0-windows\win-x64\Jogarei.exe stays true. -->
+         and note that spells bin\<config>\net10.0-windows\win-x64\Transmiti.exe stays true. -->
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <!-- PP22: on for every build, not just the publish that would otherwise be the first to
          mention it. Assembly.Location is the empty string once the assembly lives inside a

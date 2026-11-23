@@ -4,7 +4,7 @@ using System.Text;
 namespace Jogarei.Session;
 
 /// <summary>
-/// PP218: what `Jogarei.exe --controllers` prints.
+/// PP218: what `Transmiti.exe --controllers` prints.
 ///
 /// The mapping screen needs a pad and PP18 says the pad cannot be stood in for. This is the
 /// smallest thing that puts one on the record: what SDL sees, what it can map, and the mapping

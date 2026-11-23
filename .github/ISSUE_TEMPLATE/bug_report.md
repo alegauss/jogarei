@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Something in Jogarei does not work as it should
+about: Something in Transmiti does not work as it should
 title: ""
 labels: bug
 assignees: ''
@@ -20,7 +20,7 @@ Attach the log of the session that went wrong. Logs are in `%APPDATA%\Chiaki\Chi
 per session; the newest one is usually the right one.
 
 **Your setup**
-- Jogarei version (the first line of `Jogarei.exe --help`):
+- Transmiti version (the first line of `Transmiti.exe --help`):
 - Windows version (e.g. Windows 11 24H2):
 - Graphics card and driver version:
 - Console (PS4 or PS5) and whether it is on your network or over the internet:
@@ -29,4 +29,4 @@ per session; the newest one is usually the right one.
 **Anything else**
 Screenshots, or whether the same thing happens in chiaki-ng.
 
-Please report Jogarei problems here, not to the chiaki-ng project.
+Please report Transmiti problems here, not to the chiaki-ng project.

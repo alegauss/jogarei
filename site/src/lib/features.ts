@@ -32,7 +32,7 @@ export const features: FeatureRecord[] = [
     title: "The picture: ten bits, composed rather than drawn",
     description:
       "WPF's image path refuses anything wider than eight bits per channel, so the video is composed beside the window instead: libplacebo into a shared Direct3D 11 texture, and DirectComposition with the overlay above the plane.",
-    ogTitle: "Jogarei: the picture",
+    ogTitle: "Transmiti: the picture",
     ogDescription:
       "Ten bits through DirectComposition, an overlay that survives them, and pacing taken from the display.",
     eyebrow: "The video path",
@@ -79,7 +79,7 @@ export const features: FeatureRecord[] = [
     title: "Controllers: the pad works in the menus too",
     description:
       "Directional focus on every screen as an attached property, SDL device and binding strings read on the thread that owns them, and a mapping screen that captures the press you meant on any pad SDL can map, an Xbox controller included.",
-    ogTitle: "Jogarei: controllers",
+    ogTitle: "Transmiti: controllers",
     ogDescription:
       "Focus navigation on every screen, SDL bindings read live, a mapping capture that takes the press, and any pad SDL can map.",
     eyebrow: "Input",
@@ -128,7 +128,7 @@ export const features: FeatureRecord[] = [
             "A device SDL has no mapping for is left out of the list rather than shown with empty rows, because a pad with no bindings gives the screen nothing to draw.",
           ],
           [
-            "Haptics fold to rumble, on every pad. The console sends a stereo haptic stream that a DualSense can play through its own speakers; Jogarei does not do that yet, and folds the stream to a single rumble strength scaled by your intensity setting instead — which is what a PS4 pad already feels during a PS5 session. A DualSense gets that rumble through its effects report and every other pad through SDL's, three frames averaged at a time so the motor is not told to change speed hundreds of times a second.",
+            "Haptics fold to rumble, on every pad. The console sends a stereo haptic stream that a DualSense can play through its own speakers; Transmiti does not do that yet, and folds the stream to a single rumble strength scaled by your intensity setting instead — which is what a PS4 pad already feels during a PS5 session. A DualSense gets that rumble through its effects report and every other pad through SDL's, three frames averaged at a time so the motor is not told to change speed hundreds of times a second.",
           ],
           [
             "What is hardware stays hardware: adaptive triggers and the touchpad are not emulated on a pad that has neither, though the D-pad can be turned into a finger on the touchpad for the ones without.",
@@ -152,7 +152,7 @@ export const features: FeatureRecord[] = [
     title: "The screens: the console list, the dialogs and nine tabs of settings",
     description:
       "Discovered, manual and hidden consoles in one list; registration dialogs that keep the rules of each console generation apart; and a settings screen that stores what it always stored.",
-    ogTitle: "Jogarei: the screens",
+    ogTitle: "Transmiti: the screens",
     ogDescription:
       "One console list from three sources, registration that validates, and settings that did not get redesigned.",
     eyebrow: "The window",
@@ -211,7 +211,7 @@ export const features: FeatureRecord[] = [
     title: "Latency: every stage timed, every session written down",
     description:
       "Receive, reorder dwell, reassemble, error correction and decoder send-to-pull are timed per session, alongside a latency floor and the configuration that produced them.",
-    ogTitle: "Jogarei: latency",
+    ogTitle: "Transmiti: latency",
     ogDescription:
       "Per-stage timings, a latency floor, and a comparison tool that refuses to compare two different shapes.",
     eyebrow: "Measured",
@@ -263,13 +263,13 @@ export const features: FeatureRecord[] = [
     title: "Setup: it reads the consoles you already registered",
     description:
       "Registered consoles, manual and hidden hosts, controller mappings and the PSN token are read from the existing store, resolved against the Windows profile you are actually signed into.",
-    ogTitle: "Jogarei: setup",
+    ogTitle: "Transmiti: setup",
     ogDescription:
       "Your consoles, mappings and PSN token come across, and the installer sits beside what you have.",
     eyebrow: "First run",
     heading: "Setup",
     lead: [
-      "The first run of a remote play client is usually a setup: find the console, pair it, sign in, map the pad. Jogarei skips it where it can, because you have already done all four somewhere else on this machine.",
+      "The first run of a remote play client is usually a setup: find the console, pair it, sign in, map the pad. Transmiti skips it where it can, because you have already done all four somewhere else on this machine.",
     ],
     sections: [
       {

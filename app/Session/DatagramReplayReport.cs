@@ -31,7 +31,7 @@ public enum ReplayOutcome
 }
 
 /// <summary>
-/// PP516: what `Jogarei.exe --replay-datagrams` prints.
+/// PP516: what `Transmiti.exe --replay-datagrams` prints.
 ///
 /// Two captures sat on disk and nothing read them. PP513 built the replay as a library and its
 /// tests feed it datagrams they invented, so the managed half of PP27's comparison had never once

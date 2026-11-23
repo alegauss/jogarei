@@ -4,7 +4,7 @@ using System.Text;
 namespace Jogarei.Session;
 
 /// <summary>
-/// PP219: what `Jogarei.exe --capture-controller` prints.
+/// PP219: what `Transmiti.exe --capture-controller` prints.
 ///
 /// The tool that found the defect this task files, kept rather than thrown away. PP218's
 /// `--controllers` answers "is there a pad and what does it say it is"; this answers the question

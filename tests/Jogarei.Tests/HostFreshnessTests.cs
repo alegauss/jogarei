@@ -23,13 +23,13 @@ public class HostFreshnessTests : IDisposable
     }
 
     /// <summary>Where compile.cmd puts the host, and the path its closing message prints.</summary>
-    public const string GateHostRelativePath = @"app\bin\Debug\net10.0-windows\win-x64\Jogarei.exe";
+    public const string GateHostRelativePath = @"app\bin\Debug\net10.0-windows\win-x64\Transmiti.exe";
 
     /// <summary>
     /// THE GUARD, against the host the gate builds.
     ///
     /// Not <see cref="HostFreshness.Check()"/>: the process running this is the test host, not
-    /// Jogarei.exe, so asking about it would date the wrong file and pass for the wrong reason.
+    /// Transmiti.exe, so asking about it would date the wrong file and pass for the wrong reason.
     /// </summary>
     [Fact]
     public void TheHostTheGateBuildsIsNotOlderThanAppSources()
@@ -138,7 +138,7 @@ public class HostFreshnessTests : IDisposable
         Assert.Equal(HostBuildState.Unknown, HostFreshness.Check(Host(), Sources()).State);
     }
 
-    private string Host() => Path.Combine(root, "Jogarei.exe");
+    private string Host() => Path.Combine(root, "Transmiti.exe");
 
     private string Sources() => Path.Combine(root, "app");
 

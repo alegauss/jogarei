@@ -41,13 +41,13 @@ export function Ad({
       data-ad-memory="off"
       // No data-ad-exclude. Self-exclusion is the host page's job in this network - a
       // campaign carries no host of its own, so a product keeps itself off its own site by
-      // naming its id here. Jogarei has no campaign in the catalogue to name, so there is
+      // naming its id here. Transmiti has no campaign in the catalogue to name, so there is
       // nothing to exclude, and an id that matches nothing would read as if there were.
     />
   );
 
   // Dropped from the Markdown twin for the reason the call to action is: an agent sent to
-  // evaluate Jogarei is not the reader this is for, and someone else's product is forty words
+  // evaluate Transmiti is not the reader this is for, and someone else's product is forty words
   // it would pay for on every page.
   return (
     <div className="ad-band" data-twin="omit">

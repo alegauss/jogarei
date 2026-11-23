@@ -27,7 +27,7 @@ public readonly record struct HostBuild(HostBuildState State, string? Host, stri
 ///
 /// PP304 and PP305 put two checks in the host - --recount reads the sizes the backlog states,
 /// --ratchet lists the shipped tasks no assertion names - and both are run by hand before the
-/// gate rather than by it. The skill that documents them writes the command as Jogarei.exe with
+/// gate rather than by it. The skill that documents them writes the command as Transmiti.exe with
 /// no path, because for a reader there is one host. There are two: compile.cmd builds and prints
 /// Debug, and app\bin\Release holds whatever a publish last left.
 ///
@@ -147,5 +147,5 @@ public static class HostFreshness
     public static string Explain(HostBuild build)
         => $"[stale] {build.Host} is older than {build.Newest}, so this host predates the tree "
             + "it is about to answer for. Run compile.cmd, then the host it prints: "
-            + @"app\bin\Debug\net10.0-windows\win-x64\Jogarei.exe";
+            + @"app\bin\Debug\net10.0-windows\win-x64\Transmiti.exe";
 }

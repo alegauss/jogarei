@@ -1,11 +1,11 @@
-# Jogarei
+# Transmiti
 
 > Console remote play for Windows, working with PS4 and PS5, built on .NET 10 and WPF. Ten-bit video composed by
 > DirectComposition, hardware decode chosen from what the machine reports, the consoles and
 > pairings you already registered, and no browser inside the download.
 
-Site: https://alegauss.com/jogarei/
-Source: https://github.com/alegauss/jogarei
+Site: https://alegauss.com/transmiti/
+Source: https://github.com/alegauss/transmiti
 Licence: AGPL-3.0
 Platform: Windows 10 or 11, x64. There is no Linux, macOS, Android or Switch build, and
 that is a decision rather than a gap.
@@ -16,9 +16,9 @@ of routes, their twins and their sizes is in `manifest.json`.
 
 ## What it is
 
-A remote play client that behaves like a Windows program; Jogarei is Portuguese for "I will
-play". The streaming protocol comes
-from the Chiaki and chiaki-ng projects; what Jogarei rebuilt is everything around it: the
+A remote play client that behaves like a Windows program; Transmiti is Portuguese for "I
+streamed". The streaming protocol comes
+from the Chiaki and chiaki-ng projects; what Transmiti rebuilt is everything around it: the
 window, the video presentation, the input path and the settings, on .NET rather than Qt.
 
 ## The video path

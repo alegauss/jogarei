@@ -66,7 +66,7 @@ public sealed class SdlThread : IDisposable
         thread = new Thread(Run)
         {
             IsBackground = true,
-            Name = "Jogarei SDL",
+            Name = "Transmiti SDL",
         };
     }
 

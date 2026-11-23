@@ -13,7 +13,7 @@ export function Features() {
       <Nav />
       <header className="page-hero" id="top">
         <div className="vg-site-wrap">
-          <a className="feature-back" href="/jogarei/">
+          <a className="feature-back" href="/transmiti/">
             {featuresIndex.backLabel}
           </a>
           <div className="vg-site-eyebrow">{featuresIndex.eyebrow}</div>

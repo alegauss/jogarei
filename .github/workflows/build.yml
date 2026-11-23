@@ -127,6 +127,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: jogarei-host
-          path: app/bin/Release/net10.0-windows/win-x64/publish/Jogarei.exe
+          name: transmiti-host
+          path: app/bin/Release/net10.0-windows/win-x64/publish/Transmiti.exe
           if-no-files-found: error

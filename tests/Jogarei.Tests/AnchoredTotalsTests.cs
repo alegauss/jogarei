@@ -145,7 +145,7 @@ public class AnchoredTotalsTests(ITestOutputHelper output)
     /// PP594: AND THE NUMBER IS GONE FROM THE ROWS, deliberately.
     ///
     /// It was here as `[InlineData("session.c", 1267)]`, and every comment added to one of these
-    /// files made two things stale at once. `Jogarei.exe --recount` reads the backlog and prints
+    /// files made two things stale at once. `Transmiti.exe --recount` reads the backlog and prints
     /// the roadkeep call that fixes each claim it finds; it does not read tests/, so it could not
     /// print this one. PP590 added four comment lines to session.c and four to ctrl.c: the tool
     /// named three corrections and the fourth arrived after the build, as a failure about a number

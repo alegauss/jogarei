@@ -74,7 +74,7 @@ wrong once. Use reflection (`app.GetTypes()` + `IsAssignableFrom`), as `SeamReac
 
 Counted claims are LINE ITEMS: `wc -l` **plus one per file with no trailing newline**.
 
-- `Jogarei.exe --recount` is the answer, and it prints the `roadkeep` call that fixes each
+- `Transmiti.exe --recount` is the answer, and it prints the `roadkeep` call that fixes each
   claim. Run it **before writing any number**, not after.
 - Run it from `app\bin\Debug\...`, **never `...\Release\...`** — the Release copy is whatever a
   publish last left and has been 44 commits stale while answering all session.

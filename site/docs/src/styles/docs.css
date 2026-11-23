@@ -1,7 +1,7 @@
 /* The accent, read off the design system's tokens as the site next door keys them, so /docs
    and / are one product rather than two and the violet is declared once (PP860). tokens.css is
    the preset as plain custom properties; ../../../src/brand.css is the site's own re-key of the
-   cool tone to Jogarei's accent, the same file site/src/index.css imports.
+   cool tone to Transmiti's accent, the same file site/src/index.css imports.
 
    Only the accent scale and the link colour are taken: Starlight's greys, spacing and type are
    its own, and re-deriving them here would be the redesign this file exists to avoid. The

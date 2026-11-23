@@ -60,7 +60,7 @@ public class ConfigSettingsTests
     /// </summary>
     [Fact]
     public void TheAboutButtonNamesTheProduct()
-        => Assert.Equal("About Jogarei", ConfigSettingsViewModel.AboutCaption(App.ProductName));
+        => Assert.Equal("About Transmiti", ConfigSettingsViewModel.AboutCaption(App.ProductName));
 
     /// <summary>
     /// The profile is passed in rather than read from the tab's own store, which is the whole

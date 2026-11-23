@@ -71,11 +71,11 @@ export const compositionDiagram = `
 
 /** The console list: where the application opens. */
 export const windowDiagram = `
-<svg viewBox="0 0 900 420" role="img" aria-label="The Jogarei window: a list of consoles with their name, address, state and what each row can do, mixing discovered, manually added and hidden consoles">
+<svg viewBox="0 0 900 420" role="img" aria-label="The Transmiti window: a list of consoles with their name, address, state and what each row can do, mixing discovered, manually added and hidden consoles">
   <rect width="900" height="420" rx="12" fill="#0c1222"/>
   <rect x="0" y="0" width="900" height="42" rx="12" fill="#131b30"/>
   <rect x="0" y="30" width="900" height="12" fill="#131b30"/>
-  <text x="24" y="27" fill="#e9ecfb" font-family="${UI}" font-size="13">Jogarei</text>
+  <text x="24" y="27" fill="#e9ecfb" font-family="${UI}" font-size="13">Transmiti</text>
   <text x="820" y="27" fill="#8592b5" font-family="${UI}" font-size="14" letter-spacing="6">─☐✕</text>
 
   <text x="36" y="78" fill="#e9ecfb" font-family="${UI}" font-size="16">Consoles</text>

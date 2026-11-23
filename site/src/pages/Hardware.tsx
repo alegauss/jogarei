@@ -12,7 +12,7 @@ export function Hardware() {
       <Nav />
       <header className="page-hero" id="top">
         <div className="vg-site-wrap">
-          <a className="feature-back" href="/jogarei/">
+          <a className="feature-back" href="/transmiti/">
             {hardware.backLabel}
           </a>
           <div className="vg-site-eyebrow">{hardware.eyebrow}</div>

@@ -22,7 +22,7 @@ public class ConsoleRowActionsTests : IDisposable
     /// HKCU\SOFTWARE\Chiaki is somebody's real registrations.
     /// </summary>
     private readonly string keyPath =
-        $@"SOFTWARE\JogareiTests\{Guid.NewGuid():N}";
+        $@"SOFTWARE\TransmitiTests\{Guid.NewGuid():N}";
 
     private QSettingsStore Store() => new(keyPath);
 
@@ -205,7 +205,7 @@ public class ConsoleRowActionsTests : IDisposable
     {
         var model = new ConsoleListViewModel(null, static () => [], null, null, new AcceptingRemover())
         {
-            Processes = () => ["explorer", "Jogarei"],
+            Processes = () => ["explorer", "Transmiti"],
         };
 
         model.Remove(Manual("10.0.0.9"));
@@ -228,7 +228,7 @@ public class ConsoleRowActionsTests : IDisposable
 
         Assert.True(StoreOwnership.ClientIsRunning(["Chiaki"]));
         Assert.True(StoreOwnership.ClientIsRunning(["CHIAKI-NG"]));
-        Assert.False(StoreOwnership.ClientIsRunning(["chiakiwhatever", "Jogarei"]));
+        Assert.False(StoreOwnership.ClientIsRunning(["chiakiwhatever", "Transmiti"]));
         Assert.False(StoreOwnership.ClientIsRunning([]));
     }
 

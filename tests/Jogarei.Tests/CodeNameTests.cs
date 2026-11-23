@@ -35,6 +35,37 @@ public class CodeNameTests
     }
 
     /// <summary>
+    /// PP874: the product became Transmiti once Jogarei turned out to be the owner's own site
+    /// about Brazilian games. The window, the exe, the installer, the site's base and the README
+    /// all say the new name; the previous one is assembled from halves for the reason above.
+    /// </summary>
+    [Fact]
+    public void WhatAReaderMeetsSaysTransmiti()
+    {
+        Assert.Equal("Transmiti", App.ProductName);
+        if (SanitizerSource.RepositoryRoot() is not { } root)
+            return;
+
+        string previous = "Joga" + "rei";
+        string[] read =
+        [
+            "README.md", "CONTRIBUTOR_GUIDE.md",
+            Path.Combine("scripts", "chiaki-ng.iss"), Path.Combine("site", "vite.config.ts"),
+            Path.Combine("site", "public", "llms.txt"), Path.Combine("site", "src", "lib", "site-content.ts"),
+            Path.Combine("site", "docs", "astro.config.mjs"),
+        ];
+        // The project and namespace names are PP875's; what a reader meets is the exe, the
+        // installer, the site path and the name standing alone.
+        var visible = new System.Text.RegularExpressions.Regex(
+            previous + @"(\.exe|-windows-installer|/|\b(?!\.(Tests|Cases|csproj|slnx)))",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        var found = read.Where(r => visible.IsMatch(File.ReadAllText(Path.Combine(root, r)))).ToList();
+
+        Assert.True(found.Count == 0, "still says the previous name: " + string.Join(", ", found));
+        Assert.True(File.Exists(Path.Combine(root, "assets", "transmiti.ico")));
+    }
+
+    /// <summary>
     /// PP865: no source, project, script or workflow says the old name. Build output is skipped:
     /// a bin\ or obj\ left by an earlier build is not the tree. PP871 deleted gate\ and spike\, so
     /// they are no longer walked.

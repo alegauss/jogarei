@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 // "Analytics settings" asks again.
 //
 // The key and the measurement id are the hub's on purpose. This site is served from the same
-// origin (alegauss.com/jogarei/), so the two share one localStorage and one property, and a
+// origin (alegauss.com/transmiti/), so the two share one localStorage and one property, and a
 // visitor who has answered on either has answered for both. The documentation area under
-// /jogarei/docs/ runs the same flow from docs/src/consent.js, under the same key.
+// /transmiti/docs/ runs the same flow from docs/src/consent.js, under the same key.
 
 const KEY = "alegauss-consent";
 const ASK = "alegauss:consent-ask";

@@ -20,7 +20,7 @@ rem
 rem What it produces:
 rem   build\chiaki-ng-package\   the payload - the published host, the three
 rem                              native libraries it loads, and their imports
-rem   build\jogarei-windows-installer.exe   the installer over that payload
+rem   build\transmiti-windows-installer.exe   the installer over that payload
 rem
 rem Usage:
 rem   package.cmd                publish, stage, prove, compile the installer
@@ -102,8 +102,8 @@ if errorlevel 1 (
     exit /b 1
 )
 :published
-if not exist "%PUBLISH_DIR%\Jogarei.exe" (
-    echo [package] no Jogarei.exe in %PUBLISH_DIR%
+if not exist "%PUBLISH_DIR%\Transmiti.exe" (
+    echo [package] no Transmiti.exe in %PUBLISH_DIR%
     echo [package] Run package.cmd without 'nopublish'.
     exit /b 1
 )
@@ -129,7 +129,7 @@ if errorlevel 1 (
     exit /b 1
 )
 
-copy /y "%PUBLISH_DIR%\Jogarei.exe" "%~dp0%PACKAGE_DIR%\" >nul
+copy /y "%PUBLISH_DIR%\Transmiti.exe" "%~dp0%PACKAGE_DIR%\" >nul
 if errorlevel 1 (
     echo [package] FAILED - could not stage the published host.
     exit /b 1
@@ -151,7 +151,7 @@ if errorlevel 8 (
 
 echo.
 echo [package] selftest, out of %PROOF%
-"%PROOF%\Jogarei.exe" --selftest
+"%PROOF%\Transmiti.exe" --selftest
 if errorlevel 1 (
     echo.
     echo [package] FAILED - the payload does not run where there is no checkout.
@@ -167,7 +167,7 @@ echo [package]   %~dp0%PACKAGE_DIR%
 
 rem ---- the installer (PP274) ---------------------------------------------
 rem Last, and only over a payload that has just been proved. ISCC reads the payload
-rem directory twice at COMPILE time - once for the version off Jogarei.exe and once
+rem directory twice at COMPILE time - once for the version off Transmiti.exe and once
 rem for the file list - so compiling it against a stale or absent one produces an
 rem installer carrying nothing, with a version of 0.0.0, and exit code 0. The script
 rem has an #error guard for the absent case; running it here, after the proof, is
@@ -206,7 +206,7 @@ if errorlevel 1 (
 
 echo.
 echo [package] OK:
-echo [package]   %~dp0%BUILD_DIR%\jogarei-windows-installer.exe
+echo [package]   %~dp0%BUILD_DIR%\transmiti-windows-installer.exe
 exit /b 0
 
 rem ---------------------------------------------------------------------------

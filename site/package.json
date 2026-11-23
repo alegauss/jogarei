@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "The public site for Jogarei. The copy lives in one module and the sections only render it.",
+  "description": "The public site for Transmiti. The copy lives in one module and the sections only render it.",
   "scripts": {
     "dev": "vite",
     "generate": "node scripts/product.mjs",

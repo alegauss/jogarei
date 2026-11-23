@@ -8,12 +8,12 @@
 import { defineRouteMiddleware } from "@astrojs/starlight/route-data";
 
 const ORIGIN = "https://alegauss.com";
-const PRODUCT = "jogarei";
+const PRODUCT = "transmiti";
 const AREA = `/${PRODUCT}/docs/`;
 
 const trail = [
   { name: "alegauss.com", item: `${ORIGIN}/` },
-  { name: "Jogarei", item: `${ORIGIN}/${PRODUCT}/` },
+  { name: "Transmiti", item: `${ORIGIN}/${PRODUCT}/` },
   { name: "Docs", item: `${ORIGIN}${AREA}` },
 ];
 

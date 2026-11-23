@@ -1,4 +1,4 @@
-// The documentation area, at https://alegauss.com/jogarei/docs/.
+// The documentation area, at https://alegauss.com/transmiti/docs/.
 //
 // A second build rather than more pages in site/src: that renderer holds its copy as data so a
 // claim is an array element a test can reach, which is right for eight curated pages and wrong
@@ -13,11 +13,11 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import react from "@astrojs/react";
 
-// JOIN 1 - the base. GitHub Pages derives "/jogarei/" from the repository name, which
+// JOIN 1 - the base. GitHub Pages derives "/transmiti/" from the repository name, which
 // site/vite.config.ts and site/src/routes.tsx both write; this is that prefix plus the one
 // segment this area occupies. Astro rewrites the links it generates and NOT the ones written by
 // hand, so an absolute href typed into a page drops the prefix and 404s in production alone.
-const BASE = "/jogarei/docs";
+const BASE = "/transmiti/docs";
 
 // JOIN 2 - the output. `vite build` empties site/dist, so this build runs after it (site's
 // package.json chains build:docs last) or the whole area vanishes from the deploy artefact,
@@ -48,14 +48,14 @@ export default defineConfig({
     // and ships no JavaScript, which is what lets a page reuse the site's own components.
     react(),
     starlight({
-      title: "Jogarei internals",
+      title: "Transmiti internals",
       description:
         "How the port works: the host's interfaces, the session it drives and the C it replaces.",
       // Pagefind, which Starlight indexes at build time - the reason search here needs no
       // Algolia account and no service to be up.
       pagefind: true,
       social: [
-        { icon: "github", label: "GitHub", href: "https://github.com/alegauss/jogarei" },
+        { icon: "github", label: "GitHub", href: "https://github.com/alegauss/transmiti" },
       ],
       customCss: ["./src/styles/docs.css"],
       // A BreadcrumbList per page — see the file for why Google needs to be told.

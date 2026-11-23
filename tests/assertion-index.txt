@@ -9,7 +9,7 @@
 # the assertion files that commit touched - kept only where there is exactly ONE, so no line
 # here is a guess between two. A commit's file list never changes, so no line goes stale.
 #
-# Regenerate the same way it was made: `Jogarei.exe --ratchet <id>` prints the same answer
+# Regenerate the same way it was made: `Transmiti.exe --ratchet <id>` prints the same answer
 # for one id, which is how a line here is checked without trusting the file that holds it.
 #
 # A false line is added the way a false exemption is - written, and read in the diff.

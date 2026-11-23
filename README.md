@@ -1,14 +1,14 @@
 
 <img src="site/public/logo.svg" alt="" width="72" height="72">
 
-# Jogarei
+# Transmiti
 
 A remote play client for Windows that streams your PS5 or PS4 to a window that behaves like the
 rest of Windows. It is a native .NET 10 and WPF application, free software under the AGPL-3.0.
-"Jogarei" is Portuguese for "I will play".
+"Transmiti" is Portuguese for "I streamed".
 
-**Site and documentation:** [alegauss.com/jogarei](https://alegauss.com/jogarei/) ·
-[how it works](https://alegauss.com/jogarei/docs/)
+**Site and documentation:** [alegauss.com/transmiti](https://alegauss.com/transmiti/) ·
+[how it works](https://alegauss.com/transmiti/docs/)
 
 ## What it does differently
 
@@ -48,7 +48,7 @@ Run them from PowerShell or cmd, not from Git Bash: see [CLAUDE.md](CLAUDE.md) f
 
 ## Credits
 
-Jogarei stands on [Chiaki](https://git.sr.ht/~thestr4ng3r/chiaki) and
+Transmiti stands on [Chiaki](https://git.sr.ht/~thestr4ng3r/chiaki) and
 [chiaki-ng](https://github.com/streetpea/chiaki-ng), whose work on the remote play protocol made it
 possible. It started as a fork of chiaki-ng, and its vendored C library is still theirs.
 

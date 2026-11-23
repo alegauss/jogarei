@@ -73,7 +73,7 @@ commit, not before the decision.
 written under one id often ends up holding the task that finished the work — PP300's
 assertions were all in a file whose summary said PP29 — and naming both is four
 characters, while the alternative is a second test file written to move a number.
-`Jogarei.exe --ratchet` (PP305) lists what is owed with each ledger sentence, which is
+`Transmiti.exe --ratchet` (PP305) lists what is owed with each ledger sentence, which is
 how to tell the two cases apart.
 
 `AssertionRatchetTests` (PP38) counts
@@ -84,7 +84,7 @@ in the commit that ships it. The join is the id in the test's own summary, which
 this tree has always been written. If the count FALLS, lower the ceiling in the same
 commit: the test says so, and a ratchet left loose has given the gain away.
 
-`Jogarei.exe --recount` (PP304) is the one worth running BEFORE the gate. Every
+`Transmiti.exe --recount` (PP304) is the one worth running BEFORE the gate. Every
 comment added to a `.c` file changes a line count that `docs/ROADMAP.md` or
 `docs/IMPROVEMENTS.md` states, and `test.cmd` reports those only as a red
 `CountedClaimTests` after the work is done. `--recount` answers the same question and
@@ -156,7 +156,7 @@ rationale section keeps only the argument for doing the work, which is what a sh
 ## ⛔ READ THIRD — then ask what the public documentation owes the task
 
 The port has a documentation area at [`site/docs/`](../../../site/docs), published at
-<https://alegauss.com/jogarei/docs> (PP446, Block J). It is written for a reader
+<https://alegauss.com/transmiti/docs> (PP446, Block J). It is written for a reader
 outside this tree, and the three roadkeep files are not: `CHANGELOG.md` records that a
 task shipped and says nothing that somebody integrating against the port could act on.
 

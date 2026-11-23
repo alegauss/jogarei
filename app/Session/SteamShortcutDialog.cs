@@ -66,7 +66,7 @@ public sealed class SteamShortcutViewModel : DialogViewModel
 
     /// <summary>
     /// The name field's default: the application name, and the profile after a SPACE where there is
-    /// one. A profile named "couch" gives "Jogarei couch".
+    /// one. A profile named "couch" gives "Transmiti couch".
     /// </summary>
     public static string DefaultName(string? currentProfile)
         => string.IsNullOrEmpty(currentProfile) ? BaseName : BaseName + " " + currentProfile;

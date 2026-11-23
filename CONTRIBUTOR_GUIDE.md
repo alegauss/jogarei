@@ -1,6 +1,6 @@
-# Contributing to Jogarei
+# Contributing to Transmiti
 
-Jogarei is a remote play client for Windows, written in C# on .NET 10 and WPF. It started as a fork
+Transmiti is a remote play client for Windows, written in C# on .NET 10 and WPF. It started as a fork
 of chiaki-ng and is being ported off its C core one piece at a time: what has been ported is
 managed code, and what has not still runs from the C library through a small native shim.
 
@@ -15,7 +15,7 @@ managed code, and what has not still runs from the C library through a small nat
 | `tests\Jogarei.Tests\` | The xUnit suite |
 | `lib\` | chiaki-ng's C library, vendored and never patched here; it leaves as the port completes |
 | `shim\` | The native DLLs the host loads: `chiaki-shim.dll` over `lib\`, and `chiaki-render.dll` |
-| `site\` | The site and the documentation at [alegauss.com/jogarei](https://alegauss.com/jogarei/) |
+| `site\` | The site and the documentation at [alegauss.com/transmiti](https://alegauss.com/transmiti/) |
 | `docs\` | The roadmap, the changelog, design notes and the hardware contract |
 
 ## Building and testing
@@ -50,5 +50,5 @@ The backlog is [docs/ROADMAP.md](docs/ROADMAP.md), with its design notes in
 
 ## Reporting a problem
 
-Open an issue here, with the session log from `%APPDATA%\Chiaki\Chiaki\log`. Problems with Jogarei
+Open an issue here, with the session log from `%APPDATA%\Chiaki\Chiaki\log`. Problems with Transmiti
 belong in this repository, not with the chiaki-ng project.

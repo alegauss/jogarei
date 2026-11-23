@@ -233,7 +233,7 @@ if defined CONFIGURE_ONLY goto ok_configure
 if defined DO_DEPLOY goto ok_deploy
 rem PP532: name what THIS run built. PP632: there is only one thing it can be now - the Qt
 rem client has no argument that builds it, and PP867 deleted gui\.
-echo [compile] OK -^> %~dp0app\bin\Debug\net10.0-windows\win-x64\Jogarei.exe
+echo [compile] OK -^> %~dp0app\bin\Debug\net10.0-windows\win-x64\Transmiti.exe
 if defined LOCKED echo [compile]       %DEPLOY_DISP%\chiaki.exe still holds the previous build.
 if not defined LOCKED echo [compile]       Run compile.cmd without 'nodeploy' for a clickable build.
 exit /b 0
@@ -256,7 +256,7 @@ rem binary. PP632: no run builds one at all now, so the managed ending is the on
 
 :ok_deploy_managed
 echo [compile] OK - run this one:
-echo [compile]   %~dp0app\bin\Debug\net10.0-windows\win-x64\Jogarei.exe
+echo [compile]   %~dp0app\bin\Debug\net10.0-windows\win-x64\Transmiti.exe
 rem The stale one, named as stale. True and useful exactly when the recommendation above is not:
 rem it is the file a reader would otherwise double-click, and it is not what this run produced.
 if exist "%~dp0%BUILD_DIR%\gui\chiaki.exe" echo [compile]   ^(%~dp0%BUILD_DIR%\gui\chiaki.exe is an EARLIER run's Qt client, not this one's.^)

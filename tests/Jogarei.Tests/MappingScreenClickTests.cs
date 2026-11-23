@@ -131,7 +131,7 @@ public class MappingScreenClickTests
     {
         var window = new MainWindow();
 
-        Assert.Equal("Jogarei", window.Message);
+        Assert.Equal("Transmiti", window.Message);
 
         window.ShowMessage("no pad SDL can map - plug one in and start again");
 

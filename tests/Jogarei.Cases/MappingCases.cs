@@ -96,7 +96,7 @@ public sealed class MappingCases
         Assert.Equal(0, verdict.ExitCode);
 
         // And nothing was left on the desk. `Interaction.cs` produced this with a finally in every
-        // case: a leftover Jogarei holds its own .exe open, the next build cannot overwrite it, and
+        // case: a leftover Transmiti holds its own .exe open, the next build cannot overwrite it, and
         // the run after that reports on code that is not in the tree.
         Assert.Empty(register.StopAll());
     }

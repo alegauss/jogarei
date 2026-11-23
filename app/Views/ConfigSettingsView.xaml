@@ -24,7 +24,7 @@
       <Button x:Name="ManageProfilesButton" Content="Manage Profiles" />
       <Button x:Name="ExportButton" Content="Export settings to file" />
       <Button x:Name="ImportButton" Content="Import settings from file" />
-      <Button x:Name="AboutButton" Content="About Jogarei" />
+      <Button x:Name="AboutButton" Content="About Transmiti" />
 
       <CheckBox x:Name="SanitizeBox" Margin="0,16,0,0"
                 Content="Sanitize Logs (checked)" IsChecked="{Binding SanitizeLogs}" />
