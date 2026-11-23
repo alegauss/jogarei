@@ -1,7 +1,7 @@
 using System.Text.Json;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: what arrives on the push socket, as the FLAGS the core waits on.

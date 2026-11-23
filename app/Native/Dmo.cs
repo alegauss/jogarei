@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>
 /// PP710: the DirectX Media Object plumbing, once, for the two in-box transforms this port drives.

@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP339: the session thread's two exit macros mean different things, and one stood where the

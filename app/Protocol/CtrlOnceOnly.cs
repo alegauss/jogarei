@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What a second arrival of a once-only message does.</summary>
 public enum SecondArrival

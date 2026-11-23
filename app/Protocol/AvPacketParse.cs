@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP668: the AV header parsed in managed code, so the v12 layout's haptics bit can ever be true.

@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One recorded packet off a real stream, and the NALU it decrypts to.</summary>
 /// <param name="Packet">The bytes as they came off the wire, header and encrypted payload.</param>

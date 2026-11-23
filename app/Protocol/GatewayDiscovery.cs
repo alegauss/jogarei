@@ -1,6 +1,6 @@
-﻿using Jogarei.Session;
+﻿using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which of the five places writes the gateway status.</summary>
 public enum StatusWriter

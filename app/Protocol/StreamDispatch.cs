@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>The takion event kinds the stream connection's callback switches on.</summary>
 public enum TakionEvent

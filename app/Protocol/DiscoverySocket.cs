@@ -1,6 +1,6 @@
-﻿using Jogarei.Session;
+﻿using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One attempt in the bind ladder.</summary>
 /// <param name="Port">The port tried. 0 is the last rung and means "any".</param>

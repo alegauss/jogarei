@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>What comes back from the token endpoint.</summary>
 /// <param name="Expiry">

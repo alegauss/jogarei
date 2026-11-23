@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What chiaki_audio_sender_opus_data did with one encoded frame.</summary>
 public enum MicSendOutcome

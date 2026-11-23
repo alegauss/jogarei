@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP672, under PP27: the two datagrams the CLIENT sends, as bytes.

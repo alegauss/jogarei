@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP612, under PP27: where the eighteen bytes are decided, and why moving them is not this line's

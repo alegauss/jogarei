@@ -1,7 +1,7 @@
 using System.Text;
 using Microsoft.Win32;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP626: how a value goes back into the store <see cref="QSettingsValue"/> reads.

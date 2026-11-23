@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP446: the three joins between the site and the documentation area beside it.

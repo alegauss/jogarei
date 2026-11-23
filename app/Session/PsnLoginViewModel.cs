@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>Which of the login screen's three shapes is on show.</summary>
 public enum PsnLoginMode

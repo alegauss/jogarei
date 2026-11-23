@@ -1,6 +1,6 @@
 using System.Collections.Concurrent;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>How <see cref="SdlThread.Start"/> ended.</summary>
 public enum SdlStart

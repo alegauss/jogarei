@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Why an assert about data is or is not a bound in front of a read.</summary>
 public enum AssertVerdict

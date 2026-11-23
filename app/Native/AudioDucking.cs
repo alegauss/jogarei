@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>PP840: which step of the render-side ducking opt-out stopped it, or Ok.</summary>
 public enum DuckingStep

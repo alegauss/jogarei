@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What a signal on the state condition achieves.</summary>
 public enum WakeOutcome

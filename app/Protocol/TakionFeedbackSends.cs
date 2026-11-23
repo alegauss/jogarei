@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Where a packet's key position and MAC sit, for the sends the MAC table does not know.</summary>
 /// <param name="HeadSize">Bytes before the encrypted payload.</param>

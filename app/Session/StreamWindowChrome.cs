@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP836: which key toggles fullscreen, which is the half a Window is not needed to answer.

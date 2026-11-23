@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP532: the lines compile.cmd prints about the Qt client, and whether each one is entitled to.

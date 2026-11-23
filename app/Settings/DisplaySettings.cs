@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>Which of a display target's modes is in force. Not stored - derived from the value.</summary>
 public enum DisplayTargetMode

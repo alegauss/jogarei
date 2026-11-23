@@ -2,9 +2,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>
 /// PP284: the window PP163's last question is answered by looking at.

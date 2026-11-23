@@ -1,10 +1,10 @@
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text.Json;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP842: walks <see cref="FramePathOracleCases"/> through the real wrappers and writes down every

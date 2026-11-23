@@ -1,8 +1,8 @@
 using System.Net;
-using Jogarei.Native;
-using Jogarei.Settings;
+using Transmiti.Native;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP600: where the console list's three inputs come from, which nothing had ever assembled.

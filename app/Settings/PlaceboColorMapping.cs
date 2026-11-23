@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP17: the placebo options live in their OWN store, under their own prefix.

@@ -2,7 +2,7 @@ using System.Buffers.Binary;
 using System.Net;
 using System.Net.Sockets;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>How one run of the race ended.</summary>
 /// <param name="Selected">The candidate that won, or null where none did.</param>

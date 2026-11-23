@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP756: where a pad's state goes, as an interface rather than as the C session.

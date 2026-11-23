@@ -1,7 +1,7 @@
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP345, under PP294: the handover of a login PIN from the session thread to ctrl, and the failure

@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP17: one row of either placebo screen - a label, a slider and the number beside it.

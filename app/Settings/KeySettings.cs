@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>One row of the Keys tab: a console button, its display name and the key bound to it.</summary>
 public readonly record struct KeyBinding(int ButtonValue, string ButtonName, string KeyName);

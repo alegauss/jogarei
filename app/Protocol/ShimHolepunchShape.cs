@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which of the two shapes the shim's holepunch seam is in.</summary>
 public enum ShimShape

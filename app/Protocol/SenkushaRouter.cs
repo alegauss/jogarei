@@ -1,7 +1,7 @@
 using System.Net;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which of senkusha's callback arms a datagram reached, or that it reached none.</summary>
 public enum SenkushaRoute

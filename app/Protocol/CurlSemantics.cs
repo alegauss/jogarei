@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: what the core actually asks curl to do, which is ten options and not four hundred sites.

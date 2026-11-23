@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
-using Jogarei.Protocol;
+using Transmiti.Native;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP825: the four stages with a device on one end and a takion on the other.

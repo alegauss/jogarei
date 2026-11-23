@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What the ack for one arrival came to.</summary>
 public enum TakionAckSendVerdict

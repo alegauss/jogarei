@@ -1,6 +1,6 @@
-using Jogarei.Settings;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>What one navigation means to the login.</summary>
 public enum PsnNavigation

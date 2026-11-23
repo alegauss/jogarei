@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP23: vl_rbsp itself, reachable so <see cref="VlRbsp"/> can be held against it.

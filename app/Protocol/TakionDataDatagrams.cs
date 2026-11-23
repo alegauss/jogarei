@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP675: the three data datagrams takion sends, as bytes.

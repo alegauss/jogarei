@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// What the front door knows about a console when it decides which of its actions apply.

@@ -1,7 +1,7 @@
 using System.Windows.Interop;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP135: the shared surface handed to WPF, which is the last link of PP9's chain.

@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP748: the run's built messages, put on the takion's socket.

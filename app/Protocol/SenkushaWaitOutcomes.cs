@@ -1,7 +1,7 @@
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Why one of senkusha's waits came back.</summary>
 public enum SenkushaWake

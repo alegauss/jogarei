@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>
 /// PP10: the in-stream menu. A constructor, by the rule PP13 set.

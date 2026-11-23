@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>Which renderer resolved, as chiaki_decoder_choice reads it.</summary>
 public enum ChiakiRenderer { Vulkan = 0, OpenGL = 1 }

@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// The head-wait one AV reorder queue carries between flushes.

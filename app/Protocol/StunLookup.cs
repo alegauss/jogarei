@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which of the three calls inside the lookup ran.</summary>
 public enum StunCall

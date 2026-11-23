@@ -1,7 +1,7 @@
 using System.Globalization;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What the console answered a session request with.</summary>
 /// <param name="Success">Whether the session was granted. See <see cref="SessionResponse"/> for what that means.</param>

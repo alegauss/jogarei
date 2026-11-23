@@ -1,7 +1,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What a transfer produced, in the shape curl's callers already read.</summary>
 /// <param name="Status">The HTTP status, or 0 when the transfer never got one.</param>

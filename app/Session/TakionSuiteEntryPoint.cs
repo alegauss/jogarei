@@ -1,6 +1,6 @@
-using Jogarei.Protocol;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP786: the C suite's other switch, for the three test files takion's deletion takes.

@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
-using Jogarei.Protocol;
+using Transmiti.Native;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>Where decoded PCM goes, and what the stream's shape turned out to be.</summary>
 public interface IPcmSink

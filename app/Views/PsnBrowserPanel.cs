@@ -1,9 +1,9 @@
 using System.Windows.Controls;
-using Jogarei.Session;
+using Transmiti.Session;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.Wpf;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>
 /// PP7: the embedded browser, filling the slot PsnLoginView left for it.

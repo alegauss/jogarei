@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP26: the IV every rpcrypt block is encrypted under, derived in managed code.

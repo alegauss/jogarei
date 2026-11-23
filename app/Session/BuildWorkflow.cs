@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP22: the CI workflow, held against the tree it builds.
@@ -21,7 +21,7 @@ public static partial class BuildWorkflow
     public const string RelativePath = @".github\workflows\build.yml";
 
     /// <summary>The project whose framework the workflow has to install.</summary>
-    public const string HostProjectRelativePath = @"app\Jogarei.csproj";
+    public const string HostProjectRelativePath = @"app\Transmiti.csproj";
 
     /// <summary>The workflow, or null outside a checkout.</summary>
     public static string? Locate() => SanitizerSource.LocateRelative(RelativePath);

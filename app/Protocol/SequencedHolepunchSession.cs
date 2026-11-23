@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP553, under PP33: <see cref="IHolepunchSession"/> answered from the three sequences, with no C.

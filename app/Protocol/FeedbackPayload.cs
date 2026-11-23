@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// A controller's motion and sticks, as feedback.c's ChiakiFeedbackState carries them.
@@ -74,7 +74,7 @@ public readonly record struct FeedbackMotion(
 /// <summary>
 /// PP676: feedback.c's two serialisers and its history events, in managed code.
 ///
-/// NOT <c>Jogarei.Session.FeedbackState</c>, which is PP5's model of the GUI's input decisions -
+/// NOT <c>Transmiti.Session.FeedbackState</c>, which is PP5's model of the GUI's input decisions -
 /// the input block, the shortcut chord, the dpad gate - and has nothing to do with these bytes. The
 /// collision is in the C's own naming and is why this is called a payload.
 ///

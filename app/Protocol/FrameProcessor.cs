@@ -1,10 +1,10 @@
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>The only question the video path asks about a frame.</summary>
 public enum FrameFlushResult

@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP32, the half that leaves with the client: where speexdsp is allowed to be.

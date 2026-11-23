@@ -40,8 +40,6 @@
 
 ## Block J — Public documentation
 
-- 📋 **PP875** (deps: PP874 ✅) **The projects, the solution and the namespace are still named Jogarei after the product became Transmiti** — Transmiti.slnx, app\Transmiti.csproj, tests\Transmiti.Tests and tests\Transmiti.Cases, with the Transmiti namespace in every source. → §PP875
-
 ## Block K — The site on the design system
 
 ## Done when — PP49

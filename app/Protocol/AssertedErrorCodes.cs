@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP404: the census PP357 did not take.

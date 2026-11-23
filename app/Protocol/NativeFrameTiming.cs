@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP23: chiaki_ffmpeg_frame_get_timing itself, reachable so <see cref="FrameTiming"/> can be held

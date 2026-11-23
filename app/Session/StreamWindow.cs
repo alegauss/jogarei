@@ -1,4 +1,4 @@
-﻿namespace Jogarei.Session;
+﻿namespace Transmiti.Session;
 
 /// <summary>
 /// PP11: the window type a session is started with, as settings.h numbers it.

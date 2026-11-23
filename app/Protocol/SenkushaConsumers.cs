@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP702, under PP27: every takion symbol senkusha.c calls, and what answers for it.

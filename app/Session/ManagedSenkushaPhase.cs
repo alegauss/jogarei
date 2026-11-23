@@ -1,8 +1,8 @@
 using System.Net;
-using Jogarei.Native;
-using Jogarei.Protocol;
+using Transmiti.Native;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP809, under PP784: the composition root PP792's seam was waiting for.

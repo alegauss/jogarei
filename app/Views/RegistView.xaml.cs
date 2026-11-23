@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>PP14: registration. A constructor, by the rule PP13 set.</summary>
 public partial class RegistView : UserControl

@@ -940,6 +940,7 @@
 - ✅ **PP863** **PlayStation leads the site's title, the hero and the repository description, as if it were the product's name** — No title, heading, bold lead or name on the site, the README, the repository or the installer carries PlayStation or PS; body text names the consoles descriptively.
 - ✅ **PP873** **The repository still publishes chiaki-ng's funding link, issue templates, contributor guide and Copilot notes** — funding.yml and the Copilot notes are gone, and the issue templates and the contributor guide are rewritten for Jogarei, its build and its roadmap.
 - ✅ **PP874** **The name Jogarei is already taken by the owner's own site about Brazilian games** — The repository is alegauss/transmiti and the site serves at alegauss.com/transmiti/, so Transmiti is the only name from the repository to the window.
+- ✅ **PP875** **The projects, the solution and the namespace are still named Jogarei after the product became Transmiti** — Transmiti.slnx, app\Transmiti.csproj, tests\Transmiti.Tests and tests\Transmiti.Cases, with the Transmiti namespace in every source; CodeNameTests now refuses both earlier names.
 
 ## Block K — The site on the design system
 

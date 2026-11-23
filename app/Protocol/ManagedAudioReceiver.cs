@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// chiaki_audio_header_t: what a STREAMINFO says the sound will be.

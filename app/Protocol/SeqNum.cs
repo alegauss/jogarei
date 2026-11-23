@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP23: RFC 1982 serial number comparison, which is the arithmetic the whole transport rests on.

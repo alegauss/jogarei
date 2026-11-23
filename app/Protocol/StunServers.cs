@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One STUN server to ask for this end's external address.</summary>
 /// <param name="Host">Its name.</param>

@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What the message layer decided about one control datagram.</summary>
 public enum TakionMessageVerdict

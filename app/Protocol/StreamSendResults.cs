@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP370: no send in the stream connection has its answer discarded where it can be acted on.

@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One of the nine things session.c asks a holepunch session for.</summary>
 public enum HolepunchStep

@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>What a dismissal of the host did, in the order the host does it.</summary>
 public enum DialogHostExit

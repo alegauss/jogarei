@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
-using Jogarei.Settings;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP5: sessionlog.cpp's file naming and rotation, with no QDir or QDateTime in it.

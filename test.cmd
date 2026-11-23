@@ -61,7 +61,7 @@ rem `test.cmd interaction` being read as "run the C test called interaction" and
 rem such test exists.
 if defined INTERACTION (
     echo [test] interaction - the real window, through UI Automation
-    dotnet test "%~dp0Jogarei.slnx" --nologo -v normal --filter "Category=Interaction"
+    dotnet test "%~dp0Transmiti.slnx" --nologo -v normal --filter "Category=Interaction"
     exit /b %errorlevel%
 )
 
@@ -80,7 +80,7 @@ if defined NO_APP (
     echo [test] .NET host: SKIPPED ^(noapp^) - nothing here says whether its assertions hold
     goto after_app
 )
-if not exist "%~dp0app\Jogarei.csproj" goto after_app
+if not exist "%~dp0app\Transmiti.csproj" goto after_app
 
 set "APP_EXE=%~dp0app\bin\Debug\net10.0-windows\win-x64\Transmiti.exe"
 if not exist "%APP_EXE%" (
@@ -191,7 +191,7 @@ rem a suite that opens windows is a suite that fails for reasons about the desk 
 rem they are not is optional, which is why they are one word away rather than behind a comment.
 echo.
 echo [test] xUnit vectors
-dotnet test "%~dp0Jogarei.slnx" --nologo -v quiet --filter "Category!=Interaction"
+dotnet test "%~dp0Transmiti.slnx" --nologo -v quiet --filter "Category!=Interaction"
 rem PP682: the pair.
 if errorlevel 1 set "CRC=1"
 if not errorlevel 0 set "CRC=1"

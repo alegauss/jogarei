@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One COM method whose status the caller reads and whose return the CLR would rewrite.</summary>
 /// <param name="Where">The file, repository-relative.</param>

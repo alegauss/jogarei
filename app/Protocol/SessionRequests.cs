@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: the four JSON bodies a session is set up with, all built from string templates for the

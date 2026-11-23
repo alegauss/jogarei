@@ -1,6 +1,6 @@
-﻿using Jogarei.Session;
+﻿using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>How the lookup for the websocket's host ended.</summary>
 public enum FqdnLookupOutcome

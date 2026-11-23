@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One thing about the punch a caller might want to change.</summary>
 public enum PunchSetting

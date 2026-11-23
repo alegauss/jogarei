@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One flag the host answers, as it is written and as it is described.</summary>
 /// <param name="Name">The flag itself, including its dashes.</param>

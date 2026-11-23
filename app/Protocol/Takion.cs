@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP23: the key position, which is the counter every encrypted byte of a session is keyed by.

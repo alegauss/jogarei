@@ -2,7 +2,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What one STUN binding exchange produced.</summary>
 /// <param name="Mapped">The address the server saw, or null where none was read.</param>

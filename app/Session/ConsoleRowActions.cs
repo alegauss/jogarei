@@ -1,8 +1,8 @@
 using System.Net;
 using System.Net.Sockets;
-using Jogarei.Settings;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>Why a row cannot be woken, or that it can.</summary>
 public enum WakeRefusal

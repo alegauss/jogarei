@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One `roadkeep-remaining` query a section declares.</summary>
 /// <param name="Glob">The paths it counts over, as the fence spells them.</param>

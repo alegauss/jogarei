@@ -18,7 +18,7 @@
 #
 #   gh workflow run release.yml --ref v1.10.0
 #
-# The tag must match <Version> in app/Jogarei.csproj - the job refuses otherwise rather than
+# The tag must match <Version> in app/Transmiti.csproj - the job refuses otherwise rather than
 # publishing an installer whose Add/Remove Programs entry disagrees with its own file name.
 #
 # It gates no branch, which is why GateAndCiAgree.CiRelativePaths does not list it.
@@ -129,7 +129,7 @@ jobs:
           $tagged = "$env:GITHUB_REF_NAME" -replace '^v', ''
           Write-Output "tag $env:GITHUB_REF_NAME, built $built"
           if ($built -ne $tagged) {
-            throw "the tag says $tagged and the build says $built - change <Version> in app/Jogarei.csproj, or move the tag"
+            throw "the tag says $tagged and the build says $built - change <Version> in app/Transmiti.csproj, or move the tag"
           }
           "VERSION=$built" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
 

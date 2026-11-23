@@ -12,7 +12,7 @@ managed code, and what has not still runs from the C library through a small nat
 | `app\Session\` | Sessions, discovery, registration, the PSN login, telemetry, and the checks that hold the port against its sources |
 | `app\Native\` | The boundary to native code: the shim, the renderer, audio, Windows APIs |
 | `app\Settings\`, `app\Views\` | The settings store and the WPF screens |
-| `tests\Jogarei.Tests\` | The xUnit suite |
+| `tests\Transmiti.Tests\` | The xUnit suite |
 | `lib\` | chiaki-ng's C library, vendored and never patched here; it leaves as the port completes |
 | `shim\` | The native DLLs the host loads: `chiaki-shim.dll` over `lib\`, and `chiaki-render.dll` |
 | `site\` | The site and the documentation at [alegauss.com/transmiti](https://alegauss.com/transmiti/) |

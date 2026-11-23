@@ -1,7 +1,7 @@
 using System.Globalization;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP17: the number beside each slider, whose decimals are the STEP's decimals - on all forty rows.

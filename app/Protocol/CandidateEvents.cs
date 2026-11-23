@@ -1,6 +1,6 @@
-﻿using Jogarei.Session;
+﻿using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What an attempt to watch a socket produced.</summary>
 public enum WatchResult

@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>
 /// PP816: the speakers again, over the queue Windows already ships.

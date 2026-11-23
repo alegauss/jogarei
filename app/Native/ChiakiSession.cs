@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>
 /// ChiakiErrorCode, in declaration order because that is what the numbers are. Every value here is

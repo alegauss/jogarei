@@ -1,0 +1,256 @@
+using Transmiti.Session;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace Transmiti.Tests;
+
+/// <summary>
+/// PP439: the oracle's size is recorded, and the gate still asks for it.
+///
+/// ctest reports the C suite as one test. The enforcement lives in scripts/test-windows.sh because
+/// that is where ctest runs; what this holds is that the script has not stopped asking.
+/// </summary>
+public class CSuiteFloorTests(ITestOutputHelper output)
+{
+    /// <summary>
+    /// The floor is a number, and one big enough to be the whole suite.
+    ///
+    /// PP758: WHICH SUITE, THOUGH. PP696 takes four C test files out of the list and 72 munit cases
+    /// with them, so the bound moves with the deletion - and PP696 is the one commit forbidden from
+    /// editing a test file, which means the bound has to already know both answers.
+    /// </summary>
+    [Fact]
+    public void TheFloorIsARecordedCount()
+    {
+        if (CSuiteFloor.LocateFloor() is not { } path)
+            return;
+
+        int? floor = CSuiteFloor.Read(File.ReadAllText(path));
+
+        ConsumerShape suite = FramePathConsumers.SuiteShape();
+        int minimum = CSuiteFloor.MinimumFor(suite);
+        output.WriteLine($"floor: {floor}, suite is {suite}, minimum {minimum}");
+
+        Assert.NotNull(floor);
+
+        // PP271 as a constant: a floor of 1 would let the suite shrink to nothing and still pass.
+        Assert.True(
+            floor >= minimum,
+            $"the floor is {floor}, which is too small to be the suite it stands for");
+    }
+
+    /// <summary>
+    /// PP758: and the two bounds are one decision, which is what keeps the second from drifting.
+    ///
+    /// The smaller one is the larger less what the four files take. Asserted rather than left to the
+    /// expression, because the failure it guards against is somebody lowering the constant to make a
+    /// red go away and taking the other bound down with it unnoticed.
+    /// </summary>
+    [Fact]
+    public void TheSmallerBoundIsTheLargerLessWhatTheFourFilesTake()
+    {
+        Assert.Equal(CSuiteFloor.PlausibleMinimum, CSuiteFloor.MinimumFor(ConsumerShape.Asking));
+        Assert.Equal(CSuiteFloor.PlausibleMinimum, CSuiteFloor.MinimumFor(ConsumerShape.Partial));
+
+        Assert.Equal(
+            CSuiteFloor.PlausibleMinimum - CSuiteFloor.FramePathCases,
+            CSuiteFloor.MinimumFor(ConsumerShape.Silent));
+
+        // Both stay bounds rather than becoming nothing, which a subtraction is one edit away from.
+        Assert.True(CSuiteFloor.MinimumFor(ConsumerShape.Silent) > 1);
+    }
+
+    /// <summary>
+    /// THE GATE STILL ASKS. -V is what carries munit's count, and --output-on-failure is the flag
+    /// this replaced - it prints the summary only on a red, which is the run where the count is not
+    /// the question.
+    /// </summary>
+    [Fact]
+    public void TheGateAsksCtestForTheCountAndReadsTheFloor()
+    {
+        if (CSuiteFloor.LocateGate() is not { } path)
+            return;
+
+        string script = File.ReadAllText(path);
+
+        Assert.True(
+            CSuiteFloor.AsksCtestForTheCount(script),
+            "the gate no longer asks ctest for verbose output, so munit's count is unavailable "
+                + "and the floor is a file nothing compares against");
+
+        Assert.True(
+            CSuiteFloor.ReadsTheFloor(script),
+            "the gate does not name the floor file, so the count is printed and not enforced");
+    }
+
+    /// <summary>
+    /// PP68 and PP70's property: a captured run prints nothing while it hangs, so both the failure
+    /// path and the timeout path empty the capture to the screen.
+    ///
+    /// Counted, not tested for presence: one cat would satisfy a word search and leave the timeout
+    /// path silent, and the timeout path is the one those two tasks were about.
+    /// </summary>
+    [Fact]
+    public void AFailedOrHangingRunPrintsWhatItCaptured()
+    {
+        if (CSuiteFloor.LocateGate() is not { } path)
+            return;
+
+        int prints = CSuiteFloor.PrintsTheCaptureCount(File.ReadAllText(path));
+        output.WriteLine($"cat of the capture: {prints} place(s)");
+
+        Assert.True(
+            prints >= 2,
+            $"the capture is emptied to the screen in {prints} place(s); the failure path and the "
+                + "timeout path both need it, or a hang prints nothing at all");
+    }
+
+    /// <summary>
+    /// The value is the last number outside a comment, which is what lets the file carry a header.
+    /// </summary>
+    [Fact]
+    public void TheHeaderIsNotTheValue()
+    {
+        const string Floor = """
+            # PP439: the size of the oracle.
+            #
+            # 145 on 2026-08-27, when the count was first taken, of which 64 are the fec cases.
+            145
+            """;
+
+        Assert.Equal(145, CSuiteFloor.Read(Floor));
+
+        // A file that is only a header records nothing, and says so rather than answering zero.
+        Assert.Null(CSuiteFloor.Read("# 145 is mentioned here and is not the value\n"));
+    }
+
+    /// <summary>
+    /// PP400: a comment naming a flag is not the gate passing it.
+    ///
+    /// The block this change added discusses --output-on-failure at length to say what it replaced,
+    /// so a reader of flat text would find the old flag still in use.
+    /// </summary>
+    [Fact]
+    public void ACommentNamingTheOldFlagIsNotTheOldFlag()
+    {
+        const string Script = """
+            	# PP439: -V rather than --output-on-failure, because the number this gate needs is
+            	# one that --output-on-failure discards on a green run.
+            	timeout "$TEST_TIMEOUT" "$CTEST" --test-dir "$BUILD_DIR" -V >"$ctest_out" 2>&1
+            """;
+
+        Assert.True(CSuiteFloor.AsksCtestForTheCount(Script));
+
+        // And the real thing is caught: the old flag in code, not in prose.
+        Assert.False(CSuiteFloor.AsksCtestForTheCount(
+            "\ttimeout 120 \"$CTEST\" --test-dir build --output-on-failure -V\n"));
+    }
+
+    /// <summary>PP272: and an empty script asks for nothing and reads nothing.</summary>
+    [Fact]
+    public void AnEmptyScriptEnforcesNothing()
+    {
+        Assert.False(CSuiteFloor.AsksCtestForTheCount(""));
+        Assert.False(CSuiteFloor.ReadsTheFloor(""));
+        Assert.Equal(0, CSuiteFloor.PrintsTheCaptureCount(""));
+        Assert.Null(CSuiteFloor.Read(""));
+    }
+
+    /// <summary>
+    /// And the floor file is one the C suite's own gate names, not a path only this class knows.
+    /// </summary>
+    [Fact]
+    public void TheTwoHalvesNameTheSameFile()
+    {
+        if (CSuiteFloor.LocateGate() is not { } path)
+            return;
+
+        string leaf = Path.GetFileName(CSuiteFloor.FloorRelativePath);
+        Assert.Contains(leaf, File.ReadAllText(path), StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    /// PP796: A STALE BINARY ENDS THE RUN, because everything below it is read off that binary.
+    ///
+    /// It was a warning, and the floor comparison then failed with a message about ffmpeg - so one
+    /// run said two contradictory things and the second explained the first wrongly. Five
+    /// misdiagnoses in one session and a conclusion that the gate is flaky; it was not.
+    /// </summary>
+    [Fact]
+    public void AStaleSuiteBinaryStopsTheRunRatherThanWarning()
+    {
+        if (CSuiteFloor.LocateGate() is not { } path)
+            return;
+
+        Assert.True(
+            CSuiteFloor.TheStaleBinaryEndsTheRun(File.ReadAllText(path)),
+            "the gate still carries on past a binary ninja says is out of date, so the case count "
+                + "below it is about the previous build");
+    }
+
+    /// <summary>And a warning that only says so is exactly what this refuses.</summary>
+    [Fact]
+    public void AWarningWithNoExitIsNotAnEnding()
+    {
+        const string Warning = """
+            	if [[ "$freshness" != *"no work to do"* ]]; then
+            		echo "[test] WARNING: $UNIT is out of date - ninja has work to do for it." >&2
+            	fi
+            	exit 1
+            """;
+
+        // The exit is there, outside the branch - which is the shape a looser check would pass.
+        Assert.False(CSuiteFloor.TheStaleBinaryEndsTheRun(Warning));
+
+        const string Ending = """
+            	if [[ "$freshness" != *"no work to do"* ]]; then
+            		echo "[test] $UNIT is out of date - ninja has work to do for it." >&2
+            		exit 1
+            	fi
+            """;
+
+        Assert.True(CSuiteFloor.TheStaleBinaryEndsTheRun(Ending));
+    }
+
+    /// <summary>
+    /// PP796: and the shrunken-suite message rules the stale case out BEFORE it names ffmpeg.
+    ///
+    /// Order and not presence. The build option is right about the case it was written for -
+    /// CHIAKI_ENABLE_FFMPEG_DECODER going OFF drops seven - and a reader acts on the first thing
+    /// said, which used to send them to a build option while the answer was compile.cmd.
+    /// </summary>
+    [Fact]
+    public void TheShrunkenSuiteNamesTheStaleCaseBeforeTheBuildOption()
+    {
+        if (CSuiteFloor.LocateGate() is not { } path)
+            return;
+
+        Assert.True(
+            CSuiteFloor.TheShrunkenSuiteRulesOutTheStaleCaseFirst(File.ReadAllText(path)),
+            "the gate names ffmpeg before it says whether the binary was fresh, so the commonest "
+                + "cause is the one it does not mention");
+    }
+
+    /// <summary>And the other order is what it refuses, told both ways.</summary>
+    [Fact]
+    public void TheBuildOptionComingFirstIsRefused()
+    {
+        const string Wrong = """
+            		echo "[test] A suite got smaller. Check whether ffmpeg was found: " >&2
+            		echo "[test] The binary is up to date, so this is not the previous build's count." >&2
+            """;
+
+        Assert.False(CSuiteFloor.TheShrunkenSuiteRulesOutTheStaleCaseFirst(Wrong));
+
+        const string Right = """
+            		echo "[test] The binary is up to date, so this is not the previous build's count." >&2
+            		echo "[test] A suite got smaller. Check whether ffmpeg was found: " >&2
+            """;
+
+        Assert.True(CSuiteFloor.TheShrunkenSuiteRulesOutTheStaleCaseFirst(Right));
+
+        // And a gate that says neither answers false rather than throwing.
+        Assert.False(CSuiteFloor.TheShrunkenSuiteRulesOutTheStaleCaseFirst(""));
+        Assert.False(CSuiteFloor.TheStaleBinaryEndsTheRun(""));
+    }
+}

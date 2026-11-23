@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Protocol;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>The three consumers PP638's linker run named, by kind.</summary>
 public enum ConsumerKind
@@ -45,11 +45,11 @@ public enum ConsumerShape
 /// <summary>Where a symbol's managed counterpart lives.</summary>
 public enum CounterpartAssembly
 {
-    /// <summary>The application: <c>Jogarei.Protocol</c>.</summary>
+    /// <summary>The application: <c>Transmiti.Protocol</c>.</summary>
     App,
 
     /// <summary>
-    /// PP712: the application's other namespace, <c>Jogarei.Session</c>.
+    /// PP712: the application's other namespace, <c>Transmiti.Session</c>.
     ///
     /// The port's app assembly has two, and a counterpart may be in either - the baseline's
     /// statistics are in this one. Added rather than resolved by trying both, because a name that
@@ -58,7 +58,7 @@ public enum CounterpartAssembly
     /// </summary>
     AppSession,
 
-    /// <summary>The test project: <c>Jogarei.Tests</c>, where a C test file's counterpart is a test class.</summary>
+    /// <summary>The test project: <c>Transmiti.Tests</c>, where a C test file's counterpart is a test class.</summary>
     Tests,
 }
 
@@ -116,9 +116,9 @@ public readonly record struct Counterpart(
     /// <summary>The namespace-qualified name, which is what reflection resolves.</summary>
     public string FullName => In switch
     {
-        CounterpartAssembly.App => "Jogarei.Protocol." + Type,
-        CounterpartAssembly.AppSession => "Jogarei.Session." + Type,
-        _ => "Jogarei.Tests." + Type,
+        CounterpartAssembly.App => "Transmiti.Protocol." + Type,
+        CounterpartAssembly.AppSession => "Transmiti.Session." + Type,
+        _ => "Transmiti.Tests." + Type,
     };
 }
 

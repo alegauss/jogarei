@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP16: the audio buffer, which is measured in three different units.

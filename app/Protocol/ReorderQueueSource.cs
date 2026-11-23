@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP107: the check that makes an ACCEPTED defect expire loudly.

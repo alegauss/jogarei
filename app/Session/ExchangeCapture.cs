@@ -2,11 +2,11 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using Jogarei.Native;
-using Jogarei.Protocol;
-using Jogarei.Settings;
+using Transmiti.Native;
+using Transmiti.Protocol;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>PP514: which recording a capture run produces. The session path is the same for both.</summary>
 public enum SessionCaptureKind

@@ -1,6 +1,6 @@
-using Jogarei.Protocol;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>Who runs the session thread's stream phase on a given tree.</summary>
 public enum StreamDriver

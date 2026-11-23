@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP23: libchiaki's own serial-number comparison, reachable so the managed one can be held against

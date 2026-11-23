@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What becomes of one of the session thread's seven steps when the port takes the run.</summary>
 public enum HandoverFate

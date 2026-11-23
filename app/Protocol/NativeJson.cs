@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using System.Text;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>How json-c numbers the types it can hold. The order is json_type's, not a choice.</summary>
 public enum JsonCType

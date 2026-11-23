@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP26: what a session's key stream and its GMAC keys are derived FROM.

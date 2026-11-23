@@ -1,6 +1,6 @@
-using Jogarei.Protocol;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP835: whether the run reaches its draw loop without waiting for a controller.

@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP753: the seam a session thread hands its stream phase across, and takes an outcome back on.

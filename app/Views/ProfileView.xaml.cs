@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>PP14: the profile dialog. A constructor, by the rule PP13 set.</summary>
 public partial class ProfileView : UserControl

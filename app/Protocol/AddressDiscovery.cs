@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What is known about the router between this machine and the internet.</summary>
 public enum GatewayStatus

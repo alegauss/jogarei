@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: what the json-c oracle is asked, in ONE list that both the recorder and the tests read.

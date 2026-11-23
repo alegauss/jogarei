@@ -1,9 +1,9 @@
 using System.Net.Sockets;
 using System.Security.Cryptography;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP337, continuing PP293: what chiaki_session_init decides before anything reaches the network.

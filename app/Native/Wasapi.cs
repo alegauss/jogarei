@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>
 /// PP708: the WASAPI surface, once, for the two directions this port opens.

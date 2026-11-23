@@ -1,7 +1,7 @@
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which console answered, by the byte RP-Server-Type decrypts to.</summary>
 public enum CtrlServerType

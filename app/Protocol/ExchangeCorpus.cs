@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Why an entry is not in a corpus, or that it is.</summary>
 public enum CorpusVerdict

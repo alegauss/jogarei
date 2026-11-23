@@ -25,7 +25,7 @@ not this one's.
 
 ## The settings that are not arbitrary
 
-`Jogarei.csproj` carries the reasoning inline. The three worth knowing before editing it:
+`Transmiti.csproj` carries the reasoning inline. The three worth knowing before editing it:
 
 - **`PublishSingleFile` and friends are Release-only.** Unconditional, they apply to
   `dotnet build` too and lay the whole runtime down every time — claude-tray measured 252 files

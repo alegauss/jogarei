@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP23: the registration crypto, driven from managed code so both implementations can be run on

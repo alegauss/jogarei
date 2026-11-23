@@ -1,10 +1,10 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP492: the step that fills the portable tree, and the branch of it a GUI-off build takes.
 ///
 /// The .NET host loads chiaki-shim.dll and chiaki-render.dll out of <c>build\chiaki-ng-Win</c> -
-/// <see cref="Jogarei.Native.ChiakiNative"/> looks there before it looks at the build directory,
+/// <see cref="Transmiti.Native.ChiakiNative"/> looks there before it looks at the build directory,
 /// because whatever is on PATH is not this build's. What puts them there is the deploy, and the
 /// deploy has two paths: the Qt one, which walks the client's whole dependency closure with ldd,
 /// and the native-only one PP269 added for builds with CHIAKI_ENABLE_GUI off.

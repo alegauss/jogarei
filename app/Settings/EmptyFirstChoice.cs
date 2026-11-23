@@ -1,4 +1,4 @@
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP16: a runtime-built list whose FIRST entry stores the empty string.

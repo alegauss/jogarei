@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One thing that happened, in the order it happened.</summary>
 /// <param name="AtMicroseconds">When, relative to the first entry. Zero for the first.</param>

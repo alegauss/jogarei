@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// A monotonic clock, in the two units feedbacksender.c reads one in.

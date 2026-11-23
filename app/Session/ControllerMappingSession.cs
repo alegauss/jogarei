@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP217: the object that joins the mapping screen to the pad.

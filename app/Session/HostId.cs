@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP624: the one spelling of a console's identity, because this port had two that never met.

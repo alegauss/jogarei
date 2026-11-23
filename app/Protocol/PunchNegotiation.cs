@@ -1,6 +1,6 @@
-﻿using Jogarei.Session;
+﻿using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What a step of the negotiation would tell the caller, once one is listening.</summary>
 public enum NegotiationOutcome

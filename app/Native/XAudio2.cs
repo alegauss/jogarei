@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>XAUDIO2_BUFFER: a whole block of PCM handed to the engine and played entire.</summary>
 /// <remarks>

@@ -1,8 +1,8 @@
 ﻿using System.Net;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Where a stream run's four stage timings go, which is SessionBaseline in the application.</summary>
 public interface IStageSink

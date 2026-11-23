@@ -1,7 +1,7 @@
-﻿using Jogarei.Native;
-using Jogarei.Session;
+﻿using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which of the session thread's two exits a failure takes.</summary>
 public enum SessionExit

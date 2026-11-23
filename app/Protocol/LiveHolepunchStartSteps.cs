@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP549, under PP533: <see cref="IHolepunchStartSteps"/> over the pieces that actually run.

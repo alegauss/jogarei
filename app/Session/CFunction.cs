@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP343: one reader for a C function's body, which is the commonest thing the drift checks do.

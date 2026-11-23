@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One measured artifact against its ceiling.</summary>
 /// <param name="Name">The budget's name, as the file spells it.</param>

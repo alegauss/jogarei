@@ -1,7 +1,7 @@
 using System.Net.Http;
 using System.Text.Json;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What one session call did, in the vocabulary the matching task already named.</summary>
 /// <param name="Status">The HTTP status, or zero where the transfer never got one.</param>

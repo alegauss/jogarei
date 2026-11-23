@@ -1,8 +1,8 @@
 using System.Buffers.Binary;
 using System.Text;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which of the three keyboard messages the console sent.</summary>
 public enum KeyboardMessage

@@ -382,10 +382,4 @@ that too is read rather than assumed.
 
 ## Block J — Public documentation
 
-### §PP875 Rename the code to Transmiti
-
-PP865 did this for ChiakiNg to Jogarei. Over a thousand sources carry the namespace, so
-it gets its own commit after PP874 lands the visible name; lib\ and the Chiaki settings
-paths stay.
-
 ## Block K — The site on the design system

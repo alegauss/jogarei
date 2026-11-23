@@ -1,8 +1,8 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// What a client does with a frame. Returning false says it could not be taken, which makes the
@@ -50,7 +50,7 @@ public sealed unsafe class VideoReceiver : IDisposable
     private GCHandle _self;
     private IntPtr _handle;
 
-    public VideoReceiver(VideoSampleHandler handler, Jogarei.Session.ChiakiCodec codec, ChiakiLog? log = null)
+    public VideoReceiver(VideoSampleHandler handler, Transmiti.Session.ChiakiCodec codec, ChiakiLog? log = null)
     {
         ArgumentNullException.ThrowIfNull(handler);
         this.handler = handler;

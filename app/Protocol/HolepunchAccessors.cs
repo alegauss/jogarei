@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One function a caller outside the holepunch file can reach.</summary>
 /// <param name="Name">Its name.</param>
@@ -91,7 +91,7 @@ public static class HolepunchAccessorsSource
 
     /// <summary>And the header that documents it.</summary>
     public static string? LocateHeader()
-        => Jogarei.Session.SanitizerSource.LocateRelative(HeaderRelativePath);
+        => Transmiti.Session.SanitizerSource.LocateRelative(HeaderRelativePath);
 
     /// <summary>Whether the address getter still copies the source's whole field.</summary>
     public static bool TheGetterStillCopiesTheWholeField(string core)

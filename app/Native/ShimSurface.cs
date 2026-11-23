@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>
 /// PP580: the names this assembly imports from the shim, against the names the shim exports.

@@ -1,7 +1,7 @@
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// What senkusha's run needs from the world, named for the C calls each stands in for.

@@ -1,4 +1,4 @@
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP17: one slider on a placebo screen - its key, its range, and which functions show it.

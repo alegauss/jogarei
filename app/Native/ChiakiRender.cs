@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>
 /// PP9: the renderer's seam, which is a second DLL and not more of the first.

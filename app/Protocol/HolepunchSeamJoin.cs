@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>How one of PP429's nine call sites reaches the managed interface.</summary>
 /// <param name="Callee">The C function, as PP429 names it.</param>

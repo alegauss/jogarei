@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One number a criterion states, and the program value it was copied from.</summary>
 /// <param name="About">The task whose criterion it is.</param>

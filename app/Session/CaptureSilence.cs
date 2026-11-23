@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>What a running capture is actually doing, which is not the same as whether it opened.</summary>
 public enum CaptureHealth

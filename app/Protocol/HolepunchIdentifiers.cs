@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: the three small helpers the hole punching turns identifiers with, each wrong in its own

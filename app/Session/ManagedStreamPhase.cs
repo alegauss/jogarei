@@ -1,8 +1,8 @@
 ﻿using System.Net;
-using Jogarei.Native;
-using Jogarei.Protocol;
+using Transmiti.Native;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP762: the composition root the handover was waiting for.

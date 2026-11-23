@@ -1,9 +1,9 @@
 using System.Buffers.Binary;
 using System.Globalization;
 using System.Net;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Why a STUN response was not usable.</summary>
 public enum StunResult

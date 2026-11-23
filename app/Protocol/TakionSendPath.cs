@@ -1,7 +1,7 @@
-﻿using Jogarei.Native;
-using Jogarei.Session;
+﻿using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Where a datagram goes once it is stamped.</summary>
 public interface ITakionWire

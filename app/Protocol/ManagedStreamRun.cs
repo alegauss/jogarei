@@ -1,6 +1,6 @@
-﻿using Jogarei.Native;
+﻿using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// What a stream run needs from the world, named for the C calls it stands in for.

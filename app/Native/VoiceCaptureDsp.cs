@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>What the Voice Capture DSP said when it was asked for a format.</summary>
 /// <param name="Rate">Samples a second.</param>

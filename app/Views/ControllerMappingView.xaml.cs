@@ -1,9 +1,9 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>
 /// PP18/PP223: the controller mapping screen, and the clicks that reach the pad.

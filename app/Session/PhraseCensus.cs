@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP705: which files RECORD a phrase in order to judge it, asked of the file rather than listed.

@@ -1,6 +1,6 @@
 using System.Net.Sockets;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which socket an arm of the send would use, or that there is no arm for it.</summary>
 public enum ProbeArm

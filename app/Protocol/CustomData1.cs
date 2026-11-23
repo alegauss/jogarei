@@ -1,7 +1,7 @@
 using System.Text;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: the sixteen bytes the console hides in customData1, behind base64 TWICE.

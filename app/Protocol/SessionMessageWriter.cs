@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: writing a session message, which is done with format strings and not with a JSON library.

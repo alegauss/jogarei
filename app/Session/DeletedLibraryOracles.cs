@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP655's flip is 25 exports and not 9, which an attempt at it found rather than a reading.

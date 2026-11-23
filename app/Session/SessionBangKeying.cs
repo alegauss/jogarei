@@ -1,7 +1,7 @@
-using Jogarei.Native;
-using Jogarei.Protocol;
+using Transmiti.Native;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP773: the derivation a bang leads to, over the session's own ECDH pair.

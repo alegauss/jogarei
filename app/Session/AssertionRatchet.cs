@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP38: the non-goal, counted.
@@ -429,7 +429,7 @@ public static partial class AssertionRatchet
     }
 
     /// <summary>
-    /// The claims in an index: <c>PP208 tests/Jogarei.Tests/HolepunchIdentifiersTests.cs</c>.
+    /// The claims in an index: <c>PP208 tests/Transmiti.Tests/HolepunchIdentifiersTests.cs</c>.
     ///
     /// A line naming an id and no path is not a claim and is not read as one - the same rule an
     /// exemption's reason follows, and for the same reason: a bare list of ids is something
@@ -575,7 +575,7 @@ public static partial class AssertionRatchet
     [GeneratedRegex(@"\bPP[0-9]+\b")]
     private static partial Regex IdRegex();
 
-    // PP208 tests/Jogarei.Tests/HolepunchIdentifiersTests.cs
+    // PP208 tests/Transmiti.Tests/HolepunchIdentifiersTests.cs
     //
     // Anchored at the start of a line so a comment cannot become a claim, and the path is required
     // for the reason an exemption's reason is.

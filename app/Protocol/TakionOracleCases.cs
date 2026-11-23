@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What one step does to a reorder queue.</summary>
 public enum QueueOpKind

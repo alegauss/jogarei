@@ -1,9 +1,9 @@
 using System.Globalization;
 using System.Text.Json;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP785: walks <see cref="TakionOracleCases"/> through the real wrappers and writes down every

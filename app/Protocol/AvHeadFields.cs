@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>The unit counts and codec byte an AV head carries.</summary>
 /// <param name="UnitIndex">Which unit of the frame this is.</param>

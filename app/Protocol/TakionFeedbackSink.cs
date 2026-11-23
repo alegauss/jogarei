@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP750: the feedback sender's two packets, encrypted, signed and put on the takion's socket.
@@ -33,13 +33,13 @@ public sealed class TakionFeedbackSink(ManagedTakion takion, bool v12 = true) : 
     public ChiakiError? Last { get; private set; }
 
     /// <summary>PP854: where each state is counted by the second, beside the pad's own inputs.</summary>
-    public Jogarei.Session.PadTimeline? Timeline { get; init; }
+    public Transmiti.Session.PadTimeline? Timeline { get; init; }
 
     /// <inheritdoc/>
     public void SendState(ushort seqNum, FeedbackMotion state)
     {
         StatesOffered++;
-        Timeline?.Mark(Jogarei.Session.PadTimeline.Series.States);
+        Timeline?.Mark(Transmiti.Session.PadTimeline.Series.States);
 
         Span<byte> payload = stackalloc byte[FeedbackPayload.StateSize(v12)];
         FeedbackPayload.FormatState(payload, v12, state);

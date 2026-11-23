@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>
 /// ChiakiControllerButton, plus the two analog-button bits that sit above it. One bitmask, and the

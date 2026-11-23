@@ -1,7 +1,7 @@
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What takion_handle_packet_av did with one datagram.</summary>
 public enum AvArmOutcome

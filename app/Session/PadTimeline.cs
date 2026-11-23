@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP854: what the pad path did, second by second, so a stop has a moment.

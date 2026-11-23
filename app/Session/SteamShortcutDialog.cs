@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Settings;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP19: the non-Steam shortcut dialog - the last of the tail, and the one that writes outside the

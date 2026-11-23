@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One way of getting echo cancellation, as the spike's committed reading records it.</summary>
 /// <param name="Name">What it is called.</param>

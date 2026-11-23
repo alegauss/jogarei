@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>PP704: what a file's guard is protecting, which decides whether it is a cost.</summary>
 public enum GuardKind
@@ -93,11 +93,11 @@ public static class OracleGuardCensus
         // of JsonOracleRecording, taken from the library once, so they run on every build. What is
         // left of the json oracle is the ONE guard that re-derives the recording from the library -
         // and that one declining costs nothing, because what it protects is asserted either way.
-        new(@"tests\Jogarei.Tests\JsonDifferentialTests.cs", JsonGuard),
-        new(@"tests\Jogarei.Tests\NativeHolepunchSessionTests.cs", "SeamWraps"),
-        new(@"tests\Jogarei.Tests\HolepunchSessionOwnershipTests.cs", HolepunchGuard),
-        new(@"tests\Jogarei.Tests\FecCodecTests.cs", FramePathGuard),
-        new(@"tests\Jogarei.Tests\FecMatrixTests.cs", FramePathGuard),
+        new(@"tests\Transmiti.Tests\JsonDifferentialTests.cs", JsonGuard),
+        new(@"tests\Transmiti.Tests\NativeHolepunchSessionTests.cs", "SeamWraps"),
+        new(@"tests\Transmiti.Tests\HolepunchSessionOwnershipTests.cs", HolepunchGuard),
+        new(@"tests\Transmiti.Tests\FecCodecTests.cs", FramePathGuard),
+        new(@"tests\Transmiti.Tests\FecMatrixTests.cs", FramePathGuard),
 
         // PP671: FecVectorTests stood here and does not, and this is the list getting SHORTER for
         // the reason it should. Its two theories are the sixty-four recorded erasure cases, and
@@ -107,21 +107,21 @@ public static class OracleGuardCensus
         //
         // The differential did not go with it: FecCodecTests still runs the two decoders against
         // each other, and is guarded, because that one genuinely needs the C.
-        new(@"tests\Jogarei.Tests\FrameAssemblerTests.cs", FramePathGuard),
-        new(@"tests\Jogarei.Tests\ManagedVideoReceiverTests.cs", FramePathGuard),
-        new(@"tests\Jogarei.Tests\AllocBudgetTests.cs", FramePathGuard),
+        new(@"tests\Transmiti.Tests\FrameAssemblerTests.cs", FramePathGuard),
+        new(@"tests\Transmiti.Tests\ManagedVideoReceiverTests.cs", FramePathGuard),
+        new(@"tests\Transmiti.Tests\AllocBudgetTests.cs", FramePathGuard),
 
         // PP694: libopus, which is a fourth oracle and arrived after PP665 wrote this list. Its
         // guard asks the build the way PP681's correction requires, and the five comparisons behind
         // it are the encoder differential - so a build with CHIAKI_LIB_ENABLE_OPUS off declines
         // them and this is what says how many.
-        new(@"tests\Jogarei.Tests\ManagedOpusEncoderTests.cs", OpusGuard),
+        new(@"tests\Transmiti.Tests\ManagedOpusEncoderTests.cs", OpusGuard),
 
         // PP751: the decoder's side of the same library. The class branches on the guard because it
         // has to - a build with no libopus must not call into it - and its tests decline four
         // comparisons, which is what the row below counts.
         new(@"app\Session\ManagedOpusDecoder.cs", OpusGuard, GuardKind.Reads),
-        new(@"tests\Jogarei.Tests\ManagedOpusDecoderTests.cs", OpusDecoderGuard),
+        new(@"tests\Transmiti.Tests\ManagedOpusDecoderTests.cs", OpusDecoderGuard),
 
         // PP683: the host, which is not a test file and guards all the same. Its one comparison is
         // the device id's shape against holepunch.c's, and it asks OfTheBuild through the predicate
@@ -132,11 +132,11 @@ public static class OracleGuardCensus
         // PP704: the sweep PP683 left, and it was not empty. PP676's wrappers arrived after PP665
         // wrote this list, so nothing was ever removed - the list simply stopped being complete on
         // the day they landed, and eight comparisons went uncounted.
-        new(@"tests\Jogarei.Tests\FeedbackPayloadTests.cs", FeedbackGuard),
+        new(@"tests\Transmiti.Tests\FeedbackPayloadTests.cs", FeedbackGuard),
 
         // PP52: the cleaning stage's end-to-end runs the encoder, so it declines with libopus. Found
         // by the sweep above rather than remembered, which is what PP704 built it for.
-        new(@"tests\Jogarei.Tests\CleanedMicrophoneTests.cs", OpusGuard),
+        new(@"tests\Transmiti.Tests\CleanedMicrophoneTests.cs", OpusGuard),
 
         // PP816: the sound path's own join, which asks the decoder's guard for one half of one
         // test. Counted rather than named as a guard test, because what declines is an assertion
@@ -145,7 +145,7 @@ public static class OracleGuardCensus
         // running.
         //
         // PP797's AudioPlaybackTests carried this row before PP820 deleted the ring it joined.
-        new(@"tests\Jogarei.Tests\XAudio2SinkTests.cs", OpusDecoderGuard),
+        new(@"tests\Transmiti.Tests\XAudio2SinkTests.cs", OpusDecoderGuard),
 
         // PP802: PP785's takion wrappers, which are the SIXTH oracle and the case PP704 named as
         // the one its sweep cannot see. KnownGuards is derived from this list, so a guard with a
@@ -154,20 +154,20 @@ public static class OracleGuardCensus
         //
         // The differentials, which are what the floor is about: each asks whether takion's wrappers
         // are in this build before comparing the port against them.
-        new(@"tests\Jogarei.Tests\AvPacketV7Tests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\AvPacketParseTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\AvHeaderBoundTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\SendBufferTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\SendBufferDifferentialTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\TakionSendBufferTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\ReorderQueueOracleTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\WideReorderQueueOracleTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\PacketMacDifferentialTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\CongestionTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\ManagedCongestionControlTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\NativeTakionLoopbackTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\VideoStreamTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\TakionClientDatagramsTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\AvPacketV7Tests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\AvPacketParseTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\AvHeaderBoundTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\SendBufferTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\SendBufferDifferentialTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\TakionSendBufferTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\ReorderQueueOracleTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\WideReorderQueueOracleTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\PacketMacDifferentialTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\CongestionTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\ManagedCongestionControlTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\NativeTakionLoopbackTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\VideoStreamTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\TakionClientDatagramsTests.cs", TakionGuard),
 
         // PP27: the three the flip itself added, and they are a cost the census had not seen because
         // nothing had ever asked whether takion was there before touching a CAPTURE.
@@ -178,24 +178,24 @@ public static class OracleGuardCensus
         // PP683's shape - a guarded comparison outside the test project counts like any other.
         new(@"app\Session\DatagramReplayReport.cs", TakionGuard, GuardKind.Reads),
         new(@"app\Session\MacGateTiming.cs", TakionGuard, GuardKind.Reads),
-        new(@"tests\Jogarei.Tests\CorpusReplayTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\DatagramReplayReportTests.cs", TakionGuard),
-        new(@"tests\Jogarei.Tests\CorpusTimingTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\CorpusReplayTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\DatagramReplayReportTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\CorpusTimingTests.cs", TakionGuard),
 
         // MacGateTimingTests reads the shape to decide which of the three series carries samples,
         // and asserts on all of them either way - so nothing here declines and the row is a Reads.
-        new(@"tests\Jogarei.Tests\MacGateTimingTests.cs", TakionGuard, GuardKind.Reads),
+        new(@"tests\Transmiti.Tests\MacGateTimingTests.cs", TakionGuard, GuardKind.Reads),
 
         // PP813: the ping senkusha sends, built twice - once by this port's writer and once through
         // the C's own formatter - because a live console echoes the C's and not this port's, and
         // eight readings of the format had already said they agree. They do, byte for byte, which
         // is what makes the difference somewhere the bytes cannot show.
-        new(@"tests\Jogarei.Tests\SenkushaPingBytesTests.cs", TakionGuard),
+        new(@"tests\Transmiti.Tests\SenkushaPingBytesTests.cs", TakionGuard),
 
         // PP802: and the recording, which is the same oracle asked a different way. PP785 keeps the
         // C's answers because the C is leaving, so the one test that RE-DERIVES them declines
         // without the wrappers and the recorder that produces them reads the same answer.
-        new(@"tests\Jogarei.Tests\RecordedTakionOracleTests.cs", TakionOracleGuard),
+        new(@"tests\Transmiti.Tests\RecordedTakionOracleTests.cs", TakionOracleGuard),
         new(@"app\Protocol\TakionOracleRecorder.cs", TakionOracleGuard, GuardKind.Reads),
 
         // And the seam's takion allowance, which follows the shape exactly as its json one does.
@@ -209,20 +209,20 @@ public static class OracleGuardCensus
         // ONE ROW AND NOT SIX, because the recorded comparisons carry no guard at all: they read the
         // JSON and run the managed side, which reaches no DLL. What declines is the one test that
         // RE-DERIVES the recording, and the recorder it asks reads the same answer.
-        new(@"tests\Jogarei.Tests\RecordedFramePathOracleTests.cs", FramePathOracleGuard),
+        new(@"tests\Transmiti.Tests\RecordedFramePathOracleTests.cs", FramePathOracleGuard),
         new(@"app\Protocol\FramePathOracleRecorder.cs", FramePathOracleGuard, GuardKind.Reads),
 
         // And the files that test the GUARDS rather than what the guards protect. Named so the
         // sweep is closed, and NOT counted: a guard test declining on a build without the oracle is
         // the check doing its job, not an assertion somebody lost.
-        new(@"tests\Jogarei.Tests\TakionOracleShapeTests.cs", TakionGuard, GuardKind.GuardsOwnTest),
-        new(@"tests\Jogarei.Tests\TakionOracleShapeTests.cs", TakionBareGuard, GuardKind.GuardsOwnTest),
-        new(@"tests\Jogarei.Tests\ShimHolepunchShapeTests.cs", HolepunchGuard, GuardKind.GuardsOwnTest),
-        new(@"tests\Jogarei.Tests\ShimHolepunchShapeTests.cs", SelfTestGuard, GuardKind.GuardsOwnTest),
-        new(@"tests\Jogarei.Tests\ShimFramePathShapeTests.cs", FramePathGuard, GuardKind.GuardsOwnTest),
-        new(@"tests\Jogarei.Tests\DeletedLibraryOraclesTests.cs", JsonGuard, GuardKind.GuardsOwnTest),
-        new(@"tests\Jogarei.Tests\NativeSeamTests.cs", HolepunchGuard, GuardKind.GuardsOwnTest),
-        new(@"tests\Jogarei.Tests\NativeSeamTests.cs", JsonGuard, GuardKind.GuardsOwnTest),
+        new(@"tests\Transmiti.Tests\TakionOracleShapeTests.cs", TakionGuard, GuardKind.GuardsOwnTest),
+        new(@"tests\Transmiti.Tests\TakionOracleShapeTests.cs", TakionBareGuard, GuardKind.GuardsOwnTest),
+        new(@"tests\Transmiti.Tests\ShimHolepunchShapeTests.cs", HolepunchGuard, GuardKind.GuardsOwnTest),
+        new(@"tests\Transmiti.Tests\ShimHolepunchShapeTests.cs", SelfTestGuard, GuardKind.GuardsOwnTest),
+        new(@"tests\Transmiti.Tests\ShimFramePathShapeTests.cs", FramePathGuard, GuardKind.GuardsOwnTest),
+        new(@"tests\Transmiti.Tests\DeletedLibraryOraclesTests.cs", JsonGuard, GuardKind.GuardsOwnTest),
+        new(@"tests\Transmiti.Tests\NativeSeamTests.cs", HolepunchGuard, GuardKind.GuardsOwnTest),
+        new(@"tests\Transmiti.Tests\NativeSeamTests.cs", JsonGuard, GuardKind.GuardsOwnTest),
 
         // And what the sweep found that is neither: code asking the same question and asserting
         // nothing. Two of these are the HOST's - the recorder refuses to re-derive a recording from
@@ -231,8 +231,8 @@ public static class OracleGuardCensus
         // test files. The other two read it to define a helper and to print it.
         new(@"app\Protocol\JsonOracleRecorder.cs", JsonGuard, GuardKind.Reads),
         new(@"app\Session\NativeSeam.cs", JsonGuard, GuardKind.Reads),
-        new(@"tests\Jogarei.Tests\NativeHolepunchSessionTests.cs", HolepunchGuard, GuardKind.Reads),
-        new(@"tests\Jogarei.Tests\OracleGuardCensusTests.cs", JsonGuard, GuardKind.Reads),
+        new(@"tests\Transmiti.Tests\NativeHolepunchSessionTests.cs", HolepunchGuard, GuardKind.Reads),
+        new(@"tests\Transmiti.Tests\OracleGuardCensusTests.cs", JsonGuard, GuardKind.Reads),
     ];
 
     /// <summary>PP676's wrappers, which are a fourth oracle and one PP665 could not have known.</summary>
@@ -365,7 +365,7 @@ public static class OracleGuardCensus
     /// <summary>
     /// The directories a sweep for an unnamed caller reads: the host, and the suite.
     /// </summary>
-    public static IReadOnlyList<string> SweptDirectories { get; } = ["app", @"tests\Jogarei.Tests"];
+    public static IReadOnlyList<string> SweptDirectories { get; } = ["app", @"tests\Transmiti.Tests"];
 
     /// <summary>The distinct guards this census knows about, which is what the sweep looks for.</summary>
     public static IReadOnlyList<string> KnownGuards { get; } =

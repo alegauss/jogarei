@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP321: how a tick of the buffered pacer ended, which is four answers and not two.

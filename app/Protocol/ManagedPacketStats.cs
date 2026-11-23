@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One read of the stats: what arrived and what did not, over the window just closed.</summary>
 /// <param name="Received">Generations' received plus the sequence arm's count.</param>

@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>What one pass through the cleaning stage produced.</summary>
 /// <param name="Cleaned">Bytes at the announced rate, or zero while the filter is still filling.</param>

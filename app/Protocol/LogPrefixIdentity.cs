@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One log message that opens with a function name, and the function it is actually in.</summary>
 /// <param name="In">The enclosing function.</param>

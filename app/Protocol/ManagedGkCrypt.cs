@@ -1,8 +1,8 @@
 using System.Buffers;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One step stream_connection_init_crypt takes, in the order it takes them.</summary>
 public enum GkCryptStep

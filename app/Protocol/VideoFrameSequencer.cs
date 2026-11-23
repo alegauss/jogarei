@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What arriving packet means for the frame being assembled.</summary>
 /// <param name="Stale">The packet belongs to a frame already past. Nothing else in this record applies.</param>

@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP676: the microphone packet's head, which audiosender.c writes and takion.c finishes.

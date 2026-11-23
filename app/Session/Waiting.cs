@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP34: what is left of thread.c after it is deleted rather than translated.

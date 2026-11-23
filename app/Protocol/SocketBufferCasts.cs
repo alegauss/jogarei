@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One send or recv, and the buffer expression it passes.</summary>
 /// <param name="File">Repository-relative, with forward slashes as the scan finds them.</param>

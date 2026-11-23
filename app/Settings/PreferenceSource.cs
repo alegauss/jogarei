@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>One <c>value("key", default).toX()</c> call, as the Qt client spells it.</summary>
 /// <param name="Key">The key literal.</param>

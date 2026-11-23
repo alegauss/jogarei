@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which branch of takion_handle_packet a datagram took.</summary>
 public enum TakionDispatchBranch

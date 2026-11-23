@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using System.Text;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP23: libchiaki's own HTTP parser, reachable so the managed one can be held against it.

@@ -1,8 +1,8 @@
 using System.Text;
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP444, under PP29: the bytes the PIN exchange sends, laid out here instead of by regist.c.

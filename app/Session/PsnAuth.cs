@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using System.Text;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP7: the PSN login, everywhere except inside the browser.

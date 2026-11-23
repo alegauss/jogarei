@@ -1,8 +1,8 @@
 using System.Net;
 using System.Net.Sockets;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Where the client is in the exchange.</summary>
 public enum TakionClientState

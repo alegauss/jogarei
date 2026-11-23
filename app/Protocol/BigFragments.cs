@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One message in a fragmented BIG.</summary>
 /// <param name="Offset">Where in the encoded protobuf this fragment starts.</param>

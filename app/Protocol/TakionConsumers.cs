@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which side of the tree a consumer of takion's three files is on.</summary>
 public enum TakionConsumerKind

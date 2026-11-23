@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What one handover produced, for a caller that is not the session thread.</summary>
 /// <param name="Started">Whether the session thread reached the stream phase at all.</param>

@@ -1,4 +1,4 @@
-<UserControl x:Class="Jogarei.Views.StreamMenuView"
+<UserControl x:Class="Transmiti.Views.StreamMenuView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <!--

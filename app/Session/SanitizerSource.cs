@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP88: the assertion that keeps the two clients redacting the same way.

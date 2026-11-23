@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP645: which committed spike run is a reading and which one is the machine being busy.
@@ -37,7 +37,7 @@ public static class SpikeRunQuality
     /// Where the committed runs live. PP871 deleted spike\ and moved each reading, byte for byte,
     /// beside the tests that read it; the experiments are gone and their answers are not.
     /// </summary>
-    public const string FixtureDirectory = @"tests\Jogarei.Tests\fixtures\spikes";
+    public const string FixtureDirectory = @"tests\Transmiti.Tests\fixtures\spikes";
 
     /// <summary>
     /// The runs this binds, by path. A list rather than a glob, because being bound is a claim

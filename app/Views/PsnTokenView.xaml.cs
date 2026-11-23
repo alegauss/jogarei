@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>
 /// PP15: the token dialog. A constructor, by the rule PP13 set.

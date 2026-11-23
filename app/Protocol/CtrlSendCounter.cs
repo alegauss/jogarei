@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What one ctrl send does to the local crypt counter.</summary>
 /// <param name="EncryptAt">The counter value the payload is encrypted at.</param>

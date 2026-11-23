@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One thing the session thread asks a holepunch session for.</summary>
 /// <param name="Callee">The C function it calls.</param>

@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One step of the create, in the order chiaki_holepunch_session_create runs them.</summary>
 public enum HolepunchCreateStep

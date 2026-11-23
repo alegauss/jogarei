@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One step of the punch, in the order chiaki_holepunch_session_punch_hole runs them.</summary>
 public enum HolepunchPunchStep

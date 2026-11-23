@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which pad and keyboard features a session asked for, since the burst depends on them.</summary>
 /// <param name="DualSense">connect_info.enable_dualsense.</param>

@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What kind of slice arrived. The values are libchiaki's enum order.</summary>
 public enum BitstreamSliceType { Unknown = 0, I = 1, P = 2 }
@@ -24,7 +24,7 @@ public sealed class Bitstream : IDisposable
     private IntPtr _handle;
 
     /// <param name="codec">ChiakiCodec: H264, H265 or H265Hdr.</param>
-    public Bitstream(Jogarei.Session.ChiakiCodec codec)
+    public Bitstream(Transmiti.Session.ChiakiCodec codec)
     {
         _handle = BitstreamCreate((int)codec);
         if (_handle == IntPtr.Zero)

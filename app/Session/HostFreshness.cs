@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>What a check of the running host found, or why it could not answer.</summary>
 public enum HostBuildState

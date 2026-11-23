@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>One message as it crossed the seam, copied out of libchiaki's buffer.</summary>
 /// <param name="Direction">Which way it went.</param>

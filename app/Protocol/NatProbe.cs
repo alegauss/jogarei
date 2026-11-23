@@ -1,9 +1,9 @@
 ﻿using System.Buffers.Binary;
 using System.Net;
 using System.Net.Sockets;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: the eighty-eight byte packets the candidate race is actually made of.

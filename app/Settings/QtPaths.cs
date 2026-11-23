@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP3: where the Qt client puts a file, stated once so the .NET host puts it in the same place.

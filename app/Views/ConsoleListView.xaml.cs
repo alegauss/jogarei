@@ -1,8 +1,8 @@
 using System.Windows;
 using System.Windows.Controls;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>
 /// PP13: the front door's code-behind, which was a constructor and nothing else.

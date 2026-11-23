@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using System.Text;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>The two datagrams discovery sends. The values are libchiaki's enum order.</summary>
 public enum DiscoveryCommand { Search = 0, Wakeup = 1 }

@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One reader whose subject is a file the frame path's deletion took out of the build.</summary>
 /// <param name="Type">The class, by its name.</param>

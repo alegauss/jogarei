@@ -1,7 +1,7 @@
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Where a packet's MAC and key position live, for one base type.</summary>
 /// <param name="MacOffset">Where the four-byte GMAC starts.</param>

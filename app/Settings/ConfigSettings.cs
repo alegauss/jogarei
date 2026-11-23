@@ -1,7 +1,7 @@
-﻿using Jogarei.Native;
-using Jogarei.Session;
+﻿using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP16: the two logging switches, and the fact that neither of them stores a level.

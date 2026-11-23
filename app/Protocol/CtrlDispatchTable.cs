@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What one arriving ctrl message does to the remote crypt counter.</summary>
 /// <param name="DecryptAt">The counter value the payload is decrypted at.</param>

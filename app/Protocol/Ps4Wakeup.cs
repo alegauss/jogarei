@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP239: waking a PS4, which takes two requests - the first one asking where the second should go.

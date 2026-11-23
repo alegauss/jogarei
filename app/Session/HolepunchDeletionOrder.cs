@@ -1,6 +1,6 @@
-using Jogarei.Protocol;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One step of PP33's deletion, and whether the C changes in it.</summary>
 /// <param name="Name">What the step is called.</param>

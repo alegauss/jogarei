@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which of the two shapes a pad info message is, told apart by its length alone.</summary>
 public enum PadInfoLayout

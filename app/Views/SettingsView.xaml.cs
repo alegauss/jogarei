@@ -1,8 +1,8 @@
 using System.Windows.Controls;
 using System.Windows.Input;
-using Jogarei.Settings;
+using Transmiti.Settings;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>
 /// PP167: the settings dialog.

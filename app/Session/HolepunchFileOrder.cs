@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP33: the second flip, which is the file itself leaving rather than session.c's asks.

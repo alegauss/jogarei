@@ -75,7 +75,7 @@ jobs:
       # turns SelfContained on for a plain build too and lays the whole runtime down before anything
       # has been tested.
       - name: build the solution
-        run: dotnet build Jogarei.slnx -c Debug --nologo
+        run: dotnet build Transmiti.slnx -c Debug --nologo
 
       # PP567: THE SAME EXCLUSION THE GATE USES, for the same reason one level along. PP227 put the
       # interaction tests outside `test.cmd` because they open the real application and drive its
@@ -84,7 +84,7 @@ jobs:
       # just got past the configure error that kept this job red for 39 runs.
       - name: the managed suite
         run: >
-          dotnet test tests/Jogarei.Tests/Jogarei.Tests.csproj -c Debug --no-build --nologo
+          dotnet test tests/Transmiti.Tests/Transmiti.Tests.csproj -c Debug --no-build --nologo
           --filter "Category!=Interaction"
           --logger "trx;LogFileName=managed.trx"
 
@@ -116,14 +116,14 @@ jobs:
           name: test-results
           path: |
             build/junit-unit.xml
-            tests/Jogarei.Tests/TestResults/managed.trx
+            tests/Transmiti.Tests/TestResults/managed.trx
           if-no-files-found: ignore
 
       # The single-file host PP22's first half shipped. Publishing it here is what keeps that half
       # honest: the analyzer errors on IL3000 are compile-time, and a publish nobody runs is a
       # release-day discovery.
       - name: publish the host
-        run: dotnet publish app/Jogarei.csproj -c Release --nologo
+        run: dotnet publish app/Transmiti.csproj -c Release --nologo
 
       - uses: actions/upload-artifact@v4
         with:

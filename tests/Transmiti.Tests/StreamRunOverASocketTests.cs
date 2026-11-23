@@ -1,0 +1,433 @@
+﻿using System.Net;
+using System.Net.Sockets;
+using Transmiti.Native;
+using Transmiti.Protocol;
+using Transmiti.Session;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace Transmiti.Tests;
+
+/// <summary>
+/// PP746, under PP707: chiaki_stream_connection_run's sequence, over a socket and on real objects.
+///
+/// PP640's six orderings have always been asserted against a trace a Scripted host produced - which
+/// proves the run ASKS in the right order, given a world that answers whatever the case wants.
+/// PP745 wrote a host that delegates to the port's own takion, congestion thread, feedback sender
+/// and message builders, and PP607 had already connected a real takion to PP606's responder over
+/// loopback. This is the two together.
+///
+/// THE SIGNALS COME FROM ANOTHER THREAD, which is the part worth the trouble. In the C the flags a
+/// wait watches are written by handlers on the takion's receive thread; a run that only completed
+/// when signalled from its own thread would be a run that cannot work at all, and nothing about a
+/// script would show that.
+///
+/// IT DOES NOT STREAM. No console answers a BIG over loopback, so the bang and the streaminfo are
+/// signalled rather than parsed. What is proved is the sequence, on objects that own sockets and
+/// threads, ending in a teardown that is read rather than trusted.
+/// </summary>
+public class StreamRunOverASocketTests(ITestOutputHelper output) : IDisposable
+{
+    private readonly UdpClient peer = new(new IPEndPoint(IPAddress.Loopback, 0));
+
+    // PP773: the client's address, recorded by the answering thread.
+    private volatile IPEndPoint? client;
+
+    private IPEndPoint PeerEndPoint => (IPEndPoint)peer.Client.LocalEndPoint!;
+
+    public void Dispose()
+    {
+        peer.Dispose();
+        GC.SuppressFinalize(this);
+    }
+
+    private sealed class Sent : IStreamMessageSink
+    {
+        public List<ushort> PayloadTypes { get; } = [];
+
+        public bool Send(in StreamMessage message)
+        {
+            lock (PayloadTypes)
+                PayloadTypes.Add(message.PayloadType);
+
+            return true;
+        }
+
+        // PP827: a recorder has no wire and so no MTU to cut against - the BIG arrives here whole,
+        // which is what every assertion in this file was written against.
+        public bool SendBig(in StreamMessage message) => Send(message);
+
+        public ushort[] Snapshot()
+        {
+            lock (PayloadTypes)
+                return [.. PayloadTypes];
+        }
+    }
+
+    private sealed class Stages : IStageSink
+    {
+        public List<FrameStageTimer> Pushed { get; } = [];
+
+        public int InputToWireCount { get; private set; }
+
+        public void Stage(FrameStageTimer stage, ulong sampleUs) => Pushed.Add(stage);
+
+        public void InputToWire(ulong inputUs) => InputToWireCount++;
+    }
+
+    private sealed class Quiet : IFeedbackSink
+    {
+        public void SendState(ushort seqNum, FeedbackMotion state)
+        {
+        }
+
+        public void SendHistory(ushort seqNum, ReadOnlySpan<byte> payload)
+        {
+        }
+    }
+
+    private sealed class Quieter : ICongestionSink
+    {
+        public void Send(CongestionReport report)
+        {
+        }
+    }
+
+    private sealed class NoFrames : IAudioFrameSink
+    {
+        public void Header(in ManagedAudioHeader header)
+        {
+        }
+
+        public void Frame(ReadOnlySpan<byte> frame)
+        {
+        }
+    }
+
+    private sealed class NoOutbound : IVideoReceiverOutbound
+    {
+        public void SendCorruptFrame(ushort from, ushort to)
+        {
+        }
+
+        public bool SendIdrRequest() => true;
+
+        public void FecFailure(int frameIndex, bool idrRequestSent)
+        {
+        }
+    }
+
+    /// <summary>Answers the handshake on the loopback socket, as PP607's own test does.</summary>
+    private Thread AnswerHandshake(TakionHandshakeResponder responder)
+    {
+        var thread = new Thread(() =>
+        {
+            var from = new IPEndPoint(IPAddress.Loopback, 0);
+
+            while (responder.State != TakionResponderState.Done)
+            {
+                byte[] datagram = peer.Receive(ref from);
+
+                // PP773: where the client is, which a test sending it something afterwards needs.
+                // The responder only ever replies to whoever spoke, so this is the same address.
+                client = new IPEndPoint(from.Address, from.Port);
+
+                if (responder.Answer(datagram) is { } answer)
+                    peer.Send(answer, answer.Length, from);
+            }
+        })
+        {
+            IsBackground = true,
+            Name = "takion peer",
+        };
+
+        thread.Start();
+        return thread;
+    }
+
+    /// <summary>
+    /// THE RUN, END TO END, over a socket a handshake really crossed.
+    ///
+    /// The driver stands where the C's handlers stand: it ends each of the three waits and then
+    /// leaves the idle loop, from a thread that is not the run's. What comes back is SUCCESS, and
+    /// the takion has connected and been closed in the order PP678 recorded.
+    /// </summary>
+    [Fact]
+    public void TheSequenceRunsOnRealObjectsOverARealSocket()
+    {
+        var responder = new TakionHandshakeResponder(0x0000_5745, [.. Enumerable.Repeat((byte)0x77, 32)]);
+        Thread answering = AnswerHandshake(responder);
+
+        var takion = new ManagedTakion(0x0000_1746);
+        var sent = new Sent();
+        var stages = new Stages();
+        var congestion = new ManagedCongestionControl(new ManagedPacketStats(), new Quieter(), 0.05);
+        var feedback = new ManagedFeedbackSender(new Quiet());
+
+        var host = new ManagedStreamRunHost(
+            takion,
+            PeerEndPoint,
+            congestion,
+            feedback,
+            new ManagedSessionEvents(),
+            sent,
+            stages,
+            StreamMessages.Heartbeat,
+            () => new ManagedVideoReceiver((_, _, _) => true, new NoOutbound()),
+            () => new ManagedAudioReceiverPair(new NoFrames(), new NoFrames()),
+            () => new ManagedAudioReceiverPair(new NoFrames(), new NoFrames()))
+        {
+            ExpectTimeoutMs = 4000,
+            IdleTimeoutMs = 4000,
+        };
+
+        // The handler thread. Signalling from HERE is the point: these flags are written by the
+        // takion's receive thread in the C, never by the run's own.
+        //
+        // PP774: IT KEEPS SETTING FINISHED, and it used to set it once. The comment here said that
+        // was "what the C's flag does between the states the run walks", and the C clears both
+        // flags at every state entry - which the run now does too. A driver that set it once was
+        // right only about a run that never cleared, and the two agreed by both being wrong.
+        //
+        // A pulse landing between two waits is simply lost, so this keeps setting rather than
+        // setting once: what it stands for is a console answering every state, which is the case
+        // this test is about.
+        using var finished = new ManualResetEventSlim();
+
+        var driver = new Thread(() =>
+        {
+            while (!finished.Wait(5))
+                host.Signal(finished: true);
+        })
+        {
+            IsBackground = true,
+            Name = "stream handlers",
+        };
+
+        driver.Start();
+
+        ChiakiError outcome = ManagedStreamRun.Run(host);
+
+        finished.Set();
+        driver.Join(TimeSpan.FromSeconds(10));
+        answering.Join(TimeSpan.FromSeconds(10));
+
+        output.WriteLine($"outcome {outcome}, payload types {string.Join(", ", sent.Snapshot())}");
+
+        Assert.Equal(ChiakiError.Success, outcome);
+
+        // The takion really connected and really closed, which is what "over a socket" means.
+        Assert.Equal(TakionStage.Closed, takion.Stage);
+        Assert.Equal(TakionResponderState.Done, responder.State);
+        Assert.Equal(0x0000_1746u, responder.ClientTag);
+
+        // Ordering 6: the disconnect goes out from the label, on the success path as well.
+        ushort[] types = sent.Snapshot();
+        Assert.Contains(StreamMessages.DisconnectType, types);
+        Assert.Equal(StreamMessages.DisconnectType, types[^1]);
+
+        // The four stage timings came off the takion after the close, in the C's order.
+        Assert.Equal(ManagedStreamRunHost.StageOrder, stages.Pushed);
+
+        // And nothing was lifted out of the feedback sender, which is the sender's own guard rather
+        // than a missing call: no controller state was ever pushed, so it holds no sample to lift.
+        // Ordering 4 - lift before fini - is asserted over the script, where a sample can be made.
+        Assert.Equal(0, stages.InputToWireCount);
+    }
+
+    /// <summary>
+    /// AND A CONNECT THAT CANNOT HAPPEN UNWINDS WITHOUT CLOSING A TAKION THAT NEVER OPENED.
+    ///
+    /// The rung PP295 found the old teardown table wrong about. Here it is over a socket with
+    /// nothing answering: the handshake times out, the run enters at the video receiver, and the
+    /// takion is not closed because it never connected.
+    /// </summary>
+    [Fact]
+    public void AConnectThatNobodyAnswersUnwindsWithoutClosingTheTakion()
+    {
+        var takion = new ManagedTakion(0x0000_2746);
+        var sent = new Sent();
+
+        var host = new ManagedStreamRunHost(
+            takion,
+            // Nothing is listening here: the port is this test's own peer, closed before we start.
+            Unanswered(),
+            new ManagedCongestionControl(new ManagedPacketStats(), new Quieter(), 0.05),
+            new ManagedFeedbackSender(new Quiet()),
+            new ManagedSessionEvents(),
+            sent,
+            new Stages(),
+            StreamMessages.Heartbeat,
+            () => new ManagedVideoReceiver((_, _, _) => true, new NoOutbound()),
+            () => new ManagedAudioReceiverPair(new NoFrames(), new NoFrames()),
+            () => new ManagedAudioReceiverPair(new NoFrames(), new NoFrames()))
+        {
+            ExpectTimeoutMs = 200,
+            IdleTimeoutMs = 200,
+        };
+
+        ChiakiError outcome = ManagedStreamRun.Run(host);
+
+        output.WriteLine($"outcome {outcome}, stage {takion.Stage}");
+
+        Assert.Equal(ChiakiError.Unknown, outcome);
+
+        // Never connected, so never closed - and no disconnect went out, because the run had not
+        // reached the bang when it failed.
+        Assert.NotEqual(TakionStage.Closed, takion.Stage);
+        Assert.Empty(sent.Snapshot());
+    }
+
+    /// <summary>
+    /// PP773: A RUN WITH NO DRIVER STILL GETS PAST THE CONNECT STATE, and it used to stop there.
+    ///
+    /// The test above hands the run a thread that pulses finished every 5ms, standing for a console
+    /// answering every state - so it proves the sequence and hides which flags the port raises for
+    /// itself. Against a real console nothing pulsed, and the run reached CongestionStarted and
+    /// timed out with a handshake that had SUCCEEDED: the connect state waits on an event nothing
+    /// turned the takion's return into.
+    ///
+    /// THE SAME READING, OVER LOOPBACK. Take the driver away and the rung the run reports is the
+    /// rung the console reported - BigSent, which is one wait and one send past where it stopped.
+    /// The bang after it still times out because no responder here answers a BIG, and that is the
+    /// remainder this ship left rather than a gap in the assertion.
+    ///
+    /// Without the signal in ConnectTakion this stops at CongestionStarted, which is what makes the
+    /// rung the thing worth asserting: the error is Unknown either way.
+    /// </summary>
+    [Fact]
+    public void TheConnectStateEndsOnItsOwnHandshake()
+    {
+        var responder = new TakionHandshakeResponder(0x0000_5745, [.. Enumerable.Repeat((byte)0x77, 32)]);
+        Thread answering = AnswerHandshake(responder);
+
+        var takion = new ManagedTakion(0x0000_3746);
+        var sent = new Sent();
+
+        var host = new ManagedStreamRunHost(
+            takion,
+            PeerEndPoint,
+            new ManagedCongestionControl(new ManagedPacketStats(), new Quieter(), 0.05),
+            new ManagedFeedbackSender(new Quiet()),
+            new ManagedSessionEvents(),
+            sent,
+            new Stages(),
+            StreamMessages.Heartbeat,
+            () => new ManagedVideoReceiver((_, _, _) => true, new NoOutbound()),
+            () => new ManagedAudioReceiverPair(new NoFrames(), new NoFrames()),
+            () => new ManagedAudioReceiverPair(new NoFrames(), new NoFrames()))
+        {
+            // Nothing signals the bang, so this is what the run spends waiting for it. Short, because
+            // the wait timing out is the expected end and not a failure.
+            ExpectTimeoutMs = 500,
+            IdleTimeoutMs = 500,
+        };
+
+        ChiakiError outcome = ManagedStreamRun.Run(host, out StreamBuilt reached, out StreamRung rung);
+
+        answering.Join(TimeSpan.FromSeconds(10));
+
+        output.WriteLine($"outcome {outcome}, reached {reached}, rung {rung}, handshake {host.LastHandshake}");
+
+        // The handshake really happened, which is the premise: this is a connect that SUCCEEDED and
+        // whose state then waited for something that had already occurred.
+        Assert.Equal(ChiakiError.Success, host.LastHandshake?.Error);
+
+        // And the run walked out of the connect state and sent the BIG, with nobody signalling it.
+        // The BIG is a heartbeat here, as it is in the test above - PP726's real one needs a session
+        // and this test owns a socket. What is asserted is that SendBig ran at all, and the idle loop
+        // that sends the other heartbeats is three states further on than this run ever gets.
+        Assert.Equal(StreamRung.BigSent, rung);
+        Assert.Contains(StreamMessages.HeartbeatType, sent.Snapshot());
+
+        // The bang is the remainder. It times out, so the run leaves by the disconnect label - which
+        // is ordering 6 again, and the takion closed because this time it had connected.
+        Assert.Equal(ChiakiError.Unknown, outcome);
+        Assert.Equal(TakionStage.Closed, takion.Stage);
+        Assert.Equal(StreamMessages.DisconnectType, sent.Snapshot()[^1]);
+    }
+
+    /// <summary>
+    /// PP773: THE LOOP ON A THREAD, which is the half this port did not have.
+    ///
+    /// PP488 wrote takion_thread_func's loop and every caller ran it for a bounded number of
+    /// iterations to read its trace. Nothing ran it against a live socket, so a managed run
+    /// connected to a real PS5, sent a real BIG - and never read the answer. A console trial showed
+    /// it: zero datagrams dispatched over fifteen seconds, on a session the console was acking.
+    ///
+    /// Here the peer sends one after the handshake and the run's own takion picks it up, on a thread
+    /// nobody in this test started. Without StartReceiving the count stays at zero and the assertion
+    /// below is the difference between a stream and a wait.
+    /// </summary>
+    [Fact]
+    public void TheReceiveLoopRunsOnAThreadOfItsOwn()
+    {
+        var responder = new TakionHandshakeResponder(0x0000_5745, [.. Enumerable.Repeat((byte)0x77, 32)]);
+        Thread answering = AnswerHandshake(responder);
+
+        var seen = new List<int>();
+        var takion = new ManagedTakion(
+            0x0000_4746,
+            datagram =>
+            {
+                lock (seen)
+                    seen.Add(datagram.Length);
+            });
+
+        try
+        {
+            Assert.Equal(ChiakiError.Success, takion.Connect(PeerEndPoint, 4000).Error);
+
+            answering.Join(TimeSpan.FromSeconds(10));
+            takion.StartReceiving();
+
+            Assert.True(takion.ReceiveThreadAlive, "the receive thread did not start");
+
+            // The console's side of the socket, which the responder has finished with. A datagram
+            // sent here has to reach the callback with nobody in this test reading the socket.
+            //
+            // Sent repeatedly rather than once, for the reason the C's own handshake retries: a
+            // single loopback datagram is a single point of failure, and this test is about a thread
+            // reading the socket rather than about one packet surviving. Asserting on one send made
+            // it fail under a loaded gate and pass on its own, which is the worst of both.
+            byte[] one = [0x00, 0x11, 0x22, 0x33, 0x44];
+            IPEndPoint to = client ?? throw new InvalidOperationException("the handshake left no address");
+
+            long deadline = Environment.TickCount64 + 10000;
+            while (takion.Dispatched == 0 && Environment.TickCount64 < deadline)
+            {
+                peer.Send(one, one.Length, to);
+                Thread.Sleep(20);
+            }
+
+            int dispatched = takion.Dispatched;
+            int[] lengths;
+
+            lock (seen)
+                lengths = [.. seen];
+
+            output.WriteLine($"dispatched {dispatched}, lengths {string.Join(", ", lengths)}");
+
+            Assert.True(dispatched > 0, "nothing was dispatched, so nothing is receiving");
+            Assert.Contains(one.Length, lengths);
+        }
+        finally
+        {
+            takion.Dispose();
+        }
+
+        // And the teardown stopped it, which is the C's close joining its thread before it frees a
+        // queue the loop is still pushing into.
+        Assert.False(takion.ReceiveThreadAlive);
+    }
+
+    /// <summary>A loopback endpoint with nothing bound to it, so a handshake can only time out.</summary>
+    private static IPEndPoint Unanswered()
+    {
+        using var probe = new UdpClient(new IPEndPoint(IPAddress.Loopback, 0));
+        var taken = (IPEndPoint)probe.Client.LocalEndPoint!;
+
+        return new IPEndPoint(IPAddress.Loopback, taken.Port);
+    }
+
+}

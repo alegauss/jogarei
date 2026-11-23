@@ -40,7 +40,7 @@
 #error No payload at MyAppPath. Run package.cmd from the repository root - it publishes the host, stages the native libraries and then compiles this script.
 #endif
 
-; Read off the packaged exe rather than written here. app\Jogarei.csproj sets Version to
+; Read off the packaged exe rather than written here. app\Transmiti.csproj sets Version to
 ; 1.10.0 to match CMakeLists' CHIAKI_VERSION - one version for the two executables - and
 ; keeps IncludeSourceRevisionInInformationalVersion off precisely so an installer can reuse
 ; it verbatim. A literal in this file would be a second place to update and the one nobody

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>
 /// PP700: the renderer that lives between frames, which the port's one-frame probe was not.

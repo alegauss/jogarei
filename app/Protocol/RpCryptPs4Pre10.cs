@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP26: the PS4-before-10 key derivations, which are three loops that look like each other.

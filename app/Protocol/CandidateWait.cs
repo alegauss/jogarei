@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What the wait loop does after a window elapses with nothing to read.</summary>
 public enum WaitStep

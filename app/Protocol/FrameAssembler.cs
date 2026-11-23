@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP289: frameprocessor.c, in managed code.

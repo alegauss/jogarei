@@ -1,7 +1,7 @@
 using System.Net.WebSockets;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: the one call site that is not an HTTP transfer - PSN's push notification WebSocket.

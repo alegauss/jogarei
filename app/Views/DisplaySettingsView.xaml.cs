@@ -1,7 +1,7 @@
 using System.Windows.Controls;
-using Jogarei.Settings;
+using Transmiti.Settings;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>
 /// PP19: the display settings dialog.

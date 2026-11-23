@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What a senkusha run measured, and whether it measured anything at all.</summary>
 /// <param name="MtuIn">The inbound MTU the launch spec carries.</param>

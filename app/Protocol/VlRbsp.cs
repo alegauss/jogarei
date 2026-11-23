@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP23: vl_vlc, the bit buffer both slice-header parsers read through, in managed code.

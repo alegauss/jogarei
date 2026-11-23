@@ -1,8 +1,8 @@
 using System.Globalization;
-using Jogarei.Protocol;
-using Jogarei.Session;
+using Transmiti.Protocol;
+using Transmiti.Session;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>What a managed wait is to the C wait beside it.</summary>
 public enum WaitKind

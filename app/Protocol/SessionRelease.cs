@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One step of chiaki_session_fini, in the order it runs.</summary>
 public enum SessionReleaseStep

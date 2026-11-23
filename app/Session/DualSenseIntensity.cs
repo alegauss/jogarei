@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// ChiakiDualSenseEffectIntensity, with the console's own numbers.

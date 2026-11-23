@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One interface the port declares and consumes, with nothing in app on the other side.</summary>
 /// <param name="Interface">The interface's name, as it is declared.</param>
@@ -59,7 +59,7 @@ public static class SeamReach
     /// gap rather than three commits later. A run that takes a host interface has a shape until
     /// something implements it, and PP773 is what leaving that unsaid costs.
     ///
-    /// PP791 TOOK IT OFF AGAIN. <see cref="Jogarei.Protocol.ManagedSenkushaRunHost"/> implements
+    /// PP791 TOOK IT OFF AGAIN. <see cref="Transmiti.Protocol.ManagedSenkushaRunHost"/> implements
     /// ISenkushaRunHost against the port's own takion, so the row lasted the two commits between the
     /// run and the thing that performs it - which is what a row on this list is for, and shorter
     /// than the three blocks PP741 measured.

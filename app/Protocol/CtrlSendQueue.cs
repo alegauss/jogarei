@@ -1,6 +1,6 @@
-﻿using Jogarei.Session;
+﻿using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One message waiting to go out, as the queue holds it.</summary>
 /// <param name="Type">The control message type.</param>

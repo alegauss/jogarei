@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP218: the ownership rule for the two calls that look alike, read out of SDL's own header.

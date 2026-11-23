@@ -1,6 +1,6 @@
-﻿using Jogarei.Session;
+﻿using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What a slice parse learned. Zeroed before every parse, for the reason in the class note.</summary>
 public struct BitstreamSlice

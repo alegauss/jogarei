@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>What a managed reader of a takion message does about proto2's required set.</summary>
 public enum ProtobufReading

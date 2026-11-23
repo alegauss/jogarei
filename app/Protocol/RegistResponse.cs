@@ -1,12 +1,12 @@
 using System.Globalization;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// What a console sends back when it accepts a registration.
 ///
-/// NOT Jogarei.Settings.RegisteredHost, which is the console as the registry stores it. This is
+/// NOT Transmiti.Settings.RegisteredHost, which is the console as the registry stores it. This is
 /// the wire form it arrives in, and the two carry different fields for different reasons.
 /// </summary>
 /// <param name="Nickname">The console's name, as the user sees it.</param>

@@ -84,7 +84,7 @@ the spike, so nobody has to rebuild it to learn the answer:
 ## What the deleted spikes measured
 
 PP871 deleted `spike/` once every decision in it was taken. The committed readings a test reads
-are fixtures under `tests/Jogarei.Tests/fixtures/spikes`, byte for byte; what only the READMEs
+are fixtures under `tests/Transmiti.Tests/fixtures/spikes`, byte for byte; what only the READMEs
 held is here. Every number is from the RTX 4060 above, driver 32.0.16.1074, Windows 11.
 
 - **Present path** (§PP43, §PP58). A `D3DImage` shared surface holds 59.9 fps with a 42–47 µs

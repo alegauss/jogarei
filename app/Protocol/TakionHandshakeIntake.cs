@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What a handshake datagram arriving at the responder turned out to be.</summary>
 public enum TakionInboundKind

@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What one probe exchange produced.</summary>
 /// <param name="Verdict">How the answer was judged, or null where none came.</param>

@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One decision the C's recorder makes, and where the port makes the same one.</summary>
 /// <param name="InTheC">The text of the decision, as feedbacksender.c writes it.</param>

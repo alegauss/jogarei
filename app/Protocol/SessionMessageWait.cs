@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What one notification meant to a wait for a session message.</summary>
 public enum SessionMessageDisposition

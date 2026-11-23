@@ -1,7 +1,7 @@
-<UserControl x:Class="Jogarei.Views.ProfileView"
+<UserControl x:Class="Transmiti.Views.ProfileView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:session="clr-namespace:Jogarei.Session">
+             xmlns:session="clr-namespace:Transmiti.Session">
   <!--
     PP14: profiles - one dialog doing three jobs, which is why the mode drives the markup and the
     markup drives nothing else.

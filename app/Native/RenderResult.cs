@@ -1,4 +1,4 @@
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>What opening a render device did.</summary>
 /// <remarks>

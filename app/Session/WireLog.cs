@@ -2,7 +2,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP834: both directions of the relay's wire, written beside the replay corpus and not into it.

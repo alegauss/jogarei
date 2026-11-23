@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>A member whose leading docstring carries more than one summary.</summary>
 /// <param name="Where">The file, repository-relative.</param>

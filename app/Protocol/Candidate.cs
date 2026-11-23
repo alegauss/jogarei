@@ -1,7 +1,7 @@
 using System.Text.Json;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: how a candidate address was arrived at.

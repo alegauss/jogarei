@@ -1,8 +1,8 @@
 using System.Buffers.Binary;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// One v7 AV header, with the payload named by where it sits.

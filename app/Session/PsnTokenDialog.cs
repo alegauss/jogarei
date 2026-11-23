@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>Which pair of buttons the log carries, which is the only sign that it has finished.</summary>
 public enum PsnTokenLogState

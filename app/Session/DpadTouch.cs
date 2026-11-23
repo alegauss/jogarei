@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>What one dpad-touch step did, which is what the Qt side drives its two timers off.</summary>
 public enum DpadTouchAction

@@ -1,6 +1,6 @@
-using Jogarei.Protocol;
+using Transmiti.Protocol;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP846: where a rumble goes once the fold has produced one.

@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP749: chiaki_takion_format_congestion, which was the one takion datagram with no managed writer.

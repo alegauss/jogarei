@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP16: the General tab's two action combos, whose index is the property and whose string is what

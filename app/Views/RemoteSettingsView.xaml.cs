@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Jogarei.Views;
+namespace Transmiti.Views;
 
 /// <summary>
 /// PP16: the Remote tab. A constructor, by the rule PP13 set.

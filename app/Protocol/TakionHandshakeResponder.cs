@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Where a responder is in the three-step exchange.</summary>
 public enum TakionResponderState

@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>How one receive ended.</summary>
 public enum TakionReceiveOutcome

@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>One managed enum and the C enum it mirrors.</summary>
 /// <param name="Managed">The managed type, whose declared order is the claim.</param>

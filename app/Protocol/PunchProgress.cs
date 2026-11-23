@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One CHIAKI_EVENT_HOLEPUNCH, by the only field it carries.</summary>
 public enum PunchProgressEvent

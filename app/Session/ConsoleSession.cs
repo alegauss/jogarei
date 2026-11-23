@@ -1,7 +1,7 @@
 ﻿using System.Net;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>Where a session got to, as the front door needs to say it.</summary>
 public enum ConsoleSessionState

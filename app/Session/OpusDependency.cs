@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>PP694: why one file calls libopus, which is what a deletion has to answer for.</summary>
 public enum OpusCallerRole

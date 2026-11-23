@@ -1,7 +1,7 @@
 ﻿using System.Buffers.Binary;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>PP672: what takion_recv_message_cookie_ack decides about one datagram.</summary>
 public enum TakionCookieAckVerdict

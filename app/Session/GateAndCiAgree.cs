@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One pass over the tree, and where it is run.</summary>
 /// <param name="Name">What it is called here.</param>

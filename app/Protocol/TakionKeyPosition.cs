@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>How a caller of the key position ledger sizes what it is about to send.</summary>
 public enum KeyPositionSizing
@@ -22,7 +22,7 @@ public enum KeyPositionSizing
 /// <param name="Error">Success, or Overflow where the ledger would wrap.</param>
 /// <param name="KeyPosition">Where this packet starts. Zero while there is no cipher.</param>
 /// <param name="Next">Where the ledger stands afterwards.</param>
-public readonly record struct KeyPositionGrant(Jogarei.Native.ChiakiError Error, ulong KeyPosition, ulong Next);
+public readonly record struct KeyPositionGrant(Transmiti.Native.ChiakiError Error, ulong KeyPosition, ulong Next);
 
 /// <summary>
 /// PP495, under PP27: the key position ledger, and the three shapes in it that read as mistakes.
@@ -86,15 +86,15 @@ public static class TakionKeyPosition
     public static KeyPositionGrant Advance(ulong current, ulong dataSize, bool cipherPresent = true)
     {
         if (!cipherPresent)
-            return new KeyPositionGrant(Jogarei.Native.ChiakiError.Success, 0, current);
+            return new KeyPositionGrant(Transmiti.Native.ChiakiError.Success, 0, current);
 
         ulong sized = Sized(dataSize);
 
         // SIZE_MAX against a 64-bit counter, which is what this target's size_t is.
         if (ulong.MaxValue - current < sized)
-            return new KeyPositionGrant(Jogarei.Native.ChiakiError.Overflow, 0, current);
+            return new KeyPositionGrant(Transmiti.Native.ChiakiError.Overflow, 0, current);
 
-        return new KeyPositionGrant(Jogarei.Native.ChiakiError.Success, current, current + sized);
+        return new KeyPositionGrant(Transmiti.Native.ChiakiError.Success, current, current + sized);
     }
 
     /// <summary>

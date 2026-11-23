@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>Why a freshness check could not answer, or that it did.</summary>
 public enum FreshnessVerdict

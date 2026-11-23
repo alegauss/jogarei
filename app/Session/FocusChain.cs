@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>Where a key press leaves the focus, and whether the control still sees the key.</summary>
 /// <param name="Next">The index focus moves to, or the current one when it does not move.</param>

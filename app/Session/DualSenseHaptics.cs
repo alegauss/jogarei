@@ -1,7 +1,7 @@
-using Jogarei.Native;
-using Jogarei.Settings;
+using Transmiti.Native;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP851: the console's haptic waveform played on the pad's own actuators, which is what a

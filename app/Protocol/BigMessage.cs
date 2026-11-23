@@ -1,7 +1,7 @@
 using System.Text;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP727, under PP707: stream_connection_send_big's payload - the message that asks for a stream.

@@ -1,7 +1,7 @@
 using System.Globalization;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: the PSN endpoints the hole punching talks to, and the fixed-size buffers they are built in.

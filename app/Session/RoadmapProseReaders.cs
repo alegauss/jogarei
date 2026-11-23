@@ -1,4 +1,4 @@
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// What a more precise sentence would do to a check that matches a governed file's prose.

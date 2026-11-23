@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which of the two shapes session.c is in.</summary>
 public enum SessionShape
@@ -133,16 +133,16 @@ public static class SessionHolepunchShape
     /// </summary>
     public static IReadOnlyList<string> ConvertedTests { get; } =
     [
-        @"tests\Jogarei.Tests\HolepunchDirectionTests.cs",
-        @"tests\Jogarei.Tests\HolepunchFlowTests.cs",
-        @"tests\Jogarei.Tests\HolepunchReachTests.cs",
-        @"tests\Jogarei.Tests\HolepunchSeamTests.cs",
-        @"tests\Jogarei.Tests\HolepunchSocketOwnershipTests.cs",
-        @"tests\Jogarei.Tests\HolepunchStateTests.cs",
-        @"tests\Jogarei.Tests\PunchProgressTests.cs",
-        @"tests\Jogarei.Tests\SessionRegistForkTests.cs",
-        @"tests\Jogarei.Tests\SessionReleaseTests.cs",
-        @"tests\Jogarei.Tests\SessionRequestAddressTests.cs",
+        @"tests\Transmiti.Tests\HolepunchDirectionTests.cs",
+        @"tests\Transmiti.Tests\HolepunchFlowTests.cs",
+        @"tests\Transmiti.Tests\HolepunchReachTests.cs",
+        @"tests\Transmiti.Tests\HolepunchSeamTests.cs",
+        @"tests\Transmiti.Tests\HolepunchSocketOwnershipTests.cs",
+        @"tests\Transmiti.Tests\HolepunchStateTests.cs",
+        @"tests\Transmiti.Tests\PunchProgressTests.cs",
+        @"tests\Transmiti.Tests\SessionRegistForkTests.cs",
+        @"tests\Transmiti.Tests\SessionReleaseTests.cs",
+        @"tests\Transmiti.Tests\SessionRequestAddressTests.cs",
     ];
 
     /// <summary>The call a converted file makes, which is how one is recognised.</summary>

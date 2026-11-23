@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP16: the settings screen's Consoles tab - two lists that look alike and are not.

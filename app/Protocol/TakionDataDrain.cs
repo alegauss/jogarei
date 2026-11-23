@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>The data types the drain will hand on. Anything else is logged and dropped.</summary>
 public enum TakionDataType

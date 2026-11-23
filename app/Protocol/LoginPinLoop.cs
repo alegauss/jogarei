@@ -1,6 +1,6 @@
-﻿using Jogarei.Session;
+﻿using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What the login-PIN loop does next.</summary>
 public enum PinStep
@@ -136,7 +136,7 @@ public static class LoginPinSource
     public const string RelativePath = @"lib\src\session.c";
 
     /// <summary>The file, or null outside a checkout.</summary>
-    public static string? Locate() => Jogarei.Session.SanitizerSource.LocateRelative(RelativePath);
+    public static string? Locate() => Transmiti.Session.SanitizerSource.LocateRelative(RelativePath);
 
     /// <summary>
     /// Whether pin_incorrect is still set unconditionally after the prompt rather than on a refusal.

@@ -1,7 +1,7 @@
 using Concentus;
 using Concentus.Enums;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>What chiaki_opus_encoder_frame did with one microphone frame.</summary>
 public enum OpusFrameOutcome

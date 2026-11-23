@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What nanopb read out of a takion message, for the fields that are scalars.</summary>
 public readonly record struct DecodedTakionMessage(

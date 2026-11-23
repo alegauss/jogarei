@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Settings;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP19: which of a dialog's THREE exits was taken.

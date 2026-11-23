@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>A line whose subject is deleting C, and the module it deletes.</summary>
 /// <param name="Id">The task.</param>

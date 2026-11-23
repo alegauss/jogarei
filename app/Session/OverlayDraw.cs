@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Windows;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One way of getting PP10's HUD into the compositor's overlay surface.</summary>
 public enum OverlayShape

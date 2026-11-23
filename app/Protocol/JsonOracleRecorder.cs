@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text.Json;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP33: walks <see cref="JsonOracleCases"/> through the real json-c and writes down every answer.

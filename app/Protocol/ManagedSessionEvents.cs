@@ -1,7 +1,7 @@
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>ChiakiRumbleEvent: three bytes, the first of which nobody has named.</summary>
 /// <param name="Unknown">buf[0]. The C calls it unknown and passes it on regardless.</param>

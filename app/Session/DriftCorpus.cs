@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP278: every repository file a drift check reads, found rather than listed.
@@ -60,7 +60,7 @@ public static class DriftCorpus
     /// changed three times in three tasks. And it is not the only guard - a constant naming a root
     /// file that is missing from here is itself reported, so the list cannot quietly fall behind.
     ///
-    /// Jogarei.slnx is PP436's, and it arrived by exactly that guard: SiteProseClaims named the
+    /// Transmiti.slnx is PP436's, and it arrived by exactly that guard: SiteProseClaims named the
     /// solution as a constant and this test reported it before the commit, which is the sixth name
     /// getting here rather than the list falling behind.
     /// </summary>
@@ -72,13 +72,13 @@ public static class DriftCorpus
         //
         // PP595 added .mcp.json, and it arrived by the guard below rather than by being remembered:
         // RoadkeepSurfaces named it as a constant and UndeclaredRootFiles reported it before the
-        // commit, which is the eighth name getting here the way Jogarei.slnx got here for PP436.
+        // commit, which is the eighth name getting here the way Transmiti.slnx got here for PP436.
         //
         // PP803 added flip.cmd, and it arrived the same way: FlipTrial names it as a constant, so
         // the guard below reported it before the commit rather than the list falling behind. It is
         // a launcher and not a gate - it builds the shape an arranged deletion leaves, in a build
         // directory of its own, for somebody about to touch one of the two arrangements.
-        ".gitignore", ".mcp.json", "Jogarei.slnx", "CMakeLists.txt", "compile.cmd", "flip.cmd",
+        ".gitignore", ".mcp.json", "Transmiti.slnx", "CMakeLists.txt", "compile.cmd", "flip.cmd",
         "package.cmd", "roadkeep.toml", "vcpkg.json",
     ];
 

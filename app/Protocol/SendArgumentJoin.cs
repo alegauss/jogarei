@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Reflection;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// One managed call into a takion send, and the C call site it ports.

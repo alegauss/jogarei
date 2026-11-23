@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
-using Jogarei.Native;
-using Jogarei.Settings;
+using Transmiti.Native;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>A console the user typed in by address.</summary>
 public readonly record struct ManualConsole(string Address, string Mac, bool Registered);

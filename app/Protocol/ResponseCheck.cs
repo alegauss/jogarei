@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What one response is judged to be.</summary>
 public enum ResponseVerdict

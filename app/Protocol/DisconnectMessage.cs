@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What a message arriving where a disconnect might be turned out to be.</summary>
 /// <param name="Disconnected">

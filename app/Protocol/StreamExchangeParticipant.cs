@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What the BANG said, once one has arrived.</summary>
 /// <param name="VersionAccepted">bang_payload.version_accepted, checked first.</param>

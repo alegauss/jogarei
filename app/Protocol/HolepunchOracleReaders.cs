@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One file that quotes session.c's holepunch handle, and which half of the port it is.</summary>
 /// <param name="RelativePath">Where it is, from the repository root.</param>
@@ -115,7 +115,7 @@ public static class HolepunchOracleReaders
     /// the text - which is exactly the shape a search for the text cannot see.
     ///
     /// Found by the model's type name, because that is how the join is made here: a test lives in
-    /// tests/Jogarei.Tests, opens `using Jogarei.Protocol`, and names the class. It is a heuristic
+    /// tests/Transmiti.Tests, opens `using Transmiti.Protocol`, and names the class. It is a heuristic
     /// and the direction of its error is the safe one - a test that names a model it does not really
     /// depend on costs a reading, and one that depends without naming does not exist in C#.
     /// </summary>
@@ -157,7 +157,7 @@ public static class HolepunchOracleReaders
     /// Its tests name the class, which is what <see cref="Dependents"/> looks for - so without this
     /// the count would include the file that exists to make the count.
     /// </summary>
-    public const string CensusRelativePath = @"tests\Jogarei.Tests\HolepunchOracleReadersTests.cs";
+    public const string CensusRelativePath = @"tests\Transmiti.Tests\HolepunchOracleReadersTests.cs";
 
     /// <summary>One directory's readers, relative to the root and ordered.</summary>
     private static IEnumerable<OracleReader> Under(string root, string directory, bool isTest)

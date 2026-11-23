@@ -1,7 +1,7 @@
 using System.Text.Json;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Why a device list could not be read.</summary>
 public enum DeviceListResult

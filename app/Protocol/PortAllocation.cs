@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One STUN server's answer: where this end looked like it was, and on which port.</summary>
 public readonly record struct StunResponse(string Address, ushort Port);

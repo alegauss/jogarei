@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What the receiver has to send, which is the half that is not a decision.</summary>
 public interface IVideoReceiverOutbound

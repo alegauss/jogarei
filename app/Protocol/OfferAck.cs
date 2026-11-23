@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What the websocket thread does with a notification inside the auto-ACK window.</summary>
 public enum OfferAckOutcome

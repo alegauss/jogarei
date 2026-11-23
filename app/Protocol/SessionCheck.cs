@@ -1,6 +1,6 @@
-﻿using Jogarei.Session;
+﻿using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>How a session check ended, in the outcomes the core distinguishes.</summary>
 public enum SessionCheckOutcome

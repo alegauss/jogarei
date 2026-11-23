@@ -1,11 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Threading;
-using Jogarei.Protocol;
-using Jogarei.Session;
-using Jogarei.Settings;
+using Transmiti.Protocol;
+using Transmiti.Session;
+using Transmiti.Settings;
 
-namespace Jogarei;
+namespace Transmiti;
 
 /// <summary>
 /// PP1: the application object. PP2 added the one thing it does before drawing anything.

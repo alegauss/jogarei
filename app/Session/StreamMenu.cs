@@ -1,7 +1,7 @@
 using System.Globalization;
-using Jogarei.Settings;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP10: how the video fills the window.

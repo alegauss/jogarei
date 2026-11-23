@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One constant that has to be derived rather than written down again.</summary>
 /// <param name="File">The file it lives in, relative to app/Protocol.</param>

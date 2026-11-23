@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>The states senkusha's machine declares, in the order senkusha.c declares them.</summary>
 public enum SenkushaState

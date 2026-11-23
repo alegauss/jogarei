@@ -1,7 +1,7 @@
-using Jogarei.Native;
-using Jogarei.Settings;
+using Transmiti.Native;
+using Transmiti.Settings;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>Why a row cannot start a session, or that it can.</summary>
 public enum ConnectRefusal

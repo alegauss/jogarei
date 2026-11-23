@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>What replaying a capture through the managed path found.</summary>
 /// <param name="Counters">The path's own counters, summed over the capture.</param>

@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One error code whose only reader is an assert.</summary>
 /// <param name="File">Repository-relative, with forward slashes.</param>

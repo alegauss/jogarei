@@ -1,8 +1,8 @@
 using System.Buffers.Binary;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP672: an INIT_ACK read by the client - the five fields, and the cookie it has to echo.

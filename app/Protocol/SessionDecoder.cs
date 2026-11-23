@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP700: the decoder a session decodes into, which nothing in this port had.

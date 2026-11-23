@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One header, as the parser found it.</summary>
 public readonly record struct HttpHeader(string Key, string Value);

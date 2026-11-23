@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Native;
+namespace Transmiti.Native;
 
 /// <summary>Which side of the audio engine a capture reads.</summary>
 public enum CaptureSide

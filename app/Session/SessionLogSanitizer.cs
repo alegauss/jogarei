@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP5 and PP88: SanitizeLogMessage, which is what keeps a session log attachable to a bug report.

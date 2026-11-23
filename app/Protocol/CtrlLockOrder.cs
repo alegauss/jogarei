@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>One place two mutexes are held at once, and in which order.</summary>
 /// <param name="Where">The function, as the C names it.</param>

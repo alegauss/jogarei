@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>One build option, and how many times the build mentions it.</summary>
 /// <param name="Name">The cache variable's name.</param>

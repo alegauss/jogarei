@@ -1,8 +1,8 @@
 using System.Net.Sockets;
-using Jogarei.Native;
-using Jogarei.Session;
+using Transmiti.Native;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>How far the control channel's TCP connect got, and why it stopped.</summary>
 public enum CtrlSocketOutcome

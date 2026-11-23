@@ -1,7 +1,7 @@
 using System.Globalization;
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Why the session thread came out of the switch wait.</summary>
 public enum SwitchWake

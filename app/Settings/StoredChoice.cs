@@ -1,4 +1,4 @@
-namespace Jogarei.Settings;
+namespace Transmiti.Settings;
 
 /// <summary>
 /// PP16: a combo whose INDEX is the property and whose STRING is what the store holds.

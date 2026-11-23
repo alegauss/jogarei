@@ -1,4 +1,4 @@
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>
 /// PP214: what a frame off the push socket is, as the FLAGS the loop tests.
@@ -70,7 +70,7 @@ public enum KeepaliveStep
 /// pinging every five seconds. Stated here rather than tidied, because tidying it would be a
 /// behaviour change hiding inside a refactor.
 ///
-/// Split from any socket for the reason <see cref="Jogarei.Session.FocusChainBehavior.Decide"/>
+/// Split from any socket for the reason <see cref="Transmiti.Session.FocusChainBehavior.Decide"/>
 /// gives: reading a frame needs a network, and deciding what a frame means needs a clock at most.
 /// </summary>
 public static class PushSocketLoop

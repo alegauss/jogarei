@@ -1,6 +1,6 @@
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>Which socket the flow is asking for - the only thing telling the two calls apart.</summary>
 public enum HolepunchPortType

@@ -1,6 +1,6 @@
-using Jogarei.Session;
+using Transmiti.Session;
 
-namespace Jogarei.Protocol;
+namespace Transmiti.Protocol;
 
 /// <summary>The stream connection's six exit labels, in the order they cascade.</summary>
 public enum StreamExitLabel

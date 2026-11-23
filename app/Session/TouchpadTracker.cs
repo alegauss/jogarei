@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Jogarei.Native;
+using Transmiti.Native;
 
-namespace Jogarei.Session;
+namespace Transmiti.Session;
 
 /// <summary>
 /// PP129: SDL's fingers mapped onto the console's two touch slots.
