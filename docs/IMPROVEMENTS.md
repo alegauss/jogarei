@@ -256,28 +256,6 @@ page's commit (PP140 recorded that the settings screen writes on commit); then t
 window. A settings screen that opens and changes nothing is what this line must not
 ship, so it splits into those three before it is worked.
 
-### §PP882 A decoder that keeps every slice
-
-The measurement is in docs/HARDWARE-CONTRACT.md, "What d3d11va does to a PS5 keyframe":
-the keyframe arrives in 51 slices, libavcodec's DXVA H.264 code keeps 32, and the
-picture breaks at slice 33 on both GPUs of this machine. Every frame the port draws
-today goes through that path, so this is the defect a user sees first and for the whole
-session.
-
-Three ways out, in the order they should be weighed. First, a libavcodec built with a
-larger slice limit. MAX_SLICES is a constant sizing an array of slice controls, and
-upstream raising it is the fix that leaves every path as it is - but the payload's
-FFmpeg comes from MSYS2's package, so this means building and shipping FFmpeg, which
-nothing in this tree does yet. Second, decoding in software and uploading NV12: 1280x720
-at 60 fps is light work for a desktop CPU, it is vendor-neutral by construction, and the
-presenter already takes NV12 - the gap is a conversion from yuv420p that today draws
-nothing (0 drawn). Third, NVDEC through cuda where an NVIDIA card is present, which
-decoded clean here, with the Intel floor still needing one of the first two.
-
-Before choosing, measure the second: its CPU cost on the floor machine and its
-end-to-end latency against d3d11va's, because a correct picture that arrives late is the
-next complaint.
-
 ### §PP883 The picture behind Connect
 
 Found while chasing PP881 on 2026-11-24: Connect on the console list reports

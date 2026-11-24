@@ -159,6 +159,20 @@ So on this console's stream, **d3d11va is a decoder that runs and a picture that
 Intel as on NVIDIA, which is the vendor-neutral path this file promises. The floor still names it;
 what keeps it honest is the work filed against it.
 
+**What replaced it (PP882): software decode, repacked to NV12 in the shim.** Measured the same day
+on the same console, at 1280x720 and 60 fps, on this desk's machine (28 logical cores):
+
+| | Software (libavcodec, one thread) | d3d11va |
+|---|---|---|
+| Picture | whole - the bottom half intact | bottom of every keyframe lost |
+| Decode time, 552 recorded frames | 0.55-0.59 s, about 1.0 ms a frame | 1.06-1.19 s, about 2.0 ms a frame |
+| Frames shown in the window | 705 in 12 s, about 59 fps | 434-467 in 8 s, 54-58 fps |
+| CPU while streaming | 0.8% of the machine | - |
+
+One thread means no frame threading, and so no frames held back to spread the work: the decoder
+adds its millisecond and nothing else. The repack is the chroma interleave alone - NV12's luma is
+yuv420p's - so the presenter's upload is the one the d3d11va download path already paid.
+
 ## What the gate runs on
 
 Today: nothing. [`.github/workflows/roadkeep.yml`](../.github/workflows/roadkeep.yml) is the only

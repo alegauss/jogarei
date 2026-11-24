@@ -315,10 +315,11 @@ public sealed class SessionDecoder : IDisposable
     /// Take the next decoded frame, or false where there is none or it is not NV12.
     ///
     /// FALSE IS TWO DIFFERENT THINGS and the frame says which: no frame at all leaves Width at
-    /// zero, and a frame in a format the presenter cannot take reports its size and its format. A
-    /// software decoder resolves to yuv420p here, which is three planes rather than two - refusing
-    /// it rather than converting is what keeps a run honest about which decoder produced its
-    /// numbers.
+    /// zero, and a frame in a format the presenter cannot take reports its size and its format.
+    /// PP882: a software decoder's yuv420p is no longer one of those - the shim interleaves its two
+    /// chroma planes into NV12 (<see cref="InterleaveChroma"/>), because software is the path that
+    /// decodes the PS5's 51-slice keyframes whole. Which decoder ran is still said by the run's own
+    /// decoder line rather than by a refusal here.
     ///
     /// The loss count comes back either way, because the pull zeroed it whatever it returned.
     /// </summary>
@@ -357,6 +358,30 @@ public sealed class SessionDecoder : IDisposable
 
         Ready.Dispose();
     }
+
+    /// <summary>
+    /// PP882: the chroma interleave the pull applies to a software frame, on caller-owned planes.
+    /// The sizes are the chroma plane's; <paramref name="output"/> must hold twice the width per row.
+    /// </summary>
+    public static unsafe bool InterleaveChroma(
+        ReadOnlySpan<byte> u, int uStride, ReadOnlySpan<byte> v, int vStride,
+        Span<byte> output, int outputStride, int chromaWidth, int chromaHeight)
+    {
+        if (chromaHeight <= 0
+            || u.Length < (chromaHeight - 1) * uStride + chromaWidth
+            || v.Length < (chromaHeight - 1) * vStride + chromaWidth
+            || output.Length < (chromaHeight - 1) * outputStride + chromaWidth * 2)
+            return false;
+
+        fixed (byte* pu = u, pv = v, po = output)
+            return Interleave(pu, uStride, pv, vStride, po, outputStride, chromaWidth, chromaHeight);
+    }
+
+    [DllImport(ChiakiNative.Library, EntryPoint = "chiaki_shim_interleave_chroma",
+        CallingConvention = CallingConvention.Cdecl)]
+    [return: MarshalAs(UnmanagedType.I1)]
+    private static extern unsafe bool Interleave(
+        byte* u, int uStride, byte* v, int vStride, byte* output, int outputStride, int chromaWidth, int chromaHeight);
 
     [DllImport(ChiakiNative.Library, EntryPoint = "chiaki_shim_decoder_set_ready_event",
         CallingConvention = CallingConvention.Cdecl)]

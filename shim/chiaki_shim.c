@@ -533,6 +533,15 @@ typedef struct chiaki_shim_decoder_t
 	AVFrame *downloaded;
 
 	/*
+	 * PP882: where a SOFTWARE frame is repacked to NV12.
+	 *
+	 * A software H.264 decoder hands back yuv420p - three planes - and the presenter takes NV12, so
+	 * the two chroma planes are interleaved into this one. Allocated once at the frame's size and
+	 * reused, so a steady stream costs a copy of the chroma per frame and no allocation.
+	 */
+	AVFrame *converted;
+
+	/*
 	 * PP76: signalled when a frame becomes available, so a reader waits rather than polls.
 	 *
 	 * Borrowed - the managed side owns the handle and closes it. Held as a raw HANDLE because the
@@ -767,6 +776,8 @@ CHIAKI_SHIM_API void chiaki_shim_decoder_free(void *decoder)
 		av_frame_free(&self->held);
 	if(self->downloaded)
 		av_frame_free(&self->downloaded);
+	if(self->converted)
+		av_frame_free(&self->converted);
 	if(self->started)
 		chiaki_ffmpeg_decoder_fini(&self->decoder);
 
@@ -784,6 +795,67 @@ CHIAKI_SHIM_API void chiaki_shim_decoder_free(void *decoder)
  * `out_lost` carries what the decoder accumulated, which PP528 repaired and which is zeroed by the
  * pull - so this is the only place it can be read.
  */
+CHIAKI_SHIM_API bool chiaki_shim_interleave_chroma(
+		const uint8_t *u, int32_t u_stride,
+		const uint8_t *v, int32_t v_stride,
+		uint8_t *out, int32_t out_stride,
+		int32_t chroma_width, int32_t chroma_height)
+{
+	if(!u || !v || !out || chroma_width <= 0 || chroma_height <= 0
+			|| u_stride < chroma_width || v_stride < chroma_width || out_stride < chroma_width * 2)
+		return false;
+
+	for(int32_t y = 0; y < chroma_height; y++)
+	{
+		const uint8_t *u_row = u + (size_t)y * u_stride;
+		const uint8_t *v_row = v + (size_t)y * v_stride;
+		uint8_t *out_row = out + (size_t)y * out_stride;
+		for(int32_t x = 0; x < chroma_width; x++)
+		{
+			out_row[2 * x] = u_row[x];
+			out_row[2 * x + 1] = v_row[x];
+		}
+	}
+
+	return true;
+}
+
+/* PP882: the held NV12 frame, sized to `source` and refilled with its interleaved chroma. */
+static AVFrame *chiaki_shim_decoder_repack_nv12(chiaki_shim_decoder *self, const AVFrame *source)
+{
+	int32_t chroma_width = (source->width + 1) / 2;
+	int32_t chroma_height = (source->height + 1) / 2;
+
+	if(self->converted
+			&& (self->converted->width != source->width || self->converted->height != source->height))
+		av_frame_free(&self->converted);
+
+	if(!self->converted)
+	{
+		self->converted = av_frame_alloc();
+		if(!self->converted)
+			return NULL;
+
+		self->converted->format = AV_PIX_FMT_NV12;
+		self->converted->width = source->width;
+		self->converted->height = source->height;
+		if(av_frame_get_buffer(self->converted, 0) < 0)
+		{
+			av_frame_free(&self->converted);
+			return NULL;
+		}
+	}
+
+	if(!chiaki_shim_interleave_chroma(
+			source->data[1], source->linesize[1],
+			source->data[2], source->linesize[2],
+			self->converted->data[1], self->converted->linesize[1],
+			chroma_width, chroma_height))
+		return NULL;
+
+	return self->converted;
+}
+
 CHIAKI_SHIM_API bool chiaki_shim_decoder_pull(
 		void *decoder,
 		int32_t *out_w, int32_t *out_h,
@@ -910,6 +982,35 @@ CHIAKI_SHIM_API bool chiaki_shim_decoder_pull(
 
 		if(out_format)
 			*out_format = shown->format;
+	}
+
+	/*
+	 * PP882: A SOFTWARE FRAME IS REPACKED, not refused.
+	 *
+	 * The refusal below used to be the end of the software path: yuv420p is three planes and the
+	 * presenter takes two. It is also the path that decodes the PS5's keyframes whole - FFmpeg's
+	 * DXVA code keeps 32 slices per picture and that console sends 51 (docs/HARDWARE-CONTRACT.md) -
+	 * so the planes are interleaved here into NV12. The luma is not copied: NV12's Y plane IS
+	 * yuv420p's, so the caller reads it straight from the decoded frame, which stays held.
+	 */
+	if(shown->format == AV_PIX_FMT_YUV420P || shown->format == AV_PIX_FMT_YUVJ420P)
+	{
+		AVFrame *nv12 = chiaki_shim_decoder_repack_nv12(self, shown);
+		if(!nv12)
+			return false;
+
+		if(out_format)
+			*out_format = AV_PIX_FMT_NV12;
+		if(out_luma)
+			*out_luma = shown->data[0];
+		if(out_luma_stride)
+			*out_luma_stride = shown->linesize[0];
+		if(out_chroma)
+			*out_chroma = nv12->data[1];
+		if(out_chroma_stride)
+			*out_chroma_stride = nv12->linesize[1];
+
+		return true;
 	}
 
 	if(shown->format != AV_PIX_FMT_NV12)

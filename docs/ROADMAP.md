@@ -26,8 +26,7 @@
 
 - ⏳ **PP853** (deps: PP723 ✅, PP717 ✅) (requires: console, a-person-looking) **no history packet reaches the wire in a live session, so a button press is the one input the console never hears** — Offline the press reaches the wire; one console run with buttons pressed says which live stage drops it. → §PP853
 - 📋 **PP880** (deps: —) **the console list opens no settings screen, so every ported settings view is unreachable from the window** — SettingsView and its pages are ported and asserted, but nothing constructs them, so resolution, bitrate and controls stay at defaults nobody can change. → §PP880
-- 📋 **PP882** (deps: —) **d3d11va decodes the PS5's 51-slice keyframes with only 32 slices, so the bottom half of a still picture stays broken** — FFmpeg's DXVA path keeps 32 slices per picture on any GPU, while software decode and NVDEC decode the same bytes clean, as HARDWARE-CONTRACT.md measures. → §PP882
-- 📋 **PP883** (deps: PP882) **Connect on the console list opens a session that drops every frame, so a connected console shows no picture** — ConsoleSession hands the phase TakenAndDropped and opens no window, while --show-stream's StreamRun has the decoder, the presenter and the window. → §PP883
+- 📋 **PP883** (deps: PP882 ✅) **Connect on the console list opens a session that drops every frame, so a connected console shows no picture** — ConsoleSession hands the phase TakenAndDropped and opens no window, while --show-stream's StreamRun has the decoder, the presenter and the window. → §PP883
 
 ## Block G — Test discipline
 

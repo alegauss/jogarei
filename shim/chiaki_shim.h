@@ -794,10 +794,11 @@ CHIAKI_SHIM_API int32_t chiaki_shim_pixel_format_name(int32_t format, char *buf,
  * seam, which is the ownership rule this shim exists to avoid - so the frame stays here and its
  * pointers are valid until the next pull or the free.
  *
- * True only for an NV12 frame, and that is a statement rather than a hidden limitation. The
- * presenter takes two planes; a software decoder resolves to yuv420p, which is three. `out_format`
- * carries the AVPixelFormat either way, so a caller that asked for hardware and got software sees
- * it rather than seeing a picture assembled by a converter nobody measured.
+ * True for an NV12 frame, and since PP882 for a yuv420p one repacked to NV12: the presenter takes
+ * two planes, a software decoder resolves to three, and software is the path that decodes the PS5's
+ * 51-slice keyframes whole where FFmpeg's DXVA code keeps 32. The repack is the chroma interleave
+ * alone, asserted byte for byte through chiaki_shim_interleave_chroma. Any other format is refused,
+ * and `out_format` carries what came out - NV12 for a repacked frame - so a caller still sees which.
  *
  * `out_lost` is what the decoder accumulated - PP528's repaired counter - and the pull ZEROES it,
  * so this call is the only place it can ever be read.
@@ -825,6 +826,20 @@ CHIAKI_SHIM_API bool chiaki_shim_decoder_pull(
 		uint8_t **out_chroma, int32_t *out_chroma_stride,
 		int32_t *out_format, int32_t *out_lost, int32_t *out_superseded,
 		void **out_texture, int32_t *out_slice);
+
+/**
+ * PP882: interleave a yuv420p frame's U and V planes into NV12's one chroma plane, UVUV...
+ *
+ * What the pull does to a software frame so the presenter can take it - exported on its own so the
+ * byte order can be asserted without a decoder. The sizes are the CHROMA plane's, half the picture's
+ * each way rounded up; `out_stride` must hold twice the width. False on a null plane or a stride too
+ * short for the width, with nothing written.
+ */
+CHIAKI_SHIM_API bool chiaki_shim_interleave_chroma(
+		const uint8_t *u, int32_t u_stride,
+		const uint8_t *v, int32_t v_stride,
+		uint8_t *out, int32_t out_stride,
+		int32_t chroma_width, int32_t chroma_height);
 
 /** chiaki_quit_reason_string, which is the sentence a disconnect screen shows. */
 CHIAKI_SHIM_API const char *chiaki_shim_quit_reason_string(int32_t reason);

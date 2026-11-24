@@ -787,6 +787,7 @@
 - ✅ **PP878** **nothing managed sends a registration or saves the console it pairs, so a new install cannot pair a console** — The shim runs chiaki_regist_start, the store writes the paired console in place, and Register on a row or under the list pairs a console with no chiaki-ng installed.
 - ✅ **PP879** **the console list has no way to add a console by address, though ManualHostView and the store's writer exist** — Add by address under the list opens ManualHostView, writes the entry as addManualHost does, registered to a chosen console or not, and the list shows it at once.
 - ✅ **PP881** **the port's video receiver may drop P-frames as reference-lost where the C delivers them, smearing the picture** — No: a reference trace fired zero times and the decoder input decodes clean; FFmpeg's DXVA path drops keyframe slices past 32 (design recorded in `docs/HARDWARE-CONTRACT.md`).
+- ✅ **PP882** **d3d11va decodes the PS5's 51-slice keyframes with only 32 slices, so the bottom half of a still picture stays broken** — The shim repacks software yuv420p to NV12, so the software path draws the whole picture at about 1 ms a frame and 59 fps, measured in HARDWARE-CONTRACT.md.
 
 ## Block G — Test discipline
 
