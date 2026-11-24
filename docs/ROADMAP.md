@@ -26,6 +26,7 @@
 
 - ⏳ **PP853** (deps: PP723 ✅, PP717 ✅) (requires: console, a-person-looking) **no history packet reaches the wire in a live session, so a button press is the one input the console never hears** — Offline the press reaches the wire; one console run with buttons pressed says which live stage drops it. → §PP853
 - 📋 **PP880** (deps: —) **the console list opens no settings screen, so every ported settings view is unreachable from the window** — SettingsView and its pages are ported and asserted, but nothing constructs them, so resolution, bitrate and controls stay at defaults nobody can change. → §PP880
+- 📋 **PP881** (deps: —) **the port's video receiver may drop P-frames as reference-lost where the C delivers them, smearing the picture** — On 2026-11-24 the port's path counted 20 frames lost with no corrupt report or IDR sent, and the C path over the same link logged no missing reference. → §PP881
 
 ## Block G — Test discipline
 

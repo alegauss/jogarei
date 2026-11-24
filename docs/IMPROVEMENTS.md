@@ -256,6 +256,30 @@ page's commit (PP140 recorded that the settings screen writes on commit); then t
 window. A settings screen that opens and changes nothing is what this line must not
 ship, so it splits into those three before it is worked.
 
+### §PP881 Frames the port calls lost
+
+Seen from the console list on 2026-11-24 against PS5-385: the lower half of the picture
+smeared into blocks and stayed that way, which is a decoder predicting from a picture it
+never got.
+
+The census, two runs minutes apart on the same link. The port's path (--show-stream
+d3d11va, which installs ManagedStreamPhase as ConsoleSession does) reported 448 decoded,
+426 shown, 20 lost by the network, and keyframes 0 requested, 0 corrupt-frame reports, 0
+FEC failures. The C path (--measure-decoder d3d11va) reported 769 decoded, 614 drawn,
+and its log carries no "Missing reference frame" line at all.
+
+Zero corrupt reports and zero FEC failures place the twenty in
+ManagedVideoReceiver.Decodable: a P-frame whose ReferenceFrames.Choose answers Lost is
+counted and returned undelivered, and nothing is sent to the console. videoreceiver.c
+makes the same choice at the same point, so the question is not whether to tell the
+console but why the port reaches that branch twenty times where the C reaches it never -
+the reference set it keeps, the reference index the slice parser reads, or the frame
+index a substitution writes.
+
+Read first, then decide: compare ReferenceFrames against the C's reference_frames ring
+and its add order, and the slice's reference_frame against chiaki_bitstream_slice on a
+recorded corpus. A second line carries the fix once the reading says which.
+
 ## Block G — Test discipline
 
 ## Block H — Performance and telemetry
