@@ -135,7 +135,83 @@ public sealed partial class RegistViewModel : INotifyPropertyChanged
         // The button's state depends on every field, so every field raises it. A view model that
         // raised only its own property would leave a button that is correct and never repainted.
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanRegister)));
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanSubmit)));
     }
+
+    /// <summary>PP878: the console generations the dialog offers, newest first, as the picker shows them.</summary>
+    /// An instance property over a static list, because a binding does not see a static one.
+    public IReadOnlyList<RegistTargetChoice> Targets => TargetChoices;
+
+    private static readonly IReadOnlyList<RegistTargetChoice> TargetChoices =
+    [
+        new(ConsoleTarget.Ps5, "PS5"),
+        new(ConsoleTarget.Ps4From8, "PS4, firmware 8.0 or later"),
+        new(ConsoleTarget.Ps4From7, "PS4, firmware 7.x"),
+        new(ConsoleTarget.Ps4Below7, "PS4, firmware below 7.0"),
+    ];
+
+    private ConsoleTarget target;
+    private string status = "";
+    private bool busy;
+
+    /// <summary>
+    /// PP878: which console generation is being registered. Setting it decides which PSN identifier
+    /// is asked for - <see cref="Registration.WantsOnlineId"/> - so the two visibilities are never set
+    /// by hand on a dialog that has a target.
+    /// </summary>
+    public ConsoleTarget Target
+    {
+        get => target;
+        set
+        {
+            if (target == value)
+                return;
+
+            target = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Target)));
+            OnlineIdVisible = Registration.WantsOnlineId(value);
+            AccountIdVisible = Registration.WantsAccountId(value);
+        }
+    }
+
+    /// <summary>PP878: what the registration last said, where the person who pressed the button looks.</summary>
+    public string Status
+    {
+        get => status;
+        set
+        {
+            value ??= "";
+            if (status == value)
+                return;
+
+            status = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Status)));
+        }
+    }
+
+    /// <summary>PP878: a registration is talking to the console, so a second one must not start.</summary>
+    public bool Busy
+    {
+        get => busy;
+        set
+        {
+            if (busy == value)
+                return;
+
+            busy = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Busy)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanSubmit)));
+        }
+    }
+
+    /// <summary>
+    /// PP878: what the button binds to - <see cref="CanRegister"/>, which is PP37's rule and stays
+    /// exactly that, and not while one is already running.
+    /// </summary>
+    public bool CanSubmit => CanRegister && !Busy;
+
+    /// <summary>The identifier the chosen generation sends: the online id or the account id.</summary>
+    public string Identifier => OnlineIdVisible ? OnlineId : AccountId;
 
     private void SetVisible(ref bool field, bool value, [CallerMemberName] string? name = null)
     {
@@ -145,6 +221,7 @@ public sealed partial class RegistViewModel : INotifyPropertyChanged
         field = value;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanRegister)));
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanSubmit)));
     }
 
     [GeneratedRegex(@"^[0-9]{8}$")]
@@ -153,6 +230,9 @@ public sealed partial class RegistViewModel : INotifyPropertyChanged
     [GeneratedRegex(@"^$|^[0-9]{4}$")]
     private static partial Regex ConsolePinRegex();
 }
+
+/// <summary>PP878: one entry of the dialog's console-generation picker.</summary>
+public sealed record RegistTargetChoice(ConsoleTarget Target, string Label);
 
 /// <summary>
 /// PP37: the dialog's rules as the QML states them, so the view model cannot drift from it.

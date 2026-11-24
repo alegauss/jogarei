@@ -1464,6 +1464,10 @@ public partial class App : Application
             Rebuild();
         };
 
+        // PP878: pairing, from a row discovery found or from an address typed in. The list is rebuilt
+        // from the store when it succeeds, which is what turns the row's Register into Connect.
+        view.RegisterRequested += row => OpenRegistration(window, store, row, Rebuild);
+
         // PP627: the answer to the one event that asks for one. Discarded because the model puts
         // the outcome on the status line, which is where the person who typed it is looking.
         view.PinEntered += pin => model.AnswerPin(pin);
@@ -1489,4 +1493,90 @@ public partial class App : Application
 
     /// <summary>The front door's discovery, held for as long as the screen is up.</summary>
     private ConsoleDiscovery? consoles;
+
+    /// <summary>
+    /// PP878: the registration dialog, in a window of its own over the list.
+    ///
+    /// The registration runs on libchiaki's thread and answers once; everything it moves is bound,
+    /// so the answer is marshalled. Closing the window stops a registration still waiting on the
+    /// console - the console would otherwise hold the PIN open until its own timeout.
+    /// </summary>
+    private void OpenRegistration(Window owner, QSettingsStore store, ConsoleRow? row, Action rebuilt)
+    {
+        var model = new RegistViewModel
+        {
+            Host = row?.Address ?? "",
+            Target = ConsoleTarget.Ps5,
+        };
+        var view = new Views.RegistView { DataContext = model };
+        var dialog = new Window
+        {
+            Title = row is { } r ? $"Register {r.Name}" : "Register by address",
+            Content = view,
+            Owner = owner,
+            Width = 440,
+            SizeToContent = SizeToContent.Height,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            ResizeMode = ResizeMode.NoResize,
+            Background = owner.Background,
+            Foreground = owner.Foreground,
+        };
+
+        ConsoleRegistration? running = null;
+        string lastLine = "";
+
+        view.RegisterRequested += () =>
+        {
+            if (Registration.Prepare(model.Host, model.Target, model.Identifier, model.RemotePlayPin,
+                    model.ConsolePin, out RegistrationRefusal refusal) is not { } request)
+            {
+                model.Status = refusal == RegistrationRefusal.InvalidAccountId
+                    ? "The PSN Account ID must be base64 for exactly 8 bytes."
+                    : "Registration was refused before it started.";
+                return;
+            }
+
+            model.Busy = true;
+            model.Status = "Registering - waiting for the console…";
+
+            try
+            {
+                running = new ConsoleRegistration(request,
+                    (outcome, paired) => Dispatcher.BeginInvoke(() =>
+                    {
+                        running?.Dispose();
+                        running = null;
+                        model.Busy = false;
+
+                        if (outcome == RegistrationOutcome.Succeeded && paired is not null)
+                        {
+                            RegistrationRecord.Apply(store, request, paired, row is { Discovered: true });
+                            rebuilt();
+                            model.Status = $"Registered {paired.Host.ServerNickname}.";
+                            dialog.Close();
+                        }
+                        else
+                        {
+                            model.Status = outcome == RegistrationOutcome.Canceled
+                                ? "Registration cancelled."
+                                : $"Registration failed. {lastLine}".Trim();
+                        }
+                    }),
+                    line => lastLine = line);
+            }
+            catch (InvalidOperationException ex)
+            {
+                model.Busy = false;
+                model.Status = ex.Message;
+            }
+        };
+
+        dialog.Closed += (_, _) =>
+        {
+            running?.Dispose();
+            running = null;
+        };
+
+        dialog.ShowDialog();
+    }
 }

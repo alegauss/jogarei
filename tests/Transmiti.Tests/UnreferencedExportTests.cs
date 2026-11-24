@@ -138,8 +138,8 @@ public partial class UnreferencedExportTests(ITestOutputHelper output)
         // file by name, which the rule now does without a list.
         "chiaki_holepunch_session_get_stun_allocation",
         "chiaki_holepunch_session_set_recorded",
-        "chiaki_regist_fini",
-        "chiaki_regist_stop",
+        // PP878: chiaki_regist_fini and chiaki_regist_stop left this list, with chiaki_regist_start
+        // from PP867's below - the shim's registration calls all three, and the port pairs a console.
 
         // PP793: the seven the COMMENT rule added, each named only in prose and called by nothing.
         // Six are holepunch, rudp and regist - the subtree PP632 established has no producer, whose
@@ -201,7 +201,6 @@ public partial class UnreferencedExportTests(ITestOutputHelper output)
         "chiaki_opus_encoder_frame",
         "chiaki_opus_encoder_header",
         "chiaki_opus_encoder_init",
-        "chiaki_regist_start",
         "chiaki_session_connect_microphone",
         "chiaki_session_go_home",
         "chiaki_session_goto_bed",

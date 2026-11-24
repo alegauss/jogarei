@@ -25,6 +25,8 @@
 ## Block F — Managed core
 
 - ⏳ **PP853** (deps: PP723 ✅, PP717 ✅) (requires: console, a-person-looking) **no history packet reaches the wire in a live session, so a button press is the one input the console never hears** — Offline the press reaches the wire; one console run with buttons pressed says which live stage drops it. → §PP853
+- 📋 **PP879** (deps: PP878 ✅) **the console list has no way to add a console by address, though ManualHostView and the store's writer exist** — A console on another subnet or behind a router that drops broadcasts is never discovered, and nothing on screen lets anybody type its address. → §PP879
+- 📋 **PP880** (deps: —) **the console list opens no settings screen, so every ported settings view is unreachable from the window** — SettingsView and its pages are ported and asserted, but nothing constructs them, so resolution, bitrate and controls stay at defaults nobody can change. → §PP880
 
 ## Block G — Test discipline
 

@@ -234,6 +234,40 @@ as an oracle, which is the same moment compile.cmd stops needing MSYS2.
 
 Set aside until then: nothing here can start while the shim exports anything.
 
+### §PP879 Adding a console by address
+
+Discovery is a broadcast, and a broadcast does not cross a router or reach a console on
+a VLAN that filters it. The Qt client answered that with a manual host: an address the
+user types, stored under manual_hosts, merged into the list by ConsoleList.Build and
+shown even when discovery says nothing. The port has every half of that except the one a
+person touches. ManualHostView and its view model are ported, ConsoleListSources.Manual
+reads the store, WriteManualHosts writes it, and nothing on the console list opens the
+view.
+
+PP878's registration dialog already keeps a typed-in console as a registered manual
+host, so a console can reach the list by being paired. What it cannot do is appear
+before it is paired, which is how the Qt client lets somebody check that the address
+answers, wake it, and only then register it. The work is the entry point and the write:
+a button beside "Register a console…", the view in a window as the registration dialog
+is shown, the next id the Qt client would pick, and a rebuild of the list from the
+store.
+
+### §PP880 Reaching the settings from the window
+
+SettingsView and its pages - general, stream, video, audio, controller, keys, remote,
+display and the placebo tuning - are ported with view models under assertion, and
+nothing in the host constructs any of them. The console list is the only screen a person
+can reach without a flag, so every value those pages edit is whatever the store already
+held, which on a fresh install is the default.
+
+The settings the session reads are the ones that matter first: resolution, frame rate
+and bitrate decide the stream, and the decoder and renderer decide whether it plays on
+the machine at all. A user who cannot change them cannot recover from a default that
+does not suit their network. The work is an entry point on the list, the view hosted in
+a window as the registration dialog is, and a check that each page's commit reaches the
+store the session reads - PP140 recorded that the settings screen writes on commit, so a
+page shown without that wiring would look editable and change nothing.
+
 ## Block G — Test discipline
 
 ## Block H — Performance and telemetry

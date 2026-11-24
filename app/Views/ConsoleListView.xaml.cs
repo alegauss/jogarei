@@ -50,6 +50,20 @@ public partial class ConsoleListView : UserControl
         => Raise(sender, RemoveRequested);
 
     /// <summary>
+    /// PP878: somebody asked to register a console - the row's own, or null for one typed in by
+    /// address from the button under the list.
+    /// </summary>
+    public event Action<ConsoleRow?>? RegisterRequested;
+
+    private void OnRegisterRow(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement { DataContext: ConsoleRow row })
+            RegisterRequested?.Invoke(row);
+    }
+
+    private void OnRegisterConsole(object sender, RoutedEventArgs e) => RegisterRequested?.Invoke(null);
+
+    /// <summary>
     /// The row a button is about, which is its own DataContext.
     ///
     /// The one thing markup cannot say, and the reason these handlers exist at all: the row is a

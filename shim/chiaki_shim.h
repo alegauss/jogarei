@@ -1258,6 +1258,49 @@ CHIAKI_SHIM_API int32_t chiaki_shim_discovery_service_host_state(void *hosts, in
 CHIAKI_SHIM_API int32_t chiaki_shim_discovery_service_host_request_port(void *hosts, int32_t index);
 
 /**
+ * PP878: registration - pairing this machine with a console - run by libchiaki's own thread.
+ *
+ * PP115 built the request in managed code byte for byte, and nothing sent it: chiaki_regist_start
+ * owns the socket, the console's reply and its decryption, and none of it was reachable from .NET.
+ * This is the discovery service's shape again: a handle, a callback on libchiaki's thread, and a
+ * free that stops and joins it.
+ *
+ * Exactly one of `psn_online_id` (PS4 below 7.0) and `psn_account_id` (8 bytes) is given. `host`
+ * and the online id are copied by regist.c and need not outlive the call.
+ *
+ * The callback's `type` is ChiakiRegistEventType (0 cancelled, 1 failed, 2 success) and `host` is
+ * the ChiakiRegisteredHost on success, valid only during the call - read it through the two
+ * accessors below, which keep its layout on this side of the boundary.
+ */
+typedef void (*ChiakiShimRegistCb)(int32_t type, const void *host, void *user);
+
+CHIAKI_SHIM_API void *chiaki_shim_regist_start(
+		void *log,
+		int32_t target,
+		const char *host,
+		bool broadcast,
+		const char *psn_online_id,
+		const uint8_t *psn_account_id,
+		uint32_t pin,
+		uint32_t console_pin,
+		ChiakiShimRegistCb cb,
+		void *user);
+
+CHIAKI_SHIM_API void chiaki_shim_regist_stop(void *regist);
+CHIAKI_SHIM_API void chiaki_shim_regist_free(void *regist);
+
+/**
+ * One byte field of a registered host: 0 server_mac, 1 server_nickname, 2 rp_regist_key, 3 rp_key,
+ * 4 ap_ssid, 5 ap_bssid, 6 ap_key, 7 ap_name. Strings are returned without their terminator.
+ * Answers the field's size, copying only when `out_size` holds it; -1 for an unknown field.
+ */
+CHIAKI_SHIM_API int32_t chiaki_shim_registered_host_bytes(
+		const void *host, int32_t field, uint8_t *out, int32_t out_size);
+
+/** 0 target, 1 rp_key_type, 2 console_pin; -1 for an unknown field. */
+CHIAKI_SHIM_API int64_t chiaki_shim_registered_host_int(const void *host, int32_t field);
+
+/**
  * PP7: the client device id the PSN login carries.
  *
  * It identifies this installation to Sony's relay, and it is generated rather than chosen - which

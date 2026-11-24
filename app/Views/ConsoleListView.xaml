@@ -46,6 +46,21 @@
             <Button x:Name="ConnectButton" DockPanel.Dock="Right"
                     Content="Connect" Padding="12,2" Click="OnConnect"
                     IsEnabled="{Binding Connectable}" />
+            <!-- PP878: the way an unregistered row becomes a connectable one. Shown only where
+                 Connect cannot be, because a registered console has nothing to register. -->
+            <Button x:Name="RegisterRowButton" DockPanel.Dock="Right"
+                    Content="Register" Padding="12,2" Margin="0,0,4,0" Click="OnRegisterRow">
+              <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                  <Setter Property="Visibility" Value="Visible" />
+                  <Style.Triggers>
+                    <DataTrigger Binding="{Binding Registered}" Value="True">
+                      <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </Button.Style>
+            </Button>
             <TextBlock Text="{Binding Name}" FontSize="16" />
           </DockPanel>
           <StackPanel Orientation="Horizontal" Opacity="0.6">
@@ -114,6 +129,10 @@
       <Button x:Name="DisconnectButton" DockPanel.Dock="Right"
               Content="Disconnect" Padding="12,2" Click="OnDisconnect"
               IsEnabled="{Binding HasSession}" />
+      <!-- PP878: registering a console discovery has not found - one typed by address. -->
+      <Button x:Name="RegisterConsoleButton" DockPanel.Dock="Left"
+              Content="Register a console…" Padding="12,2" Margin="0,0,12,0"
+              Click="OnRegisterConsole" />
       <TextBlock x:Name="ConnectStatus"
                  Text="{Binding Status}" VerticalAlignment="Center"
                  TextWrapping="Wrap" Opacity="0.8" />

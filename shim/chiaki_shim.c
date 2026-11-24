@@ -4627,6 +4627,135 @@ CHIAKI_SHIM_API void chiaki_shim_discovery_service_free(void *service)
 	free(self);
 }
 
+typedef struct chiaki_shim_regist_t
+{
+	ChiakiRegist regist;
+	ChiakiShimRegistCb cb;
+	void *user;
+} chiaki_shim_regist;
+
+static void chiaki_shim_regist_dispatch(ChiakiRegistEvent *event, void *user)
+{
+	chiaki_shim_regist *self = (chiaki_shim_regist *)user;
+	if(self && self->cb && event)
+		self->cb((int32_t)event->type, event->registered_host, self->user);
+}
+
+CHIAKI_SHIM_API void *chiaki_shim_regist_start(
+		void *log,
+		int32_t target,
+		const char *host,
+		bool broadcast,
+		const char *psn_online_id,
+		const uint8_t *psn_account_id,
+		uint32_t pin,
+		uint32_t console_pin,
+		ChiakiShimRegistCb cb,
+		void *user)
+{
+	chiaki_shim_log *log_self = (chiaki_shim_log *)log;
+	chiaki_shim_regist *self;
+	ChiakiRegistInfo info;
+
+	if(!host || (!psn_online_id && !psn_account_id))
+		return NULL;
+
+	self = (chiaki_shim_regist *)calloc(1, sizeof(chiaki_shim_regist));
+	if(!self)
+		return NULL;
+
+	self->cb = cb;
+	self->user = user;
+
+	// regist.c strdups host and online id, so neither has to outlive this call.
+	memset(&info, 0, sizeof(info));
+	info.target = (ChiakiTarget)target;
+	info.host = host;
+	info.broadcast = broadcast;
+	info.psn_online_id = psn_online_id;
+	if(psn_account_id)
+		memcpy(info.psn_account_id, psn_account_id, CHIAKI_PSN_ACCOUNT_ID_SIZE);
+	info.pin = pin;
+	info.console_pin = console_pin;
+	info.holepunch_info = NULL;
+	info.rudp = NULL;
+
+	if(chiaki_regist_start(&self->regist, log_self ? &log_self->log : NULL, &info,
+			chiaki_shim_regist_dispatch, self) != CHIAKI_ERR_SUCCESS)
+	{
+		free(self);
+		return NULL;
+	}
+
+	return self;
+}
+
+CHIAKI_SHIM_API void chiaki_shim_regist_stop(void *regist)
+{
+	chiaki_shim_regist *self = (chiaki_shim_regist *)regist;
+	if(self)
+		chiaki_regist_stop(&self->regist);
+}
+
+CHIAKI_SHIM_API void chiaki_shim_regist_free(void *regist)
+{
+	chiaki_shim_regist *self = (chiaki_shim_regist *)regist;
+	if(!self)
+		return;
+
+	// Stopped and joined before the callback is cleared: a registration still talking to the
+	// console is told to give up rather than waited out, and fini joins the thread.
+	chiaki_regist_stop(&self->regist);
+	chiaki_regist_fini(&self->regist);
+	self->cb = NULL;
+	free(self);
+}
+
+CHIAKI_SHIM_API int32_t chiaki_shim_registered_host_bytes(
+		const void *host, int32_t field, uint8_t *out, int32_t out_size)
+{
+	const ChiakiRegisteredHost *h = (const ChiakiRegisteredHost *)host;
+	const void *src;
+	size_t size;
+
+	if(!h)
+		return -1;
+
+	switch(field)
+	{
+		case 0: src = h->server_mac; size = sizeof(h->server_mac); break;
+		case 1: src = h->server_nickname; size = strnlen(h->server_nickname, sizeof(h->server_nickname)); break;
+		case 2: src = h->rp_regist_key; size = sizeof(h->rp_regist_key); break;
+		case 3: src = h->rp_key; size = sizeof(h->rp_key); break;
+		case 4: src = h->ap_ssid; size = strnlen(h->ap_ssid, sizeof(h->ap_ssid)); break;
+		case 5: src = h->ap_bssid; size = strnlen(h->ap_bssid, sizeof(h->ap_bssid)); break;
+		case 6: src = h->ap_key; size = strnlen(h->ap_key, sizeof(h->ap_key)); break;
+		case 7: src = h->ap_name; size = strnlen(h->ap_name, sizeof(h->ap_name)); break;
+		default: return -1;
+	}
+
+	if(!out || out_size < (int32_t)size)
+		return (int32_t)size;
+
+	memcpy(out, src, size);
+	return (int32_t)size;
+}
+
+CHIAKI_SHIM_API int64_t chiaki_shim_registered_host_int(const void *host, int32_t field)
+{
+	const ChiakiRegisteredHost *h = (const ChiakiRegisteredHost *)host;
+	if(!h)
+		return -1;
+
+	switch(field)
+	{
+		case 0: return (int64_t)h->target;
+		case 1: return (int64_t)h->rp_key_type;
+		case 2: return (int64_t)h->console_pin;
+		default: return -1;
+	}
+}
+
 static ChiakiDiscoveryHost *chiaki_shim_discovery_host_at(void *hosts, int32_t index)
 {
 	return hosts && index >= 0 ? ((ChiakiDiscoveryHost *)hosts) + index : NULL;

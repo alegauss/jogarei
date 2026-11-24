@@ -296,6 +296,71 @@ public sealed class QSettingsStore
     }
 
     /// <summary>
+    /// PP878: writes the console a registration just paired, in place of an entry with its MAC or
+    /// after the last one.
+    ///
+    /// EDITED IN PLACE and not replaced, which is the opposite of the other writers and on purpose:
+    /// those rewrite arrays whose every field this reader carries, while a registered host has
+    /// fields the reader drops (ap_ssid, ap_bssid, ap_key). Re-writing every console from what was
+    /// read would strip those from consoles this call was never about.
+    ///
+    /// The keys and kinds are the reader's own, so what is written reads back as it went in: the
+    /// MAC and both keys as byte arrays, target and key type as ints, the rest as strings. The
+    /// regist key is kept at its full sixteen bytes - padding included - because the C copies
+    /// exactly that many back into the session's auth.
+    /// </summary>
+    /// <param name="apSsid">Access-point strings the console sent; written only where present.</param>
+    public void SaveRegisteredHost(RegisteredHost host, string? apSsid = null, string? apBssid = null, string? apKey = null)
+    {
+        ArgumentNullException.ThrowIfNull(host);
+
+        using RegistryKey store = Registry.CurrentUser.CreateSubKey(KeyPath, writable: true);
+        using RegistryKey array = store.CreateSubKey("registered_hosts", writable: true);
+
+        int size = QSettingsValue.AsInt(array.GetValue("size")) ?? 0;
+        int slot = size + 1;
+        for (int i = 1; i <= size; i++)
+        {
+            using RegistryKey? existing = array.OpenSubKey(i.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            if (existing is not null
+                && QSettingsValue.AsByteArray(existing.GetValue("server_mac")) is { } mac
+                && mac.AsSpan().SequenceEqual(host.ServerMac))
+            {
+                slot = i;
+                break;
+            }
+        }
+
+        using RegistryKey entry = array.CreateSubKey(
+            slot.ToString(System.Globalization.CultureInfo.InvariantCulture), writable: true);
+
+        foreach (string stale in entry.GetValueNames())
+            entry.DeleteValue(stale, throwOnMissingValue: false);
+
+        QSettingsWriter.WriteInt(entry, "target", host.Target);
+        QSettingsWriter.WriteByteArray(entry, "server_mac", host.ServerMac);
+        QSettingsWriter.WriteString(entry, "server_nickname", host.ServerNickname);
+        if (host.RpRegistKey is { } registKey)
+            QSettingsWriter.WriteByteArray(entry, "rp_regist_key", registKey);
+        if (host.RpKey is { } rpKey)
+            QSettingsWriter.WriteByteArray(entry, "rp_key", rpKey);
+        QSettingsWriter.WriteInt(entry, "rp_key_type", host.RpKeyType);
+        if (host.ConsolePin is { } consolePin)
+            QSettingsWriter.WriteString(entry, "console_pin", consolePin);
+        if (host.ApName is { } apName)
+            QSettingsWriter.WriteString(entry, "ap_name", apName);
+        if (apSsid is not null)
+            QSettingsWriter.WriteString(entry, "ap_ssid", apSsid);
+        if (apBssid is not null)
+            QSettingsWriter.WriteString(entry, "ap_bssid", apBssid);
+        if (apKey is not null)
+            QSettingsWriter.WriteString(entry, "ap_key", apKey);
+
+        if (slot > size)
+            QSettingsWriter.WriteInt(array, "size", slot);
+    }
+
+    /// <summary>
     /// PP626: replaces the manual list - the write behind <c>RemoveAction.Delete</c>.
     ///
     /// A manual console exists only because the user typed it in, so deleting the entry is the

@@ -20,6 +20,12 @@
   </UserControl.Resources>
 
   <StackPanel Margin="16">
+    <!-- PP878: which generation decides which identifier is asked for, so it comes first. -->
+    <TextBlock Text="Console" Style="{StaticResource FieldLabel}" />
+    <ComboBox x:Name="TargetField"
+              ItemsSource="{Binding Targets}" DisplayMemberPath="Label" SelectedValuePath="Target"
+              SelectedValue="{Binding Target}" />
+
     <TextBlock Text="Host" Style="{StaticResource FieldLabel}" />
     <TextBox x:Name="HostField" Text="{Binding Host, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -44,10 +50,19 @@
       <TextBlock Text="PSN Account ID" Style="{StaticResource FieldLabel}" />
       <TextBox x:Name="AccountIdField"
                Text="{Binding AccountId, UpdateSourceTrigger=PropertyChanged}" />
+      <TextBlock Text="Base64, as chiaki-ng and other Remote Play clients show it (12 characters ending in =)."
+                 Opacity="0.6" FontSize="11" TextWrapping="Wrap" Margin="0,2,0,0" />
     </StackPanel>
 
+    <TextBlock Text="On the console: Settings › System › Remote Play › Link Device shows the PIN."
+               Opacity="0.6" FontSize="11" TextWrapping="Wrap" Margin="0,12,0,0" />
+
+    <!-- PP878: CanSubmit is PP37's CanRegister and nothing else, held off while one is running. -->
     <Button x:Name="RegisterButton" Content="Register"
             HorizontalAlignment="Right" Margin="0,16,0,0" Padding="20,4"
-            IsEnabled="{Binding CanRegister}" />
+            IsEnabled="{Binding CanSubmit}" Click="OnRegister" />
+
+    <TextBlock x:Name="RegistStatus" Text="{Binding Status}"
+               TextWrapping="Wrap" Margin="0,8,0,0" Opacity="0.8" />
   </StackPanel>
 </UserControl>

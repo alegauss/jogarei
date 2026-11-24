@@ -784,6 +784,7 @@
 - ✅ **PP853 (offline chain and instrument)** **no history packet reaches the wire in a live session, so a button press is the one input the console never hears** — A press from an SDL event to the wire is proven offline under a motion flood, and a live run now prints buttons seen, taken and history packets queued.
 - ✅ **PP867** **gui stays in the tree only because about 32 drift checks read the retired Qt client's source as their oracle** — gui is gone: the 43 files the drift checks read are frozen in tests\oracles\gui, and the GUI option, speex, SDL finders and cpp-steam-tools left with it.
 - ✅ **PP877** **the console list sweeps before chiaki_lib_init, so every socket fails and it reports no interface to broadcast on** — ConsoleDiscovery calls chiaki_lib_init before its first service, so the installed host finds PS5-385 on open, and a test holds the order and the set of discovery openers.
+- ✅ **PP878** **nothing managed sends a registration or saves the console it pairs, so a new install cannot pair a console** — The shim runs chiaki_regist_start, the store writes the paired console in place, and Register on a row or under the list pairs a console with no chiaki-ng installed.
 
 ## Block G — Test discipline
 
