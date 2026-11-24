@@ -46,7 +46,7 @@ option(CHIAKI_LIB_MINIUPNPC_EXTERNAL_PROJECT "Build miniupnpc from source via Fe
 # PP876: Transmiti's own release numbering, held equal to <Version> in app/Transmiti.csproj.
 set(CHIAKI_VERSION_MAJOR 0)
 set(CHIAKI_VERSION_MINOR 1)
-set(CHIAKI_VERSION_PATCH 1)
+set(CHIAKI_VERSION_PATCH 2)
 set(CHIAKI_VERSION ${CHIAKI_VERSION_MAJOR}.${CHIAKI_VERSION_MINOR}.${CHIAKI_VERSION_PATCH})
 
 set(CPACK_PACKAGE_NAME "chiaki-ng")

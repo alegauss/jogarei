@@ -3,7 +3,7 @@
   <!-- The version here is held equal to the csproj's <Version> by VerifyManifestVersion, which
        fails the build when they drift. A manifest takes four parts where the project takes
        three, so this is that version with a trailing .0 and nothing else. -->
-  <assemblyIdentity version="0.1.1.0" name="Transmiti.app" />
+  <assemblyIdentity version="0.1.2.0" name="Transmiti.app" />
 
   <application xmlns="urn:schemas-microsoft-com:asm.v3">
     <windowsSettings>
