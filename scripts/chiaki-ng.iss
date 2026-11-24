@@ -123,3 +123,14 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
+[Code]
+// The tasks page drew its checkbox with the left edge cut off under WizardStyle=modern (Inno
+// Setup 6.7): the box is painted partly outside the list's own client
+// area, so moving or indenting the list moves the cut with it. Offset is the list's inner
+// margin, and giving it room is what draws the whole box - measured against a probe build
+// before it was written here.
+procedure InitializeWizard;
+begin
+  WizardForm.TasksList.Offset := ScaleX(8);
+end;
