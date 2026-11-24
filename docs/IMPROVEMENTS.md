@@ -236,19 +236,25 @@ Set aside until then: nothing here can start while the shim exports anything.
 
 ### §PP880 Reaching the settings from the window
 
-SettingsView and its pages - general, stream, video, audio, controller, keys, remote,
-display and the placebo tuning - are ported with view models under assertion, and
+SettingsView and its nine pages - general, video, stream, audio, consoles, keys,
+controllers, remote and config - are ported with view models under assertion, and
 nothing in the host constructs any of them. The console list is the only screen a person
-can reach without a flag, so every value those pages edit is whatever the store already
-held, which on a fresh install is the default.
+can reach without a flag.
 
-The settings the session reads are the ones that matter first: resolution, frame rate
-and bitrate decide the stream, and the decoder and renderer decide whether it plays on
-the machine at all. A user who cannot change them cannot recover from a default that
-does not suit their network. The work is an entry point on the list, the view hosted in
-a window as the registration dialog is, and a check that each page's commit reaches the
-store the session reads - PP140 recorded that the settings screen writes on commit, so a
-page shown without that wiring would look editable and change nothing.
+Measured on 2026-11-24, before any wiring: this is three pieces of work and not one, and
+doing only the visible one would be worse than doing none. First, the view models READ
+preferences through IPreferences and nothing writes them - QSettingsPreferences has no
+write path, so a page shown today would display values and save none. Second, the
+session the console list opens reads no preference at all: QSettingsPreferences is
+constructed only by the self-test, so even a saved resolution or bitrate never reaches
+the connect info. Third, the entry point: a button on the list and the view hosted in a
+window, as the registration dialog is.
+
+The order is the reverse of how it looks. The session reading preferences comes first,
+because it is the change that makes a stored value matter; then the writer under each
+page's commit (PP140 recorded that the settings screen writes on commit); then the
+window. A settings screen that opens and changes nothing is what this line must not
+ship, so it splits into those three before it is worked.
 
 ## Block G — Test discipline
 
