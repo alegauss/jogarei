@@ -256,29 +256,45 @@ page's commit (PP140 recorded that the settings screen writes on commit); then t
 window. A settings screen that opens and changes nothing is what this line must not
 ship, so it splits into those three before it is worked.
 
-### §PP881 Frames the port calls lost
+### §PP882 A decoder that keeps every slice
 
-Seen from the console list on 2026-11-24 against PS5-385: the lower half of the picture
-smeared into blocks and stayed that way, which is a decoder predicting from a picture it
-never got.
+The measurement is in docs/HARDWARE-CONTRACT.md, "What d3d11va does to a PS5 keyframe":
+the keyframe arrives in 51 slices, libavcodec's DXVA H.264 code keeps 32, and the
+picture breaks at slice 33 on both GPUs of this machine. Every frame the port draws
+today goes through that path, so this is the defect a user sees first and for the whole
+session.
 
-The census, two runs minutes apart on the same link. The port's path (--show-stream
-d3d11va, which installs ManagedStreamPhase as ConsoleSession does) reported 448 decoded,
-426 shown, 20 lost by the network, and keyframes 0 requested, 0 corrupt-frame reports, 0
-FEC failures. The C path (--measure-decoder d3d11va) reported 769 decoded, 614 drawn,
-and its log carries no "Missing reference frame" line at all.
+Three ways out, in the order they should be weighed. First, a libavcodec built with a
+larger slice limit. MAX_SLICES is a constant sizing an array of slice controls, and
+upstream raising it is the fix that leaves every path as it is - but the payload's
+FFmpeg comes from MSYS2's package, so this means building and shipping FFmpeg, which
+nothing in this tree does yet. Second, decoding in software and uploading NV12: 1280x720
+at 60 fps is light work for a desktop CPU, it is vendor-neutral by construction, and the
+presenter already takes NV12 - the gap is a conversion from yuv420p that today draws
+nothing (0 drawn). Third, NVDEC through cuda where an NVIDIA card is present, which
+decoded clean here, with the Intel floor still needing one of the first two.
 
-Zero corrupt reports and zero FEC failures place the twenty in
-ManagedVideoReceiver.Decodable: a P-frame whose ReferenceFrames.Choose answers Lost is
-counted and returned undelivered, and nothing is sent to the console. videoreceiver.c
-makes the same choice at the same point, so the question is not whether to tell the
-console but why the port reaches that branch twenty times where the C reaches it never -
-the reference set it keeps, the reference index the slice parser reads, or the frame
-index a substitution writes.
+Before choosing, measure the second: its CPU cost on the floor machine and its
+end-to-end latency against d3d11va's, because a correct picture that arrives late is the
+next complaint.
 
-Read first, then decide: compare ReferenceFrames against the C's reference_frames ring
-and its add order, and the slice's reference_frame against chiaki_bitstream_slice on a
-recorded corpus. A second line carries the fix once the reading says which.
+### §PP883 The picture behind Connect
+
+Found while chasing PP881 on 2026-11-24: Connect on the console list reports
+"Connected." within two seconds and the console announces the remote session, and
+nothing is drawn, because NativeConsoleSessionStarter installs ManagedStreamPhase with
+TakenAndDropped as the video handler. Its own comment says why that was chosen - a
+handler that answered false would ask for an IDR per frame - and it was right for a door
+whose job was to prove the session held. It is now the only door a user has.
+
+Everything a picture needs exists one flag away. StreamRun, behind --show-stream, builds
+the SessionDecoder, hands decoder.Sample to the same phase, and runs the presenter in a
+window of its own with the overlay. The work is that composition reached from the list:
+the decoder and the window opened by Connect, Disconnect closing both, and the session's
+quit reaching the list's status line as it does today.
+
+It waits on PP882 because the picture it would show today is the broken one. Wiring this
+first would put the defect in front of every user rather than only behind a flag.
 
 ## Block G — Test discipline
 

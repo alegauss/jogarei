@@ -128,6 +128,37 @@ held is here. Every number is from the RTX 4060 above, driver 32.0.16.1074, Wind
   `OverlayDraw` (§PP641), and the Opus decoder in `OpusDependency` and `SpikeRunQualityTests`
   (§PP32, §PP651).
 
+## What d3d11va does to a PS5 keyframe
+
+**Measured 2026-11-24 (PP881), and it qualifies the floor's first row.** A PS5-385 stream at
+1280x720 (Main profile, CABAC) sends its **keyframe in 51 slices** and its P-frames in 6. FFmpeg's
+DXVA H.264 path - shared by `d3d11va`, `dxva2` and `d3d12va` - keeps at most **32 slices per
+picture** (`MAX_SLICES` in libavcodec's `dxva2_h264.c`), so slices 33 to 51 of every keyframe are
+never decoded. Slice 33 begins at macroblock 1692, y=336, and that is where the picture breaks.
+On a static screen the P-frames carry no new pixels there, so the bottom half stays broken until
+something moves across it.
+
+How it was told apart, so nobody re-derives it: the bytes the port hands the decoder were dumped
+from a live run and decoded by stock ffmpeg (MSYS2 `ffmpeg.exe`). Software decode: no warning,
+clean frames. Then the same file per hardware path, PSNR against the software decode, top / bottom
+half of frame 300:
+
+| Path | Top | Bottom |
+|---|---|---|
+| `d3d11va`, adapter 0 (RTX 4060) | 24.7 dB | 8.3 dB |
+| `d3d11va`, adapter 1 (UHD 770) | 23.8 dB | 8.0 dB |
+| `dxva2`, `d3d12va` | 24.7 dB | 8.3 dB |
+| `vulkan` | 11.6 dB | 7.6 dB |
+| `cuda` (NVDEC, RTX 4060) | 36.7 dB | 42.7 dB |
+
+The network was not involved: a datagram capture of the same session counted 554 frames with
+0 losses and 0 reorders. Neither was the port's receiver: a trace on every P-frame's reference
+choice fired zero times.
+
+So on this console's stream, **d3d11va is a decoder that runs and a picture that is wrong**, on
+Intel as on NVIDIA, which is the vendor-neutral path this file promises. The floor still names it;
+what keeps it honest is the work filed against it.
+
 ## What the gate runs on
 
 Today: nothing. [`.github/workflows/roadkeep.yml`](../.github/workflows/roadkeep.yml) is the only
