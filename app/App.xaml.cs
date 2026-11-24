@@ -1468,6 +1468,9 @@ public partial class App : Application
         // from the store when it succeeds, which is what turns the row's Register into Connect.
         view.RegisterRequested += row => OpenRegistration(window, store, row, Rebuild);
 
+        // PP879: a console discovery cannot see, typed in by address and kept on the list.
+        view.AddRequested += () => OpenManualHost(window, store, Rebuild);
+
         // PP627: the answer to the one event that asks for one. Discarded because the model puts
         // the outcome on the status line, which is where the person who typed it is looking.
         view.PinEntered += pin => model.AnswerPin(pin);
@@ -1575,6 +1578,44 @@ public partial class App : Application
         {
             running?.Dispose();
             running = null;
+        };
+
+        dialog.ShowDialog();
+    }
+
+    /// <summary>
+    /// PP879: the manual host dialog, over the list as registration is. The combo lists the
+    /// registered consoles the address may belong to, then the unregistered choice - the Qt
+    /// client's order, so the index the view model holds is the one addManualHost reads.
+    /// </summary>
+    private static void OpenManualHost(Window owner, QSettingsStore store, Action rebuilt)
+    {
+        IReadOnlyList<RegisteredHost> registered = store.RegisteredHosts();
+        var model = new ManualHostViewModel();
+        var view = new Views.ManualHostView { DataContext = model };
+
+        ((System.Windows.Controls.ComboBox)view.FindName("ConsoleCombo")).ItemsSource =
+            (string[])[.. registered.Select(h => $"{h.ServerNickname} ({h.MacText})"), "Not registered yet - register it from its row"];
+
+        var dialog = new Window
+        {
+            Title = "Add a console by address",
+            Content = view,
+            Owner = owner,
+            Width = 420,
+            SizeToContent = SizeToContent.Height,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            ResizeMode = ResizeMode.NoResize,
+            Background = owner.Background,
+            Foreground = owner.Foreground,
+        };
+
+        view.AddRequested += () =>
+        {
+            store.WriteManualHosts(RegistrationRecord.ManualHostsAdding(
+                store.ManualHosts(), registered, model.RegisteredIndex, model.Host));
+            rebuilt();
+            dialog.Close();
         };
 
         dialog.ShowDialog();

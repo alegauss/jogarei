@@ -15,8 +15,9 @@
     <TextBlock Text="Registered console" Margin="0,12,0,2" Opacity="0.7" />
     <ComboBox x:Name="ConsoleCombo" SelectedIndex="{Binding RegisteredIndex}" />
 
+    <!-- PP879: the combo's last entry is the unregistered one; Register on its row pairs it later. -->
     <Button x:Name="AddButton" Content="Add"
             HorizontalAlignment="Right" Margin="0,16,0,0" Padding="20,4"
-            IsEnabled="{Binding CanAdd}" />
+            IsEnabled="{Binding CanAdd}" Click="OnAdd" />
   </StackPanel>
 </UserControl>

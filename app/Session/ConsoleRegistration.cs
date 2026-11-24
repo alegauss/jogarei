@@ -74,10 +74,38 @@ public static class RegistrationRecord
         }
 
         if (!found)
-            after.Add(new ManualHost(hosts.Count == 0 ? 0 : hosts.Max(h => h.Id) + 1, address, true, mac));
+            after.Add(new ManualHost(NextId(hosts), address, true, mac));
 
         return after;
     }
+
+    /// <summary>
+    /// PP879: the manual list with one more console typed in by address - QmlBackend.addManualHost.
+    ///
+    /// <paramref name="index"/> is the dialog combo's: an index into <paramref name="registered"/>
+    /// names the registration this address belongs to, and the one past the end is "register on
+    /// first connection", an unregistered entry. Always a NEW entry, as Settings::SetManualHost
+    /// makes one for an id below zero - the Qt client lets the same address be added twice too.
+    /// </summary>
+    public static IReadOnlyList<ManualHost> ManualHostsAdding(
+        IReadOnlyList<ManualHost> hosts, IReadOnlyList<RegisteredHost> registered, int index, string address)
+    {
+        ArgumentNullException.ThrowIfNull(hosts);
+        ArgumentNullException.ThrowIfNull(registered);
+        ArgumentException.ThrowIfNullOrWhiteSpace(address);
+
+        bool isRegistered = index >= 0 && index < registered.Count;
+        return
+        [
+            .. hosts,
+            new ManualHost(NextId(hosts), address.Trim(), isRegistered,
+                isRegistered ? registered[index].ServerMac : null),
+        ];
+    }
+
+    /// <summary>The id the Qt client's manual_hosts_id_next would hand out: one past the highest.</summary>
+    private static int NextId(IReadOnlyList<ManualHost> hosts)
+        => hosts.Count == 0 ? 0 : hosts.Max(h => h.Id) + 1;
 }
 
 /// <summary>

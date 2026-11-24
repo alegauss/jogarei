@@ -785,6 +785,7 @@
 - ✅ **PP867** **gui stays in the tree only because about 32 drift checks read the retired Qt client's source as their oracle** — gui is gone: the 43 files the drift checks read are frozen in tests\oracles\gui, and the GUI option, speex, SDL finders and cpp-steam-tools left with it.
 - ✅ **PP877** **the console list sweeps before chiaki_lib_init, so every socket fails and it reports no interface to broadcast on** — ConsoleDiscovery calls chiaki_lib_init before its first service, so the installed host finds PS5-385 on open, and a test holds the order and the set of discovery openers.
 - ✅ **PP878** **nothing managed sends a registration or saves the console it pairs, so a new install cannot pair a console** — The shim runs chiaki_regist_start, the store writes the paired console in place, and Register on a row or under the list pairs a console with no chiaki-ng installed.
+- ✅ **PP879** **the console list has no way to add a console by address, though ManualHostView and the store's writer exist** — Add by address under the list opens ManualHostView, writes the entry as addManualHost does, registered to a chosen console or not, and the list shows it at once.
 
 ## Block G — Test discipline
 

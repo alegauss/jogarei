@@ -63,6 +63,11 @@ public partial class ConsoleListView : UserControl
 
     private void OnRegisterConsole(object sender, RoutedEventArgs e) => RegisterRequested?.Invoke(null);
 
+    /// <summary>PP879: somebody asked to add a console by its address.</summary>
+    public event Action? AddRequested;
+
+    private void OnAddConsole(object sender, RoutedEventArgs e) => AddRequested?.Invoke();
+
     /// <summary>
     /// The row a button is about, which is its own DataContext.
     ///
