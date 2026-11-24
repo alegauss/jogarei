@@ -106,6 +106,12 @@ public sealed class ConsoleDiscovery : IDisposable
     {
         ArgumentNullException.ThrowIfNull(changed);
 
+        // PP877: WSAStartup, which is chiaki_lib_init's whole remaining job. The capture and the
+        // session call it before they open a socket and this did not, so on a process where nothing
+        // else had touched Winsock every service below failed to init, was skipped as an odd
+        // adapter, and the front door said there was no interface to broadcast on. Idempotent.
+        ChiakiSession.LibInit();
+
         foreach (IPAddress broadcast in ExchangeCapture.Broadcasts())
         {
             try
