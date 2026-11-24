@@ -30,7 +30,7 @@
          version they are is a support question nobody can answer. PP876: Transmiti numbers its
          own releases from 0.1.0 - upstream's 1.x tags live in this fork and are not its history.
          VerifyManifestVersion below holds this against app.manifest. -->
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <!-- Keep the informational version exactly x.y.z, with no +commit suffix, so an installer
          can reuse it verbatim. -->
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>

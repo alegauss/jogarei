@@ -13,7 +13,7 @@ export interface HostFlag {
 }
 
 /** The application version, from app/Transmiti.csproj. */
-export const VERSION = "0.1.0";
+export const VERSION = "0.1.1";
 
 /** The target framework it builds against, from the same file. */
 export const FRAMEWORK = "net10.0-windows";
