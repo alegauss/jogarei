@@ -82,6 +82,51 @@ public static class StreamRun
         ArgumentNullException.ThrowIfNull(decoderName);
 
         var model = new StreamOverlayViewModel { Loading = true };
+        Window window = OpenWindow(model);
+
+        var stopping = new CancellationTokenSource();
+        int result = 1;
+
+        window.Loaded += (_, _) =>
+        {
+            var worker = new Thread(() =>
+            {
+                result = Pump(
+                    nickname, decoderName, model, window, stopping.Token,
+                    new RunOptions(via, capturePath, microphone, audioPrefill, wirePath));
+
+                // Closed from here rather than left open on a failure: a run with a bound is one
+                // nobody is watching, and a window that outlived its session would hold it forever.
+                window.Dispatcher.BeginInvoke(window.Close);
+            })
+            {
+                IsBackground = true,
+                Name = "stream",
+            };
+
+            worker.Start();
+
+            if (hold is { } bound)
+                stopping.CancelAfter(bound);
+        };
+
+        window.Closed += (_, _) => stopping.Cancel();
+
+        window.ShowDialog();
+        stopping.Cancel();
+        return result;
+    }
+
+    /// <summary>
+    /// The stream's window with the overlay in it and PP836's fullscreen toggle, not yet shown.
+    ///
+    /// PP883: shared with <see cref="ConnectedStream"/>, which is the same window opened by Connect
+    /// on the console list rather than by a flag - one window with two doors, so the fullscreen
+    /// shortcut a person learns behind one works behind the other.
+    /// </summary>
+    internal static Window OpenWindow(StreamOverlayViewModel model)
+    {
+        ArgumentNullException.ThrowIfNull(model);
 
         var window = new Window
         {
@@ -144,41 +189,9 @@ public static class StreamRun
             e.Handled = true;
         };
 
-        var stopping = new CancellationTokenSource();
-        int result = 1;
+        window.Closed += (_, _) => settling.Stop();
 
-        window.Loaded += (_, _) =>
-        {
-            var worker = new Thread(() =>
-            {
-                result = Pump(
-                    nickname, decoderName, model, window, stopping.Token,
-                    new RunOptions(via, capturePath, microphone, audioPrefill, wirePath));
-
-                // Closed from here rather than left open on a failure: a run with a bound is one
-                // nobody is watching, and a window that outlived its session would hold it forever.
-                window.Dispatcher.BeginInvoke(window.Close);
-            })
-            {
-                IsBackground = true,
-                Name = "stream",
-            };
-
-            worker.Start();
-
-            if (hold is { } bound)
-                stopping.CancelAfter(bound);
-        };
-
-        window.Closed += (_, _) =>
-        {
-            settling.Stop();
-            stopping.Cancel();
-        };
-
-        window.ShowDialog();
-        stopping.Cancel();
-        return result;
+        return window;
     }
 
     /// <summary>
@@ -757,7 +770,12 @@ public static class StreamRun
     /// is built before this loop runs. Same thread either way - this is called straight from the
     /// pump - so nothing about the immediate context's affinity changes.
     /// </param>
-    private static int Draw(
+    /// <remarks>
+    /// PP883: <see cref="ConnectedStream"/> draws through this too. The counters it moves are this
+    /// class's statics and only --show-stream's report reads them, so a session opened from the
+    /// console list moves numbers nothing prints - one loop rather than a second copy of it.
+    /// </remarks>
+    internal static int Draw(
         SessionDecoder decoder, RenderDevice device, StreamOverlayViewModel model, Window window,
         ManualResetEventSlim quit, CancellationToken stopping)
     {

@@ -149,12 +149,17 @@ public sealed class NativeConsoleSessionStarter : IConsoleSessionStarter
         ChiakiSession? session;
         ChiakiError created;
 
+        // PP883: true now, StreamRun's flag - this door shows a picture, and a lost reference frame
+        // smears every P-frame until the next keyframe unless one is asked for at once. False was
+        // right for a door that dropped every frame and so had nothing to recover.
+        const bool idrOnFecFailure = true;
+
         using (var info = new ChiakiConnectInfo { Host = request.Host, Ps5 = request.Ps5 })
         {
             info.SetRegistKey(request.RegistKey);
             info.SetMorning(request.Morning);
             info.SetVideoPreset(ChiakiVideoResolution.P720, ChiakiVideoFps.Fps60);
-            info.SetFlags(autoDowngrade: true, keyboard: false, dualSense: false, idrOnFecFailure: false);
+            info.SetFlags(autoDowngrade: true, keyboard: false, dualSense: false, idrOnFecFailure: idrOnFecFailure);
 
             session = ChiakiSession.TryCreate(info, null, out created);
         }
@@ -162,18 +167,28 @@ public sealed class NativeConsoleSessionStarter : IConsoleSessionStarter
         if (session is null)
             return new(created, null);
 
+        // PP883: THE PICTURE, which this door never had. Built before the phase because the phase
+        // takes its handler when it is built; null only on a machine with no D3D11 device, which
+        // keeps PP801's dropping handler rather than refusing a session that can still be held.
+        ConnectedStream? stream = streams();
+
         // PP801: AND THE FRONT DOOR INSTALLS ONE TOO, which it never did. PP783 flipped the run and
         // wired the one path that shows a picture; this is the one a person clicks, and it reached
         // the stream phase and quit.
         //
-        // NO DECODER AND NO WINDOW, which is what this door has. The frame is taken and reported
-        // taken rather than refused: the receiver asks the console for a keyframe on a false, so a
-        // door with nowhere to put a picture would ask for an IDR sixty times a second.
+        // PP883: the stream's decoder where there is one. Where there is not, the frame is taken and
+        // reported taken rather than refused: the receiver asks the console for a keyframe on a
+        // false, so a door with nowhere to put a picture would ask for an IDR sixty times a second.
         //
         // Held by the handle, because the phase must outlive this call exactly as the session does -
         // a phase disposed on the way out cancels its own run.
         var baseline = new SessionBaseline();
-        var phase = new ManagedStreamPhase(session, console, TakenAndDropped, baseline);
+        var phase = new ManagedStreamPhase(
+            session, console, stream is null ? TakenAndDropped : stream.Sample, baseline)
+        {
+            IdrOnFecFailure = idrOnFecFailure,
+            Codec = ChiakiCodec.H264,
+        };
 
         // PP784: AND THE MEASUREMENT, for the same reason one line later than PP801's.
         //
@@ -198,10 +213,40 @@ public sealed class NativeConsoleSessionStarter : IConsoleSessionStarter
             phase.Dispose();
             baseline.Dispose();
             session.Dispose();
+            stream?.Dispose();
             return new(started, null);
         }
 
-        return new(ChiakiError.Success, new Handle(session, phase, senkusha, baseline));
+        // PP883: and the controller, because a picture nobody can answer is a video. Opened off
+        // this thread for PP835's reason - SDL is allowed fifteen seconds to find a pad, and this is
+        // the UI thread - and a machine with none still streams.
+        var pad = new PadFeed(phase.Pad, TouchpadExtents.For(request.Ps5)) { Timeline = phase.Timeline };
+        Task<bool> opening = Task.Run(pad.Start);
+
+        // A person closing the window is their Disconnect, said the way the session's own end is,
+        // so the list does the stopping in the one order the handle knows.
+        stream?.Show(() => report(new(ConsoleSessionState.Ended, QuitSentence.Ended)));
+
+        return new(ChiakiError.Success, new Handle(session, phase, senkusha, baseline, stream, pad, opening));
+    }
+
+    /// <summary>
+    /// PP883: where the picture comes from - <see cref="ConnectedStream.TryCreate"/> in the
+    /// application, a func so a caller can hand in none.
+    /// </summary>
+    private readonly Func<ConnectedStream?> streams;
+
+    /// <summary>The front door's starter: every session it opens gets a window.</summary>
+    public NativeConsoleSessionStarter()
+        : this(ConnectedStream.TryCreate)
+    {
+    }
+
+    /// <summary>A starter whose sessions get the picture <paramref name="streams"/> answers.</summary>
+    public NativeConsoleSessionStarter(Func<ConnectedStream?> streams)
+    {
+        ArgumentNullException.ThrowIfNull(streams);
+        this.streams = streams;
     }
 
     /// <summary>
@@ -240,11 +285,20 @@ public sealed class NativeConsoleSessionStarter : IConsoleSessionStarter
     /// but the session's stop still pokes it through a second callback, so it outlives the stop for
     /// the reason the stream's does rather than because it is still measuring.
     /// </summary>
+    /// <remarks>
+    /// PP883: and the PAD and the PICTURE, each after the session's stop. The pad pushes into the
+    /// phase, so it goes before the phase; it is waited for first because its opening may still be
+    /// running, and disposing a PadFeed mid-Start is the teardown PP835 already ordered against.
+    /// The picture goes LAST, after the phase that feeds its decoder.
+    /// </remarks>
     private sealed class Handle(
         ChiakiSession session,
         ManagedStreamPhase phase,
         ManagedSenkushaPhase senkusha,
-        SessionBaseline baseline)
+        SessionBaseline baseline,
+        ConnectedStream? stream,
+        PadFeed pad,
+        Task<bool> opening)
         : IHeldSession
     {
         private ChiakiSession? held = session;
@@ -263,9 +317,14 @@ public sealed class NativeConsoleSessionStarter : IConsoleSessionStarter
             going.Join();
             going.Dispose();
 
+            opening.Wait(TimeSpan.FromSeconds(20));
+            pad.Dispose();
+
             senkusha.Dispose();
             phase.Dispose();
             baseline.Dispose();
+
+            stream?.Dispose();
         }
     }
 }

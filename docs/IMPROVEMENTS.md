@@ -256,24 +256,6 @@ page's commit (PP140 recorded that the settings screen writes on commit); then t
 window. A settings screen that opens and changes nothing is what this line must not
 ship, so it splits into those three before it is worked.
 
-### §PP883 The picture behind Connect
-
-Found while chasing PP881 on 2026-11-24: Connect on the console list reports
-"Connected." within two seconds and the console announces the remote session, and
-nothing is drawn, because NativeConsoleSessionStarter installs ManagedStreamPhase with
-TakenAndDropped as the video handler. Its own comment says why that was chosen - a
-handler that answered false would ask for an IDR per frame - and it was right for a door
-whose job was to prove the session held. It is now the only door a user has.
-
-Everything a picture needs exists one flag away. StreamRun, behind --show-stream, builds
-the SessionDecoder, hands decoder.Sample to the same phase, and runs the presenter in a
-window of its own with the overlay. The work is that composition reached from the list:
-the decoder and the window opened by Connect, Disconnect closing both, and the session's
-quit reaching the list's status line as it does today.
-
-It waits on PP882 because the picture it would show today is the broken one. Wiring this
-first would put the defect in front of every user rather than only behind a flag.
-
 ## Block G — Test discipline
 
 ## Block H — Performance and telemetry

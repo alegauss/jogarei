@@ -6,7 +6,8 @@ description: The flags Transmiti.exe answers, read out of the application's own 
 import { HostFlags } from "../../../components/HostFlags";
 
 `Transmiti.exe` opens the console list when it is given no flag — the consoles on your network,
-with a Connect on any that is registered. Every flag below is declared in one list in
+with a Connect on any that is registered. Connect opens the console's picture in a window of its
+own; closing that window ends the session. Every flag below is declared in one list in
 `app/Session/HostCommandLine.cs`, and a name it does not declare is refused rather than ignored —
 a mistyped flag does not silently open the window.
 

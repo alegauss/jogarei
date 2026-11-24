@@ -247,6 +247,7 @@ public sealed class ConsoleListViewModel : INotifyPropertyChanged
     private string status = "";
     private IHeldSession? live;
     private bool pinWanted;
+    private int generation;
 
     /// <summary>
     /// PP600: the list as it has always been - it draws, and connecting is refused with a reason.
@@ -439,7 +440,12 @@ public sealed class ConsoleListViewModel : INotifyPropertyChanged
         // the new one first would have both asking the same console at once.
         Disconnect(say: false);
 
-        ConsoleSessionStart start = starter.Start(request, Report);
+        // PP883: this session's events are answered only while it is the one held. A session that
+        // was stopped still sends its Quit - late, from its own thread, with whatever reason the stop
+        // left - and read as current it overwrote "The session ended." with an error, or ended the
+        // session a second Connect had just opened.
+        int mine = ++generation;
+        ConsoleSessionStart start = starter.Start(request, moved => Report(moved, mine));
 
         if (!start.Running)
         {
@@ -471,6 +477,9 @@ public sealed class ConsoleListViewModel : INotifyPropertyChanged
         IHeldSession? going = live;
         live = null;
         PinWanted = false;
+
+        // PP883: whatever the session that is going says from here on is about a session gone.
+        generation++;
 
         if (going is null)
             return;
@@ -539,8 +548,11 @@ public sealed class ConsoleListViewModel : INotifyPropertyChanged
     /// then, and a handle left behind would leave <see cref="HasSession"/> true - a way-out button
     /// enabled for a session that is over, which is the state a second click would try to stop.
     /// </summary>
-    private void Report(ConsoleSessionEvent moved) => marshal(() =>
+    private void Report(ConsoleSessionEvent moved, int from) => marshal(() =>
     {
+        if (from != generation)
+            return;
+
         switch (moved.State)
         {
             case ConsoleSessionState.Connected:
