@@ -16,7 +16,7 @@
 #
 # It fires on a v* tag, and by hand against a tag:
 #
-#   gh workflow run release.yml --ref v1.10.0
+#   gh workflow run release.yml --ref v0.1.0
 #
 # The tag must match <Version> in app/Transmiti.csproj - the job refuses otherwise rather than
 # publishing an installer whose Add/Remove Programs entry disagrees with its own file name.

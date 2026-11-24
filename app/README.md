@@ -32,8 +32,9 @@ not this one's.
   and 155.6 MB, turning a no-op build from 1.2s into 81s and then 395s on unchanged source.
 - **`RuntimeIdentifier` is unconditional**, so the output path is the same in Debug and Release
   and anything that spells `…\win-x64\Transmiti.exe` stays true.
-- **The version is in one place.** `<Version>` in the csproj, tracking the Qt client's
-  `CHIAKI_VERSION` from `CMakeLists.txt`. `app.manifest` needs its own four-part copy, and
+- **The version is in one place.** `<Version>` in the csproj, kept equal to
+  `CHIAKI_VERSION` in `CMakeLists.txt`. Transmiti numbers its own releases from 0.1.0 (PP876);
+  upstream's 1.x is not this application's history. `app.manifest` needs its own four-part copy, and
   nothing in the SDK relates the two, so the `VerifyManifestVersion` target **fails the build**
   when they drift. That is PP1's assertion: set the manifest to `1.9.0.0` and the build stops
   with both numbers named.

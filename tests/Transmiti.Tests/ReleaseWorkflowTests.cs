@@ -78,4 +78,31 @@ public class ReleaseWorkflowTests
         Assert.Contains("VersionInfo.ProductVersion", code, StringComparison.Ordinal);
         Assert.Contains("GITHUB_REF_TYPE -ne 'tag'", code, StringComparison.Ordinal);
     }
+
+    /// <summary>
+    /// PP876: the release tag is checked against the exe's version, which is the csproj's, and
+    /// libchiaki is stamped with CMakeLists' CHIAKI_VERSION. VerifyManifestVersion holds the csproj
+    /// against app.manifest; nothing held it against CMake until Transmiti left upstream's 1.10.0
+    /// for its own 0.1.0, which is the change that would leave one of the two behind.
+    /// </summary>
+    [Fact]
+    public void TheHostAndLibchiakiCarryOneVersion()
+    {
+        if (SanitizerSource.LocateRelative(@"app\Transmiti.csproj") is not { } csproj
+            || SanitizerSource.LocateRelative("CMakeLists.txt") is not { } cmake)
+            return;
+
+        Match version = Regex.Match(File.ReadAllText(csproj), @"<Version>(\d+\.\d+\.\d+)</Version>");
+        Assert.True(version.Success, "Transmiti.csproj states no x.y.z <Version>");
+
+        string cmakeText = File.ReadAllText(cmake);
+        string Part(string name)
+        {
+            Match m = Regex.Match(cmakeText, $@"(?m)^set\(CHIAKI_VERSION_{name} (\d+)\)");
+            Assert.True(m.Success, $"CMakeLists.txt sets no CHIAKI_VERSION_{name}");
+            return m.Groups[1].Value;
+        }
+
+        Assert.Equal(version.Groups[1].Value, $"{Part("MAJOR")}.{Part("MINOR")}.{Part("PATCH")}");
+    }
 }

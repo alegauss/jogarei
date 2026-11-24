@@ -41,7 +41,7 @@
 #endif
 
 ; Read off the packaged exe rather than written here. app\Transmiti.csproj sets Version to
-; 1.10.0 to match CMakeLists' CHIAKI_VERSION - one version for the two executables - and
+; match CMakeLists' CHIAKI_VERSION - one version for the whole tree - and
 ; keeps IncludeSourceRevisionInInformationalVersion off precisely so an installer can reuse
 ; it verbatim. A literal in this file would be a second place to update and the one nobody
 ; remembers.

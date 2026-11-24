@@ -43,8 +43,9 @@ option(CHIAKI_LIB_OPENSSL_EXTERNAL_PROJECT "Use OpenSSL as CMake external projec
 tri_option(CHIAKI_USE_SYSTEM_NANOPB "Use system-provided nanopb instead of submodule" AUTO)
 option(CHIAKI_LIB_MINIUPNPC_EXTERNAL_PROJECT "Build miniupnpc from source via FetchContent" OFF)
 
-set(CHIAKI_VERSION_MAJOR 1)
-set(CHIAKI_VERSION_MINOR 10)
+# PP876: Transmiti's own release numbering, held equal to <Version> in app/Transmiti.csproj.
+set(CHIAKI_VERSION_MAJOR 0)
+set(CHIAKI_VERSION_MINOR 1)
 set(CHIAKI_VERSION_PATCH 0)
 set(CHIAKI_VERSION ${CHIAKI_VERSION_MAJOR}.${CHIAKI_VERSION_MINOR}.${CHIAKI_VERSION_PATCH})
 

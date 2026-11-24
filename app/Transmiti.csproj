@@ -25,11 +25,12 @@
     <ApplicationIcon>..\assets\transmiti.ico</ApplicationIcon>
     <AssemblyName>Transmiti</AssemblyName>
     <RootNamespace>Transmiti</RootNamespace>
-    <!-- Single source of truth for the version, and it tracks the Qt client's: CMakeLists.txt
-         sets CHIAKI_VERSION 1.10.0, the two executables ship from one tree, and a port whose
-         halves disagree about what version they are is a support question nobody can answer.
+    <!-- Single source of truth for the version, held equal to CHIAKI_VERSION in CMakeLists.txt:
+         the host and libchiaki ship from one tree, and a port whose halves disagree about what
+         version they are is a support question nobody can answer. PP876: Transmiti numbers its
+         own releases from 0.1.0 - upstream's 1.x tags live in this fork and are not its history.
          VerifyManifestVersion below holds this against app.manifest. -->
-    <Version>1.10.0</Version>
+    <Version>0.1.0</Version>
     <!-- Keep the informational version exactly x.y.z, with no +commit suffix, so an installer
          can reuse it verbatim. -->
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
