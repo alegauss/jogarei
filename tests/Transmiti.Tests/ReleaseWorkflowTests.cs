@@ -52,11 +52,11 @@ public class ReleaseWorkflowTests
     public void ItPicksUpTheInstallerTheScriptWrites()
     {
         if (Code() is not { } code
-            || SanitizerSource.LocateRelative(@"scripts\chiaki-ng.iss") is not { } iss)
+            || SanitizerSource.LocateRelative(@"scripts\transmiti.iss") is not { } iss)
             return;
 
         Match name = Regex.Match(File.ReadAllText(iss), @"(?m)^OutputBaseFilename=(\S+)\s*$");
-        Assert.True(name.Success, "chiaki-ng.iss names no OutputBaseFilename");
+        Assert.True(name.Success, "transmiti.iss names no OutputBaseFilename");
 
         Assert.Contains($@"build\{name.Groups[1].Value}.exe", code, StringComparison.Ordinal);
     }

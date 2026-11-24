@@ -196,7 +196,7 @@ public static class SelfTest
         //
         // The move it breaks is delete-and-restore - a revert, a merge resolved by removing the
         // file, a copy taken from another branch - which leaves the path untracked and the rule
-        // suddenly live. Naming it, `git add scripts/chiaki-ng.iss` at least refuses out loud. What
+        // suddenly live. Naming it, `git add scripts/transmiti.iss` at least refuses out loud. What
         // run-commit.cmd runs is `git add -A`, and measured against this tree that stages the
         // DELETION of the installer script and prints nothing whatsoever. The commit removes the
         // file, the next clone has no installer, and no step in that sequence reported an error.
@@ -231,7 +231,7 @@ public static class SelfTest
                 rules.Contains("build", StringComparer.Ordinal), $"{rules.Length} rule(s)");
 
             string[] handWritten =
-                ["scripts/chiaki-ng.iss", "scripts/package-windows.sh", "package.cmd", "compile.cmd"];
+                ["scripts/transmiti.iss", "scripts/package-windows.sh", "package.cmd", "compile.cmd"];
             string[] ignored =
             [
                 .. handWritten.Where(path =>
@@ -253,7 +253,7 @@ public static class SelfTest
         string? installerScript = SanitizerSource.LocateRelative(InstallerScript.RelativePath);
         if (installerScript is null)
         {
-            Console.WriteLine(@"  --    the installer's payload  (no scripts\chiaki-ng.iss here)");
+            Console.WriteLine(@"  --    the installer's payload  (no scripts\transmiti.iss here)");
         }
         else
         {

@@ -62,7 +62,7 @@ public partial class SonyMarksTests
         if (Text("README.md") is { } readme)
             AssertNoMark("README.md", Regex.Matches(readme, @"^#+ .*$", RegexOptions.Multiline).Select(m => m.Value));
 
-        if (Text(@"scripts\chiaki-ng.iss") is { } iss)
-            AssertNoMark("chiaki-ng.iss", Regex.Matches(iss, @"^#define MyAppName ""(.*)""", RegexOptions.Multiline).Select(m => m.Groups[1].Value));
+        if (Text(@"scripts\transmiti.iss") is { } iss)
+            AssertNoMark("transmiti.iss", Regex.Matches(iss, @"^#define MyAppName ""(.*)""", RegexOptions.Multiline).Select(m => m.Groups[1].Value));
     }
 }

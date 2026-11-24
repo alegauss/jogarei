@@ -58,7 +58,7 @@ public class CodeNameTests
         string[] read =
         [
             "README.md", "CONTRIBUTOR_GUIDE.md",
-            Path.Combine("scripts", "chiaki-ng.iss"), Path.Combine("site", "vite.config.ts"),
+            Path.Combine("scripts", "transmiti.iss"), Path.Combine("site", "vite.config.ts"),
             Path.Combine("site", "public", "llms.txt"), Path.Combine("site", "src", "lib", "site-content.ts"),
             Path.Combine("site", "docs", "astro.config.mjs"),
         ];

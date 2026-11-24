@@ -197,7 +197,7 @@ if not defined ISCC (
 
 echo.
 echo [package] compiling the installer ...
-"%ISCC%" /Q "%~dp0scripts\chiaki-ng.iss"
+"%ISCC%" /Q "%~dp0scripts\transmiti.iss"
 if errorlevel 1 (
     echo.
     echo [package] FAILED - the payload is good and the installer script is not.

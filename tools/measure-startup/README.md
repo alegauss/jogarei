@@ -116,7 +116,7 @@ delta is the port's, not Chromium's alone. Chromium alone is the 208.6 MB in the
    error box — a dialog is a visible top-level window too, and timing one would report a cold start
    for a build that never started.
 3. **Installer size is not measured; tree size is.** An Inno Setup script exists
-   ([`scripts/chiaki-ng.iss`](../../scripts/chiaki-ng.iss)) but nothing in the tree builds an
+   ([`scripts/transmiti.iss`](../../scripts/transmiti.iss)) but nothing in the tree builds an
    installer since the CI workflows were deleted (PP22). The deploy tree is the honest proxy, and it
    is labelled as the tree.
 

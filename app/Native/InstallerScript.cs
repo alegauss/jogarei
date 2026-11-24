@@ -6,7 +6,7 @@ namespace Transmiti.Native;
 /// PP274: what the Inno Setup script says it packages, read back out of the script.
 ///
 /// Three files have to agree about one payload and none of them can read the others.
-/// <c>scripts\chiaki-ng.iss</c> defines the directory it compresses and the executable it makes
+/// <c>scripts\transmiti.iss</c> defines the directory it compresses and the executable it makes
 /// shortcuts for; <c>package.cmd</c> decides where that directory is written; and the csproj names
 /// the executable that lands in it. Upstream's version of this file disagreed with all three - it
 /// named <c>..\chiaki-ng-Win\chiaki.exe</c>, a directory no build creates and a client PP21 turned
@@ -24,7 +24,7 @@ namespace Transmiti.Native;
 public static partial class InstallerScript
 {
     /// <summary>The Inno Setup script, relative to the repository root.</summary>
-    public const string RelativePath = @"scripts\chiaki-ng.iss";
+    public const string RelativePath = @"scripts\transmiti.iss";
 
     /// <summary>The project that names the executable, relative to the repository root.</summary>
     public const string ProjectRelativePath = @"app\Transmiti.csproj";

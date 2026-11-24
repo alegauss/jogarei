@@ -24,9 +24,10 @@
 ; the AppId below does not cover: two installers with different identities writing into one
 ; {autopf}\chiaki-ng would collide on the directory anyway.
 ;
-; This file keeps its upstream name, scripts\chiaki-ng.iss: package.cmd, the selftest, the release
-; workflow's test and the reference build all name it by path, and nobody downloading the
-; installer ever sees it. OutputBaseFilename below is the name that reaches a user.
+; This file was upstream's scripts\chiaki-ng.iss and is named for the product it builds now.
+; package.cmd, the selftest and the tests name it by path; the reference build still compiles the
+; reference commit's chiaki-ng.iss, which is that commit's file and not this one.
+; OutputBaseFilename below is the name that reaches a user.
 #define MyAppName "Transmiti"
 #define MyAppPublisher "Alexandre Oliveira"
 #define MyAppURL "https://alegauss.com/transmiti/"

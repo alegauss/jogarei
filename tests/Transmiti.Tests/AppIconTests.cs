@@ -33,7 +33,7 @@ public partial class AppIconTests
     /// the executable and the Inno Setup script puts one on the setup window.
     /// </summary>
     private const string ProjectRelativePath = @"app\Transmiti.csproj";
-    private const string InstallerRelativePath = @"scripts\chiaki-ng.iss";
+    private const string InstallerRelativePath = @"scripts\transmiti.iss";
 
     /// <summary>
     /// The csproj names an icon that is there. An <c>&lt;ApplicationIcon&gt;</c> pointing at nothing
